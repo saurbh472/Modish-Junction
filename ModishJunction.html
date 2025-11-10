@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modish Junction - Where Tradition Meets Trend</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8b5cf6;
+            --secondary: #ec4899;
+            --dark: #1e1b4b;
+            --light: #f8fafc;
+            --accent: #fbbf24;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .top-bar {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            padding: 1rem 0;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 0.5rem 1.5rem;
+            color: var(--dark);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .nav-icons span:hover {
+            color: var(--primary);
+            transform: scale(1.1);
+            transition: all 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 100px;
+            height: 90vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: movePattern 20s linear infinite;
+        }
+
+        @keyframes movePattern {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            padding: 1rem 3rem;
+            background: white;
+            color: var(--primary);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Featured Categories */
+        .categories {
+            padding: 5rem 5%;
+            background: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .category-image {
+            height: 300px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .category-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .category-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .category-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 5rem 5%;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 2rem auto;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--secondary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            z-index: 1;
+        }
+
+        .product-image {
+            height: 350px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .price {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .sale-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .add-to-cart:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 3rem auto;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .newsletter-input {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-input input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .newsletter-input button {
+            padding: 0.8rem 1.5rem;
+            background: var(--accent);
+            border: none;
+            border-radius: 8px;
+            color: var(--dark);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .newsletter-input button:hover {
+            transform: scale(1.05);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .social-icons span {
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .social-icons span:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #999;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* SHREE Stories Section */
+        .stories-section {
+            padding: 5rem 5%;
+            background: white;
+            overflow: hidden;
+        }
+
+        .stories-container {
+            overflow: hidden;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .stories-track {
+            display: flex;
+            gap: 1.5rem;
+            animation: scroll 30s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .stories-track:hover {
+            animation-play-state: paused;
+        }
+
+        .story-card {
+            min-width: 300px;
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .story-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+
+        .story-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Customer Reviews Section */
+        .reviews-section {
+            padding: 5rem 5%;
+            background: var(--light);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .review-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .customer-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .customer-info h4 {
+            margin: 0;
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+
+        .location {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .stars {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+        }
+
+        .review-text {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .purchase-info {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+            z-index: 999;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 6px 30px rgba(37, 211, 102, 0.7);
+            }
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.15);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .story-card {
+                min-width: 250px;
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            ✨ New Autumn Winter Collection Live | Free Shipping on Orders Above ₹999 ✨
+        </div>
+        <nav>
+            <div class="logo">Modish Junction</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li class="dropdown">
+                    <a href="#kurtas">Kurtas & Kurtis ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#aline">A-Line</a>
+                        <a href="#straight">Straight</a>
+                        <a href="#embroidered">Embroidered</a>
+                        <a href="#solid">Solid</a>
+                        <a href="#printed">Printed</a>
+                        <a href="#tunics">Tunics</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#dresses">Dresses ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#aline-dress">A-Line</a>
+                        <a href="#flared">Fit & Flared</a>
+                    </div>
+                </li>
+                <li><a href="#ethnic-sets">Ethnic Sets</a></li>
+                <li><a href="#coords">Co-ords</a></li>
+                <li><a href="#sale" style="color: var(--secondary);">Sale 🔥</a></li>
+            </ul>
+            <div class="nav-icons">
+                <span>🔍</span>
+                <span>👤</span>
+                <span>🛒</span>
+            </div>
+            <div class="mobile-menu">☰</div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Where Tradition Meets Trend</h1>
+            <p>Discover the perfect blend of elegance and contemporary style in every stitch</p>
+            <button class="cta-button">Explore Collection</button>
+        </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section class="categories">
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="category-grid">
+            <div class="category-card">
+                <div class="category-image">👗</div>
+                <div class="category-info">
+                    <h3>Kurtas & Kurtis</h3>
+                    <p>Timeless elegance for every occasion</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-image">💃</div>
+                <div class="category-info">
+                    <h3>Ethnic Sets</h3>
+                    <p>Complete coordinated perfection</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-image">✨</div>
+                <div class="category-info">
+                    <h3>Designer Dresses</h3>
+                    <p>Modern silhouettes with traditional charm</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-image">🌸</div>
+                <div class="category-info">
+                    <h3>Co-ord Sets</h3>
+                    <p>Effortless style, perfectly matched</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="trending">
+        <h2 class="section-title">Trending This Season</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <span class="discount-badge">30% OFF</span>
+                <div class="product-image">🎨</div>
+                <div class="product-info">
+                    <h3>Women Liva Embroidered Kurta Set with Dupatta</h3>
+                    <div class="price">
+                        <span class="sale-price">₹3,499</span>
+                        <span class="original-price">₹4,999</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <span class="discount-badge">40% OFF</span>
+                <div class="product-image">🌺</div>
+                <div class="product-info">
+                    <h3>Cotton Floral Print A-Line Dress</h3>
+                    <div class="price">
+                        <span class="sale-price">₹1,199</span>
+                        <span class="original-price">₹1,999</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <span class="discount-badge">50% OFF</span>
+                <div class="product-image">💫</div>
+                <div class="product-info">
+                    <h3>Silk Blend Embroidered Ethnic Set</h3>
+                    <div class="price">
+                        <span class="sale-price">₹2,499</span>
+                        <span class="original-price">₹4,999</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <span class="discount-badge">20% OFF</span>
+                <div class="product-image">🧶</div>
+                <div class="product-info">
+                    <h3>Soft Knitted Warm Women Shawl</h3>
+                    <div class="price">
+                        <span class="sale-price">₹2,152</span>
+                        <span class="original-price">₹2,690</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SHREE Stories Section -->
+    <section class="stories-section">
+        <h2 class="section-title">SHREE Stories</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 2rem;">@modishjunction</p>
+        <div class="stories-container">
+            <div class="stories-track">
+                <div class="story-card">
+                    <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400" alt="Story 1">
+                </div>
+                <div class="story-card">
+                    <img src="https://images.unsplash.com/photo-1583391733981-5ead426c0648?w=400" alt="Story 2">
+                </div>
+                <div class="story-card">
+                    <img src="https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=400" alt="Story 3">
+                </div>
+                <div class="story-card">
+                    <img src="https://images.unsplash.com/photo-1610030469829-60b7be1f3a0d?w=400" alt="Story 4">
+                </div>
+                <div class="story-card">
+                    <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400" alt="Story 5">
+                </div>
+                <div class="story-card">
+                    <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400" alt="Story 6">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section class="reviews-section">
+        <h2 class="section-title">Happy Customers ❤️</h2>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="customer-avatar">👩</div>
+                    <div class="customer-info">
+                        <h4>Priya Sharma</h4>
+                        <p class="location">Mumbai, India</p>
+                    </div>
+                </div>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"Absolutely loved the quality! The embroidery work is stunning and fits perfectly. Will definitely order again!"</p>
+                <p class="purchase-info">Purchased: Embroidered Kurta Set</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="customer-avatar">👱‍♀️</div>
+                    <div class="customer-info">
+                        <h4>Ananya Patel</h4>
+                        <p class="location">Ahmedabad, India</p>
+                    </div>
+                </div>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"Best ethnic wear collection! Fast delivery and packaging was superb. The fabric quality exceeded my expectations."</p>
+                <p class="purchase-info">Purchased: A-Line Dress</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="customer-avatar">👩‍🦱</div>
+                    <div class="customer-info">
+                        <h4>Meera Reddy</h4>
+                        <p class="location">Hyderabad, India</p>
+                    </div>
+                </div>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"Got so many compliments! The colors are vibrant and true to pictures. Great value for money!"</p>
+                <p class="purchase-info">Purchased: Ethnic Set with Dupatta</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="customer-avatar">👩‍💼</div>
+                    <div class="customer-info">
+                        <h4>Sneha Kapoor</h4>
+                        <p class="location">Delhi, India</p>
+                    </div>
+                </div>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"Perfect for office wear! Comfortable all day and looks elegant. Customer service was also very helpful."</p>
+                <p class="purchase-info">Purchased: Straight Kurti</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="customer-avatar">👸</div>
+                    <div class="customer-info">
+                        <h4>Riya Malhotra</h4>
+                        <p class="location">Bengaluru, India</p>
+                    </div>
+                </div>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"Amazing collection for festive season! The shawl is so soft and warm. Highly recommend Modish Junction!"</p>
+                <p class="purchase-info">Purchased: Winter Shawl</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="customer-avatar">👩‍🎓</div>
+                    <div class="customer-info">
+                        <h4>Kavya Singh</h4>
+                        <p class="location">Pune, India</p>
+                    </div>
+                </div>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"Love the modern designs! Perfect blend of traditional and contemporary. The co-ord set is my new favorite!"</p>
+                <p class="purchase-info">Purchased: Co-ord Set</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title" style="color: white;">Why Choose Modish Junction?</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">🚚</div>
+                <h3>Free Delivery</h3>
+                <p>On all orders above ₹999</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🔄</div>
+                <h3>Easy Returns</h3>
+                <p>7-day hassle-free return policy</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🇮🇳</div>
+                <h3>Made in India</h3>
+                <p>Supporting local artisans</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">💳</div>
+                <h3>Secure Payments</h3>
+                <p>100% safe and secure checkout</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Chat Button -->
+    <a href="https://wa.me/919876543210?text=Hi%20Modish%20Junction!%20I%20have%20a%20question" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+        <svg viewBox="0 0 32 32" fill="white" width="28" height="28">
+            <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 8.167-2.113c2.325 1.27 4.925 1.947 7.833 1.947 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.275 1.362 1.412-5.25-0.32-0.525c-1.341-2.194-2.051-4.73-2.051-7.359 0-7.72 6.28-14 14-14s14 6.28 14 14-6.28 14-14 14zM23.293 19.943c-0.396-0.199-2.348-1.158-2.713-1.291s-0.628-0.199-0.893 0.199c-0.265 0.398-1.026 1.291-1.259 1.556s-0.463 0.298-0.859 0.099c-2.219-1.108-3.674-1.975-5.134-4.475-0.387-0.662 0.387-0.615 1.108-2.050 0.121-0.265 0.060-0.496-0.034-0.695-0.094-0.199-0.893-2.151-1.224-2.945-0.322-0.774-0.649-0.669-0.893-0.681-0.231-0.012-0.496-0.015-0.76-0.015s-0.694 0.099-1.058 0.496c-0.364 0.398-1.388 1.357-1.388 3.308s1.421 3.836 1.619 4.101c0.199 0.265 2.799 4.272 6.781 5.989 2.51 1.079 3.494 1.148 4.748 0.968 0.762-0.109 2.348-0.96 2.679-1.888s0.331-1.723 0.232-1.888c-0.099-0.165-0.364-0.265-0.76-0.464z"/>
+        </svg>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Modish Junction</h3>
+                <p>Your ultimate destination for exquisite ethnic fashion where every piece tells a story of tradition, craftsmanship, and contemporary elegance.</p>
+                <div class="social-icons">
+                    <span>📘</span>
+                    <span>📷</span>
+                    <span>🐦</span>
+                    <span>📌</span>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#new">New Arrivals</a></li>
+                    <li><a href="#bestsellers">Best Sellers</a></li>
+                    <li><a href="#sale">Sale</a></li>
+                    <li><a href="#track">Track Order</a></li>
+                    <li><a href="#stores">Store Locator</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Care</h3>
+                <ul>
+                    <li><a href="#shipping">Shipping Policy</a></li>
+                    <li><a href="#returns">Return & Exchange</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe for exclusive offers and style tips!</p>
+                <div class="newsletter-input">
+                    <input type="email" placeholder="Enter your email">
+                    <button>Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Modish Junction. All Rights Reserved. | Crafted with ❤️ in India</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 5px 30px rgba(0,0,0,0.2)';
+            } else {
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // Add to cart animation
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                this.textContent = '✓ Added!';
+                this.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                setTimeout(() => {
+                    this.textContent = 'Add to Cart';
+                    this.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
+                }, 2000);
+            });
+        });
+
+        // Duplicate stories for infinite scroll
+        const storiesTrack = document.querySelector('.stories-track');
+        const storyCards = document.querySelectorAll('.story-card');
+        storyCards.forEach(card => {
+            const clone = card.cloneNode(true);
+            storiesTrack.appendChild(clone);
+        });
+    </script>
+</body>
+</html>
