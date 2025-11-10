@@ -64,6 +64,95 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+.footer {
+  background-color: #0b1220;
+  color: #fff;
+  padding: 3rem 2rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.footer-section h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+  color: #bbb;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+  color: #fff;
+}
+
+.footer-section p, .footer-section a {
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+.footer .contact-link {
+  display: inline-block;
+  color: #ffb400;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  text-decoration: none;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 1rem;
+}
+
+.social-btn {
+  width: 40px;
+  height: 40px;
+  background-color: #1c2233;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+  background-color: #ffb400;
+  color: #0b1220;
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #1e2638;
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.footer-bottom strong {
+  color: #ffb400;
+}
 
         .nav-links {
             display: flex;
@@ -860,7 +949,7 @@
 
     <!-- SHREE Stories Section -->
     <section class="stories-section">
-        <h2 class="section-title">SHREE Stories</h2>
+        <h2 class="section-title">Modish Junction Stories</h2>
         <p style="text-align: center; color: #666; margin-bottom: 2rem;">@modishjunction</p>
         <div class="stories-container">
             <div class="stories-track">
@@ -1005,21 +1094,19 @@
     </a>
 
     <!-- Footer -->
- <footer>
+<!-- Font Awesome (include this in <head> if not already added) -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+
+<footer class="footer">
     <div class="footer-content">
-        <!-- About -->
         <div class="footer-section">
             <h3>About Modish Junction</h3>
             <p>Your ultimate destination for exquisite ethnic fashion where every piece tells a story of tradition, craftsmanship, and contemporary elegance.</p>
-            <div class="social-icons" style="margin-top: 1rem;">
-                <a href="https://www.facebook.com" target="_blank" title="Facebook" style="color: white; text-decoration: none;">🌐</a>
-                <a href="https://www.instagram.com" target="_blank" title="Instagram" style="color: white; text-decoration: none;">📸</a>
-                <a href="https://www.youtube.com" target="_blank" title="YouTube" style="color: white; text-decoration: none;">▶️</a>
-                <a href="https://www.linkedin.com" target="_blank" title="LinkedIn" style="color: white; text-decoration: none;">💼</a>
-            </div>
         </div>
 
-        <!-- Useful Links -->
         <div class="footer-section">
             <h3>Useful Links</h3>
             <ul>
@@ -1035,7 +1122,6 @@
             </ul>
         </div>
 
-        <!-- Collections -->
         <div class="footer-section">
             <h3>Collections</h3>
             <ul>
@@ -1051,32 +1137,37 @@
             </ul>
         </div>
 
-        <!-- Contact Information -->
         <div class="footer-section">
             <h3>Contact Information</h3>
-            <p style="color:#ccc; margin-bottom:0.5rem;"><strong>Official Address:</strong><br>
+            <p><strong>Official Address:</strong><br>
                 Basant Bihar Colony, near Government Hospital,<br>
                 Udaipurwati, Rajasthan 333307
             </p>
-            <p style="color:#ccc; margin-bottom:0.5rem;"><strong>Phone:</strong><br>
-                <a href="tel:+919886179612" style="color:#ccc; text-decoration:none;">+91 98861 79612</a>
+            <p><strong>Phone:</strong><br>
+                <a href="tel:+919886179612">+91 98861 79612</a>
             </p>
-            <p style="color:#ccc; margin-bottom:0.5rem;"><strong>Business Hours:</strong><br>
+            <p><strong>Business Hours:</strong><br>
                 Mon – Fri: 10 AM – 6 PM<br>
                 Saturday – Sunday: CLOSED
             </p>
-            <p style="margin-top:1rem;"><a href="#contact" style="color:var(--accent); text-decoration:none; font-weight:bold;">📞 Contact Us</a></p>
+            <a href="#contact" class="contact-link">📞 Contact Us</a>
         </div>
     </div>
 
+    <!-- Social Media Icons -->
+    <div class="footer-social">
+        <a href="https://www.instagram.com" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.youtube.com" target="_blank" class="social-btn"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.facebook.com" target="_blank" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+    </div>
+
     <div class="footer-bottom">
-        <p>&copy; 2025 Modish Junction. All Rights Reserved.</p>
-        <p style="margin-top: 0.5rem; color:#aaa;">
-            Powered by <strong style="color: var(--accent);">Modish Junction</strong> | 
-            Where Tradition Meets Trend ✨
-        </p>
+        <p>© 2025 Modish Junction. All Rights Reserved.</p>
+        <p>Powered by <strong>Modish Junction</strong> | Where Tradition Meets Trend ✨</p>
     </div>
 </footer>
+
 
     <script>
         // Smooth scrolling
