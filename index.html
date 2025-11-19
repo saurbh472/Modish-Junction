@@ -255,30 +255,27 @@
         }
     }
 
-    .dropdown { position: relative; }
+    .dropdown { 
+    position: relative; 
+}
 
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background: white;
-        min-width: 200px;
-        box-shadow: 0 8px 30px rgba(181, 84, 55, 0.15);
-        border-radius: 8px;
-        padding: 1rem 0;
-        margin-top: 0.5rem;
-        opacity: 0;
-        transform: translateY(-10px);
-        transition: all 0.3s ease;
-    }
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 200px;
+    box-shadow: 0 8px 30px rgba(181, 84, 55, 0.15);
+    border-radius: 8px;
+    padding: 1rem 0;
+    margin-top: 0.5rem;
+    z-index: 1000;
+}
 
-    .dropdown:hover .dropdown-content { 
-        display: block;
-        opacity: 1;
-        transform: translateY(0);
-        animation: fadeInDown 0.3s ease;
-    }
+.dropdown:hover .dropdown-content { 
+    display: block;
+}
 
     @keyframes fadeInDown {
         from {
@@ -299,11 +296,21 @@
         border-left: 3px solid transparent;
     }
 
-    .dropdown-content a:hover {
-        background: linear-gradient(90deg, rgba(212, 89, 59, 0.1), transparent);
-        border-left-color: var(--primary);
-        padding-left: 2rem;
-    }
+   .dropdown:hover .dropdown-content,
+.dropdown-content:hover {
+    display: block;
+}
+
+
+    .dropdown::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 20px; /* increase gap coverage */
+    background: transparent;
+}
 
     .nav-icons {
         display: flex;
@@ -1896,16 +1903,15 @@
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li class="dropdown">
-                    <a href="#kurtas">Western wear ▾</a>
+                    <a href="#Western wear">Western wear ▾</a>
                     <div class="dropdown-content">
-                      <div class="dropdown-content">
     <a href="western-wear/tops-tees.html">Top & Tees</a>
     <a href="western-wear/jeans-pants.html">Jeans & Pants</a>
     <a href="western-wear/loungewear.html">Loungewear</a>
     <a href="western-wear/winter-wear.html">Winter Wear</a>
     <a href="western-wear/thrift-collection.html">Thrift Collection</a>
 </div>
-                    </div>
+                
                 </li>
                 <li class="dropdown">
                     <a href="#dresses">Dresses ▾</a>
