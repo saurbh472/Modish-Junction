@@ -43,6 +43,12 @@
             padding: 10px;
             font-size: 14px;
             font-weight: 600;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
         }
 
         nav {
@@ -84,10 +90,44 @@
             color: var(--dark);
             font-weight: 500;
             transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--primary);
+            transition: all 0.3s;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
         }
 
         .nav-links a:hover { 
             color: var(--primary);
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--light);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            border: 2px solid var(--accent);
+        }
+
+        .search-bar input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 200px;
         }
 
         .back-home {
@@ -103,8 +143,7 @@
             cursor: pointer;
             transition: all 0.3s;
             text-decoration: none;
-            margin: 160px 5% 2rem;
-
+             margin: 160px 5% 2rem;
             box-shadow: 0 4px 15px rgba(212, 89, 59, 0.2);
         }
 
@@ -127,16 +166,38 @@
             background: linear-gradient(135deg, #8B4513, #CD853F);
             border-radius: 20px;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
         .page-header h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
         }
 
         .page-header p {
             font-size: 1.2rem;
             opacity: 0.95;
+            position: relative;
+            z-index: 1;
         }
 
         .eco-badge {
@@ -147,6 +208,56 @@
             margin-top: 1rem;
             font-size: 0.9rem;
             border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .impact-tracker {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.3);
+        }
+
+        .impact-tracker h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .impact-stat {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .impact-stat .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-stat .number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .impact-stat .label {
+            font-size: 0.85rem;
+            opacity: 0.9;
         }
 
         .filter-section {
@@ -158,6 +269,7 @@
             background: white;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(212, 89, 59, 0.1);
+            align-items: center;
         }
 
         .filter-btn {
@@ -175,6 +287,23 @@
             background: var(--primary);
             color: white;
             border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .price-filter {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: auto;
+        }
+
+        .price-filter select {
+            padding: 0.7rem 1rem;
+            border: 2px solid var(--accent);
+            border-radius: 25px;
+            background: white;
+            cursor: pointer;
+            outline: none;
         }
 
         .product-grid {
@@ -190,6 +319,7 @@
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(181, 84, 55, 0.12);
             transition: all 0.5s;
+            position: relative;
         }
 
         .product-card:hover {
@@ -197,9 +327,34 @@
             box-shadow: 0 20px 50px rgba(181, 84, 55, 0.25);
         }
 
-        .discount-badge {
+        .wishlist-btn {
             position: absolute;
             top: 15px;
+            right: 15px;
+            background: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 3;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .wishlist-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .wishlist-btn.active i {
+            color: #ef4444;
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 60px;
             right: 15px;
             background: linear-gradient(135deg, var(--primary), #c44d2e);
             color: white;
@@ -224,6 +379,25 @@
             box-shadow: 0 4px 15px rgba(139, 69, 19, 0.4);
         }
 
+        .stock-badge {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            background: #ef4444;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 0.75rem;
+            z-index: 2;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.5; }
+        }
+
         .product-image {
             height: 350px;
             background: linear-gradient(135deg, #D2691E, #F4A460);
@@ -233,14 +407,52 @@
             font-size: 3.5rem;
             transition: all 0.5s;
             position: relative;
+            cursor: pointer;
+        }
+
+        .quick-view-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: white;
+            color: var(--primary);
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            opacity: 0;
+            transition: all 0.3s;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .product-card:hover .quick-view-btn {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
 
         .product-card:hover .product-image {
-            transform: scale(1.08);
+            transform: scale(1.05);
         }
 
         .product-info { 
             padding: 1.5rem;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stars {
+            color: #fbbf24;
+        }
+
+        .review-count {
+            color: #999;
+            font-size: 0.85rem;
         }
 
         .product-info h3 { 
@@ -248,6 +460,13 @@
             margin-bottom: 0.8rem;
             color: var(--dark);
             line-height: 1.4;
+        }
+
+        .product-story {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.8rem;
+            font-style: italic;
         }
 
         .condition-tag {
@@ -291,6 +510,26 @@
             font-size: 1rem;
             cursor: pointer;
             transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .add-to-cart:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .add-to-cart:hover:before {
+            width: 300px;
+            height: 300px;
         }
 
         .add-to-cart:hover {
@@ -298,42 +537,274 @@
             box-shadow: 0 8px 25px rgba(181, 84, 55, 0.5);
         }
 
-        .eco-info {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            padding: 2rem;
+        .style-section {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        }
+
+        .style-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+
+        .style-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .style-card {
+            background: var(--light);
             border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .style-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .style-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .style-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .instagram-section {
+            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            color: white;
             text-align: center;
             margin-bottom: 3rem;
         }
 
-        .eco-info h3 {
-            font-size: 1.5rem;
+        .instagram-section h2 {
+            font-size: 2.5rem;
             margin-bottom: 1rem;
         }
 
-        .eco-stats {
+        .instagram-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
         }
 
-        .eco-stat {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 1rem;
-            border-radius: 10px;
+        .insta-post {
+            aspect-ratio: 1;
+            background: rgba(255,255,255,0.2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
-        .eco-stat .number {
-            font-size: 2rem;
-            font-weight: bold;
-            display: block;
+        .insta-post:hover {
+            transform: scale(1.05);
+            background: rgba(255,255,255,0.3);
         }
 
-        .eco-stat .label {
-            font-size: 0.9rem;
-            opacity: 0.9;
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.4s;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .modal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .modal-image {
+            background: linear-gradient(135deg, #D2691E, #F4A460);
+            border-radius: 15px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+        }
+
+        .modal-details h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .size-guide {
+            margin: 1.5rem 0;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .size-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .size-btn:hover, .size-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .share-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+        }
+
+        .share-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .newsletter-popup {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+            max-width: 400px;
+            z-index: 1500;
+            transform: translateY(500px);
+            transition: transform 0.5s;
+        }
+
+        .newsletter-popup.show {
+            transform: translateY(0);
+        }
+
+        .newsletter-popup h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 2px solid var(--accent);
+            border-radius: 25px;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            padding: 0.8rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--primary-light);
+        }
+
+        .newsletter-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #999;
         }
 
         .whatsapp-float {
@@ -361,6 +832,8 @@
             .page-header h1 { font-size: 2rem; }
             .product-grid { grid-template-columns: 1fr; }
             .nav-links { display: none; }
+            .modal-grid { grid-template-columns: 1fr; }
+            .search-bar { display: none; }
         }
     </style>
 </head>
@@ -371,6 +844,10 @@
             <div class="logo-container">
                 <img src="../Header-Logo/Header-logo3.png" alt="Modish Junction Logo" class="logo-img">
                 <span class="logo-text">Modish Junction</span>
+            </div>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search vintage treasures...">
             </div>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
@@ -389,21 +866,29 @@
             <div class="eco-badge">🌱 Eco-Friendly Fashion</div>
         </div>
 
-        <div class="eco-info">
-            <h3>Why Choose Thrift?</h3>
-            <p>Every thrifted piece saves resources and reduces fashion waste. Join us in sustainable fashion!</p>
-            <div class="eco-stats">
-                <div class="eco-stat">
-                    <span class="number">70%</span>
-                    <span class="label">Less Water Usage</span>
+        <div class="impact-tracker">
+            <h3><i class="fas fa-leaf"></i> Your Sustainability Impact</h3>
+            <p>See the positive change you're making with every thrifted piece!</p>
+            <div class="impact-stats">
+                <div class="impact-stat">
+                    <div class="icon">💧</div>
+                    <span class="number">2,450L</span>
+                    <span class="label">Water Saved</span>
                 </div>
-                <div class="eco-stat">
-                    <span class="number">80%</span>
-                    <span class="label">Lower Carbon Footprint</span>
+                <div class="impact-stat">
+                    <div class="icon">🌍</div>
+                    <span class="number">15kg</span>
+                    <span class="label">CO2 Reduced</span>
                 </div>
-                <div class="eco-stat">
-                    <span class="number">100%</span>
-                    <span class="label">Unique Pieces</span>
+                <div class="impact-stat">
+                    <div class="icon">👕</div>
+                    <span class="number">8</span>
+                    <span class="label">Items Rescued</span>
+                </div>
+                <div class="impact-stat">
+                    <div class="icon">🌳</div>
+                    <span class="number">3</span>
+                    <span class="label">Trees Worth</span>
                 </div>
             </div>
         </div>
@@ -415,16 +900,33 @@
             <button class="filter-btn">Jackets</button>
             <button class="filter-btn">Dresses</button>
             <button class="filter-btn">Accessories</button>
+            <div class="price-filter">
+                <label>Sort by:</label>
+                <select>
+                    <option>Price: Low to High</option>
+                    <option>Price: High to Low</option>
+                    <option>Newest First</option>
+                    <option>Most Popular</option>
+                </select>
+            </div>
         </div>
 
         <div class="product-grid">
-            <div class="product-card">
+            <div class="product-card" data-category="denim">
+                <div class="wishlist-btn"><i class="far fa-heart"></i></div>
                 <span class="discount-badge">60% OFF</span>
                 <span class="vintage-badge">VINTAGE</span>
+                <span class="stock-badge">Only 2 left!</span>
                 <div class="product-image">👚</div>
+                <button class="quick-view-btn" onclick="openModal(0)">Quick View</button>
                 <div class="product-info">
+                    <div class="product-rating">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="review-count">(24 reviews)</span>
+                    </div>
                     <span class="condition-tag">Excellent Condition</span>
                     <h3>Vintage Oversized Denim Jacket - 90s Style</h3>
+                    <p class="product-story">"From a Portland vintage shop, authentic 90s grunge vibes"</p>
                     <div class="price">
                         <span class="sale-price">₹1,199</span>
                         <span class="original-price">₹2,999</span>
@@ -433,13 +935,20 @@
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-category="vintage-tees">
+                <div class="wishlist-btn"><i class="far fa-heart"></i></div>
                 <span class="discount-badge">65% OFF</span>
                 <span class="vintage-badge">VINTAGE</span>
                 <div class="product-image">🎸</div>
+                <button class="quick-view-btn" onclick="openModal(1)">Quick View</button>
                 <div class="product-info">
+                    <div class="product-rating">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="review-count">(18 reviews)</span>
+                    </div>
                     <span class="condition-tag">Like New</span>
                     <h3>Retro Band Graphic Tee - Classic Rock</h3>
+                    <p class="product-story">"Concert tee from the 80s, authentic vintage print"</p>
                     <div class="price">
                         <span class="sale-price">₹599</span>
                         <span class="original-price">₹1,699</span>
@@ -448,13 +957,21 @@
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-category="dresses">
+                <div class="wishlist-btn"><i class="far fa-heart"></i></div>
                 <span class="discount-badge">55% OFF</span>
                 <span class="vintage-badge">VINTAGE</span>
+                <span class="stock-badge">Only 1 left!</span>
                 <div class="product-image">👗</div>
+                <button class="quick-view-btn" onclick="openModal(2)">Quick View</button>
                 <div class="product-info">
+                    <div class="product-rating">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="review-count">(31 reviews)</span>
+                    </div>
                     <span class="condition-tag">Good Condition</span>
                     <h3>Floral Maxi Dress - 70s Inspired</h3>
+                    <p class="product-story">"Bohemian dream piece, perfect for summer festivals"</p>
                     <div class="price">
                         <span class="sale-price">₹1,349</span>
                         <span class="original-price">₹2,999</span>
@@ -463,13 +980,20 @@
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-category="jackets">
+                <div class="wishlist-btn"><i class="far fa-heart"></i></div>
                 <span class="discount-badge">70% OFF</span>
                 <span class="vintage-badge">VINTAGE</span>
                 <div class="product-image">🧥</div>
+                <button class="quick-view-btn" onclick="openModal(3)">Quick View</button>
                 <div class="product-info">
+                    <div class="product-rating">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="review-count">(42 reviews)</span>
+                    </div>
                     <span class="condition-tag">Excellent Condition</span>
                     <h3>Leather Bomber Jacket - Authentic Vintage</h3>
+                    <p class="product-story">"Classic aviator style, genuine leather from the 80s"</p>
                     <div class="price">
                         <span class="sale-price">₹2,499</span>
                         <span class="original-price">₹8,299</span>
@@ -478,13 +1002,20 @@
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-category="denim">
+                <div class="wishlist-btn"><i class="far fa-heart"></i></div>
                 <span class="discount-badge">60% OFF</span>
                 <span class="vintage-badge">VINTAGE</span>
                 <div class="product-image">👖</div>
+                <button class="quick-view-btn" onclick="openModal(4)">Quick View</button>
                 <div class="product-info">
+                    <div class="product-rating">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="review-count">(27 reviews)</span>
+                    </div>
                     <span class="condition-tag">Like New</span>
                     <h3>High-Waist Mom Jeans - Vintage Wash</h3>
+                    <p class="product-story">"Perfect fit, authentic 90s denim with character"</p>
                     <div class="price">
                         <span class="sale-price">₹999</span>
                         <span class="original-price">₹2,499</span>
@@ -493,13 +1024,21 @@
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-category="accessories">
+                <div class="wishlist-btn"><i class="far fa-heart"></i></div>
                 <span class="discount-badge">50% OFF</span>
                 <span class="vintage-badge">VINTAGE</span>
+                <span class="stock-badge">Only 3 left!</span>
                 <div class="product-image">🌼</div>
+                <button class="quick-view-btn" onclick="openModal(5)">Quick View</button>
                 <div class="product-info">
+                    <div class="product-rating">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="review-count">(15 reviews)</span>
+                    </div>
                     <span class="condition-tag">Good Condition</span>
                     <h3>Bohemian Embroidered Blouse - Handcrafted</h3>
+                    <p class="product-story">"Intricate embroidery, one-of-a-kind artisan piece"</p>
                     <div class="price">
                         <span class="sale-price">₹899</span>
                         <span class="original-price">₹1,799</span>
@@ -507,52 +1046,107 @@
                     <button class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
+        </div>
 
-            <div class="product-card">
-                <span class="discount-badge">65% OFF</span>
-                <span class="vintage-badge">VINTAGE</span>
-                <div class="product-image">🎨</div>
-                <div class="product-info">
-                    <span class="condition-tag">Excellent Condition</span>
-                    <h3>Patchwork Denim Skirt - Unique Design</h3>
-                    <div class="price">
-                        <span class="sale-price">₹849</span>
-                        <span class="original-price">₹2,449</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
+        <div class="style-section">
+            <h2>🎨 Style It Your Way</h2>
+            <div class="style-grid">
+                <div class="style-card">
+                    <div class="style-icon">🌟</div>
+                    <h3>Casual Chic</h3>
+                    <p>Pair vintage denim with a graphic tee and sneakers for effortless style</p>
                 </div>
-            </div>
-
-            <div class="product-card">
-                <span class="discount-badge">55% OFF</span>
-                <span class="vintage-badge">VINTAGE</span>
-                <div class="product-image">🌸</div>
-                <div class="product-info">
-                    <span class="condition-tag">Like New</span>
-                    <h3>Corduroy Overall Dress - Retro Chic</h3>
-                    <div class="price">
-                        <span class="sale-price">₹1,349</span>
-                        <span class="original-price">₹2,999</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
+                <div class="style-card">
+                    <div class="style-icon">✨</div>
+                    <h3>Boho Vibes</h3>
+                    <p>Mix floral prints with embroidered pieces for that free-spirit look</p>
                 </div>
-            </div>
-
-            <div class="product-card">
-                <span class="discount-badge">70% OFF</span>
-                <span class="vintage-badge">VINTAGE</span>
-                <div class="product-image">🧶</div>
-                <div class="product-info">
-                    <span class="condition-tag">Good Condition</span>
-                    <h3>Knit Cardigan Set - Grandma Core</h3>
-                    <div class="price">
-                        <span class="sale-price">₹749</span>
-                        <span class="original-price">₹2,499</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
+                <div class="style-card">
+                    <div class="style-icon">🔥</div>
+                    <h3>Edgy Rock</h3>
+                    <p>Layer leather jackets over band tees for a rebellious edge</p>
                 </div>
             </div>
         </div>
+
+        <div class="instagram-section">
+            <h2>📸 #ModishThrift</h2>
+            <p>Join our community! Tag us in your thrift finds</p>
+            <div class="instagram-grid">
+                <div class="insta-post">📷</div>
+                <div class="insta-post">👗</div>
+                <div class="insta-post">🎨</div>
+                <div class="insta-post">✨</div>
+                <div class="insta-post">🌟</div>
+                <div class="insta-post">💫</div>
+            </div>
+            <button style="margin-top: 2rem; padding: 1rem 2rem; background: white; color: #833ab4; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; font-size: 1rem;">
+                Follow Us @ModishJunction
+            </button>
+        </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div class="modal" id="quickViewModal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal()">✕</div>
+            <div class="modal-grid">
+                <div class="modal-image" id="modalImage">👚</div>
+                <div class="modal-details">
+                    <div class="product-rating">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="review-count">(24 reviews)</span>
+                    </div>
+                    <h2 id="modalTitle">Vintage Oversized Denim Jacket</h2>
+                    <p id="modalStory" class="product-story">"From a Portland vintage shop, authentic 90s grunge vibes"</p>
+                    <div class="price">
+                        <span class="sale-price" id="modalPrice">₹1,199</span>
+                        <span class="original-price" id="modalOriginalPrice">₹2,999</span>
+                    </div>
+                    
+                    <div class="size-guide">
+                        <h4>Select Size:</h4>
+                        <div class="size-options">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn active">M</button>
+                            <button class="size-btn">L</button>
+                            <button class="size-btn">XL</button>
+                        </div>
+                    </div>
+
+                    <div class="share-buttons">
+                        <div class="share-btn" style="background: #1877f2;"><i class="fab fa-facebook-f"></i></div>
+                        <div class="share-btn" style="background: #1da1f2;"><i class="fab fa-twitter"></i></div>
+                        <div class="share-btn" style="background: #25d366;"><i class="fab fa-whatsapp"></i></div>
+                        <div class="share-btn" style="background: #e4405f;"><i class="fab fa-instagram"></i></div>
+                    </div>
+
+                    <button class="add-to-cart" style="margin-top: 1rem;">Add to Cart</button>
+                    
+                    <div style="margin-top: 2rem; padding: 1rem; background: var(--light); border-radius: 10px;">
+                        <h4 style="margin-bottom: 0.5rem;">Product Details:</h4>
+                        <ul style="list-style: none; padding: 0; font-size: 0.9rem; color: #666;">
+                            <li>✓ 100% Authentic Vintage</li>
+                            <li>✓ Professionally cleaned & sanitized</li>
+                            <li>✓ Quality checked for condition</li>
+                            <li>✓ Free shipping on orders above ₹999</li>
+                            <li>✓ 7-day return policy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Popup -->
+    <div class="newsletter-popup" id="newsletterPopup">
+        <span class="newsletter-close" onclick="closeNewsletter()">✕</span>
+        <h3>🎁 Get 10% Off!</h3>
+        <p>Subscribe to our newsletter for exclusive vintage finds and eco-fashion tips</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
     </div>
 
     <a href="https://wa.me/919849120888" class="whatsapp-float" target="_blank">
@@ -562,9 +1156,24 @@
     </a>
 
     <script>
+        // Wishlist functionality
+        document.querySelectorAll('.wishlist-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if (this.classList.contains('active')) {
+                    icon.className = 'fas fa-heart';
+                } else {
+                    icon.className = 'far fa-heart';
+                }
+            });
+        });
+
+        // Add to cart with animation
         document.querySelectorAll('.add-to-cart').forEach(button => {
             button.addEventListener('click', function() {
-                this.textContent = '✓ Added!';
+                this.textContent = '✓ Added to Cart!';
                 this.style.background = 'linear-gradient(135deg, #10b981, #059669)';
                 setTimeout(() => {
                     this.textContent = 'Add to Cart';
@@ -573,11 +1182,83 @@
             });
         });
 
+        // Filter functionality
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
             });
+        });
+
+        // Size selection in modal
+        document.querySelectorAll('.size-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Modal functionality
+        function openModal(index) {
+            document.getElementById('quickViewModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('quickViewModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('quickViewModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Newsletter popup (shows after 5 seconds)
+        setTimeout(() => {
+            document.getElementById('newsletterPopup').classList.add('show');
+        }, 5000);
+
+        function closeNewsletter() {
+            document.getElementById('newsletterPopup').classList.remove('show');
+        }
+
+        // Newsletter form submission
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thanks for subscribing! Check your email for your 10% discount code 🎉');
+            closeNewsletter();
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-bar input');
+        if (searchInput) {
+            searchInput.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                document.querySelectorAll('.product-card').forEach(card => {
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    if (title.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        // Animate impact tracker numbers on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'pulse 2s ease-in-out infinite';
+                }
+            });
+        });
+
+        document.querySelectorAll('.impact-stat').forEach(stat => {
+            observer.observe(stat);
         });
     </script>
 </body>
