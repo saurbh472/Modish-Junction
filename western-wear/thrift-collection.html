@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thrift Collection - Modish Junction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #d4593b;
+            --primary-light: #e67a5f;
+            --secondary: #e89580;
+            --dark: #1a0e08;
+            --light: #fef9f5;
+            --cream: #fffbf7;
+            --accent: #f0b8a0;
+            --black: #0d0603;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--cream);
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 4px 30px rgba(212, 89, 59, 0.15);
+        }
+
+        .top-bar {
+            background: linear-gradient(135deg, #d4593b 0%, #e89580 50%, #d4a574 100%);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img { 
+            height: 65px; 
+            width: auto; 
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.9rem;
+            color: #b55437;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover { 
+            color: var(--primary);
+        }
+
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 2rem;
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            margin: 120px 5% 2rem;
+            box-shadow: 0 4px 15px rgba(212, 89, 59, 0.2);
+        }
+
+        .back-home:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(-5px);
+        }
+
+        .page-container {
+            padding: 2rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #8B4513, #CD853F);
+            border-radius: 20px;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .eco-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .filter-section {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(212, 89, 59, 0.1);
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            background: var(--light);
+            color: var(--dark);
+            border: 2px solid var(--accent);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(181, 84, 55, 0.12);
+            transition: all 0.5s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(181, 84, 55, 0.25);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, var(--primary), #c44d2e);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-weight: bold;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(212, 89, 59, 0.4);
+        }
+
+        .vintage-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, #8B4513, #CD853F);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 0.75rem;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.4);
+        }
+
+        .product-image {
+            height: 350px;
+            background: linear-gradient(135deg, #D2691E, #F4A460);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            transition: all 0.5s;
+            position: relative;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.08);
+        }
+
+        .product-info { 
+            padding: 1.5rem;
+        }
+
+        .product-info h3 { 
+            font-size: 1.1rem; 
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+            line-height: 1.4;
+        }
+
+        .condition-tag {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .price {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .sale-price { 
+            font-size: 1.6rem; 
+            font-weight: bold; 
+            color: var(--primary);
+        }
+
+        .original-price { 
+            text-decoration: line-through; 
+            color: #999;
+            font-size: 1.1rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.4s;
+        }
+
+        .add-to-cart:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(181, 84, 55, 0.5);
+        }
+
+        .eco-info {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .eco-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .eco-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .eco-stat {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .eco-stat .number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .eco-stat .label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+            z-index: 999;
+            transition: all 0.4s;
+            cursor: pointer;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.15);
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 2rem; }
+            .product-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">✨ New Collection Live | Free Shipping on Orders Above ₹999 ✨</div>
+        <nav>
+            <div class="logo-container">
+                <img src="../Header-Logo/Header-logo3.png" alt="Modish Junction Logo" class="logo-img">
+                <span class="logo-text">Modish Junction</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#trending">Shop</a></li>
+                <li><a href="../index.html#sale">Sale</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <a href="../index.html" class="back-home">← Back to Home</a>
+
+    <div class="page-container">
+        <div class="page-header">
+            <h1>♻️ Thrift Collection</h1>
+            <p>Vintage vibes, sustainable style</p>
+            <div class="eco-badge">🌱 Eco-Friendly Fashion</div>
+        </div>
+
+        <div class="eco-info">
+            <h3>Why Choose Thrift?</h3>
+            <p>Every thrifted piece saves resources and reduces fashion waste. Join us in sustainable fashion!</p>
+            <div class="eco-stats">
+                <div class="eco-stat">
+                    <span class="number">70%</span>
+                    <span class="label">Less Water Usage</span>
+                </div>
+                <div class="eco-stat">
+                    <span class="number">80%</span>
+                    <span class="label">Lower Carbon Footprint</span>
+                </div>
+                <div class="eco-stat">
+                    <span class="number">100%</span>
+                    <span class="label">Unique Pieces</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <button class="filter-btn active">All</button>
+            <button class="filter-btn">Denim</button>
+            <button class="filter-btn">Vintage Tees</button>
+            <button class="filter-btn">Jackets</button>
+            <button class="filter-btn">Dresses</button>
+            <button class="filter-btn">Accessories</button>
+        </div>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <span class="discount-badge">60% OFF</span>
+                <span class="vintage-badge">VINTAGE</span>
+                <div class="product-image">👚</div>
+                <div class="product-info">
+                    <span class="condition-tag">Excellent Condition</span>
+                    <h3>Vintage Oversized Denim Jacket - 90s Style</h3>
+                    <div class="price">
+                        <span class="sale-price">₹1,199</span>
+                        <span class="original-price">₹2,999</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <span class="discount-badge">65% OFF</span>
+                <span class="vintage-badge">VINTAGE</span>
+                <div class="product-image">🎸</div>
+                <div class="product-info">
+                    <span class="condition-tag">Like New</span>
+                    <h3>Retro Band Graphic Tee - Classic Rock</h3>
+                    <div class="price">
+                        <span class="sale-price">₹599</span>
+                        <span class="original-price">₹1,699</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <span class="discount-badge">55% OFF</span>
+                <span class="vintage-badge">VINTAGE</span>
+                <div class="product-image">👗</div>
+                <div class="product-info">
+                    <span class="condition-tag">Good Condition</span>
+                    <h3>Floral Maxi Dress - 70s Inspired</h3>
+                    <div class="price">
+                        <span class="sale-price">₹1,349</span>
+                        <span class="original-price">₹2,999</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <span class="discount-badge">70% OFF</span>
+                <span class="vintage-badge">VINTAGE</span>
+                <div class="product-image">🧥</div>
+                <div class="product-info">
+                    <span class="condition-tag">Excellent Condition</span>
+                    <h3>Leather Bomber Jacket - Authentic Vintage</h3>
+                    <div class="price">
+                        <span class="sale-price">₹2,499</span>
+                        <span class="original-price">₹8,299</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <span class="discount-badge">60% OFF</span>
+                <span class="vintage-badge">VINTAGE</span>
+                <div class="product-image">👖</div>
+                <div class="product-info">
+                    <span class="condition-tag">Like New</span>
+                    <h3>High-Waist Mom Jeans - Vintage Wash</h3>
+                    <div class="price">
+                        <span class="sale-price">₹999</span>
+                        <span class="original-price">₹2,499</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <span class="discount-badge">50% OFF</span>
+                <span class="vintage-badge">VINTAGE</span>
+                <div class="product-image">🌼</div>
+                <div class="product-info">
+                    <span class="condition-tag">Good Condition</span>
+                    <h3>Bohemian Embroidered Blouse - Handcrafted</h3>
+                    <div class="price">
+                        <span class="sale-price">₹899</span>
+                        <span class="original-price">₹1,799</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <span class="discount-badge">65% OFF</span>
+                <span class="vintage-badge">VINTAGE</span>
+                <div class="product-image">🎨</div>
+                <div class="product-info">
+                    <span class="condition-tag">Excellent Condition</span>
+                    <h3>Patchwork Denim Skirt - Unique Design</h3>
+                    <div class="price">
+                        <span class="sale-price">₹849</span>
+                        <span class="original-price">₹2,449</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <span class="discount-badge">55% OFF</span>
+                <span class="vintage-badge">VINTAGE</span>
+                <div class="product-image">🌸</div>
+                <div class="product-info">
+                    <span class="condition-tag">Like New</span>
+                    <h3>Corduroy Overall Dress - Retro Chic</h3>
+                    <div class="price">
+                        <span class="sale-price">₹1,349</span>
+                        <span class="original-price">₹2,999</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <span class="discount-badge">70% OFF</span>
+                <span class="vintage-badge">VINTAGE</span>
+                <div class="product-image">🧶</div>
+                <div class="product-info">
+                    <span class="condition-tag">Good Condition</span>
+                    <h3>Knit Cardigan Set - Grandma Core</h3>
+                    <div class="price">
+                        <span class="sale-price">₹749</span>
+                        <span class="original-price">₹2,499</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/919849120888" class="whatsapp-float" target="_blank">
+        <svg viewBox="0 0 32 32" fill="white" width="28" height="28">
+            <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 8.167-2.113c2.325 1.27 4.925 1.947 7.833 1.947 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.275 1.362 1.412-5.25-0.32-0.525c-1.341-2.194-2.051-4.73-2.051-7.359 0-7.72 6.28-14 14-14s14 6.28 14 14-6.28 14-14 14z"/>
+        </svg>
+    </a>
+
+    <script>
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                this.textContent = '✓ Added!';
+                this.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                setTimeout(() => {
+                    this.textContent = 'Add to Cart';
+                    this.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
+                }, 2000);
+            });
+        });
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
