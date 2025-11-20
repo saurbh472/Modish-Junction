@@ -654,6 +654,23 @@
         overflow: hidden;
     }
 
+    .category-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px 20px 0 0; /* match top rounded corners */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0; /* ensures gradient + animations work */
+}
+
+.category-link {
+    text-decoration: none; 
+    color: inherit; 
+    display: block;
+}
+
     .category-image::before {
         content: '';
         position: absolute;
@@ -2260,39 +2277,64 @@
 
 
 <!-- Products Section continues... -->
-    <section class="categories">
-        <h2 class="section-title">Shop by Category</h2>
-        <div class="category-grid">
-            <div class="category-card">
-                <div class="category-image">👗</div>
-                <div class="category-info">
-                    <h3>Western wear</h3>
-                    <p>Timeless elegance for every occasion</p>
-                </div>
-            </div>
-            <div class="category-card">
-                <div class="category-image">💃</div>
-                <div class="category-info">
-                    <h3>Ethnic Sets</h3>
-                    <p>Complete coordinated perfection</p>
-                </div>
-            </div>
-            <div class="category-card">
-                <div class="category-image">✨</div>
-                <div class="category-info">
-                    <h3>Designer Dresses</h3>
-                    <p>Modern silhouettes with traditional charm</p>
-                </div>
-            </div>
-            <div class="category-card">
-                <div class="category-image">🌸</div>
-                <div class="category-info">
-                    <h3>Co-ord Sets</h3>
-                    <p>Effortless style, perfectly matched</p>
-                </div>
-            </div>
+   <section class="categories">
+    <h2 class="section-title">Shop by Category</h2>
+
+    <div class="category-grid">
+
+       <a href="western-wear.html" class="category-link">
+    <div class="category-card">
+        <div class="category-image">
+            <img src="./Images/Catogery/western-wear.jpg" alt="Western Wear">
         </div>
-    </section>
+        <div class="category-info">
+            <h3>Western wear</h3>
+            <p>Timeless elegance for every occasion</p>
+        </div>
+    </div>
+</a>
+
+<a href="./Ethnic-wear/short-kurtis.html" class="category-link">
+    <div class="category-card">
+        <div class="category-image">
+            <img src="./Images/Catogery/Ethnic-wear-img.png" alt="Ethnic Sets">
+        </div>
+        <div class="category-info">
+            <h3>Ethnic Sets</h3>
+            <p>Complete coordinated perfection</p>
+        </div>
+    </div>
+</a>
+
+<a href="./western-wear/dresses.html" class="category-link">
+    <div class="category-card">
+        <div class="category-image">
+            <img src="./Images/Catogery/Dresses.png" alt="Designer Dresses">
+        </div>
+        <div class="category-info">
+            <h3>Designer Dresses</h3>
+            <p>Modern silhouettes with traditional charm</p>
+        </div>
+    </div>
+</a>
+
+<a href="./Ethnic-wear/co-ords.html" class="category-link">
+    <div class="category-card">
+        <div class="category-image">
+            <img src="./Images/Catogery/co-ords-set.png" alt="Co-ord Sets">
+        </div>
+        <div class="category-info">
+            <h3>Co-ord Sets</h3>
+            <p>Effortless style, perfectly matched</p>
+        </div>
+    </div>
+</a>
+
+
+    </div>
+</section>
+
+
 
 <!-- ✅ NEW: Shop by Occasion Section -->
 <section id="shop-by-occasion-section"></section>
