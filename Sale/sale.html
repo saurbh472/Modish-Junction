@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modish Junction - Sale</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+    /* ---------------------------
+       SALE PAGE ONLY STYLES
+    ----------------------------*/
+
+    :root {
+        --primary: #d4593b;
+        --primary-light: #e67a5f;
+        --secondary: #e89580;
+        --dark: #1a0e08;
+        --light: #fef9f5;
+        --cream: #fffbf7;
+        --accent: #f0b8a0;
+        --rose: #ffc8b8;
+        --gold: #d4a574;
+        --black: #0d0603;
+    }
+
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: var(--cream);
+        margin: 0;
+    }
+
+    /* Header */
+    header {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        background: white;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 5%;
+        align-items: center;
+    }
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .logo-img {
+        height: 50px;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+        align-items: center;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 500;
+    }
+
+    /* SALE PAGE */
+    .sale-page {
+        margin-top: 120px;
+        padding: 4rem 5%;
+    }
+
+    .sale-header {
+        text-align: center;
+        padding: 3rem 2rem;
+        background: url('./Sale/Images/img1.jpg') center/cover;
+        border-radius: 20px;
+        color: white;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        position: relative;
+    }
+
+    .sale-header h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .sale-subtitle {
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+
+    .sale-badge {
+        background: rgba(255,255,255,0.3);
+        padding: 0.5rem 1.5rem;
+        display: inline-block;
+        border-radius: 30px;
+        margin-bottom: 1rem;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+
+    /* Timer */
+    .sale-timer {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .timer-box {
+        background: rgba(255,255,255,0.25);
+        padding: 1.2rem 1.5rem;
+        min-width: 100px;
+        text-align: center;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.4);
+    }
+
+    .timer-box span {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    /* Back button */
+    .back-button {
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        background: white;
+        border: 2px solid var(--primary);
+        color: var(--primary);
+        margin-bottom: 2rem;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 1rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* Products */
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .product-card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        overflow: hidden;
+        padding-bottom: 1rem;
+        position: relative;
+    }
+
+    .discount-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 0.4rem 1rem;
+        background: var(--primary);
+        color: white;
+        font-weight: bold;
+        border-radius: 20px;
+    }
+
+    .product-image {
+        height: 280px;
+        background: var(--rose);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+    }
+
+    .product-info {
+        padding: 1.3rem;
+    }
+
+    .price {
+        display: flex;
+        gap: 1rem;
+        margin: 0.5rem 0;
+    }
+
+    .sale-price {
+        color: var(--primary);
+        font-size: 1.4rem;
+        font-weight: bold;
+    }
+
+    .original-price {
+        text-decoration: line-through;
+        color: #888;
+    }
+
+    .add-to-cart {
+        width: 100%;
+        padding: 0.9rem;
+        background: var(--primary);
+        border: none;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    @media(max-width:768px){
+        .sale-header h1 { font-size: 2.3rem; }
+        .sale-subtitle { font-size: 1.1rem; }
+    }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <div class="logo-container">
+            <img src="./Header-Logo/Header-logo3.png" class="logo-img">
+            <span style="font-size:1.4rem; font-weight:700;">Modish Junction</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Western Wear</a></li>
+            <li><a href="#">Ethnic</a></li>
+            <li><a href="sale.html" style="color: var(--primary); font-weight:700;">SALE 🔥</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+<!-- SALE PAGE -->
+<section class="sale-page">
+
+    <a href="index.html" class="back-button">← Back to Home</a>
+
+    <div class="sale-header">
+        <div class="sale-badge">MEGA SALE</div>
+        <h1>🔥 End of Season Clearance 🔥</h1>
+        <p class="sale-subtitle">Up to 70% OFF on Selected Items | Limited Time Only!</p>
+
+        <div class="sale-timer">
+            <div class="timer-box"><span id="days">00</span><br><small>Days</small></div>
+            <div class="timer-box"><span id="hours">00</span><br><small>Hours</small></div>
+            <div class="timer-box"><span id="minutes">00</span><br><small>Minutes</small></div>
+            <div class="timer-box"><span id="seconds">00</span><br><small>Seconds</small></div>
+        </div>
+    </div>
+
+
+    <!-- ⚡ FLASH DEALS -->
+    <h2 style="text-align:center; margin-top:3rem;">⚡ Flash Deals – Today Only!</h2>
+
+    <div class="product-grid">
+
+        <!-- One Example Product (copy more as needed) -->
+        <div class="product-card">
+            <span class="discount-badge">70% OFF</span>
+            <div class="product-image">🌟</div>
+            <div class="product-info">
+                <h3>Premium Silk Ethnic Set</h3>
+                <div class="price">
+                    <span class="sale-price">₹1,499</span>
+                    <span class="original-price">₹4,999</span>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Add remaining products the same way as in your original page -->
+    </div>
+
+</section>
+
+<script>
+/* ----------------------------
+   SALE TIMER FUNCTIONALITY
+-----------------------------*/
+function startSaleTimer() {
+    const endDate = new Date();
+    endDate.setDate(endDate.getDate() + 3);
+
+    function updateTimer() {
+        const now = new Date().getTime();
+        const distance = endDate - now;
+
+        document.getElementById('days').textContent = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
+        document.getElementById('hours').textContent = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+        document.getElementById('minutes').textContent = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+        document.getElementById('seconds').textContent = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+}
+
+startSaleTimer();
+</script>
+
+</body>
+</html>

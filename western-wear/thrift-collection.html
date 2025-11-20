@@ -410,21 +410,23 @@
             cursor: pointer;
         }
 
-        .quick-view-btn {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%) translateY(20px);
-            background: white;
-            color: var(--primary);
-            padding: 0.8rem 2rem;
-            border-radius: 25px;
-            font-weight: 600;
-            opacity: 0;
-            transition: all 0.3s;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
+       .quick-view-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: white;
+    color: var(--primary);
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    font-weight: 600;
+    opacity: 0;
+    transition: all 0.3s;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    z-index: 5;
+    border: none;
+}
 
         .product-card:hover .quick-view-btn {
             opacity: 1;
@@ -1183,12 +1185,52 @@
         });
 
         // Filter functionality
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-            });
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        const filterText = this.textContent.toLowerCase().trim();
+        const productCards = document.querySelectorAll('.product-card');
+        
+        productCards.forEach(card => {
+            if (filterText === 'all') {
+                card.style.display = 'block';
+            } else {
+                const category = card.getAttribute('data-category');
+                // Convert filter text to match category format (e.g., "Vintage Tees" -> "vintage-tees")
+                const normalizedFilter = filterText.replace(/\s+/g, '-');
+                
+                if (category === normalizedFilter || category.includes(normalizedFilter) || normalizedFilter.includes(category)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            }
         });
+    });
+});
+
+// Sort functionality
+document.querySelector('.price-filter select').addEventListener('change', function() {
+    const sortValue = this.value;
+    const productGrid = document.querySelector('.product-grid');
+    const productCards = Array.from(document.querySelectorAll('.product-card'));
+    
+    productCards.sort((a, b) => {
+        const priceA = parseInt(a.querySelector('.sale-price').textContent.replace(/[₹,]/g, ''));
+        const priceB = parseInt(b.querySelector('.sale-price').textContent.replace(/[₹,]/g, ''));
+        
+        if (sortValue === 'Price: Low to High') {
+            return priceA - priceB;
+        } else if (sortValue === 'Price: High to Low') {
+            return priceB - priceA;
+        }
+        return 0;
+    });
+    
+    productCards.forEach(card => productGrid.appendChild(card));
+});
 
         // Size selection in modal
         document.querySelectorAll('.size-btn').forEach(btn => {
@@ -1198,11 +1240,64 @@
             });
         });
 
-        // Modal functionality
-        function openModal(index) {
-            document.getElementById('quickViewModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+      // Product data for modal
+const products = [
+    {
+        emoji: '👚',
+        title: 'Vintage Oversized Denim Jacket - 90s Style',
+        story: 'From a Portland vintage shop, authentic 90s grunge vibes',
+        price: '₹1,199',
+        originalPrice: '₹2,999'
+    },
+    {
+        emoji: '🎸',
+        title: 'Retro Band Graphic Tee - Classic Rock',
+        story: 'Concert tee from the 80s, authentic vintage print',
+        price: '₹599',
+        originalPrice: '₹1,699'
+    },
+    {
+        emoji: '👗',
+        title: 'Floral Maxi Dress - 70s Inspired',
+        story: 'Bohemian dream piece, perfect for summer festivals',
+        price: '₹1,349',
+        originalPrice: '₹2,999'
+    },
+    {
+        emoji: '🧥',
+        title: 'Leather Bomber Jacket - Authentic Vintage',
+        story: 'Classic aviator style, genuine leather from the 80s',
+        price: '₹2,499',
+        originalPrice: '₹8,299'
+    },
+    {
+        emoji: '👖',
+        title: 'High-Waist Mom Jeans - Vintage Wash',
+        story: 'Perfect fit, authentic 90s denim with character',
+        price: '₹999',
+        originalPrice: '₹2,499'
+    },
+    {
+        emoji: '🌼',
+        title: 'Bohemian Embroidered Blouse - Handcrafted',
+        story: 'Intricate embroidery, one-of-a-kind artisan piece',
+        price: '₹899',
+        originalPrice: '₹1,799'
+    }
+];
+
+// Modal functionality
+function openModal(index) {
+    const product = products[index];
+    document.getElementById('modalImage').textContent = product.emoji;
+    document.getElementById('modalTitle').textContent = product.title;
+    document.getElementById('modalStory').textContent = `"${product.story}"`;
+    document.getElementById('modalPrice').textContent = product.price;
+    document.getElementById('modalOriginalPrice').textContent = product.originalPrice;
+    
+    document.getElementById('quickViewModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
 
         function closeModal() {
             document.getElementById('quickViewModal').classList.remove('active');
