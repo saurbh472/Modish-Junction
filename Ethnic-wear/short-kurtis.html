@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Short Kurtis - Modish Junction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #d4593b;
+            --secondary: #e89580;
+            --dark: #1a0e08;
+            --cream: #fffbf7;
+        }
+
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: var(--cream);
+            color: var(--dark);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(212, 89, 59, 0.15);
+        }
+
+        .top-bar {
+            background: linear-gradient(135deg, #d4593b, #e89580, #d4a574);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img { height: 65px; }
+
+        .logo-text {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: #b55437;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.3rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: var(--dark);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--primary); }
+
+        /* Back Button */
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 2rem;
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            margin: 160px 5% 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(212, 89, 59, 0.2);
+            transition: 0.3s;
+        }
+
+        .back-home:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(-5px);
+        }
+
+        /* Page Section */
+        .page-container { padding: 2rem 5%; max-width: 1400px; margin: auto; }
+
+        .page-header {
+            background: linear-gradient(135deg, #FFAB91, #FFCCBC);
+            padding: 3rem 2rem;
+            color: white;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 { font-size: 3rem; margin-bottom: 0.7rem; }
+
+        .page-header p { font-size: 1.2rem; opacity: 0.95; }
+
+        /* Product Cards */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: 0.4s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            height: 350px;
+            background: linear-gradient(135deg, #F8BBD0, #F48FB1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            transition: 0.4s;
+        }
+
+        .product-card:hover .product-image { transform: scale(1.08); }
+
+        .discount-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #d4593b, #c44d2e);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        .product-info { padding: 1.4rem; }
+
+        .product-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.7rem;
+            color: var(--dark);
+        }
+
+        .price {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin: 1rem 0;
+        }
+
+        .sale-price { font-size: 1.6rem; font-weight: bold; color: var(--primary); }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #888;
+            font-size: 1.1rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .add-to-cart:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(212, 89, 59, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="top-bar">✨ Short Kurtis • Trendy • Stylish • Comfortable ✨</div>
+
+    <nav>
+        <div class="logo-container">
+            <img src="../Header-Logo/Header-logo3.png" class="logo-img">
+            <span class="logo-text">Modish Junction</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.html#trending">Shop</a></li>
+            <li><a href="../index.html#sale">Sale</a></li>
+        </ul>
+    </nav>
+</header>
+
+<a href="../index.html" class="back-home">← Back to Home</a>
+
+<div class="page-container">
+
+    <div class="page-header">
+        <h1>✨ Short Kurtis Collection</h1>
+        <p>Trendy everyday fashion with premium comfort & fresh designs</p>
+    </div>
+
+    <div class="product-grid">
+
+        <div class="product-card">
+            <span class="discount-badge">30% OFF</span>
+            <div class="product-image">👚</div>
+            <div class="product-info">
+                <h3>Printed Cotton Short Kurti – Daily Wear</h3>
+                <div class="price">
+                    <span class="sale-price">₹599</span>
+                    <span class="original-price">₹899</span>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <span class="discount-badge">40% OFF</span>
+            <div class="product-image">🌸</div>
+            <div class="product-info">
+                <h3>Floral Short Kurti – Breezy Fit</h3>
+                <div class="price">
+                    <span class="sale-price">₹699</span>
+                    <span class="original-price">₹1,199</span>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <span class="discount-badge">45% OFF</span>
+            <div class="product-image">✨</div>
+            <div class="product-info">
+                <h3>Chikankari Style Short Kurti – Elegant Look</h3>
+                <div class="price">
+                    <span class="sale-price">₹799</span>
+                    <span class="original-price">₹1,499</span>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll(".add-to-cart").forEach(btn => {
+        btn.addEventListener("click", function() {
+            this.textContent = "✓ Added!";
+            this.style.background = "linear-gradient(135deg,#10b981,#059669)";
+            setTimeout(() => {
+                this.textContent = "Add to Cart";
+                this.style.background = "linear-gradient(135deg, var(--primary), var(--secondary))";
+            }, 2000);
+        });
+    });
+</script>
+
+</body>
+</html>
