@@ -1629,6 +1629,403 @@
             opacity: 0;
         }
     }
+    /* About Us Section Styles */
+.about-us-section {
+    padding: 5rem 5%;
+    background: linear-gradient(135deg, var(--cream) 0%, var(--light) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-us-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="1" fill="%23d4593b" opacity="0.05"/></svg>');
+    pointer-events: none;
+}
+
+.about-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.about-subtitle {
+    font-size: 1.3rem;
+    color: var(--primary);
+    margin-top: 1rem;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.about-story {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.story-card-large {
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(212, 89, 59, 0.12);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+    text-align: center;
+    animation: fadeInUp 0.8s ease both;
+}
+
+.story-card-large:nth-child(1) { animation-delay: 0.1s; }
+.story-card-large:nth-child(2) { animation-delay: 0.2s; }
+.story-card-large:nth-child(3) { animation-delay: 0.3s; }
+
+.story-card-large:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(212, 89, 59, 0.2);
+    border-color: var(--accent);
+}
+
+.story-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    transition: all 0.5s ease;
+}
+
+.story-card-large:hover .story-icon {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.story-card-large h3 {
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.story-card-large p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+.about-values {
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(212, 89, 59, 0.12);
+}
+
+.values-title {
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--dark);
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.values-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 2px;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.value-item {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--light), white);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.value-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(212, 89, 59, 0.15);
+}
+
+.value-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.value-item:hover .value-icon {
+    transform: scale(1.2);
+}
+
+.value-item h4 {
+    font-size: 1.3rem;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.value-item p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    padding: 3rem 0;
+}
+
+.stat-box {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 10px 30px rgba(212, 89, 59, 0.3);
+    transition: all 0.4s ease;
+    animation: fadeInUp 0.8s ease both;
+}
+
+.stat-box:nth-child(1) { animation-delay: 0.1s; }
+.stat-box:nth-child(2) { animation-delay: 0.2s; }
+.stat-box:nth-child(3) { animation-delay: 0.3s; }
+.stat-box:nth-child(4) { animation-delay: 0.4s; }
+
+.stat-box:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(212, 89, 59, 0.4);
+}
+
+.stat-number {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.about-promise {
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(212, 89, 59, 0.12);
+}
+
+.about-promise h3 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--dark);
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.about-promise h3::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 2px;
+}
+
+.promise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.promise-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--light), white);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--primary);
+}
+
+.promise-item:hover {
+    transform: translateX(10px);
+    box-shadow: 0 5px 20px rgba(212, 89, 59, 0.15);
+}
+
+.promise-check {
+    font-size: 1.8rem;
+    color: var(--primary);
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.promise-item p {
+    font-size: 1.05rem;
+    color: var(--dark);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.about-cta {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    padding: 4rem 3rem;
+    border-radius: 25px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 15px 50px rgba(212, 89, 59, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-cta::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shimmer 3s infinite;
+}
+
+.about-cta h3 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+}
+
+.about-cta > p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    position: relative;
+    z-index: 1;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+}
+
+.cta-button-outline {
+    padding: 1.2rem 3rem;
+    background: transparent;
+    color: white;
+    border: 3px solid white;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.cta-button-outline:hover {
+    background: white;
+    color: var(--primary);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255,255,255,0.3);
+}
+
+/* Responsive Design for About Section */
+@media (max-width: 768px) {
+    .about-us-section {
+        padding: 3rem 5%;
+    }
+
+    .about-header {
+        margin-bottom: 2rem;
+    }
+
+    .about-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .story-card-large {
+        padding: 2rem 1.5rem;
+    }
+
+    .story-card-large h3 {
+        font-size: 1.5rem;
+    }
+
+    .story-card-large p {
+        font-size: 1rem;
+    }
+
+    .values-title, .about-promise h3 {
+        font-size: 1.8rem;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
+    .stat-label {
+        font-size: 1rem;
+    }
+
+    .about-cta h3 {
+        font-size: 2rem;
+    }
+
+    .about-cta > p {
+        font-size: 1.1rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cta-button, .cta-button-outline {
+        width: 100%;
+        max-width: 300px;
+    }
+}
 
     /* Sale Page Styles (keeping your existing ones) */
     .sale-page {
@@ -1958,8 +2355,11 @@
                 <!-- <li><a href="#coords">Co-ords</a></li> -->
                 <li><a href="#sale" class="sale-link" id="saleLink">
     <span>Sale 🔥</span>
+
 </a>
 </li>
+
+<li><a href="#about-us">About Us</a></li>
             </ul>
             <div class="nav-icons">
                 <span>🔍</span>
@@ -2505,7 +2905,134 @@
         </div>
     </section>
 
-    <section class="features">
+    
+
+    <!-- About Us Section -->
+<section class="about-us-section" id="about-us">
+    <div class="about-container">
+        <div class="about-header">
+            <h2 class="section-title">Our Story</h2>
+            <p class="about-subtitle">Where Comfort Meets Fashion</p>
+        </div>
+
+        <div class="about-content">
+            <div class="about-story">
+                <div class="story-card-large">
+                    <div class="story-icon">✨</div>
+                    <h3>Our Beginning</h3>
+                    <p>Modish Junction was born from a simple belief: every woman deserves to feel comfortable and confident in what she wears. As a startup fashion brand based in Udaipurwati, Rajasthan, we started with a vision to bridge the gap between traditional elegance and contemporary style.</p>
+                </div>
+
+                <div class="story-card-large">
+                    <div class="story-icon">🎯</div>
+                    <h3>Our Mission</h3>
+                    <p>We're on a mission to revolutionize women's fashion by offering high-quality, trendy clothing that doesn't compromise on comfort. Every week, we bring you fresh collections that blend timeless traditions with modern aesthetics, ensuring you're always in vogue.</p>
+                </div>
+
+                <div class="story-card-large">
+                    <div class="story-icon">💝</div>
+                    <h3>What Makes Us Special</h3>
+                    <p>At Modish Junction, we understand that fashion is personal. That's why we curate every piece with care, focusing on quality fabrics, intricate detailing, and designs that celebrate the modern Indian woman. We stay updated with the latest trends to bring you new collections every week.</p>
+                </div>
+            </div>
+
+            <div class="about-values">
+                <h3 class="values-title">Our Core Values</h3>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <div class="value-icon">🌟</div>
+                        <h4>Quality First</h4>
+                        <p>Premium fabrics and expert craftsmanship in every stitch</p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">🤝</div>
+                        <h4>Customer Trust</h4>
+                        <p>Building lasting relationships through transparency and honesty</p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">🎨</div>
+                        <h4>Innovation</h4>
+                        <p>Fresh designs every week, staying ahead of fashion trends</p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">🇮🇳</div>
+                        <h4>Supporting Local</h4>
+                        <p>Proudly Made in India, empowering local artisans</p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">♻️</div>
+                        <h4>Sustainability</h4>
+                        <p>Conscious fashion choices for a better tomorrow</p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">⚡</div>
+                        <h4>Fast Fashion</h4>
+                        <p>Quick dispatch and delivery to keep you stylish on time</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-stats">
+                <div class="stat-box">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">300+</div>
+                    <div class="stat-label">Products</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">New Arrivals Weekly</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Quality Assured</div>
+                </div>
+            </div>
+
+            <div class="about-promise">
+                <h3>Our Promise to You</h3>
+                <div class="promise-grid">
+                    <div class="promise-item">
+                        <span class="promise-check">✓</span>
+                        <p>Authentic, high-quality products only</p>
+                    </div>
+                    <div class="promise-item">
+                        <span class="promise-check">✓</span>
+                        <p>Weekly fresh collections to keep you trendy</p>
+                    </div>
+                    <div class="promise-item">
+                        <span class="promise-check">✓</span>
+                        <p>Affordable luxury for every occasion</p>
+                    </div>
+                    <div class="promise-item">
+                        <span class="promise-check">✓</span>
+                        <p>Hassle-free shopping experience</p>
+                    </div>
+                    <div class="promise-item">
+                        <span class="promise-check">✓</span>
+                        <p>Responsive customer support always ready to help</p>
+                    </div>
+                    <div class="promise-item">
+                        <span class="promise-check">✓</span>
+                        <p>Secure payment and safe delivery</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-cta">
+                <h3>Join the Modish Junction Family</h3>
+                <p>Be part of our growing community of fashion-forward women who believe in looking good and feeling great.</p>
+                <div class="cta-buttons">
+                    <button class="cta-button"><span>Shop Now</span></button>
+                    <a href="https://www.instagram.com/modish_junction/" target="_blank" class="cta-button-outline"><span>Follow Us on Instagram</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- <section class="features">
         <h2 class="section-title" style="color: white;">Why Choose Modish Junction?</h2>
         <div class="features-grid">
             <div class="feature-item">
@@ -2529,7 +3056,8 @@
               <p>100% safe and secure checkout</p>
             </div>
         </div>
-    </section>
+
+    </section> -->
 
    <!-- Floating WhatsApp Button with direct contact -->
 <a href="https://wa.me/919849120888" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
@@ -2548,14 +3076,14 @@
             <div class="footer-section">
                 <h3>Useful Links</h3>
                 <ul>
-                    <li><a href="#track-order">Track Your Order</a></li>
+                    <!-- <li><a href="#track-order">Track Your Order</a></li> -->
                     <li><a href="#shipping">Shipping Policy</a></li>
                     <li><a href="#returns">Return & Exchange Policy</a></li>
                     <li><a href="#privacy">Privacy Policy</a></li>
                     <li><a href="#stores">Store Locator</a></li>
                     <li><a href="#about">About Us</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
-                    <li><a href="#blogs">Blogs</a></li>
+                    <!-- <li><a href="#contact">Contact Us</a></li> -->
+                    <!-- <li><a href="#blogs">Blogs</a></li> -->
                 </ul>
             </div>
             <div class="footer-section">
