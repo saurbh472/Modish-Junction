@@ -2813,74 +2813,81 @@
 
 
 <!-- ✅ NEW: Shop by Occasion Section -->
-<section id="shop-by-occasion-section"></section>
+<section class="products" id="trending">
+  <h2 class="section-title">Trending This Season</h2>
+  <div class="product-grid">
 
-   <section class="products" id="trending">
-    <h2 class="section-title">Trending This Season</h2>
-    <div class="product-grid">
+    <!-- PRODUCT 1 -->
+    <div class="product-card"
+         data-id="product-kurta-1"
+         data-link="https://modishjunction.com/#product-kurta-1">
 
-        <div class="product-card"
-             id="product-kurta-1"
-             data-link="https://modishjunction.com/#product-kurta-1">
-            <span class="discount-badge">30% OFF</span>
-            <div class="product-image">🎨</div>
-            <div class="product-info">
-                <h3>Women Liva Embroidered Kurta Set with Dupatta</h3>
-                <div class="price">
-                    <span class="sale-price">₹3,499</span>
-                    <span class="original-price">₹4,999</span>
-                </div>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
+      <span class="discount-badge">30% OFF</span>
+      <div class="product-image">🎨</div>
+      <div class="product-info">
+        <h3>Women Liva Embroidered Kurta Set with Dupatta</h3>
+        <div class="price">
+          <span class="sale-price">₹3,499</span>
+          <span class="original-price">₹4,999</span>
         </div>
-
-        <div class="product-card"
-             id="product-dress-1"
-             data-link="https://modishjunction.com/#product-dress-1">
-            <span class="discount-badge">40% OFF</span>
-            <div class="product-image">🌺</div>
-            <div class="product-info">
-                <h3>Cotton Floral Print A-Line Dress</h3>
-                <div class="price">
-                    <span class="sale-price">₹1,199</span>
-                    <span class="original-price">₹1,999</span>
-                </div>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-        </div>
-
-        <div class="product-card"
-             id="product-ethnic-1"
-             data-link="https://modishjunction.com/#product-ethnic-1">
-            <span class="discount-badge">50% OFF</span>
-            <div class="product-image">💫</div>
-            <div class="product-info">
-                <h3>Silk Blend Embroidered Ethnic Set</h3>
-                <div class="price">
-                    <span class="sale-price">₹2,499</span>
-                    <span class="original-price">₹4,999</span>
-                </div>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-        </div>
-
-        <div class="product-card"
-             id="product-shawl-1"
-             data-link="https://modishjunction.com/#product-shawl-1">
-            <span class="discount-badge">20% OFF</span>
-            <div class="product-image">🧶</div>
-            <div class="product-info">
-                <h3>Soft Knitted Warm Women Shawl</h3>
-                <div class="price">
-                    <span class="sale-price">₹2,152</span>
-                    <span class="original-price">₹2,690</span>
-                </div>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-        </div>
-
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
     </div>
+
+    <!-- PRODUCT 2 -->
+    <div class="product-card"
+         data-id="product-dress-1"
+         data-link="https://modishjunction.com/#product-dress-1">
+
+      <span class="discount-badge">40% OFF</span>
+      <div class="product-image">🌺</div>
+      <div class="product-info">
+        <h3>Cotton Floral Print A-Line Dress</h3>
+        <div class="price">
+          <span class="sale-price">₹1,199</span>
+          <span class="original-price">₹1,999</span>
+        </div>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT 3 -->
+    <div class="product-card"
+         data-id="product-ethnic-1"
+         data-link="https://modishjunction.com/#product-ethnic-1">
+
+      <span class="discount-badge">50% OFF</span>
+      <div class="product-image">💫</div>
+      <div class="product-info">
+        <h3>Silk Blend Embroidered Ethnic Set</h3>
+        <div class="price">
+          <span class="sale-price">₹2,499</span>
+          <span class="original-price">₹4,999</span>
+        </div>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- PRODUCT 4 -->
+    <div class="product-card"
+         data-id="product-shawl-1"
+         data-link="https://modishjunction.com/#product-shawl-1">
+
+      <span class="discount-badge">20% OFF</span>
+      <div class="product-image">🧶</div>
+      <div class="product-info">
+        <h3>Soft Knitted Warm Women Shawl</h3>
+        <div class="price">
+          <span class="sale-price">₹2,152</span>
+          <span class="original-price">₹2,690</span>
+        </div>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+    </div>
+
+  </div>
 </section>
+
 
 
     <section class="stories-section">
@@ -3241,28 +3248,7 @@
         });
 
         // Add to cart animation
-    document.querySelectorAll(".product-card").forEach(card => {
-  const btn = card.querySelector(".add-to-cart");
-  if (!btn) return;
-
-  btn.addEventListener("click", function () {
-    const name = card.querySelector("h3").innerText.trim();
-    const priceText = card.querySelector(".sale-price")?.innerText || "₹0";
-    const price = parseInt(priceText.replace(/[^\d]/g, ""));
-    const link = card.dataset.link || window.location.href;
-
-    addToCart(name, price, link);
-
-    this.textContent = "✓ Added!";
-    this.style.background = "linear-gradient(135deg, #10b981, #059669)";
-    setTimeout(() => {
-      this.textContent = "Add to Cart";
-      this.style.background =
-        "linear-gradient(135deg, var(--primary), var(--secondary))";
-    }, 1500);
-  });
-});
-
+    
 
 
         // Duplicate stories for infinite scroll
@@ -3490,24 +3476,6 @@
 
     
 <script src="js/cart.js"></script>
-
-<!-- CART MODAL -->
-<div id="cart-modal" class="cart-modal">
-  <div class="cart-box">
-    <h2>🛒 Your Cart</h2>
-    <div id="cart-items"></div>
-
-    <div class="cart-footer">
-      <strong id="cart-total"></strong>
-      <div class="cart-actions">
-        <button onclick="closeCart()">Close</button>
-        <button class="whatsapp-btn" onclick="openWhatsAppOrder()">Order on WhatsApp</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
 <!-- CART MODAL -->
 <div id="cart-modal" class="cart-modal">
   <div class="cart-box">
