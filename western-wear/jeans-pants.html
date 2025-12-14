@@ -177,13 +177,13 @@
             margin-bottom: 3rem;
         }
 
-        .product-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(181, 84, 55, 0.12);
-            transition: all 0.5s;
-        }
+   .product-card {
+    position: relative;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
 
         .product-card:hover {
             transform: translateY(-12px);
@@ -203,16 +203,26 @@
             box-shadow: 0 4px 15px rgba(212, 89, 59, 0.4);
         }
 
+
         .product-image {
-            height: 350px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-            transition: all 0.5s;
-            position: relative;
-        }
+    height: 350px;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.08);
+}
+
+
+     
         .cart-modal {
   position: fixed;
   inset: 0;
@@ -285,9 +295,6 @@
 }
 
 
-        .product-card:hover .product-image {
-            transform: scale(1.08);
-        }
 
         .product-info { 
             padding: 1.5rem;
@@ -374,13 +381,14 @@
                 <span class="logo-text">Modish Junction</span>
             </div>
             <ul class="nav-links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../index.html#trending">Shop</a></li>
-                <li><a href="../index.html#sale">Sale</a></li>
-           
-            <span onclick="openCart()" style="cursor:pointer">
-  🛒 <small id="cart-count">0</small>
-   </ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../index.html#trending">Shop</a></li>
+    <li><a href="../index.html#sale">Sale</a></li>
+    <li onclick="openCart()" style="cursor:pointer">
+        🛒 <small id="cart-count">0</small>
+    </li>
+</ul>
+
 </span>
 
         </nav>
@@ -404,142 +412,194 @@
         </div>
 
         <div class="product-grid">
-               <!-- PRODUCT 1 -->
-    <div class="product-card"
-         data-id="product-jense-1"
-         data-link="https://modishjunction.com/#product-jense-1">
-                <span class="discount-badge">40% OFF</span>
-                <div class="product-image">👖</div>
-                <div class="product-info">
-                    <h3>High-Waist Skinny Fit Jeans - Dark Blue</h3>
-                    <div class="price">
-                        <span class="sale-price">₹1,499</span>
-                        <span class="original-price">₹2,499</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
+           <!-- PRODUCT 1 -->
+<div class="product-card"
+     data-id="product-jense-1"
+     data-link="https://modishjunction.com/#product-jense-1">
 
-             <div class="product-card"
-         data-id="product-jense-2"
-         data-link="https://modishjunction.com/#product-jense-2">
-                <span class="discount-badge">45% OFF</span>
-                <div class="product-image">💙</div>
-                <div class="product-info">
-                    <h3>Light Wash Boyfriend Jeans - Relaxed Fit</h3>
-                    <div class="price">
-                        <span class="sale-price">₹1,649</span>
-                        <span class="original-price">₹2,999</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
+  <span class="discount-badge">40% OFF</span>
 
-             <div class="product-card"
-         data-id="product-jense-3"
-         data-link="https://modishjunction.com/#product-jense-3">
-                <span class="discount-badge">35% OFF</span>
-                <div class="product-image">🌊</div>
-                <div class="product-info">
-                    <h3>Ripped Denim Jeans - Trendy Distressed Style</h3>
-                    <div class="price">
-                        <span class="sale-price">₹1,299</span>
-                        <span class="original-price">₹1,999</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="High-Waist Skinny Fit Jeans">
+  </div>
 
-             <div class="product-card"
-         data-id="product-jense-4"
-         data-link="https://modishjunction.com/#product-jense-4">
-                <span class="discount-badge">50% OFF</span>
-                <div class="product-image">🎨</div>
-                <div class="product-info">
-                    <h3>Wide Leg Palazzo Pants - Flowy Comfort</h3>
-                    <div class="price">
-                        <span class="sale-price">₹999</span>
-                        <span class="original-price">₹1,999</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
+  <div class="product-info">
+    <h3>High-Waist Skinny Fit Jeans - Dark Blue</h3>
+    <div class="price">
+      <span class="sale-price">₹1,499</span>
+      <span class="original-price">₹2,499</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
 
-              <div class="product-card"
-         data-id="product-jense-5"
-         data-link="https://modishjunction.com/#product-jense-5">
-                <span class="discount-badge">40% OFF</span>
-                <div class="product-image">🌟</div>
-                <div class="product-info">
-                    <h3>Black Cargo Pants - Multiple Pockets</h3>
-                    <div class="price">
-                        <span class="sale-price">₹1,199</span>
-                        <span class="original-price">₹1,999</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
 
-              <div class="product-card"
-         data-id="product-jense-6"
-         data-link="https://modishjunction.com/#product-jense-6">
-                <span class="discount-badge">45% OFF</span>
-                <div class="product-image">✨</div>
-                <div class="product-info">
-                    <h3>Straight Fit Formal Pants - Office Wear</h3>
-                    <div class="price">
-                        <span class="sale-price">₹1,099</span>
-                        <span class="original-price">₹1,999</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
+<div class="product-card"
+     data-id="product-jense-2"
+     data-link="https://modishjunction.com/#product-jense-2">
 
-              <div class="product-card"
-         data-id="product-jense-7"
-         data-link="https://modishjunction.com/#product-jense-7">
-                <span class="discount-badge">35% OFF</span>
-                <div class="product-image">🦋</div>
-                <div class="product-info">
-                    <h3>Ankle Length Cigarette Pants - Slim Fit</h3>
-                    <div class="price">
-                        <span class="sale-price">₹1,299</span>
-                        <span class="original-price">₹1,999</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
+  <span class="discount-badge">45% OFF</span>
 
-              <div class="product-card"
-         data-id="product-jense-8"
-         data-link="https://modishjunction.com/#product-jense-8">
-                <span class="discount-badge">40% OFF</span>
-                <div class="product-image">🌸</div>
-                <div class="product-info">
-                    <h3>Flare Jeans - Retro Bell Bottom Style</h3>
-                    <div class="price">
-                        <span class="sale-price">₹1,499</span>
-                        <span class="original-price">₹2,499</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Light Wash Boyfriend Jeans">
+  </div>
 
-              <div class="product-card"
-         data-id="product-jense-9"
-         data-link="https://modishjunction.com/#product-jense-9">
-                <span class="discount-badge">50% OFF</span>
-                <div class="product-image">💫</div>
-                <div class="product-info">
-                    <h3>Jogger Pants - Casual Comfort Fit</h3>
-                    <div class="price">
-                        <span class="sale-price">₹899</span>
-                        <span class="original-price">₹1,799</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-        </div>
+  <div class="product-info">
+    <h3>Light Wash Boyfriend Jeans - Relaxed Fit</h3>
+    <div class="price">
+      <span class="sale-price">₹1,649</span>
+      <span class="original-price">₹2,999</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-jense-3"
+     data-link="https://modishjunction.com/#product-jense-3">
+
+  <span class="discount-badge">35% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Ripped Denim Jeans">
+  </div>
+
+  <div class="product-info">
+    <h3>Ripped Denim Jeans - Trendy Distressed Style</h3>
+    <div class="price">
+      <span class="sale-price">₹1,299</span>
+      <span class="original-price">₹1,999</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-jense-4"
+     data-link="https://modishjunction.com/#product-jense-4">
+
+  <span class="discount-badge">50% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Wide Leg Palazzo Pants">
+  </div>
+
+  <div class="product-info">
+    <h3>Wide Leg Palazzo Pants - Flowy Comfort</h3>
+    <div class="price">
+      <span class="sale-price">₹999</span>
+      <span class="original-price">₹1,999</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-jense-5"
+     data-link="https://modishjunction.com/#product-jense-5">
+
+  <span class="discount-badge">40% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Black Cargo Pants">
+  </div>
+
+  <div class="product-info">
+    <h3>Black Cargo Pants - Multiple Pockets</h3>
+    <div class="price">
+      <span class="sale-price">₹1,199</span>
+      <span class="original-price">₹1,999</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-jense-6"
+     data-link="https://modishjunction.com/#product-jense-6">
+
+  <span class="discount-badge">45% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Straight Fit Formal Pants">
+  </div>
+
+  <div class="product-info">
+    <h3>Straight Fit Formal Pants - Office Wear</h3>
+    <div class="price">
+      <span class="sale-price">₹1,099</span>
+      <span class="original-price">₹1,999</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-jense-7"
+     data-link="https://modishjunction.com/#product-jense-7">
+
+  <span class="discount-badge">35% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Ankle Length Cigarette Pants">
+  </div>
+
+  <div class="product-info">
+    <h3>Ankle Length Cigarette Pants - Slim Fit</h3>
+    <div class="price">
+      <span class="sale-price">₹1,299</span>
+      <span class="original-price">₹1,999</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-jense-8"
+     data-link="https://modishjunction.com/#product-jense-8">
+
+  <span class="discount-badge">40% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Flare Jeans">
+  </div>
+
+  <div class="product-info">
+    <h3>Flare Jeans - Retro Bell Bottom Style</h3>
+    <div class="price">
+      <span class="sale-price">₹1,499</span>
+      <span class="original-price">₹2,499</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-jense-9"
+     data-link="https://modishjunction.com/#product-jense-9">
+
+  <span class="discount-badge">50% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Jogger Pants">
+  </div>
+
+  <div class="product-info">
+    <h3>Jogger Pants - Casual Comfort Fit</h3>
+    <div class="price">
+      <span class="sale-price">₹899</span>
+      <span class="original-price">₹1,799</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
     </div>
 
     <a href="https://wa.me/919849120888" class="whatsapp-float" target="_blank">

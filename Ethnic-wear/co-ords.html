@@ -231,7 +231,27 @@
             transition: 0.4s;
         }
 
-        .product-card:hover .product-image { transform: scale(1.07); }
+       .product-card {
+    position: relative;
+}
+
+.product-image {
+    height: 350px;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.08);
+}
+
 
         .product-info { padding: 1.4rem; }
 
@@ -291,15 +311,15 @@
             <span class="logo-text">Modish Junction</span>
         </div>
 
-        <ul class="nav-links">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../index.html#trending">Shop</a></li>
-            <li><a href="../index.html#sale">Sale</a></li>
-            <span onclick="openCart()" style="cursor:pointer">
-  🛒 <small id="cart-count">0</small>
-</span>
+      <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../index.html#trending">Shop</a></li>
+    <li><a href="../index.html#sale">Sale</a></li>
+    <li onclick="openCart()" style="cursor:pointer">
+        🛒 <small id="cart-count">0</small>
+    </li>
+</ul>
 
-        </ul>
     </nav>
 </header>
 
@@ -313,47 +333,130 @@
     </div>
 
     <div class="product-grid">
+<div class="product-card"
+     data-id="product-coords-1"
+     data-link="https://modishjunction.com/#product-coords-1">
 
-        <div class="product-card">
-            <span class="discount-badge">30% OFF</span>
-            <div class="product-image">👚👖</div>
-            <div class="product-info">
-                <h3>Printed Co-ord Set – Summer Edition</h3>
-                <div class="price">
-                    <span class="sale-price">₹1,499</span>
-                    <span class="original-price">₹2,199</span>
-                </div>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-        </div>
+  <span class="discount-badge">30% OFF</span>
 
-        <div class="product-card">
-            <span class="discount-badge">40% OFF</span>
-            <div class="product-image">🌸</div>
-            <div class="product-info">
-                <h3>Floral Relaxed Fit Co-ord – Soft Fabric</h3>
-                <div class="price">
-                    <span class="sale-price">₹1,799</span>
-                    <span class="original-price">₹2,999</span>
-                </div>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-        </div>
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Printed Co-ord Set">
+  </div>
 
-        <div class="product-card">
-            <span class="discount-badge">45% OFF</span>
-            <div class="product-image">✨</div>
-            <div class="product-info">
-                <h3>Elegant Party Wear Co-ord – Premium Look</h3>
-                <div class="price">
-                    <span class="sale-price">₹1,899</span>
-                    <span class="original-price">₹3,499</span>
-                </div>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-        </div>
-
+  <div class="product-info">
+    <h3>Printed Co-ord Set – Summer Edition</h3>
+    <div class="price">
+      <span class="sale-price">₹1,499</span>
+      <span class="original-price">₹2,199</span>
     </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-coords-2"
+     data-link="https://modishjunction.com/#product-coords-2">
+
+  <span class="discount-badge">40% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Floral Co-ord Set">
+  </div>
+
+  <div class="product-info">
+    <h3>Floral Relaxed Fit Co-ord – Soft Fabric</h3>
+    <div class="price">
+      <span class="sale-price">₹1,799</span>
+      <span class="original-price">₹2,999</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-coords-3"
+     data-link="https://modishjunction.com/#product-coords-3">
+
+  <span class="discount-badge">45% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Party Wear Co-ord">
+  </div>
+
+  <div class="product-info">
+    <h3>Elegant Party Wear Co-ord – Premium Look</h3>
+    <div class="price">
+      <span class="sale-price">₹1,899</span>
+      <span class="original-price">₹3,499</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-coords-4"
+     data-link="https://modishjunction.com/#product-coords-4">
+
+  <span class="discount-badge">45% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Stylish Co-ord Set">
+  </div>
+
+  <div class="product-info">
+    <h3>Stylish Casual Co-ord – Everyday Wear</h3>
+    <div class="price">
+      <span class="sale-price">₹1,699</span>
+      <span class="original-price">₹2,999</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-coords-5"
+     data-link="https://modishjunction.com/#product-coords-5">
+
+  <span class="discount-badge">45% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Premium Co-ord Set">
+  </div>
+
+  <div class="product-info">
+    <h3>Premium Lounge Co-ord – Comfortable Fit</h3>
+    <div class="price">
+      <span class="sale-price">₹1,899</span>
+      <span class="original-price">₹3,499</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-coords-6"
+     data-link="https://modishjunction.com/#product-coords-6">
+
+  <span class="discount-badge">45% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Designer Co-ord Set">
+  </div>
+
+  <div class="product-info">
+    <h3>Designer Co-ord Set – Statement Style</h3>
+    <div class="price">
+      <span class="sale-price">₹1,999</span>
+      <span class="original-price">₹3,799</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
 
 </div>
 

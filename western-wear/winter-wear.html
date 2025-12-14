@@ -184,11 +184,27 @@
             box-shadow: 0 8px 25px rgba(181, 84, 55, 0.12);
             transition: all 0.5s;
         }
+.product-card {
+    position: relative;
+}
 
-        .product-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 50px rgba(181, 84, 55, 0.25);
-        }
+.product-image {
+    height: 350px;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.08);
+}
+
 
         .discount-badge {
             position: absolute;
@@ -373,13 +389,15 @@
                 <img src="../Header-Logo/Header-logo3.png" alt="Modish Junction Logo" class="logo-img">
                 <span class="logo-text">Modish Junction</span>
             </div>
-            <ul class="nav-links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../index.html#trending">Shop</a></li>
-                <li><a href="../index.html#sale">Sale</a></li>
-            <span onclick="openCart()" style="cursor:pointer">
-  🛒 <small id="cart-count">0</small>
-       </ul>
+           <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../index.html#trending">Shop</a></li>
+    <li><a href="../index.html#sale">Sale</a></li>
+    <li onclick="openCart()" style="cursor:pointer">
+        🛒 <small id="cart-count">0</small>
+    </li>
+</ul>
+
 </span>
 
         </nav>
@@ -403,141 +421,195 @@
         </div>
 
         <div class="product-grid">
-                 <div class="product-card"
-         data-id="product-winterwear-1"
-         data-link="https://modishjunction.com/#product-winterwear-1">
-                <span class="discount-badge">35% OFF</span>
-                <div class="product-image">🧥</div>
-                <div class="product-info">
-                    <h3>Wool Blend Trench Coat - Classic Style</h3>
-                    <div class="price">
-                        <span class="sale-price">₹3,249</span>
-                        <span class="original-price">₹4,999</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
+             <!-- PRODUCT 1 -->
+<div class="product-card"
+     data-id="product-winterwear-1"
+     data-link="https://modishjunction.com/#product-winterwear-1">
 
-           <div class="product-card"
-         data-id="product-winterwear-2"
-         data-link="https://modishjunction.com/#product-winterwear-2">
-                <span class="discount-badge">40% OFF</span>
-                <div class="product-image">🧶</div>
-                <div class="product-info">
-                    <h3>Knitted Turtleneck Sweater - Cozy Warmth</h3>
-                    <div class="price">
-                        <span class="sale-price">₹1,499</span>
-                        <span class="original-price">₹2,499</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
+  <span class="discount-badge">35% OFF</span>
 
-           <div class="product-card"
-         data-id="product-winterwear-3"
-         data-link="https://modishjunction.com/#product-winterwear-3">
-                <span class="discount-badge">45% OFF</span>
-                <div class="product-image">❄️</div>
-                <div class="product-info">
-                    <h3>Pashmina Shawl - Luxury Collection</h3>
-                    <div class="price">
-                        <span class="sale-price">₹2,199</span>
-                        <span class="original-price">₹3,999</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Wool Blend Trench Coat">
+  </div>
 
-          <div class="product-card"
-         data-id="product-winterwear-4"
-         data-link="https://modishjunction.com/#product-winterwear-4">
-                <span class="discount-badge">30% OFF</span>
-                <div class="product-image">🌨️</div>
-                <div class="product-info">
-                    <h3>Puffer Jacket - Quilted Design</h3>
-                    <div class="price">
-                        <span class="sale-price">₹2,799</span>
-                        <span class="original-price">₹3,999</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
+  <div class="product-info">
+    <h3>Wool Blend Trench Coat - Classic Style</h3>
+    <div class="price">
+      <span class="sale-price">₹3,249</span>
+      <span class="original-price">₹4,999</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
 
-            <div class="product-card"
-         data-id="product-winterwear-5"
-         data-link="https://modishjunction.com/#product-winterwear-1\5">
-                <span class="discount-badge">50% OFF</span>
-                <div class="product-image">🎿</div>
-                <div class="product-info">
-                    <h3>Fleece Hoodie - Oversized Comfort</h3>
-                    <div class="price">
-                        <span class="sale-price">₹999</span>
-                        <span class="original-price">₹1,999</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
 
-            <div class="product-card"
-         data-id="product-winterwear-6"
-         data-link="https://modishjunction.com/#product-winterwear-6">
-                <span class="discount-badge">40% OFF</span>
-                <div class="product-image">☃️</div>
-                <div class="product-info">
-                    <h3>Long Cardigan - Belted Style</h3>
-                    <div class="price">
-                        <span class="sale-price">₹1,799</span>
-                        <span class="original-price">₹2,999</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
+<div class="product-card"
+     data-id="product-winterwear-2"
+     data-link="https://modishjunction.com/#product-winterwear-2">
 
-           <div class="product-card"
-         data-id="product-winterwear-7"
-         data-link="https://modishjunction.com/#product-winterwear-7">
-                <span class="discount-badge">35% OFF</span>
-                <div class="product-image">🏔️</div>
-                <div class="product-info">
-                    <h3>Thermal Inner Wear Set - Heat Tech</h3>
-                    <div class="price">
-                        <span class="sale-price">₹1,299</span>
-                        <span class="original-price">₹1,999</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
+  <span class="discount-badge">40% OFF</span>
 
-            <div class="product-card"
-         data-id="product-winterwear-8"
-         data-link="https://modishjunction.com/#product-winterwear-8">
-                <span class="discount-badge">45% OFF</span>
-                <div class="product-image">🧣</div>
-                <div class="product-info">
-                    <h3>Wool Scarf & Gloves Set - Winter Essentials</h3>
-                    <div class="price">
-                        <span class="sale-price">₹899</span>
-                        <span class="original-price">₹1,649</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Knitted Turtleneck Sweater">
+  </div>
 
-           <div class="product-card"
-         data-id="product-winterwear-9"
-         data-link="https://modishjunction.com/#product-winterwear-9">
-                <span class="discount-badge">30% OFF</span>
-                <div class="product-image">⛄</div>
-                <div class="product-info">
-                    <h3>Sherpa Lined Denim Jacket - Vintage Look</h3>
-                    <div class="price">
-                        <span class="sale-price">₹2,449</span>
-                        <span class="original-price">₹3,499</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-        </div>
+  <div class="product-info">
+    <h3>Knitted Turtleneck Sweater - Cozy Warmth</h3>
+    <div class="price">
+      <span class="sale-price">₹1,499</span>
+      <span class="original-price">₹2,499</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-winterwear-3"
+     data-link="https://modishjunction.com/#product-winterwear-3">
+
+  <span class="discount-badge">45% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Pashmina Shawl">
+  </div>
+
+  <div class="product-info">
+    <h3>Pashmina Shawl - Luxury Collection</h3>
+    <div class="price">
+      <span class="sale-price">₹2,199</span>
+      <span class="original-price">₹3,999</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-winterwear-4"
+     data-link="https://modishjunction.com/#product-winterwear-4">
+
+  <span class="discount-badge">30% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Puffer Jacket">
+  </div>
+
+  <div class="product-info">
+    <h3>Puffer Jacket - Quilted Design</h3>
+    <div class="price">
+      <span class="sale-price">₹2,799</span>
+      <span class="original-price">₹3,999</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-winterwear-5"
+     data-link="https://modishjunction.com/#product-winterwear-5">
+
+  <span class="discount-badge">50% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Fleece Hoodie">
+  </div>
+
+  <div class="product-info">
+    <h3>Fleece Hoodie - Oversized Comfort</h3>
+    <div class="price">
+      <span class="sale-price">₹999</span>
+      <span class="original-price">₹1,999</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-winterwear-6"
+     data-link="https://modishjunction.com/#product-winterwear-6">
+
+  <span class="discount-badge">40% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Long Cardigan">
+  </div>
+
+  <div class="product-info">
+    <h3>Long Cardigan - Belted Style</h3>
+    <div class="price">
+      <span class="sale-price">₹1,799</span>
+      <span class="original-price">₹2,999</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-winterwear-7"
+     data-link="https://modishjunction.com/#product-winterwear-7">
+
+  <span class="discount-badge">35% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Thermal Inner Wear Set">
+  </div>
+
+  <div class="product-info">
+    <h3>Thermal Inner Wear Set - Heat Tech</h3>
+    <div class="price">
+      <span class="sale-price">₹1,299</span>
+      <span class="original-price">₹1,999</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-winterwear-8"
+     data-link="https://modishjunction.com/#product-winterwear-8">
+
+  <span class="discount-badge">45% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Wool Scarf & Gloves Set">
+  </div>
+
+  <div class="product-info">
+    <h3>Wool Scarf & Gloves Set - Winter Essentials</h3>
+    <div class="price">
+      <span class="sale-price">₹899</span>
+      <span class="original-price">₹1,649</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-winterwear-9"
+     data-link="https://modishjunction.com/#product-winterwear-9">
+
+  <span class="discount-badge">30% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Sherpa Lined Denim Jacket">
+  </div>
+
+  <div class="product-info">
+    <h3>Sherpa Lined Denim Jacket - Vintage Look</h3>
+    <div class="price">
+      <span class="sale-price">₹2,449</span>
+      <span class="original-price">₹3,499</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
     </div>
 
     <a href="https://wa.me/919849120888" class="whatsapp-float" target="_blank">

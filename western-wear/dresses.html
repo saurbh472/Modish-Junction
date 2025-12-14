@@ -251,9 +251,27 @@
             position: relative;
         }
 
-        .product-card:hover .product-image {
-            transform: scale(1.08);
-        }
+       .product-card {
+    position: relative;
+}
+
+.product-image {
+    height: 350px;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.08);
+}
+
 
         .product-info { padding: 1.5rem; }
 
@@ -313,15 +331,15 @@
             <span class="logo-text">Modish Junction</span>
         </div>
 
-        <ul class="nav-links">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../index.html#trending">Shop</a></li>
-            <li><a href="../index.html#sale">Sale</a></li>
-            <span onclick="openCart()" style="cursor:pointer">
-  🛒 <small id="cart-count">0</small>
-</span>
+      <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../index.html#trending">Shop</a></li>
+    <li><a href="../index.html#sale">Sale</a></li>
+    <li onclick="openCart()" style="cursor:pointer">
+        🛒 <small id="cart-count">0</small>
+    </li>
+</ul>
 
-        </ul>
     </nav>
 </header>
 
@@ -335,55 +353,127 @@
 
     <div class="product-grid">
 
-          <!-- PRODUCT 1 -->
-    <div class="product-card"
-         data-id="product-dress-1"
-         data-link="https://modishjunction.com/#product-kurta-1">
-            <span class="discount-badge">40% OFF</span>
-            <div class="product-image">👗</div>
-            <div class="product-info">
-                <h3>Floral Summer Dress - Lightweight & Breezy</h3>
-                <div class="price">
-                    <span class="sale-price">₹1,299</span>
-                    <span class="original-price">₹2,199</span>
-                </div>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-        </div>
+     <div class="product-card"
+     data-id="product-dress-1"
+     data-link="https://modishjunction.com/#product-dress-1">
 
-           <!-- PRODUCT 1 -->
-    <div class="product-card"
-         data-id="product-dress-2"
-         data-link="https://modishjunction.com/#product-kurta-1">
-            <span class="discount-badge">50% OFF</span>
-            <div class="product-image">🌸</div>
-            <div class="product-info">
-                <h3>Elegant Bodycon Dress - Evening Wear</h3>
-                <div class="price">
-                    <span class="sale-price">₹1,499</span>
-                    <span class="original-price">₹2,999</span>
-                </div>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-        </div>
+  <span class="discount-badge">40% OFF</span>
 
-       <!-- PRODUCT 1 -->
-    <div class="product-card"
-         data-id="product-dress-3"
-         data-link="https://modishjunction.com/#product-kurta-1">
-            <span class="discount-badge">35% OFF</span>
-            <div class="product-image">✨</div>
-            <div class="product-info">
-                <h3>A-Line Midi Dress - Classic Fit</h3>
-                <div class="price">
-                    <span class="sale-price">₹1,099</span>
-                    <span class="original-price">₹1,699</span>
-                </div>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-        </div>
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Floral Summer Dress">
+  </div>
 
+  <div class="product-info">
+    <h3>Floral Summer Dress - Lightweight & Breezy</h3>
+    <div class="price">
+      <span class="sale-price">₹1,299</span>
+      <span class="original-price">₹2,199</span>
     </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-dress-2"
+     data-link="https://modishjunction.com/#product-dress-2">
+
+  <span class="discount-badge">50% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Elegant Bodycon Dress">
+  </div>
+
+  <div class="product-info">
+    <h3>Elegant Bodycon Dress - Evening Wear</h3>
+    <div class="price">
+      <span class="sale-price">₹1,499</span>
+      <span class="original-price">₹2,999</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-dress-3"
+     data-link="https://modishjunction.com/#product-dress-3">
+
+  <span class="discount-badge">35% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="A-Line Midi Dress">
+  </div>
+
+  <div class="product-info">
+    <h3>A-Line Midi Dress - Classic Fit</h3>
+    <div class="price">
+      <span class="sale-price">₹1,099</span>
+      <span class="original-price">₹1,699</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="product-card"
+     data-id="product-dress-4"
+     data-link="https://modishjunction.com/#product-dress-4">
+
+  <span class="discount-badge">35% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="A-Line Midi Dress">
+  </div>
+
+  <div class="product-info">
+    <h3>A-Line Midi Dress - Classic Fit</h3>
+    <div class="price">
+      <span class="sale-price">₹1,099</span>
+      <span class="original-price">₹1,699</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="product-card"
+     data-id="product-dress-5"
+     data-link="https://modishjunction.com/#product-dress-5">
+
+  <span class="discount-badge">35% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="A-Line Midi Dress">
+  </div>
+
+  <div class="product-info">
+    <h3>A-Line Midi Dress - Classic Fit</h3>
+    <div class="price">
+      <span class="sale-price">₹1,099</span>
+      <span class="original-price">₹1,699</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="product-card"
+     data-id="product-dress-6"
+     data-link="https://modishjunction.com/#product-dress-6">
+
+  <span class="discount-badge">35% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="A-Line Midi Dress">
+  </div>
+
+  <div class="product-info">
+    <h3>A-Line Midi Dress - Classic Fit</h3>
+    <div class="price">
+      <span class="sale-price">₹1,099</span>
+      <span class="original-price">₹1,699</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
 </div>
 
 <script>
