@@ -471,17 +471,23 @@
             25%, 75% { opacity: 0.5; }
         }
 
-        .product-image {
-            height: 350px;
-            background: linear-gradient(135deg, #D2691E, #F4A460);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-            transition: all 0.5s;
-            position: relative;
-            cursor: pointer;
-        }
+   .product-image {
+    height: 350px;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.08);
+}
+
 
        .quick-view-btn {
     position: absolute;
@@ -506,9 +512,6 @@
             transform: translateX(-50%) translateY(0);
         }
 
-        .product-card:hover .product-image {
-            transform: scale(1.05);
-        }
 
         .product-info { 
             padding: 1.5rem;
@@ -990,160 +993,217 @@
             </div>
         </div>
 
-        <div class="product-grid">
-                <div class="product-card"
-         data-id="product-thriftcollection-1"  data-category="denim"
-         data-link="https://modishjunction.com/#product-thriftcollection-1">
-                <div class="wishlist-btn"><i class="far fa-heart"></i></div>
-                <span class="discount-badge">60% OFF</span>
-                <span class="vintage-badge">VINTAGE</span>
-                <span class="stock-badge">Only 2 left!</span>
-                <div class="product-image">👚</div>
-                <button class="quick-view-btn" onclick="openModal(0)">Quick View</button>
-                <div class="product-info">
-                    <div class="product-rating">
-                        <span class="stars">⭐⭐⭐⭐⭐</span>
-                        <span class="review-count">(24 reviews)</span>
-                    </div>
-                    <span class="condition-tag">Excellent Condition</span>
-                    <h3>Vintage Oversized Denim Jacket - 90s Style</h3>
-                    <p class="product-story">"From a Portland vintage shop, authentic 90s grunge vibes"</p>
-                    <div class="price">
-                        <span class="sale-price">₹1,199</span>
-                        <span class="original-price">₹2,999</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
+       <div class="product-grid">
 
-        
+  <!-- PRODUCT 1 -->
+  <div class="product-card"
+       data-id="product-thriftcollection-1"
+       data-category="denim"
+       data-link="https://modishjunction.com/#product-thriftcollection-1">
 
-                 <div class="product-card"
-         data-id="product-thriftcollection-2"  data-category="vintage-tees"
-         data-link="https://modishjunction.com/#product-thriftcollection-2">
-                <div class="wishlist-btn"><i class="far fa-heart"></i></div>
-                <span class="discount-badge">65% OFF</span>
-                <span class="vintage-badge">VINTAGE</span>
-                <div class="product-image">🎸</div>
-                <button class="quick-view-btn" onclick="openModal(1)">Quick View</button>
-                <div class="product-info">
-                    <div class="product-rating">
-                        <span class="stars">⭐⭐⭐⭐⭐</span>
-                        <span class="review-count">(18 reviews)</span>
-                    </div>
-                    <span class="condition-tag">Like New</span>
-                    <h3>Retro Band Graphic Tee - Classic Rock</h3>
-                    <p class="product-story">"Concert tee from the 80s, authentic vintage print"</p>
-                    <div class="price">
-                        <span class="sale-price">₹599</span>
-                        <span class="original-price">₹1,699</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
+    <div class="wishlist-btn"><i class="far fa-heart"></i></div>
+    <span class="discount-badge">60% OFF</span>
+    <span class="vintage-badge">VINTAGE</span>
+    <span class="stock-badge">Only 2 left!</span>
 
-          
+    <div class="product-image">
+      <img src="../Images/Catogery/co-ords-set.png"
+           alt="Vintage Oversized Denim Jacket"
+           loading="lazy">
+    </div>
 
-                    <div class="product-card"
-         data-id="product-thriftcollection-3"  data-category="dresses"
-         data-link="https://modishjunction.com/#product-thriftcollection-3">
-                <div class="wishlist-btn"><i class="far fa-heart"></i></div>
-                <span class="discount-badge">55% OFF</span>
-                <span class="vintage-badge">VINTAGE</span>
-                <span class="stock-badge">Only 1 left!</span>
-                <div class="product-image">👗</div>
-                <button class="quick-view-btn" onclick="openModal(2)">Quick View</button>
-                <div class="product-info">
-                    <div class="product-rating">
-                        <span class="stars">⭐⭐⭐⭐⭐</span>
-                        <span class="review-count">(31 reviews)</span>
-                    </div>
-                    <span class="condition-tag">Good Condition</span>
-                    <h3>Floral Maxi Dress - 70s Inspired</h3>
-                    <p class="product-story">"Bohemian dream piece, perfect for summer festivals"</p>
-                    <div class="price">
-                        <span class="sale-price">₹1,349</span>
-                        <span class="original-price">₹2,999</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
+    <button class="quick-view-btn" onclick="openModal(0)">Quick View</button>
 
-  
-                       <div class="product-card"
-         data-id="product-thriftcollection-4"   data-category="jackets"
-         data-link="https://modishjunction.com/#product-thriftcollection-4">
-                <div class="wishlist-btn"><i class="far fa-heart"></i></div>
-                <span class="discount-badge">70% OFF</span>
-                <span class="vintage-badge">VINTAGE</span>
-                <div class="product-image">🧥</div>
-                <button class="quick-view-btn" onclick="openModal(3)">Quick View</button>
-                <div class="product-info">
-                    <div class="product-rating">
-                        <span class="stars">⭐⭐⭐⭐⭐</span>
-                        <span class="review-count">(42 reviews)</span>
-                    </div>
-                    <span class="condition-tag">Excellent Condition</span>
-                    <h3>Leather Bomber Jacket - Authentic Vintage</h3>
-                    <p class="product-story">"Classic aviator style, genuine leather from the 80s"</p>
-                    <div class="price">
-                        <span class="sale-price">₹2,499</span>
-                        <span class="original-price">₹8,299</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
+    <div class="product-info">
+      <div class="product-rating">
+        <span class="stars">⭐⭐⭐⭐⭐</span>
+        <span class="review-count">(24 reviews)</span>
+      </div>
+      <span class="condition-tag">Excellent Condition</span>
+      <h3>Vintage Oversized Denim Jacket – 90s Style</h3>
+      <p class="product-story">"From a Portland vintage shop, authentic 90s grunge vibes"</p>
+      <div class="price">
+        <span class="sale-price">₹1,199</span>
+        <span class="original-price">₹2,999</span>
+      </div>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+  </div>
 
-                       <div class="product-card"
-         data-id="product-thriftcollection-5"   data-category="denim"
-         data-link="https://modishjunction.com/#product-thriftcollection-5">
-                <div class="wishlist-btn"><i class="far fa-heart"></i></div>
-                <span class="discount-badge">60% OFF</span>
-                <span class="vintage-badge">VINTAGE</span>
-                <div class="product-image">👖</div>
-                <button class="quick-view-btn" onclick="openModal(4)">Quick View</button>
-                <div class="product-info">
-                    <div class="product-rating">
-                        <span class="stars">⭐⭐⭐⭐⭐</span>
-                        <span class="review-count">(27 reviews)</span>
-                    </div>
-                    <span class="condition-tag">Like New</span>
-                    <h3>High-Waist Mom Jeans - Vintage Wash</h3>
-                    <p class="product-story">"Perfect fit, authentic 90s denim with character"</p>
-                    <div class="price">
-                        <span class="sale-price">₹999</span>
-                        <span class="original-price">₹2,499</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
+  <!-- PRODUCT 2 -->
+  <div class="product-card"
+       data-id="product-thriftcollection-2"
+       data-category="vintage-tees"
+       data-link="https://modishjunction.com/#product-thriftcollection-2">
 
-       
-                       <div class="product-card"
-         data-id="product-thriftcollection-6" data-category="accessories"
-         data-link="https://modishjunction.com/#product-thriftcollection-6">
-                <div class="wishlist-btn"><i class="far fa-heart"></i></div>
-                <span class="discount-badge">50% OFF</span>
-                <span class="vintage-badge">VINTAGE</span>
-                <span class="stock-badge">Only 3 left!</span>
-                <div class="product-image">🌼</div>
-                <button class="quick-view-btn" onclick="openModal(5)">Quick View</button>
-                <div class="product-info">
-                    <div class="product-rating">
-                        <span class="stars">⭐⭐⭐⭐⭐</span>
-                        <span class="review-count">(15 reviews)</span>
-                    </div>
-                    <span class="condition-tag">Good Condition</span>
-                    <h3>Bohemian Embroidered Blouse - Handcrafted</h3>
-                    <p class="product-story">"Intricate embroidery, one-of-a-kind artisan piece"</p>
-                    <div class="price">
-                        <span class="sale-price">₹899</span>
-                        <span class="original-price">₹1,799</span>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-        </div>
+    <div class="wishlist-btn"><i class="far fa-heart"></i></div>
+    <span class="discount-badge">65% OFF</span>
+    <span class="vintage-badge">VINTAGE</span>
+
+    <div class="product-image">
+      <img src="../Images/Catogery/co-ords-set.png"
+           alt="Retro Band Graphic Tee"
+           loading="lazy">
+    </div>
+
+    <button class="quick-view-btn" onclick="openModal(1)">Quick View</button>
+
+    <div class="product-info">
+      <div class="product-rating">
+        <span class="stars">⭐⭐⭐⭐⭐</span>
+        <span class="review-count">(18 reviews)</span>
+      </div>
+      <span class="condition-tag">Like New</span>
+      <h3>Retro Band Graphic Tee – Classic Rock</h3>
+      <p class="product-story">"Concert tee from the 80s, authentic vintage print"</p>
+      <div class="price">
+        <span class="sale-price">₹599</span>
+        <span class="original-price">₹1,699</span>
+      </div>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- PRODUCT 3 -->
+  <div class="product-card"
+       data-id="product-thriftcollection-3"
+       data-category="dresses"
+       data-link="https://modishjunction.com/#product-thriftcollection-3">
+
+    <div class="wishlist-btn"><i class="far fa-heart"></i></div>
+    <span class="discount-badge">55% OFF</span>
+    <span class="vintage-badge">VINTAGE</span>
+    <span class="stock-badge">Only 1 left!</span>
+
+    <div class="product-image">
+      <img src="../Images/Catogery/co-ords-set.png"
+           alt="Floral Maxi Dress"
+           loading="lazy">
+    </div>
+
+    <button class="quick-view-btn" onclick="openModal(2)">Quick View</button>
+
+    <div class="product-info">
+      <div class="product-rating">
+        <span class="stars">⭐⭐⭐⭐⭐</span>
+        <span class="review-count">(31 reviews)</span>
+      </div>
+      <span class="condition-tag">Good Condition</span>
+      <h3>Floral Maxi Dress – 70s Inspired</h3>
+      <p class="product-story">"Bohemian dream piece, perfect for summer festivals"</p>
+      <div class="price">
+        <span class="sale-price">₹1,349</span>
+        <span class="original-price">₹2,999</span>
+      </div>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- PRODUCT 4 -->
+  <div class="product-card"
+       data-id="product-thriftcollection-4"
+       data-category="jackets"
+       data-link="https://modishjunction.com/#product-thriftcollection-4">
+
+    <div class="wishlist-btn"><i class="far fa-heart"></i></div>
+    <span class="discount-badge">70% OFF</span>
+    <span class="vintage-badge">VINTAGE</span>
+
+    <div class="product-image">
+      <img src="../Images/Catogery/co-ords-set.png"
+           alt="Leather Bomber Jacket"
+           loading="lazy">
+    </div>
+
+    <button class="quick-view-btn" onclick="openModal(3)">Quick View</button>
+
+    <div class="product-info">
+      <div class="product-rating">
+        <span class="stars">⭐⭐⭐⭐⭐</span>
+        <span class="review-count">(42 reviews)</span>
+      </div>
+      <span class="condition-tag">Excellent Condition</span>
+      <h3>Leather Bomber Jacket – Authentic Vintage</h3>
+      <p class="product-story">"Classic aviator style, genuine leather from the 80s"</p>
+      <div class="price">
+        <span class="sale-price">₹2,499</span>
+        <span class="original-price">₹8,299</span>
+      </div>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- PRODUCT 5 -->
+  <div class="product-card"
+       data-id="product-thriftcollection-5"
+       data-category="denim"
+       data-link="https://modishjunction.com/#product-thriftcollection-5">
+
+    <div class="wishlist-btn"><i class="far fa-heart"></i></div>
+    <span class="discount-badge">60% OFF</span>
+    <span class="vintage-badge">VINTAGE</span>
+
+    <div class="product-image">
+      <img src="../Images/Catogery/co-ords-set.png"
+           alt="High-Waist Mom Jeans"
+           loading="lazy">
+    </div>
+
+    <button class="quick-view-btn" onclick="openModal(4)">Quick View</button>
+
+    <div class="product-info">
+      <div class="product-rating">
+        <span class="stars">⭐⭐⭐⭐⭐</span>
+        <span class="review-count">(27 reviews)</span>
+      </div>
+      <span class="condition-tag">Like New</span>
+      <h3>High-Waist Mom Jeans – Vintage Wash</h3>
+      <p class="product-story">"Perfect fit, authentic 90s denim with character"</p>
+      <div class="price">
+        <span class="sale-price">₹999</span>
+        <span class="original-price">₹2,499</span>
+      </div>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- PRODUCT 6 -->
+  <div class="product-card"
+       data-id="product-thriftcollection-6"
+       data-category="accessories"
+       data-link="https://modishjunction.com/#product-thriftcollection-6">
+
+    <div class="wishlist-btn"><i class="far fa-heart"></i></div>
+    <span class="discount-badge">50% OFF</span>
+    <span class="vintage-badge">VINTAGE</span>
+    <span class="stock-badge">Only 3 left!</span>
+
+    <div class="product-image">
+      <img src="../Images/Catogery/co-ords-set.png"
+           alt="Bohemian Embroidered Blouse"
+           loading="lazy">
+    </div>
+
+    <button class="quick-view-btn" onclick="openModal(5)">Quick View</button>
+
+    <div class="product-info">
+      <div class="product-rating">
+        <span class="stars">⭐⭐⭐⭐⭐</span>
+        <span class="review-count">(15 reviews)</span>
+      </div>
+      <span class="condition-tag">Good Condition</span>
+      <h3>Bohemian Embroidered Blouse – Handcrafted</h3>
+      <p class="product-story">"Intricate embroidery, one-of-a-kind artisan piece"</p>
+      <div class="price">
+        <span class="sale-price">₹899</span>
+        <span class="original-price">₹1,799</span>
+      </div>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+  </div>
+
+</div>
+
 
         <div class="style-section">
             <h2>🎨 Style It Your Way</h2>
