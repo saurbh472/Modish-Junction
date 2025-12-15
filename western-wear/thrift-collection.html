@@ -130,23 +130,24 @@
             width: 200px;
         }
 
-        .back-home {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 2rem;
-            background: white;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-             margin: 160px 5% 2rem;
-            box-shadow: 0 4px 15px rgba(212, 89, 59, 0.2);
-        }
-
+   .back-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 2rem;
+    background: white;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    margin: 160px 5% 2rem;
+    box-shadow: 0 4px 15px rgba(212, 89, 59, 0.2);
+    position: relative;  /* ← ADD THIS LINE */
+    z-index: 10;         /* ← ADD THIS LINE */
+}
         .back-home:hover {
             background: var(--primary);
             color: white;
@@ -262,18 +263,7 @@
             opacity: 0.9;
         }
 
-        .filter-section {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(212, 89, 59, 0.1);
-            align-items: center;
-        }
-
+     
         .filter-btn {
             padding: 0.7rem 1.5rem;
             background: var(--light);
@@ -292,21 +282,40 @@
             transform: translateY(-2px);
         }
 
-        .price-filter {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-left: auto;
-        }
+  
+.filter-section {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(212, 89, 59, 0.1);
+    align-items: center;
+    position: relative;  /* ← ADD THIS */
+    z-index: 50;         /* ← ADD THIS */
+}
 
-        .price-filter select {
-            padding: 0.7rem 1rem;
-            border: 2px solid var(--accent);
-            border-radius: 25px;
-            background: white;
-            cursor: pointer;
-            outline: none;
-        }
+.price-filter {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+    position: relative;  /* ← ADD THIS */
+    z-index: 50;         /* ← ADD THIS */
+}
+
+.price-filter select {
+    padding: 0.7rem 1rem;
+    border: 2px solid var(--accent);
+    border-radius: 25px;
+    background: white;
+    cursor: pointer;
+    outline: none;
+    position: relative;  /* ← ADD THIS */
+    z-index: 50;         /* ← ADD THIS */
+}
 
         .product-grid {
             display: grid;
@@ -939,7 +948,8 @@
         </nav>
     </header>
 
-    <a href="../index.html" class="back-home">← Back to Home</a>
+  <a href="../index.html" class="back-home">← Back to Home</a>
+
 
     <div class="page-container">
         <div class="page-header">
@@ -984,12 +994,12 @@
             <button class="filter-btn">Accessories</button>
             <div class="price-filter">
                 <label>Sort by:</label>
-                <select>
-                    <option>Price: Low to High</option>
-                    <option>Price: High to Low</option>
-                    <option>Newest First</option>
-                    <option>Most Popular</option>
-                </select>
+               <select id="sortSelect">
+  <option value="">Sort</option>
+  <option value="low-high">Price: Low to High</option>
+  <option value="high-low">Price: High to Low</option>
+</select>
+
             </div>
         </div>
 
@@ -1367,25 +1377,30 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 });
 
 // Sort functionality
-document.querySelector('.price-filter select').addEventListener('change', function() {
-    const sortValue = this.value;
-    const productGrid = document.querySelector('.product-grid');
-    const productCards = Array.from(document.querySelectorAll('.product-card'));
-    
-    productCards.sort((a, b) => {
-        const priceA = parseInt(a.querySelector('.sale-price').textContent.replace(/[₹,]/g, ''));
-        const priceB = parseInt(b.querySelector('.sale-price').textContent.replace(/[₹,]/g, ''));
-        
-        if (sortValue === 'Price: Low to High') {
-            return priceA - priceB;
-        } else if (sortValue === 'Price: High to Low') {
-            return priceB - priceA;
-        }
+
+document.getElementById('sortSelect').addEventListener('change', function () {
+    const sortType = this.value;
+    const grid = document.querySelector('.product-grid');
+    const cards = Array.from(grid.children);
+
+    cards.sort((a, b) => {
+        const priceA = parseInt(
+            a.querySelector('.sale-price').textContent.replace(/[^\d]/g, '')
+        );
+        const priceB = parseInt(
+            b.querySelector('.sale-price').textContent.replace(/[^\d]/g, '')
+        );
+
+        if (sortType === 'low-high') return priceA - priceB;
+        if (sortType === 'high-low') return priceB - priceA;
         return 0;
     });
-    
-    productCards.forEach(card => productGrid.appendChild(card));
+
+    cards.forEach(card => grid.appendChild(card));
 });
+
+
+
 
         // Size selection in modal
         document.querySelectorAll('.size-btn').forEach(btn => {
