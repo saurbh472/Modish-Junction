@@ -2308,13 +2308,24 @@
         0%, 100% { opacity: 1; }
         50% { opacity: 0.6; }
     }
-
-    .product-image img {
+.product-image {
   width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 10px;
+  height: 260px;          /* control image height */
+  overflow: hidden;      /* crop extra image */
+  border-radius: 16px 16px 0 0;
+  background: #f7b8a0;   /* fallback background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* 🔥 KEY FIX */
+  display: block;
+}
+
 
 
     .savings {
