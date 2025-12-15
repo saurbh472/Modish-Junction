@@ -223,18 +223,30 @@
             font-weight: bold;
         }
 
-        .product-image {
-            height: 350px;
-            background: linear-gradient(135deg, #FFE0B2, #FFCC80);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-            position: relative;
-            transition: 0.4s;
-        }
 
-        .product-card:hover .product-image { transform: scale(1.07); }
+      .product-card {
+    position: relative;
+}
+
+
+.product-image {
+    height: 350px;
+    overflow: hidden;
+    position: relative;
+}
+
+
+.product-card:hover .product-image img {
+    transform: scale(1.08);
+}
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
 
         .product-info { padding: 1.4rem; }
 
@@ -294,15 +306,15 @@
             <span class="logo-text">Modish Junction</span>
         </div>
 
-        <ul class="nav-links">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../index.html#trending">Shop</a></li>
-            <li><a href="../index.html#sale">Sale</a></li>
-            <span onclick="openCart()" style="cursor:pointer">
-  🛒 <small id="cart-count">0</small>
-</span>
+      <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../index.html#trending">Shop</a></li>
+    <li><a href="../index.html#sale">Sale</a></li>
+    <li onclick="openCart()" style="cursor:pointer">
+        🛒 <small id="cart-count">0</small>
+    </li>
+</ul>
 
-        </ul>
     </nav>
 </header>
 
@@ -317,46 +329,68 @@
 
     <div class="product-grid">
 
-        <div class="product-card">
-            <span class="discount-badge">35% OFF</span>
-            <div class="product-image">👗🧥</div>
-            <div class="product-info">
-                <h3>Premium Embroidered 3 Piece Suit – Festive Wear</h3>
-                <div class="price">
-                    <span class="sale-price">₹2,499</span>
-                    <span class="original-price">₹3,899</span>
-                </div>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-        </div>
+ <div class="product-card"
+     data-id="product-3piece-1"
+     data-link="https://modishjunction.com/#product-3piece-1">
 
-        <div class="product-card">
-            <span class="discount-badge">40% OFF</span>
-            <div class="product-image">🌺</div>
-            <div class="product-info">
-                <h3>Soft Georgette 3 Piece Suit – Stylish & Comfortable</h3>
-                <div class="price">
-                    <span class="sale-price">₹2,199</span>
-                    <span class="original-price">₹3,699</span>
-                </div>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-        </div>
+  <span class="discount-badge">35% OFF</span>
 
-        <div class="product-card">
-            <span class="discount-badge">50% OFF</span>
-            <div class="product-image">✨</div>
-            <div class="product-info">
-                <h3>Luxury Party Wear 3 Piece Suit – Premium Fabric</h3>
-                <div class="price">
-                    <span class="sale-price">₹2,799</span>
-                    <span class="original-price">₹5,499</span>
-                </div>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-        </div>
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Embroidered 3 Piece Suit">
+  </div>
 
+  <div class="product-info">
+    <h3>Premium Embroidered 3 Piece Suit – Festive Wear</h3>
+    <div class="price">
+      <span class="sale-price">₹2,499</span>
+      <span class="original-price">₹3,899</span>
     </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-3piece-2"
+     data-link="https://modishjunction.com/#product-3piece-2">
+
+  <span class="discount-badge">40% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Georgette 3 Piece Suit">
+  </div>
+
+  <div class="product-info">
+    <h3>Soft Georgette 3 Piece Suit – Stylish & Comfortable</h3>
+    <div class="price">
+      <span class="sale-price">₹2,199</span>
+      <span class="original-price">₹3,699</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="product-card"
+     data-id="product-3piece-3"
+     data-link="https://modishjunction.com/#product-3piece-3">
+
+  <span class="discount-badge">50% OFF</span>
+
+  <div class="product-image">
+    <img src="../Images/Catogery/western-wear.jpg" alt="Luxury Party Wear 3 Piece Suit">
+  </div>
+
+  <div class="product-info">
+    <h3>Luxury Party Wear 3 Piece Suit – Premium Fabric</h3>
+    <div class="price">
+      <span class="sale-price">₹2,799</span>
+      <span class="original-price">₹5,499</span>
+    </div>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
 
 </div>
 
