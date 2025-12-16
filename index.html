@@ -70,7 +70,8 @@
         font-weight: 600;
         letter-spacing: 0.5px;
         position: relative;
-        overflow: hidden;
+        overflow: visible;
+
     }
 
     .top-bar::before {
@@ -212,6 +213,42 @@
     display: flex;
     align-items: center;
     height: 100%;
+}
+
+
+
+
+.popup-modal {
+    position: absolute;
+    z-index: 3000;
+    display: none;
+}
+
+.popup-modal.active {
+    display: block;
+}
+
+.popup-content {
+    background: #fff;
+    width: 320px;
+    padding: 18px 20px;
+    border-radius: 10px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    position: relative;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.close-btn {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    cursor: pointer;
+    font-size: 20px;
 }
 
 
@@ -2454,8 +2491,8 @@
 <li><a href="#about-us">About Us</a></li>
             </ul>
            <div class="nav-icons">
-    <span>🔍</span>
-    <span>👤</span>
+    <!-- <span>🔍</span>
+    <span>👤</span> -->
     <span onclick="openCart()" style="cursor:pointer">
         🛒 <small id="cart-count">0</small>
     </span>
@@ -3236,33 +3273,45 @@
                 <h3>About Modish Junction</h3>
                 <p>At Modish Junction we believe in providing comfort with fashion. As the name suggest we keep ourself updated with fashion and provide you new collection every week.</p>
             </div>
-            <div class="footer-section">
-                <h3>Useful Links</h3>
-                <ul>
-                    <!-- <li><a href="#track-order">Track Your Order</a></li> -->
-                    <li><a href="#shipping">Shipping Policy</a></li>
-                    <li><a href="#returns">Return & Exchange Policy</a></li>
-                    <li><a href="#privacy">Privacy Policy</a></li>
-                    <li><a href="#stores">Store Locator</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <!-- <li><a href="#contact">Contact Us</a></li> -->
-                    <!-- <li><a href="#blogs">Blogs</a></li> -->
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Collections</h3>
-                <ul>
-                    <li><a href="#kurtas">Western wear</a></li>
-                    <li><a href="#ethnic-sets">Ethnic Sets</a></li>
-                    <li><a href="#ethnic-sets-dupatta">Ethnic Sets with Dupatta</a></li>
-                    <li><a href="#dresses">Dresses</a></li>
-                    <li><a href="#coords">Co-ord Sets</a></li>
-                    <li><a href="#bottom-wear">Bottom Wear</a></li>
-                    <li><a href="#tunics">Tunics</a></li>
-                    <li><a href="#autumn-winter-25">Autumn Winter 25</a></li>
-                    <li><a href="#all-collections">All Collections</a></li>
-                </ul>
-            </div>
+    <div class="footer-section">
+    <h3>Useful Links</h3>
+    <ul>
+<li><a href="#" onclick="openPopup(event, 'shipping')">Shipping Policy</a></li>
+<li><a href="#" onclick="openPopup(event, 'returns')">Return & Exchange Policy</a></li>
+<li><a href="#" onclick="openPopup(event, 'privacy')">Privacy Policy</a></li>
+<li><a href="#" onclick="openPopup(event, 'stores')">Store Locator</a></li>
+<li><a href="#" onclick="openPopup(event, 'about')">About Us</a></li>
+
+
+    </ul>
+</div>
+
+<div class="footer-section">
+    <h3>Collections</h3>
+    <ul>
+        <!-- Western Wear -->
+        <li><a href="western-wear/tops-tees.html">Top & Tees</a></li>
+        <li><a href="western-wear/jeans-pants.html">Jeans & Pants</a></li>
+        <li><a href="western-wear/loungewear.html">Loungewear</a></li>
+        <li><a href="western-wear/winter-wear.html">Winter Wear</a></li>
+        <li><a href="western-wear/dresses.html">Dresses</a></li>
+        <li><a href="western-wear/thrift-collection.html">Thrift Collection</a></li>
+
+        <!-- Ethnic Wear -->
+        <li><a href="Ethnic-wear/co-ords.html">Ethnic Co-ords</a></li>
+        <li><a href="Ethnic-wear/3-piece-suit.html">Ethnic 3 Piece Suit</a></li>
+        <li><a href="Ethnic-wear/short-kurtis.html">Ethnic Short Kurtis</a></li>
+
+        <!-- Other Collections -->
+        <!-- <li><a href="#coords">Co-ord Sets</a></li>
+        <li><a href="#bottom-wear">Bottom Wear</a></li>
+        <li><a href="#tunics">Tunics</a></li>
+        <li><a href="#autumn-winter-25">Autumn Winter 25</a></li> -->
+        <li><a href="../index.html">All Collections</a></li>
+    </ul>
+</div>
+
+
             <div class="footer-section">
                 <h3>Contact Information</h3>
                 <p><strong>Official Address:</strong><br>
@@ -3556,6 +3605,75 @@
       </div>
     </div>
   </div>
+</div>
+
+
+
+<script>
+function openPopup(event, type) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const modal = document.getElementById("popupModal");
+    const title = document.getElementById("popupTitle");
+    const text = document.getElementById("popupText");
+
+    if (type === "shipping") {
+        title.innerText = "Shipping Policy";
+        text.innerText = "Orders are shipped within 3–5 business days.";
+    } 
+    else if (type === "returns") {
+        title.innerText = "Return & Exchange Policy";
+        text.innerText = "Returns accepted within 7 days (opening video required).";
+    } 
+    else if (type === "privacy") {
+        title.innerText = "Privacy Policy";
+        text.innerText = "Your personal information is never shared.";
+    } 
+    else if (type === "stores") {
+        title.innerText = "Store Locator";
+        text.innerText = "Currently online only. Stores coming soon.";
+    } 
+    else if (type === "about") {
+        title.innerText = "About Us";
+        text.innerText = "Modish Junction – Where Comfort Meets Fashion.";
+    }
+
+    const rect = event.target.getBoundingClientRect();
+
+    modal.style.top = window.scrollY + rect.bottom + 10 + "px";
+    modal.style.left = window.scrollX + rect.left + "px";
+
+    modal.classList.add("active");
+}
+
+function closePopup() {
+    document.getElementById("popupModal").classList.remove("active");
+}
+
+/* Stop click inside popup */
+document.querySelector(".popup-content").addEventListener("click", function(e) {
+    e.stopPropagation();
+});
+
+/* Close when clicking outside */
+document.addEventListener("click", function() {
+    closePopup();
+});
+
+/* Close with ESC */
+document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") closePopup();
+});
+</script>
+
+
+<div id="popupModal" class="popup-modal">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <h2 id="popupTitle"></h2>
+        <p id="popupText"></p>
+    </div>
 </div>
 </body>
 </html>

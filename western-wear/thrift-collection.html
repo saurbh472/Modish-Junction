@@ -1006,39 +1006,54 @@
        <div class="product-grid">
 
   <!-- PRODUCT 1 -->
-  <div class="product-card"
-       data-id="product-thriftcollection-1"
-       data-category="denim"
-       data-link="https://modishjunction.com/#product-thriftcollection-1">
+ <div class="product-card"
+     data-id="product-thriftcollection-1"
+     data-category="denim"
+     data-link="https://modishjunction.com/#product-thriftcollection-1">
 
-    <div class="wishlist-btn"><i class="far fa-heart"></i></div>
+    <!-- Wishlist -->
+    <div class="wishlist-btn">
+        <i class="far fa-heart"></i>
+    </div>
+
+    <!-- Badges -->
     <span class="discount-badge">60% OFF</span>
     <span class="vintage-badge">VINTAGE</span>
     <span class="stock-badge">Only 2 left!</span>
 
+    <!-- Image -->
     <div class="product-image">
-      <img src="../Images/Catogery/co-ords-set.png"
-           alt="Vintage Oversized Denim Jacket"
-           loading="lazy">
+        <img src="../Images/Catogery/co-ords-set.png"
+             alt="Vintage Oversized Denim Jacket"
+             loading="lazy">
     </div>
 
-    <button class="quick-view-btn" onclick="openModal(0)">Quick View</button>
+    <!-- Quick View -->
+    <button class="quick-view-btn" onclick="openModal(0)">
+        Quick View
+    </button>
 
+    <!-- Product Info -->
     <div class="product-info">
-      <div class="product-rating">
-        <span class="stars">⭐⭐⭐⭐⭐</span>
-        <span class="review-count">(24 reviews)</span>
-      </div>
-      <span class="condition-tag">Excellent Condition</span>
-      <h3>Vintage Oversized Denim Jacket – 90s Style</h3>
-      <p class="product-story">"From a Portland vintage shop, authentic 90s grunge vibes"</p>
-      <div class="price">
-        <span class="sale-price">₹1,199</span>
-        <span class="original-price">₹2,999</span>
-      </div>
-      <button class="add-to-cart">Add to Cart</button>
+
+        <h3>Vintage Oversized Denim Jacket – 90s Style</h3>
+
+        <p class="product-story">
+            "From a Portland vintage shop, authentic 90s grunge vibes"
+        </p>
+
+        <div class="price">
+            <span class="sale-price">₹1,199</span>
+            <span class="original-price">₹2,999</span>
+        </div>
+
+        <button class="add-to-cart">
+            Add to Cart
+        </button>
+
     </div>
-  </div>
+</div>
+
 
   <!-- PRODUCT 2 -->
   <div class="product-card"
@@ -1060,10 +1075,8 @@
 
     <div class="product-info">
       <div class="product-rating">
-        <span class="stars">⭐⭐⭐⭐⭐</span>
-        <span class="review-count">(18 reviews)</span>
       </div>
-      <span class="condition-tag">Like New</span>
+
       <h3>Retro Band Graphic Tee – Classic Rock</h3>
       <p class="product-story">"Concert tee from the 80s, authentic vintage print"</p>
       <div class="price">
@@ -1095,10 +1108,8 @@
 
     <div class="product-info">
       <div class="product-rating">
-        <span class="stars">⭐⭐⭐⭐⭐</span>
-        <span class="review-count">(31 reviews)</span>
       </div>
-      <span class="condition-tag">Good Condition</span>
+  
       <h3>Floral Maxi Dress – 70s Inspired</h3>
       <p class="product-story">"Bohemian dream piece, perfect for summer festivals"</p>
       <div class="price">
@@ -1129,10 +1140,8 @@
 
     <div class="product-info">
       <div class="product-rating">
-        <span class="stars">⭐⭐⭐⭐⭐</span>
-        <span class="review-count">(42 reviews)</span>
+
       </div>
-      <span class="condition-tag">Excellent Condition</span>
       <h3>Leather Bomber Jacket – Authentic Vintage</h3>
       <p class="product-story">"Classic aviator style, genuine leather from the 80s"</p>
       <div class="price">
@@ -1163,10 +1172,7 @@
 
     <div class="product-info">
       <div class="product-rating">
-        <span class="stars">⭐⭐⭐⭐⭐</span>
-        <span class="review-count">(27 reviews)</span>
       </div>
-      <span class="condition-tag">Like New</span>
       <h3>High-Waist Mom Jeans – Vintage Wash</h3>
       <p class="product-story">"Perfect fit, authentic 90s denim with character"</p>
       <div class="price">
@@ -1198,10 +1204,7 @@
 
     <div class="product-info">
       <div class="product-rating">
-        <span class="stars">⭐⭐⭐⭐⭐</span>
-        <span class="review-count">(15 reviews)</span>
       </div>
-      <span class="condition-tag">Good Condition</span>
       <h3>Bohemian Embroidered Blouse – Handcrafted</h3>
       <p class="product-story">"Intricate embroidery, one-of-a-kind artisan piece"</p>
       <div class="price">
@@ -1305,18 +1308,24 @@
         </div>
     </div>
 
-    <!-- Newsletter Popup -->
-    <div class="newsletter-popup" id="newsletterPopup">
-        <span class="newsletter-close" onclick="closeNewsletter()">✕</span>
-        <h3>🎁 Get 10% Off!</h3>
-        <p>Subscribe to our newsletter for exclusive vintage finds and eco-fashion tips</p>
-        <form class="newsletter-form">
-            <input type="email" placeholder="Enter your email" required>
-            <button type="submit">Subscribe</button>
-        </form>
-    </div>
+<!-- Newsletter Popup -->
+<!-- Newsletter Popup -->
+<div class="newsletter-popup" id="newsletterPopup">
+    <span class="newsletter-close" onclick="closeNewsletter()">✕</span>
+    <h3>✨ Never Miss What’s New</h3>
+    <p>
+        Join our style updates to receive weekly or monthly news on new arrivals,
+        outfit inspiration, and sustainable fashion tips.
+    </p>
+    <form class="newsletter-form">
+        <input type="email" placeholder="Enter your email" required>
+        <button type="submit">Get Updates</button>
+    </form>
+</div>
 
-    <a href="https://wa.me/919849120888" class="whatsapp-float" target="_blank">
+
+
+    <a href="https://wa.me/+918949120920" class="whatsapp-float" target="_blank">
         <svg viewBox="0 0 32 32" fill="white" width="28" height="28">
             <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 8.167-2.113c2.325 1.27 4.925 1.947 7.833 1.947 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.275 1.362 1.412-5.25-0.32-0.525c-1.341-2.194-2.051-4.73-2.051-7.359 0-7.72 6.28-14 14-14s14 6.28 14 14-6.28 14-14 14z"/>
         </svg>
