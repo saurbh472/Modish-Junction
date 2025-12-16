@@ -424,7 +424,9 @@
              <!-- PRODUCT 1 -->
 <div class="product-card"
      data-id="product-winterwear-1"
-     data-link="https://modishjunction.com/#product-winterwear-1">
+     data-link="/product.html?slug=wool-blend-trench-coat"
+>
+
 
   <span class="discount-badge">35% OFF</span>
 
@@ -445,7 +447,7 @@
 
 <div class="product-card"
      data-id="product-winterwear-2"
-     data-link="https://modishjunction.com/#product-winterwear-2">
+     data-link="/product.html?slug=knitted-turtleneck-sweater">
 
   <span class="discount-badge">40% OFF</span>
 
@@ -466,7 +468,7 @@
 
 <div class="product-card"
      data-id="product-winterwear-3"
-     data-link="https://modishjunction.com/#product-winterwear-3">
+     data-link="/product.html?slug=pashmina-shawl-luxury">
 
   <span class="discount-badge">45% OFF</span>
 
@@ -487,7 +489,7 @@
 
 <div class="product-card"
      data-id="product-winterwear-4"
-     data-link="https://modishjunction.com/#product-winterwear-4">
+      data-link="/product.html?slug=puffer-jacket-quilted">
 
   <span class="discount-badge">30% OFF</span>
 
@@ -508,7 +510,7 @@
 
 <div class="product-card"
      data-id="product-winterwear-5"
-     data-link="https://modishjunction.com/#product-winterwear-5">
+      data-link="/product.html?slug=long-cardigan-belted">
 
   <span class="discount-badge">50% OFF</span>
 
@@ -529,7 +531,7 @@
 
 <div class="product-card"
      data-id="product-winterwear-6"
-     data-link="https://modishjunction.com/#product-winterwear-6">
+     data-link="/product.html?slug=puffer-jacket-quilted">
 
   <span class="discount-badge">40% OFF</span>
 
@@ -550,7 +552,7 @@
 
 <div class="product-card"
      data-id="product-winterwear-7"
-     data-link="https://modishjunction.com/#product-winterwear-7">
+    data-link="/product.html?slug=thermal-inner-wear-heat-tech">
 
   <span class="discount-badge">35% OFF</span>
 
@@ -571,7 +573,7 @@
 
 <div class="product-card"
      data-id="product-winterwear-8"
-     data-link="https://modishjunction.com/#product-winterwear-8">
+     data-link="/product.html?slug=wool-scarf-gloves-set">
 
   <span class="discount-badge">45% OFF</span>
 
@@ -592,7 +594,7 @@
 
 <div class="product-card"
      data-id="product-winterwear-9"
-     data-link="https://modishjunction.com/#product-winterwear-9">
+      data-link="/product.html?slug=sherpa-lined-denim-jacket">
 
   <span class="discount-badge">30% OFF</span>
 
@@ -652,5 +654,15 @@
     </div>
   </div>
   <script src="../js/cart.js"></script>
+
+  <script>
+  document.querySelectorAll(".product-card").forEach(card => {
+    card.addEventListener("click", e => {
+      if (e.target.classList.contains("add-to-cart")) return;
+      window.location.href = card.dataset.link;
+    });
+  });
+</script>
+
 </body>
 </html>

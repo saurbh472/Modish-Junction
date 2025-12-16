@@ -163,7 +163,7 @@ I want to place an order:
 
   cart.forEach((item, i) => {
     message += `${i + 1}. ${item.name} - ₹${item.price} x ${item.qty}\n`;
-    if (item.link) message += `${item.link}\n\n`;
+    if (item.link) message += `${encodeURI(item.link)}\n\n`;
     total += item.price * item.qty;
   });
 

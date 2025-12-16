@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title id="page-title">Product | Modish Junction</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --primary: #d4593b;
+      --secondary: #e89580;
+      --dark: #1a0e08;
+      --cream: #fffbf7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      padding-top: 140px;
+    }
+
+    /* ================= HEADER ================= */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 2000;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+    }
+
+    .top-bar {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      text-align: center;
+      padding: 8px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .cart-icon {
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    /* ================= BACK BUTTON ================= */
+    .back-home {
+      max-width: 1200px;
+      margin: 20px auto 0;
+      padding: 0 20px;
+    }
+
+    .back-home a {
+      display: inline-block;
+      padding: 10px 22px;
+      border-radius: 30px;
+      background: #fff;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+      box-shadow: 0 4px 15px rgba(212,89,59,0.2);
+    }
+
+    .back-home a:hover {
+      background: var(--primary);
+      color: #fff;
+      transform: translateX(-4px);
+    }
+
+    /* ================= PRODUCT ================= */
+    .product-wrapper {
+      max-width: 1100px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 22px;
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.1);
+    }
+
+    .product-img img {
+      width: 100%;
+      max-height: 520px;
+      object-fit: cover;
+      border-radius: 18px;
+    }
+
+    .product-details h1 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .price {
+      margin: 15px 0;
+    }
+
+    .sale {
+      font-size: 26px;
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    .original {
+      text-decoration: line-through;
+      color: #999;
+      margin-left: 12px;
+    }
+
+    .description {
+      margin: 20px 0;
+      line-height: 1.7;
+      color: #444;
+    }
+
+
+    .thumbs {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.thumbs img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: 0.3s;
+}
+
+.thumbs img:hover {
+  border-color: var(--primary);
+}
+
+    .add-btn {
+      padding: 14px 26px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      transition: 0.3s;
+    }
+
+    .add-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(212,89,59,0.4);
+    }
+
+    /* ================= CART MODAL ================= */
+    .cart-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 3000;
+    }
+
+    .image-viewer {
+  position: relative;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.9);
+  border: none;
+  font-size: 22px;
+  padding: 10px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.nav-btn.left {
+  left: 10px;
+}
+
+.nav-btn.right {
+  right: 10px;
+}
+
+.nav-btn:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+.thumbs img.active {
+  border-color: var(--primary);
+}
+
+    .cart-box {
+      background: #fff;
+      width: 95%;
+      max-width: 420px;
+      border-radius: 18px;
+      padding: 22px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+.size-box {
+  margin: 20px 0;
+}
+
+.sizes {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.size-btn {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 2px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.size-btn.active,
+.size-btn:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.product-points {
+  margin: 20px 0;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .cart-footer {
+      border-top: 1px solid #ddd;
+      padding-top: 12px;
+      margin-top: 12px;
+    }
+
+    .cart-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .whatsapp-btn {
+      background: #25D366;
+      color: #fff;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .product-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="top-bar">✨ Free Shipping on Orders Above ₹999 ✨</div>
+  <nav>
+    <div class="logo">Modish Junction</div>
+    <div class="cart-icon" onclick="openCart()">
+      🛒 <small id="cart-count">0</small>
+    </div>
+  </nav>
+</header>
+
+<!-- BACK TO HOME -->
+<div class="back-home">
+  <a href="/western-wear/winter-wear.html">← back-winter-wear</a>
+</div>
+
+<!-- PRODUCT -->
+<div id="product-container" class="product-wrapper"></div>
+
+<!-- CART MODAL -->
+<div id="cart-modal" class="cart-modal">
+  <div class="cart-box">
+    <h2>🛒 Your Cart</h2>
+    <div id="cart-items"></div>
+    <div class="cart-footer">
+      <strong id="cart-total"></strong>
+      <div class="cart-actions">
+        <button onclick="closeCart()">Close</button>
+        <button class="whatsapp-btn" onclick="openWhatsAppOrder()">Order on WhatsApp</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/data/products-winterwear.js"></script>
+<script src="js/cart.js"></script>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get("slug");
+  const cleanSlug = slug?.trim().toLowerCase();
+
+  const product = winterProducts.find(
+    p => p.slug.toLowerCase() === cleanSlug
+  );
+
+  if (!product) {
+    document.getElementById("product-container").innerHTML =
+      "<h2>Product not found</h2>";
+  } else {
+    document.getElementById("page-title").innerText =
+      product.name + " | Modish Junction";
+
+    document.getElementById("product-container").innerHTML = `
+      <div class="product-img">
+        <div class="image-viewer">
+          <button class="nav-btn left" onclick="prevImage()">❮</button>
+          <img id="mainImage" src="${product.images[0]}">
+          <button class="nav-btn right" onclick="nextImage()">❯</button>
+        </div>
+
+        <div class="thumbs">
+          ${product.images.map((img, i) => `
+            <img src="${img}" onclick="changeImageByIndex(${i})"
+                 class="${i === 0 ? 'active' : ''}">
+          `).join("")}
+        </div>
+      </div>
+
+      <div class="product-details">
+        <h1>${product.name}</h1>
+
+        <div class="price">
+          <span class="sale">₹${product.price}</span>
+          <span class="original">₹${product.originalPrice}</span>
+        </div>
+
+        <p class="description">${product.description}</p>
+
+        <div class="size-box">
+          <strong>Select Size:</strong>
+          <div class="sizes">
+            ${product.sizes.map(size => `
+              <button class="size-btn" onclick="selectSize(this)">
+                ${size}
+              </button>
+            `).join("")}
+          </div>
+        </div>
+
+        <div class="product-points">
+          <p>✓ 100% Authentic Vintage</p>
+          <p>✓ Professionally cleaned & sanitized</p>
+          <p>✓ Quality checked for condition</p>
+          <p>✓ Free shipping on orders above ₹999</p>
+          <p>✓ 7-day return policy</p>
+        </div>
+
+        <button class="add-btn" id="addBtn">Add to Cart</button>
+      </div>
+    `;
+
+    /* ================= IMAGE LOGIC ================= */
+    let currentImageIndex = 0;
+    const images = product.images;
+
+    window.updateImage = function () {
+      document.getElementById("mainImage").src = images[currentImageIndex];
+      document.querySelectorAll(".thumbs img").forEach((img, i) => {
+        img.classList.toggle("active", i === currentImageIndex);
+      });
+    };
+
+    window.nextImage = function () {
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+      updateImage();
+    };
+
+    window.prevImage = function () {
+      currentImageIndex =
+        (currentImageIndex - 1 + images.length) % images.length;
+      updateImage();
+    };
+
+    window.changeImageByIndex = function (index) {
+      currentImageIndex = index;
+      updateImage();
+    };
+
+    /* ================= SIZE ================= */
+    let selectedSize = null;
+
+    window.selectSize = function (btn) {
+      document.querySelectorAll(".size-btn").forEach(b =>
+        b.classList.remove("active")
+      );
+      btn.classList.add("active");
+      selectedSize = btn.innerText;
+    };
+
+    /* ================= ADD TO CART ================= */
+    document.getElementById("addBtn").onclick = () => {
+      if (!selectedSize) {
+        alert("Please select a size");
+        return;
+      }
+
+      addToCart(
+        product.id + "-" + selectedSize,
+        product.name + " (Size: " + selectedSize + ")",
+        product.price,
+        window.location.href
+      );
+
+      document.getElementById("addBtn").innerText = "View Cart";
+      document.getElementById("addBtn").onclick = openCart;
+    };
+  }
+</script>
+
+
+</body>
+</html>
