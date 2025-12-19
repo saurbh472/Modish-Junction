@@ -1,18 +1,18 @@
-const winterProducts = [
-{
-  id: "product-winterwear-1",
-  slug: "wool-blend-trench-coat",
-  name: "Wool Blend Trench Coat - Classic Style",
-  description: "Premium wool blend trench coat with a timeless silhouette. Perfect for cold weather layering with elegance.",
-  price: 3249,
-  originalPrice: 4999,
-  images: [
-    "/Images/Catogery/western-wear.jpg",
-    "/Images/Catogery/ethnic.wear",
-    "./Images/Catogery/"
-  ],
-  sizes: ["S", "M", "L", "XL"]
-},
+  const winterProducts = [
+  {
+    id: "product-winterwear-1",
+    slug: "wool-blend-trench-coat",
+    name: "Wool Blend Trench Coat - Classic Style",
+    description: "Premium wool blend trench coat with a timeless silhouette. Perfect for cold weather layering with elegance.",
+    price: 3249,
+    originalPrice: 4999,
+    images: [
+      "/Images/Category/western-wear.jpg",
+      "/Images/Category/winter-wear/trench-1.png",
+      "/Images/Category/winter-wear/Ethnic-wear-img.png"
+    ],
+    sizes: ["S", "M", "L", "XL"]
+  },
 
   {
     id: "product-winterwear-2",
@@ -22,9 +22,9 @@ const winterProducts = [
     price: 1499,
     originalPrice: 2499,
     images: [
-      "/Images/Catogery/western-wear.jpg",
-      "/Images/Catogery/western-wear.jpg",
-      "/Images/Catogery/western-wear.jpg"
+      "/Images/Category/western-wear.jpg",
+      "/Images/Category/western-wear.jpg",
+      "/Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -37,9 +37,9 @@ const winterProducts = [
     price: 2199,
     originalPrice: 3999,
     images: [
-      "/Images/Catogery/western-wear.jpg",
-      "/Images/Catogery/western-wear.jpg",
-      "/Images/Catogery/western-wear.jpg"
+      "/Images/Category/western-wear.jpg",
+      "/Images/Category/western-wear.jpg",
+      "/Images/Category/western-wear.jpg"
     ],
     sizes: ["Free Size"]
   },
@@ -52,9 +52,9 @@ const winterProducts = [
     price: 2799,
     originalPrice: 3999,
     images: [
-      "/Images/Catogery/western-wear.jpg",
-      "/Images/Catogery/western-wear.jpg",
-      "/Images/Catogery/western-wear.jpg"
+      "/Images/Category/western-wear.jpg",
+      "/Images/Category/western-wear.jpg",
+      "/Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -67,9 +67,9 @@ const winterProducts = [
     price: 999,
     originalPrice: 1999,
     images: [
-      "/Images/Catogery/western-wear.jpg",
-      "/Images/Catogery/western-wear.jpg",
-      "/Images/Catogery/western-wear.jpg"
+      "/Images/Category/western-wear.jpg",
+      "/Images/Category/western-wear.jpg",
+      "/Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -82,9 +82,9 @@ const winterProducts = [
     price: 1799,
     originalPrice: 2999,
     images: [
-      "/Images/Catogery/western-wear.jpg",
-      "/Images/Catogery/western-wear.jpg",
-      "/Images/Catogery/western-wear.jpg"
+      "/Images/Category/western-wear.jpg",
+      "/Images/Category/western-wear.jpg",
+      "/Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -97,9 +97,9 @@ const winterProducts = [
     price: 1299,
     originalPrice: 1999,
     images: [
-      "/Images/Catogery/western-wear.jpg",
-      "/Images/Catogery/western-wear.jpg",
-      "/Images/Catogery/western-wear.jpg"
+      "/Images/Category/western-wear.jpg",
+      "/Images/Category/western-wear.jpg",
+      "/Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -112,9 +112,9 @@ const winterProducts = [
     price: 899,
     originalPrice: 1649,
     images: [
-      "/Images/Catogery/western-wear.jpg",
-      "/Images/Catogery/western-wear.jpg",
-      "/Images/Catogery/western-wear.jpg"
+      "/Images/Category/western-wear.jpg",
+      "/Images/Category/western-wear.jpg",
+      "/Images/Category/western-wear.jpg"
     ],
     sizes: ["Free Size"]
   },
@@ -127,9 +127,9 @@ const winterProducts = [
     price: 2449,
     originalPrice: 3499,
     images: [
-      "/Images/Catogery/western-wear.jpg",
-      "/Images/Catogery/western-wear.jpg",
-      "/Images/Catogery/western-wear.jpg"
+      "/Images/Category/western-wear.jpg",
+      "/Images/Category/western-wear.jpg",
+      "/Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   }
