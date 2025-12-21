@@ -330,7 +330,7 @@
            <!-- PRODUCT 1 -->
 <div class="product-card"
      data-id="product-jense-1"
-     data-link="https://modishjunction.com/#product-jense-1">
+     data-link="../product.html?category=jeans&slug=high-waist-skinny-jeans">
 
   <span class="discount-badge">40% OFF</span>
 
@@ -351,7 +351,7 @@
 
 <div class="product-card"
      data-id="product-jense-2"
-     data-link="https://modishjunction.com/#product-jense-2">
+     data-link="../product.html?category=jeans&slug=boyfriend-jeans-light-wash">
 
   <span class="discount-badge">45% OFF</span>
 
@@ -372,7 +372,7 @@
 
 <div class="product-card"
      data-id="product-jense-3"
-     data-link="https://modishjunction.com/#product-jense-3">
+     data-link="../product.html?category=jeans&slug=ripped-denim-jeans">
 
   <span class="discount-badge">35% OFF</span>
 
@@ -393,7 +393,7 @@
 
 <div class="product-card"
      data-id="product-jense-4"
-     data-link="https://modishjunction.com/#product-jense-4">
+     data-link="../product.html?category=jeans&slug=wide-leg-palazzo-pants">
 
   <span class="discount-badge">50% OFF</span>
 
@@ -414,7 +414,7 @@
 
 <div class="product-card"
      data-id="product-jense-5"
-     data-link="https://modishjunction.com/#product-jense-5">
+    data-link="../product.html?category=jeans&slug=black-cargo-pants">
 
   <span class="discount-badge">40% OFF</span>
 
@@ -435,7 +435,7 @@
 
 <div class="product-card"
      data-id="product-jense-6"
-     data-link="https://modishjunction.com/#product-jense-6">
+     data-link="../product.html?category=jeans&slug=straight-fit-formal-pants">
 
   <span class="discount-badge">45% OFF</span>
 
@@ -456,7 +456,7 @@
 
 <div class="product-card"
      data-id="product-jense-7"
-     data-link="https://modishjunction.com/#product-jense-7">
+     data-link="../product.html?category=jeans&slug=cigarette-pants-ankle-length">
 
   <span class="discount-badge">35% OFF</span>
 
@@ -477,7 +477,7 @@
 
 <div class="product-card"
      data-id="product-jense-8"
-     data-link="https://modishjunction.com/#product-jense-8">
+     data-link="../product.html?category=jeans&slug=flare-jeans-retro">
 
   <span class="discount-badge">40% OFF</span>
 
@@ -498,7 +498,7 @@
 
 <div class="product-card"
      data-id="product-jense-9"
-     data-link="https://modishjunction.com/#product-jense-9">
+     data-link="../product.html?category=jeans&slug=jogger-pants-casual">
 
   <span class="discount-badge">50% OFF</span>
 
@@ -541,6 +541,15 @@
             });
         });
     </script>
+    <script>
+  document.querySelectorAll(".product-card").forEach(card => {
+    card.addEventListener("click", e => {
+      if (e.target.classList.contains("add-to-cart")) return;
+      window.location.href = card.dataset.link;
+    });
+  });
+</script>
+
 
     <!-- CART MODAL -->
 <div id="cart-modal" class="cart-modal">

@@ -344,7 +344,7 @@
         <div class="product-grid">
 <div class="product-card"
      data-id="product-toptees-1"
-     data-link="https://modishjunction.com/#product-toptees-1">
+     data-link="../product.html?category=toptees&slug=cotton-round-neck-tee">
 
   <span class="discount-badge">30% OFF</span>
 
@@ -365,7 +365,8 @@
 
 <div class="product-card"
      data-id="product-toptees-2"
-     data-link="https://modishjunction.com/#product-toptees-2">
+     data-link="../product.html?category=toptees&slug=printed-graphic-tee"
+>
 
   <span class="discount-badge">40% OFF</span>
 
@@ -386,7 +387,8 @@
 
 <div class="product-card"
      data-id="product-toptees-3"
-     data-link="https://modishjunction.com/#product-toptees-3">
+    data-link="../product.html?category=toptees&slug=v-neck-solid-top"
+>
 
   <span class="discount-badge">35% OFF</span>
 
@@ -407,7 +409,8 @@
 
 <div class="product-card"
      data-id="product-toptees-4"
-     data-link="https://modishjunction.com/#product-toptees-4">
+     data-link="../product.html?category=toptees&slug=floral-crop-top"
+>
 
   <span class="discount-badge">45% OFF</span>
 
@@ -428,7 +431,8 @@
 
 <div class="product-card"
      data-id="product-toptees-5"
-     data-link="https://modishjunction.com/#product-toptees-5">
+     data-link="../product.html?category=toptees&slug=striped-polo-neck-top"
+>
 
   <span class="discount-badge">30% OFF</span>
 
@@ -449,7 +453,8 @@
 
 <div class="product-card"
      data-id="product-toptees-6"
-     data-link="https://modishjunction.com/#product-toptees-6">
+    data-link="../product.html?category=toptees&slug=basic-tee-combo-pack"
+>
 
   <span class="discount-badge">50% OFF</span>
 
@@ -470,7 +475,8 @@
 
 <div class="product-card"
      data-id="product-toptees-7"
-     data-link="https://modishjunction.com/#product-toptees-7">
+     data-link="../product.html?category=toptees&slug=puff-sleeve-casual-top"
+>
 
   <span class="discount-badge">40% OFF</span>
 
@@ -491,7 +497,8 @@
 
 <div class="product-card"
      data-id="product-toptees-8"
-     data-link="https://modishjunction.com/#product-toptees-8">
+     data-link="../product.html?category=toptees&slug=tie-dye-crop-tee"
+>
 
   <span class="discount-badge">35% OFF</span>
 
@@ -537,6 +544,16 @@
             });
         });
     </script>
+
+    <script>
+  document.querySelectorAll(".product-card").forEach(card => {
+    card.addEventListener("click", e => {
+      if (e.target.classList.contains("add-to-cart")) return;
+      window.location.href = card.dataset.link;
+    });
+  });
+</script>
+
     <!-- CART MODAL -->
 <div id="cart-modal" class="cart-modal">
   <div class="cart-box">

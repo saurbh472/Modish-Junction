@@ -343,7 +343,8 @@
       <!-- PRODUCT 1 -->
 <div class="product-card"
      data-id="product-loungewear-1"
-     data-link="https://modishjunction.com/#product-loungewear-1">
+    data-link="../product.html?category=loungewear&slug=cotton-night-suit-floral"
+>
 
   <span class="discount-badge">45% OFF</span>
 
@@ -364,7 +365,8 @@
 
 <div class="product-card"
      data-id="product-loungewear-2"
-     data-link="https://modishjunction.com/#product-loungewear-2">
+    data-link="../product.html?category=loungewear&slug=satin-pajama-lounge-set"
+>
 
   <span class="discount-badge">50% OFF</span>
 
@@ -385,7 +387,8 @@
 
 <div class="product-card"
      data-id="product-loungewear-3"
-     data-link="https://modishjunction.com/#product-loungewear-3">
+     data-link="../product.html?category=loungewear&slug=terry-cloth-bathrobe"
+>
 
   <span class="discount-badge">40% OFF</span>
 
@@ -406,7 +409,8 @@
 
 <div class="product-card"
      data-id="product-loungewear-4"
-     data-link="https://modishjunction.com/#product-loungewear-4">
+     data-link="../product.html?category=loungewear&slug=top-shorts-sleep-set"
+>
 
   <span class="discount-badge">55% OFF</span>
 
@@ -427,7 +431,8 @@
 
 <div class="product-card"
      data-id="product-loungewear-5"
-     data-link="https://modishjunction.com/#product-loungewear-5">
+     data-link="../product.html?category=loungewear&slug=fleece-lounge-pants"
+>
 
   <span class="discount-badge">45% OFF</span>
 
@@ -448,7 +453,8 @@
 
 <div class="product-card"
      data-id="product-loungewear-6"
-     data-link="https://modishjunction.com/#product-loungewear-6">
+     data-link="../product.html?category=loungewear&slug=oversized-sleep-shirt"
+>
 
   <span class="discount-badge">50% OFF</span>
 
@@ -469,7 +475,8 @@
 
 <div class="product-card"
      data-id="product-loungewear-7"
-     data-link="https://modishjunction.com/#product-loungewear-7">
+     data-link="../product.html?category=loungewear&slug=printed-capri-pajama-set"
+>
 
   <span class="discount-badge">40% OFF</span>
 
@@ -490,7 +497,8 @@
 
 <div class="product-card"
      data-id="product-loungewear-8"
-     data-link="https://modishjunction.com/#product-loungewear-8">
+     data-link="../product.html?category=loungewear&slug=modal-blend-nightgown"
+>
 
   <span class="discount-badge">45% OFF</span>
 
@@ -511,7 +519,8 @@
 
 <div class="product-card"
      data-id="product-loungewear-9"
-     data-link="https://modishjunction.com/#product-loungewear-9">
+    data-link="../product.html?category=loungewear&slug=hooded-lounge-set"
+>
 
   <span class="discount-badge">60% OFF</span>
 
@@ -557,6 +566,15 @@
             });
         });
     </script>
+    <script>
+  document.querySelectorAll(".product-card").forEach(card => {
+    card.addEventListener("click", e => {
+      if (e.target.classList.contains("add-to-cart")) return;
+      window.location.href = card.dataset.link;
+    });
+  });
+</script>
+
     <!-- CART MODAL -->
 <div id="cart-modal" class="cart-modal">
   <div class="cart-box">

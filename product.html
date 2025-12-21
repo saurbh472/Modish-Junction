@@ -316,8 +316,9 @@
 
 <!-- BACK TO HOME -->
 <div class="back-home">
-  <a href="./western-wear/winter-wear.html">← back-winter-wear</a>
+  <a id="backLink"></a>
 </div>
+
 
 <!-- PRODUCT -->
 <div id="product-container" class="product-wrapper"></div>
@@ -325,20 +326,38 @@
 
 <script src="./js/data/products-winterwear.js"></script>
 <script src="./js/data/products-dresses.js"></script>
+<script src="./js/data/products-jeans.js"></script>
+<script src="./js/data/products-loungewear.js"></script>
+<script src="./js/data/products-toptees.js"></script>
+<script src="./js/data/products-thrift.js"></script>
+
+
+
+
 
 <script>
+  
   const params = new URLSearchParams(window.location.search);
   const slug = params.get("slug");
   const cleanSlug = slug?.trim().toLowerCase();
 
 
-
 const category = params.get("category") || "winter";
-const products = category === "dress" ? dressProducts : winterProducts;
+
+let products;
+if (category === "dress") products = dressProducts;
+else if (category === "jeans") products = jeansProducts;
+else if (category === "loungewear") products = loungewearProducts;
+else if (category === "toptees") products = topteesProducts;
+else if (category === "thrift") products = thriftProducts;
+else products = winterProducts;
+
+
 
 const product = products.find(
   p => p.slug.toLowerCase() === cleanSlug
 );
+
 
   if (!product) {
     document.getElementById("product-container").innerHTML =
@@ -453,7 +472,38 @@ document.getElementById("addBtn").onclick = () => {
 };
 
   }
+
+
+  const backLink = document.getElementById("backLink");
+
+if (category === "dress") {
+  backLink.href = "./western-wear/dresses.html";
+  backLink.innerText = "← Back to Dresses";
+} else if (category === "jeans") {
+  backLink.href = "./western-wear/jeans-pants.html";
+  backLink.innerText = "← Back to Jeans & Pants";
+}else if (category === "loungewear") {
+  backLink.href = "./western-wear/loungewear.html";
+  backLink.innerText = "← Back to Loungewear";
+} 
+else if (category === "toptees") {
+  backLink.href = "./western-wear/tops-tees.html";
+  backLink.innerText = "← Back to Tops & Tees";
+}
+else if (category === "thrift") {
+  backLink.href = "./western-wear/thrift-collection.html";
+  backLink.innerText = "← Back to Thrift Collection";
+}
+
+
+else {
+  backLink.href = "./western-wear/winter-wear.html";
+  backLink.innerText = "← Back to Winter Wear";
+}
+
+
 </script>
+
 <script src="./js/cart.js"></script>
 <!-- CART MODAL -->
 <div id="cart-modal" class="cart-modal">

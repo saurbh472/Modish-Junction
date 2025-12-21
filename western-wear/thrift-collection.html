@@ -927,7 +927,8 @@
  <div class="product-card"
      data-id="product-thriftcollection-1"
      data-category="denim"
-     data-link="https://modishjunction.com/#product-thriftcollection-1">
+    data-link="../product.html?category=thrift&slug=vintage-denim-jacket"
+>
 
     <!-- Wishlist -->
     <div class="wishlist-btn">
@@ -977,7 +978,8 @@
   <div class="product-card"
        data-id="product-thriftcollection-2"
        data-category="vintage-tees"
-       data-link="https://modishjunction.com/#product-thriftcollection-2">
+       data-link="../product.html?category=thrift&slug=retro-band-graphic-tee"
+>
 
     <div class="wishlist-btn"><i class="far fa-heart"></i></div>
     <span class="discount-badge">65% OFF</span>
@@ -1009,7 +1011,8 @@
   <div class="product-card"
        data-id="product-thriftcollection-3"
        data-category="dresses"
-       data-link="https://modishjunction.com/#product-thriftcollection-3">
+       data-link="../product.html?category=thrift&slug=floral-maxi-dress"
+>
 
     <div class="wishlist-btn"><i class="far fa-heart"></i></div>
     <span class="discount-badge">55% OFF</span>
@@ -1042,7 +1045,8 @@
   <div class="product-card"
        data-id="product-thriftcollection-4"
        data-category="jackets"
-       data-link="https://modishjunction.com/#product-thriftcollection-4">
+      data-link="../product.html?category=thrift&slug=leather-bomber-jacket"
+>
 
     <div class="wishlist-btn"><i class="far fa-heart"></i></div>
     <span class="discount-badge">70% OFF</span>
@@ -1074,7 +1078,8 @@
   <div class="product-card"
        data-id="product-thriftcollection-5"
        data-category="denim"
-       data-link="https://modishjunction.com/#product-thriftcollection-5">
+       data-link="../product.html?category=thrift&slug=high-waist-mom-jeans"
+>
 
     <div class="wishlist-btn"><i class="far fa-heart"></i></div>
     <span class="discount-badge">60% OFF</span>
@@ -1105,7 +1110,8 @@
   <div class="product-card"
        data-id="product-thriftcollection-6"
        data-category="accessories"
-       data-link="https://modishjunction.com/#product-thriftcollection-6">
+       data-link="../product.html?category=thrift&slug=bohemian-embroidered-blouse"
+>
 
     <div class="wishlist-btn"><i class="far fa-heart"></i></div>
     <span class="discount-badge">50% OFF</span>
@@ -1454,6 +1460,20 @@ function openModal(index) {
             observer.observe(stat);
         });
     </script>
+    <script>
+  document.querySelectorAll(".product-card").forEach(card => {
+    card.addEventListener("click", e => {
+      if (
+        e.target.closest(".add-to-cart") ||
+        e.target.closest(".wishlist-btn") ||
+        e.target.closest(".quick-view-btn")
+      ) return;
+
+      window.location.href = card.dataset.link;
+    });
+  });
+</script>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
     <!-- CART MODAL -->
 <div id="cart-modal" class="cart-modal">
   <div class="cart-box">
