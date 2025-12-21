@@ -8,8 +8,8 @@ const topteesProducts = [
     price: 699,
     originalPrice: 999,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -23,8 +23,8 @@ const topteesProducts = [
     price: 899,
     originalPrice: 1499,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L"]
   },
@@ -38,8 +38,8 @@ const topteesProducts = [
     price: 649,
     originalPrice: 999,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -53,8 +53,8 @@ const topteesProducts = [
     price: 549,
     originalPrice: 999,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L"]
   },
@@ -68,8 +68,8 @@ const topteesProducts = [
     price: 1049,
     originalPrice: 1499,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -83,8 +83,8 @@ const topteesProducts = [
     price: 1499,
     originalPrice: 2999,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -98,8 +98,8 @@ const topteesProducts = [
     price: 899,
     originalPrice: 1499,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L"]
   },
@@ -113,8 +113,8 @@ const topteesProducts = [
     price: 779,
     originalPrice: 1199,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L"]
   }

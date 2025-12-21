@@ -8,9 +8,9 @@ const jeansProducts = [
     price: 1499,
     originalPrice: 2499,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["26", "28", "30", "32", "34"]
   },
@@ -24,8 +24,8 @@ const jeansProducts = [
     price: 1649,
     originalPrice: 2999,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["26", "28", "30", "32", "34"]
   },
@@ -39,8 +39,8 @@ const jeansProducts = [
     price: 1299,
     originalPrice: 1999,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["26", "28", "30", "32"]
   },
@@ -54,8 +54,8 @@ const jeansProducts = [
     price: 999,
     originalPrice: 1999,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -69,8 +69,8 @@ const jeansProducts = [
     price: 1199,
     originalPrice: 1999,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -84,8 +84,8 @@ const jeansProducts = [
     price: 1099,
     originalPrice: 1999,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["28", "30", "32", "34", "36"]
   },
@@ -99,8 +99,8 @@ const jeansProducts = [
     price: 1299,
     originalPrice: 1999,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["26", "28", "30", "32", "34"]
   },
@@ -114,8 +114,8 @@ const jeansProducts = [
     price: 1499,
     originalPrice: 2499,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["26", "28", "30", "32", "34"]
   },
@@ -129,8 +129,8 @@ const jeansProducts = [
     price: 899,
     originalPrice: 1799,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   }

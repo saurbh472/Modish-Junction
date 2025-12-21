@@ -8,8 +8,8 @@ const thriftProducts = [
     price: 1199,
     originalPrice: 2999,
     images: [
-      "../Images/Category/co-ords-set.png",
-      "../Images/Category/co-ords-set.png"
+      "./Images/Category/co-ords-set.png",
+      "./Images/Category/co-ords-set.png"
     ],
     sizes: ["M", "L", "XL"]
   },
@@ -23,8 +23,8 @@ const thriftProducts = [
     price: 599,
     originalPrice: 1699,
     images: [
-      "../Images/Category/co-ords-set.png",
-      "../Images/Category/co-ords-set.png"
+      "./Images/Category/co-ords-set.png",
+      "./Images/Category/co-ords-set.png"
     ],
     sizes: ["S", "M", "L"]
   },
@@ -38,8 +38,8 @@ const thriftProducts = [
     price: 1349,
     originalPrice: 2999,
     images: [
-      "../Images/Category/co-ords-set.png",
-      "../Images/Category/co-ords-set.png"
+      "./Images/Category/co-ords-set.png",
+      "./Images/Category/co-ords-set.png"
     ],
     sizes: ["S", "M", "L"]
   },
@@ -53,8 +53,8 @@ const thriftProducts = [
     price: 2499,
     originalPrice: 8299,
     images: [
-      "../Images/Category/co-ords-set.png",
-      "../Images/Category/co-ords-set.png"
+      "./Images/Category/co-ords-set.png",
+      "./Images/Category/co-ords-set.png"
     ],
     sizes: ["M", "L"]
   },
@@ -68,8 +68,8 @@ const thriftProducts = [
     price: 999,
     originalPrice: 2499,
     images: [
-      "../Images/Category/co-ords-set.png",
-      "../Images/Category/co-ords-set.png"
+      "./Images/Category/co-ords-set.png",
+      "./Images/Category/co-ords-set.png"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -83,8 +83,8 @@ const thriftProducts = [
     price: 899,
     originalPrice: 1799,
     images: [
-      "../Images/Category/co-ords-set.png",
-      "../Images/Category/co-ords-set.png"
+      "./Images/Category/co-ords-set.png",
+      "./Images/Category/co-ords-set.png"
     ],
     sizes: ["S", "M", "L"]
   }

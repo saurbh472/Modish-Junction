@@ -8,9 +8,9 @@ const dressProducts = [
     price: 1299,
     originalPrice: 2199,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -24,9 +24,9 @@ const dressProducts = [
     price: 1499,
     originalPrice: 2999,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L"]
   },
@@ -40,8 +40,8 @@ const dressProducts = [
     price: 1099,
     originalPrice: 1699,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -55,8 +55,8 @@ const dressProducts = [
     price: 1199,
     originalPrice: 1899,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L"]
   },
@@ -70,8 +70,8 @@ const dressProducts = [
     price: 999,
     originalPrice: 1599,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -85,9 +85,9 @@ const dressProducts = [
     price: 1399,
     originalPrice: 2299,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   }
