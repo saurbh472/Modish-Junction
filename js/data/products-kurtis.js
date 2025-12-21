@@ -8,8 +8,8 @@ const kurtisProducts = [
     price: 599,
     originalPrice: 899,
     images: [
-      "../Images/Category/co-ords-set.png",
-      "../Images/Category/co-ords-set.png"
+      "./Images/Category/co-ords-set.png",
+      "./Images/Category/co-ords-set.png"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -23,8 +23,8 @@ const kurtisProducts = [
     price: 699,
     originalPrice: 1199,
     images: [
-      "../Images/Category/Ethnic-wear-img.png",
-      "../Images/Category/Ethnic-wear-img.png"
+      "./Images/Category/Ethnic-wear-img.png",
+      "./Images/Category/Ethnic-wear-img.png"
     ],
     sizes: ["S", "M", "L"]
   },
@@ -38,8 +38,8 @@ const kurtisProducts = [
     price: 799,
     originalPrice: 1499,
     images: [
-      "../Images/Category/Ethnic-wear-img.png",
-      "../Images/Category/Ethnic-wear-img.png"
+      "./Images/Category/Ethnic-wear-img.png",
+      "./Images/Category/Ethnic-wear-img.png"
     ],
     sizes: ["M", "L", "XL"]
   },
@@ -53,7 +53,7 @@ const kurtisProducts = [
     price: 799,
     originalPrice: 1499,
     images: [
-      "../Images/Category/Ethnic-wear-img.png"
+      "./Images/Category/Ethnic-wear-img.png"
     ],
     sizes: ["S", "M", "L"]
   },
@@ -67,7 +67,7 @@ const kurtisProducts = [
     price: 799,
     originalPrice: 1499,
     images: [
-      "../Images/Category/Ethnic-wear-img.png"
+      "./Images/Category/Ethnic-wear-img.png"
     ],
     sizes: ["M", "L", "XL"]
   },
@@ -81,7 +81,7 @@ const kurtisProducts = [
     price: 799,
     originalPrice: 1499,
     images: [
-      "../Images/Category/Ethnic-wear-img.png"
+      "./Images/Category/Ethnic-wear-img.png"
     ],
     sizes: ["S", "M", "L", "XL"]
   }
