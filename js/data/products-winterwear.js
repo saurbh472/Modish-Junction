@@ -7,9 +7,9 @@
     price: 3249,
     originalPrice: 4999,
     images: [
-      "Images/Category/western-wear.jpg",
-      "Images/Category/winter-wear/trench-1.png",
-      "Images/Category/winter-wear/Ethnic-wear-img.png"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/winter-wear/trench-1.png",
+      "./Images/Category/winter-wear/Ethnic-wear-img.png"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
