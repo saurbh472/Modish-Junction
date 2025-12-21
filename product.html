@@ -330,6 +330,12 @@
 <script src="./js/data/products-loungewear.js"></script>
 <script src="./js/data/products-toptees.js"></script>
 <script src="./js/data/products-thrift.js"></script>
+<script src="./js/data/products-3piece.js"></script>
+<script src="./js/data/products-coords.js"></script>
+<script src="./js/data/products-kurtis.js"></script>
+
+
+
 
 
 
@@ -350,7 +356,12 @@ else if (category === "jeans") products = jeansProducts;
 else if (category === "loungewear") products = loungewearProducts;
 else if (category === "toptees") products = topteesProducts;
 else if (category === "thrift") products = thriftProducts;
+else if (category === "threepiece") products = threePieceProducts;
+else if (category === "coords") products = coordsProducts;
+else if (category === "kurtis") products = kurtisProducts;
 else products = winterProducts;
+
+
 
 
 
@@ -490,10 +501,24 @@ else if (category === "toptees") {
   backLink.href = "./western-wear/tops-tees.html";
   backLink.innerText = "← Back to Tops & Tees";
 }
+else if (category === "threepiece") {
+  backLink.href = "./Ethnic-wear/3-piece-suit.html";
+  backLink.innerText = "← Back to 3 Piece Suits";
+}
 else if (category === "thrift") {
   backLink.href = "./western-wear/thrift-collection.html";
   backLink.innerText = "← Back to Thrift Collection";
 }
+else if (category === "coords") {
+  backLink.href = "./Ethnic-wear/co-ords.html";
+  backLink.innerText = "← Back to Co-ords";
+}
+else if (category === "kurtis") {
+  backLink.href = "./Ethnic-wear/short-kurtis.html";
+  backLink.innerText = "← Back to Short Kurtis";
+}
+
+
 
 
 else {

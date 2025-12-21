@@ -275,7 +275,7 @@
     <div class="product-grid">
 <div class="product-card"
      data-id="product-coords-1"
-     data-link="https://modishjunction.com/#product-coords-1">
+     data-link="../product.html?category=coords&slug=printed-co-ord-set">
 
   <span class="discount-badge">30% OFF</span>
 
@@ -296,7 +296,7 @@
 
 <div class="product-card"
      data-id="product-coords-2"
-     data-link="https://modishjunction.com/#product-coords-2">
+     data-link="../product.html?category=coords&slug=floral-relaxed-co-ord">
 
   <span class="discount-badge">40% OFF</span>
 
@@ -317,7 +317,7 @@
 
 <div class="product-card"
      data-id="product-coords-3"
-     data-link="https://modishjunction.com/#product-coords-3">
+     data-link="../product.html?category=coords&slug=elegant-party-co-ord">
 
   <span class="discount-badge">45% OFF</span>
 
@@ -338,7 +338,7 @@
 
 <div class="product-card"
      data-id="product-coords-4"
-     data-link="https://modishjunction.com/#product-coords-4">
+     data-link="../product.html?category=coords&slug=stylish-casual-co-ord">
 
   <span class="discount-badge">45% OFF</span>
 
@@ -359,7 +359,7 @@
 
 <div class="product-card"
      data-id="product-coords-5"
-     data-link="https://modishjunction.com/#product-coords-5">
+     data-link="../product.html?category=coords&slug=premium-lounge-co-ord">
 
   <span class="discount-badge">45% OFF</span>
 
@@ -380,7 +380,7 @@
 
 <div class="product-card"
      data-id="product-coords-6"
-     data-link="https://modishjunction.com/#product-coords-6">
+     data-link="../product.html?category=coords&slug=designer-co-ord-set">
 
   <span class="discount-badge">45% OFF</span>
 
@@ -417,6 +417,15 @@
             }, 2000);
         });
     });
+</script>
+
+<script>
+  document.querySelectorAll(".product-card").forEach(card => {
+    card.addEventListener("click", e => {
+      if (e.target.classList.contains("add-to-cart")) return;
+      window.location.href = card.dataset.link;
+    });
+  });
 </script>
 <script src="../js/cart.js"></script>
 <!-- CART MODAL -->

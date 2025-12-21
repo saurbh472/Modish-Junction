@@ -454,16 +454,6 @@
     });
   });
 </script>
-
-<script>
-  document.querySelectorAll(".product-card").forEach(card => {
-    card.addEventListener("click", e => {
-      if (e.target.classList.contains("add-to-cart")) return;
-      window.location.href = card.dataset.link;
-    });
-  });
-</script>
-
 <script src="../js/cart.js"></script>
 <!-- CART MODAL -->
 <div id="cart-modal" class="cart-modal">
