@@ -417,7 +417,7 @@
         </svg>
     </a>
 
-<script>
+<!-- <script>
     document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', function() {
             this.textContent = '✓ Added!';
@@ -428,7 +428,33 @@
             }, 2000);
         });
     });
+</script> -->
+
+<script>
+  // Add to cart UI feedback (non-breaking)
+  document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', function (e) {
+      e.stopPropagation(); // IMPORTANT
+      this.textContent = '✓ Added!';
+      this.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+      setTimeout(() => {
+        this.textContent = 'Add to Cart';
+        this.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
+      }, 2000);
+    });
+  });
 </script>
+
+<script>
+  // Card click → product page
+  document.querySelectorAll(".product-card").forEach(card => {
+    card.addEventListener("click", e => {
+      if (e.target.classList.contains("add-to-cart")) return;
+      window.location.href = card.dataset.link;
+    });
+  });
+</script>
+
 <script>
   document.querySelectorAll(".product-card").forEach(card => {
     card.addEventListener("click", e => {
