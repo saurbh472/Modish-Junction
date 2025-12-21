@@ -1,0 +1,102 @@
+/* ================================
+   WhatsApp Floating Button
+================================ */
+
+.whatsapp-float {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.45);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: whatsapp-pulse 2.5s infinite;
+}
+
+/* Icon */
+.whatsapp-float svg {
+  width: 30px;
+  height: 30px;
+}
+
+/* Hover effect */
+.whatsapp-float:hover {
+  transform: scale(1.15);
+  box-shadow: 0 15px 40px rgba(37, 211, 102, 0.65);
+  animation: none;
+}
+
+/* Pulse animation */
+@keyframes whatsapp-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+/* Tooltip */
+.whatsapp-float::after {
+  content: "Chat with us";
+  position: absolute;
+  right: 75px;
+  background: #1f2937;
+  color: #fff;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: all 0.3s ease;
+}
+
+/* Tooltip arrow */
+.whatsapp-float::before {
+  content: "";
+  position: absolute;
+  right: 65px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid #1f2937;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.whatsapp-float:hover::after,
+.whatsapp-float:hover::before {
+  opacity: 1;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .whatsapp-float {
+    width: 56px;
+    height: 56px;
+    right: 18px;
+    bottom: 18px;
+  }
+
+  .whatsapp-float svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .whatsapp-float::after,
+  .whatsapp-float::before {
+    display: none; /* hide tooltip on mobile */
+  }
+}

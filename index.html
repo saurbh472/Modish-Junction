@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="stylesheet" href="/css/cart-ui.css">
+     <link rel="stylesheet" href="/css/whatsapp-float.css">
+
     <title>Modish Junction - Where Comfort Meets Fashion</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
@@ -1611,52 +1613,6 @@
     .footer-bottom:hover strong {
         text-shadow: 0 0 10px rgba(212, 133, 149, 0.5);
     }
-
-    /* WhatsApp Float Enhanced */
-    .whatsapp-float {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 65px;
-        height: 65px;
-        background: linear-gradient(135deg, #25D366, #128C7E);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
-        z-index: 999;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        animation: whatsappPulse 2s infinite;
-        cursor: pointer;
-    }
-
-    @keyframes whatsappPulse {
-        0%, 100% { 
-            transform: scale(1);
-            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
-        }
-        50% { 
-            transform: scale(1.1);
-            box-shadow: 0 8px 35px rgba(37, 211, 102, 0.7);
-        }
-    }
-
-    .whatsapp-float:hover {
-        transform: scale(1.15) rotate(10deg);
-        box-shadow: 0 10px 40px rgba(37, 211, 102, 0.8);
-    }
-
-    .whatsapp-float::before {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        background: rgba(37, 211, 102, 0.3);
-        animation: ripple 2s infinite;
-    }
-
     @keyframes ripple {
         0% {
             transform: scale(1);
