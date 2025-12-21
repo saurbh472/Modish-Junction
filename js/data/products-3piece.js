@@ -8,8 +8,8 @@ const threePieceProducts = [
     price: 2499,
     originalPrice: 3899,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -23,8 +23,8 @@ const threePieceProducts = [
     price: 2199,
     originalPrice: 3699,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L"]
   },
@@ -38,8 +38,8 @@ const threePieceProducts = [
     price: 2799,
     originalPrice: 5499,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["M", "L", "XL"]
   }

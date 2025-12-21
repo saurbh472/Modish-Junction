@@ -8,8 +8,8 @@ const coordsProducts = [
     price: 1499,
     originalPrice: 2199,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -23,8 +23,8 @@ const coordsProducts = [
     price: 1799,
     originalPrice: 2999,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L"]
   },
@@ -38,8 +38,8 @@ const coordsProducts = [
     price: 1899,
     originalPrice: 3499,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["M", "L", "XL"]
   },
@@ -53,8 +53,8 @@ const coordsProducts = [
     price: 1699,
     originalPrice: 2999,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L"]
   },
@@ -68,8 +68,8 @@ const coordsProducts = [
     price: 1899,
     originalPrice: 3499,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["M", "L", "XL"]
   },
@@ -83,8 +83,8 @@ const coordsProducts = [
     price: 1999,
     originalPrice: 3799,
     images: [
-      "../Images/Category/western-wear.jpg",
-      "../Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   }
