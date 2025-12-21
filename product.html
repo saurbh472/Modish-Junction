@@ -324,15 +324,21 @@
 
 
 <script src="./js/data/products-winterwear.js"></script>
+<script src="./js/data/products-dresses.js"></script>
 
 <script>
   const params = new URLSearchParams(window.location.search);
   const slug = params.get("slug");
   const cleanSlug = slug?.trim().toLowerCase();
 
-  const product = winterProducts.find(
-    p => p.slug.toLowerCase() === cleanSlug
-  );
+
+
+const category = params.get("category") || "winter";
+const products = category === "dress" ? dressProducts : winterProducts;
+
+const product = products.find(
+  p => p.slug.toLowerCase() === cleanSlug
+);
 
   if (!product) {
     document.getElementById("product-container").innerHTML =

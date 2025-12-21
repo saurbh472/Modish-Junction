@@ -290,7 +290,7 @@
 
      <div class="product-card"
      data-id="product-dress-1"
-     data-link="https://modishjunction.com/#product-dress-1">
+     data-link="../product.html?category=dress&slug=floral-summer-dress">
 
   <span class="discount-badge">40% OFF</span>
 
@@ -311,7 +311,7 @@
 
 <div class="product-card"
      data-id="product-dress-2"
-     data-link="https://modishjunction.com/#product-dress-2">
+     data-link="../product.html?category=dress&slug=elegant-bodycon-dress">
 
   <span class="discount-badge">50% OFF</span>
 
@@ -330,9 +330,10 @@
 </div>
 
 
+
 <div class="product-card"
      data-id="product-dress-3"
-     data-link="https://modishjunction.com/#product-dress-3">
+     data-link="../product.html?category=dress&slug=a-line-midi-dress">
 
   <span class="discount-badge">35% OFF</span>
 
@@ -352,7 +353,7 @@
 
 <div class="product-card"
      data-id="product-dress-4"
-     data-link="https://modishjunction.com/#product-dress-4">
+     data-link="../product.html?category=dress&slug=wrap-style-midi-dress">
 
   <span class="discount-badge">35% OFF</span>
 
@@ -369,10 +370,9 @@
     <button class="add-to-cart">Add to Cart</button>
   </div>
 </div>
-
 <div class="product-card"
      data-id="product-dress-5"
-     data-link="https://modishjunction.com/#product-dress-5">
+     data-link="../product.html?category=dress&slug=pleated-skater-dress">
 
   <span class="discount-badge">35% OFF</span>
 
@@ -389,10 +389,9 @@
     <button class="add-to-cart">Add to Cart</button>
   </div>
 </div>
-
 <div class="product-card"
      data-id="product-dress-6"
-     data-link="https://modishjunction.com/#product-dress-6">
+     data-link="../product.html?category=dress&slug=maxi-dress-flowy-fit">
 
   <span class="discount-badge">35% OFF</span>
 
@@ -430,6 +429,15 @@
         });
     });
 </script>
+<script>
+  document.querySelectorAll(".product-card").forEach(card => {
+    card.addEventListener("click", e => {
+      if (e.target.classList.contains("add-to-cart")) return;
+      window.location.href = card.dataset.link;
+    });
+  });
+</script>
+
 <script src="../js/cart.js"></script>
 <!-- CART MODAL -->
 <div id="cart-modal" class="cart-modal">
