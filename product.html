@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title id="page-title">Product | Modish Junction</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/css/cart-ui.css">
 
   <style>
     :root {
@@ -177,16 +178,10 @@
       box-shadow: 0 8px 20px rgba(212,89,59,0.4);
     }
 
+
+    
+
     /* ================= CART MODAL ================= */
-    .cart-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 3000;
-    }
     .nav-links {
   display: flex;
   list-style: none;
@@ -261,16 +256,6 @@
 .thumbs img.active {
   border-color: var(--primary);
 }
-
-    .cart-box {
-      background: #fff;
-      width: 95%;
-      max-width: 420px;
-      border-radius: 18px;
-      padding: 22px;
-      max-height: 80vh;
-      overflow-y: auto;
-    }
 .size-box {
   margin: 20px 0;
 }
@@ -302,35 +287,6 @@
   font-size: 14px;
   line-height: 1.8;
 }
-
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 14px;
-    }
-
-    .cart-footer {
-      border-top: 1px solid #ddd;
-      padding-top: 12px;
-      margin-top: 12px;
-    }
-
-    .cart-actions {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .whatsapp-btn {
-      background: #25D366;
-      color: #fff;
-      border: none;
-      padding: 10px 14px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: bold;
-    }
 
     @media (max-width: 768px) {
       .product-wrapper {
@@ -366,23 +322,8 @@
 <!-- PRODUCT -->
 <div id="product-container" class="product-wrapper"></div>
 
-<!-- CART MODAL
-<div id="cart-modal" class="cart-modal">
-  <div class="cart-box">
-    <h2>🛒 Your Cart</h2>
-    <div id="cart-items"></div>
-    <div class="cart-footer">
-      <strong id="cart-total"></strong>
-      <div class="cart-actions">
-        <button onclick="closeCart()">Close</button>
-        <button class="whatsapp-btn" onclick="openWhatsAppOrder()">Order on WhatsApp</button>
-      </div>
-    </div>
-  </div>
-</div> -->
 
 <script src="/data/products-winterwear.js"></script>
-<script src="js/cart.js"></script>
 
 <script>
   const params = new URLSearchParams(window.location.search);
