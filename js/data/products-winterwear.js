@@ -22,9 +22,9 @@
     price: 1499,
     originalPrice: 2499,
     images: [
-      "/Images/Category/western-wear.jpg",
-      "/Images/Category/western-wear.jpg",
-      "/Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -37,9 +37,9 @@
     price: 2199,
     originalPrice: 3999,
     images: [
-      "/Images/Category/western-wear.jpg",
-      "/Images/Category/western-wear.jpg",
-      "/Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["Free Size"]
   },
@@ -52,9 +52,9 @@
     price: 2799,
     originalPrice: 3999,
     images: [
-      "/Images/Category/western-wear.jpg",
-      "/Images/Category/western-wear.jpg",
-      "/Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -67,9 +67,9 @@
     price: 999,
     originalPrice: 1999,
     images: [
-      "/Images/Category/western-wear.jpg",
-      "/Images/Category/western-wear.jpg",
-      "/Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -82,9 +82,9 @@
     price: 1799,
     originalPrice: 2999,
     images: [
-      "/Images/Category/western-wear.jpg",
-      "/Images/Category/western-wear.jpg",
-      "/Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -97,9 +97,9 @@
     price: 1299,
     originalPrice: 1999,
     images: [
-      "/Images/Category/western-wear.jpg",
-      "/Images/Category/western-wear.jpg",
-      "/Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   },
@@ -112,9 +112,9 @@
     price: 899,
     originalPrice: 1649,
     images: [
-      "/Images/Category/western-wear.jpg",
-      "/Images/Category/western-wear.jpg",
-      "/Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["Free Size"]
   },
@@ -127,9 +127,9 @@
     price: 2449,
     originalPrice: 3499,
     images: [
-      "/Images/Category/western-wear.jpg",
-      "/Images/Category/western-wear.jpg",
-      "/Images/Category/western-wear.jpg"
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg",
+      "./Images/Category/western-wear.jpg"
     ],
     sizes: ["S", "M", "L", "XL"]
   }
