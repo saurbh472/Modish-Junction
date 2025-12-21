@@ -187,6 +187,46 @@
       align-items: center;
       z-index: 3000;
     }
+    .nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--dark);
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+/* CART ITEM – SAME STYLE AS DRESSES PAGE */
+.cart-nav {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: 0.3s;
+}
+
+.cart-nav:hover {
+  color: var(--primary);
+}
+
+/* CART COUNT */
+#cart-count {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--primary);
+}
+
 
     .image-viewer {
   position: relative;
@@ -307,10 +347,15 @@
   <div class="top-bar">✨ Free Shipping on Orders Above ₹999 ✨</div>
   <nav>
     <div class="logo">Modish Junction</div>
-    <div class="cart-icon" onclick="openCart()">
-      🛒 <small id="cart-count">0</small>
-    </div>
-  </nav>
+    <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../index.html#trending">Shop</a></li>
+    <li><a href="../index.html#sale">Sale</a></li>
+    <li onclick="openCart()" style="cursor:pointer">
+        🛒 <small id="cart-count">0</small>
+    </li>
+</ul>
+     </nav>
 </header>
 
 <!-- BACK TO HOME -->
@@ -321,7 +366,7 @@
 <!-- PRODUCT -->
 <div id="product-container" class="product-wrapper"></div>
 
-<!-- CART MODAL -->
+<!-- CART MODAL
 <div id="cart-modal" class="cart-modal">
   <div class="cart-box">
     <h2>🛒 Your Cart</h2>
@@ -334,7 +379,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <script src="/data/products-winterwear.js"></script>
 <script src="js/cart.js"></script>
@@ -442,26 +487,41 @@
       selectedSize = btn.innerText;
     };
 
-    /* ================= ADD TO CART ================= */
-    document.getElementById("addBtn").onclick = () => {
-      if (!selectedSize) {
-        alert("Please select a size");
-        return;
-      }
+    /* ================= ADD TO CART =================*/
+document.getElementById("addBtn").onclick = () => {
+  if (!selectedSize) {
+    alert("Please select a size");
+    return;
+  }
 
-      addToCart(
-        product.id + "-" + selectedSize,
-        product.name + " (Size: " + selectedSize + ")",
-        product.price,
-        window.location.href
-      );
+  addToCart(
+    product.id + "-" + selectedSize,
+    product.name + " (Size: " + selectedSize + ")",
+    product.price,
+    window.location.href
+  );
 
-      document.getElementById("addBtn").innerText = "View Cart";
-      document.getElementById("addBtn").onclick = openCart;
-    };
+  document.getElementById("addBtn").innerText = "View Cart";
+  document.getElementById("addBtn").onclick = openCart;
+};
+
   }
 </script>
+<script src="../js/cart.js"></script>
+<!-- CART MODAL -->
+<div id="cart-modal" class="cart-modal">
+  <div class="cart-box">
+    <h2>🛒 Your Cart</h2>
+    <div id="cart-items"></div>
 
+    <div class="cart-footer">
+      <strong id="cart-total"></strong>
+      <div class="cart-actions">
+        <button onclick="closeCart()">Close</button>
+        <button class="whatsapp-btn" onclick="openWhatsAppOrder()">Order on WhatsApp</button>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>
