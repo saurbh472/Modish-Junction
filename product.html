@@ -333,6 +333,8 @@
 <script src="./js/data/products-3piece.js"></script>
 <script src="./js/data/products-coords.js"></script>
 <script src="./js/data/products-kurtis.js"></script>
+<script src="./js/data/products-sale.js"></script>
+
 
 
 
@@ -359,6 +361,7 @@ else if (category === "thrift") products = thriftProducts;
 else if (category === "threepiece") products = threePieceProducts;
 else if (category === "coords") products = coordsProducts;
 else if (category === "kurtis") products = kurtisProducts;
+else if (category === "sale") products = saleProducts;
 else products = winterProducts;
 
 
@@ -517,10 +520,10 @@ else if (category === "kurtis") {
   backLink.href = "./Ethnic-wear/short-kurtis.html";
   backLink.innerText = "← Back to Short Kurtis";
 }
-
-
-
-
+else if (category === "sale") {
+  backLink.href = "./index.html#sale";
+  backLink.innerText = "← Back to Sale";
+}
 else {
   backLink.href = "./western-wear/winter-wear.html";
   backLink.innerText = "← Back to Winter Wear";
