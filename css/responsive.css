@@ -311,6 +311,11 @@
 
 /* Mobile only */
 @media (max-width: 768px) {
+  .mobile-menu {
+    display: block;
+  }
+}
+
 
   /* Show hamburger */
   .mobile-menu {
@@ -318,7 +323,9 @@
     font-size: 2rem;
     cursor: pointer;
     z-index: 11001;
+     color: #000;  
   }
+
 
   /* Mobile slide menu */
   .mobile-nav {
