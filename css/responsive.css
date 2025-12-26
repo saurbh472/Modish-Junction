@@ -299,3 +299,51 @@
     font-size: 2.5rem;
   }
 }
+/* ===== MOBILE MENU ===== */
+@media (max-width: 768px) {
+
+  .nav-links {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: block;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 11001;
+  }
+
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background: #fff;
+    box-shadow: -4px 0 25px rgba(0,0,0,0.2);
+    padding: 6rem 2rem;
+    transition: right 0.35s ease;
+    z-index: 11000;
+  }
+
+  .mobile-nav.active {
+    right: 0;
+  }
+
+  .mobile-nav ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .mobile-nav li {
+    margin-bottom: 1.5rem;
+  }
+
+  .mobile-nav a {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--dark);
+  }
+}

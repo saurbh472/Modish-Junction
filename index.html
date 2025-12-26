@@ -2339,6 +2339,8 @@
 </head>
 <body>
     <header>
+
+        
         <div class="top-bar">✨ New Autumn Winter Collection Live | Free Shipping on Orders Above ₹999 ✨</div>
         <nav>
             <div class="logo-container">
@@ -2390,8 +2392,44 @@
     </span>
 </div>
 
-            <div class="mobile-menu">☰</div>
+           <div class="mobile-menu" id="menuBtn">☰</div>
+
+<div class="mobile-nav" id="mobileNav">
+  <ul>
+    <li><a href="#home">Home</a></li>
+
+    <!-- Western Wear -->
+    <li class="mobile-dropdown">
+      <span>Western Wear ▾</span>
+      <ul class="mobile-submenu">
+        <li><a href="western-wear/tops-tees.html">Top & Tees</a></li>
+        <li><a href="western-wear/jeans-pants.html">Jeans & Pants</a></li>
+        <li><a href="western-wear/loungewear.html">Loungewear</a></li>
+        <li><a href="western-wear/winter-wear.html">Winter Wear</a></li>
+        <li><a href="western-wear/dresses.html">Dresses</a></li>
+        <li><a href="western-wear/thrift-collection.html">Thrift Collection</a></li>
+      </ul>
+    </li>
+
+    <!-- Ethnic -->
+    <li class="mobile-dropdown">
+      <span>Ethnic ▾</span>
+      <ul class="mobile-submenu">
+        <li><a href="./Ethnic-wear/co-ords.html">Co-ords</a></li>
+        <li><a href="./Ethnic-wear/3-piece-suit.html">3 Piece Suit</a></li>
+        <li><a href="./Ethnic-wear/short-kurtis.html">Short Kurtis</a></li>
+      </ul>
+    </li>
+
+   <li><a href="#" id="saleLinkMobile">Sale 🔥</a></li>
+    <li><a href="#about-us">About Us</a></li>
+  </ul>
+</div>
+
+
         </nav>
+
+        
     </header>
 
     <!-- Sale Page -->
@@ -3616,5 +3654,34 @@ document.addEventListener("keydown", function(e) {
         <p id="popupText"></p>
     </div>
 </div>
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileNav = document.getElementById("mobileNav");
+
+  menuBtn.addEventListener("click", () => {
+    mobileNav.classList.toggle("active");
+  });
+
+  // Close menu when clicking a link
+  document.querySelectorAll(".mobile-nav a").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileNav.classList.remove("active");
+    });
+  });
+</script>
+
+<script>
+document.getElementById("saleLinkMobile")?.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  // trigger desktop sale logic
+  document.getElementById("saleLink")?.click();
+
+  // close mobile menu after click
+  document.getElementById("mobileNav").classList.remove("active");
+});
+</script>
+
+
 </body>
 </html>
