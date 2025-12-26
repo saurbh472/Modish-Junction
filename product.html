@@ -334,6 +334,8 @@
 <script src="./js/data/products-coords.js"></script>
 <script src="./js/data/products-kurtis.js"></script>
 <script src="./js/data/products-sale.js"></script>
+<script src="./js/data/products-trending.js"></script>
+
 
 
 
@@ -362,6 +364,7 @@ else if (category === "threepiece") products = threePieceProducts;
 else if (category === "coords") products = coordsProducts;
 else if (category === "kurtis") products = kurtisProducts;
 else if (category === "sale") products = saleProducts;
+else if (category === "trending") products = trendingProducts;
 else products = winterProducts;
 
 
@@ -523,6 +526,10 @@ else if (category === "kurtis") {
 else if (category === "sale") {
   backLink.href = "./index.html#sale";
   backLink.innerText = "← Back to Sale";
+}
+else if (category === "trending") {
+  backLink.href = "./index.html";
+  backLink.innerText = "← Back to Home";
 }
 else {
   backLink.href = "./western-wear/winter-wear.html";

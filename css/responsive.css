@@ -1,0 +1,301 @@
+/* =========================================
+   GLOBAL RESPONSIVE STYLES
+   Works for ALL pages
+========================================= */
+
+
+/* -----------------------------------------
+   TABLETS (≤1024px)
+------------------------------------------ */
+@media (max-width: 1024px) {
+
+  nav {
+    padding: 0.8rem 4%;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .hero p {
+    font-size: 1.3rem;
+  }
+
+  .section-title {
+    font-size: 2.4rem;
+  }
+
+  .product-grid,
+  .category-grid,
+  .reviews-grid,
+  .features-grid {
+    gap: 1.8rem;
+  }
+
+  .reel-card {
+    min-width: 260px;
+    height: 460px;
+  }
+}
+
+
+/* -----------------------------------------
+   MOBILE (≤768px)
+------------------------------------------ */
+@media (max-width: 768px) {
+
+  /* HEADER */
+  header {
+    position: fixed;
+  }
+
+  .top-bar {
+    font-size: 11px;
+    padding: 6px;
+  }
+
+  nav {
+    padding: 0.6rem 4%;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: block;
+    font-size: 1.8rem;
+  }
+
+  .logo-img {
+    height: 48px;
+  }
+
+  .logo-text {
+    font-size: 1.3rem;
+  }
+
+  .nav-icons span {
+    font-size: 1.2rem;
+  }
+
+  /* HERO */
+  .hero {
+    height: 68vh;
+    min-height: 520px;
+    margin-top: 90px;
+  }
+
+  .hero-content {
+    padding: 1.2rem;
+    margin-top: -20px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+    line-height: 1.15;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.8rem;
+  }
+
+  .hero p {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    max-width: 90%;
+    margin: 0 auto 1.4rem;
+  }
+
+  .cta-button {
+    padding: 0.95rem 2rem;
+    font-size: 0.95rem;
+    border-radius: 40px;
+  }
+
+  /* SECTIONS */
+  .categories,
+  .products,
+  .stories-section,
+  .reels-section,
+  .reviews-section,
+  .about-us-section {
+    padding: 3.5rem 5%;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  /* GRIDS */
+  .product-grid,
+  .category-grid,
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* CARDS */
+  .product-card,
+  .category-card,
+  .review-card {
+    border-radius: 16px;
+  }
+
+  .product-image {
+    height: 240px;
+  }
+
+  .category-image {
+    height: 240px;
+  }
+
+  /* REELS */
+  .reels-wrapper {
+    padding: 0 15px;
+  }
+
+  .reel-card {
+    min-width: 240px;
+    height: 420px;
+  }
+
+  .reel-title {
+    font-size: 0.9rem;
+  }
+
+  .reel-nav {
+    width: 45px;
+    height: 45px;
+    font-size: 1.6rem;
+  }
+
+  /* STORIES */
+  .story-card {
+    min-width: 260px;
+    height: 360px;
+  }
+
+  /* SALE PAGE */
+  .sale-header {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .sale-header h1 {
+    font-size: 2.4rem;
+  }
+
+  .sale-header p {
+    font-size: 1.1rem;
+  }
+
+  .sale-timer {
+    gap: 1rem;
+  }
+
+  .timer-box {
+    min-width: 80px;
+    padding: 1rem;
+  }
+
+  .timer-box span {
+    font-size: 2rem;
+  }
+
+  /* ABOUT */
+  .about-content {
+    gap: 3rem;
+  }
+
+  .story-card-large {
+    padding: 2rem 1.5rem;
+  }
+
+  .about-cta h3 {
+    font-size: 2rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+  }
+
+  .cta-button,
+  .cta-button-outline {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  /* FOOTER */
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-section ul li:hover {
+    transform: none;
+  }
+
+  .footer-social {
+    margin-top: 2rem;
+  }
+
+  /* WHATSAPP */
+  .whatsapp-float {
+    width: 48px;
+    height: 48px;
+    bottom: 16px;
+    right: 16px;
+    opacity: 0.85;
+  }
+}
+
+
+/* -----------------------------------------
+   SMALL MOBILE (≤480px)
+------------------------------------------ */
+@media (max-width: 480px) {
+
+  /* HERO */
+  .hero h1 {
+    font-size: 1.9rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  /* TITLES */
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  /* IMAGES */
+  .product-image {
+    height: 210px;
+  }
+
+  .category-image {
+    height: 210px;
+  }
+
+  /* PRODUCT TEXT */
+  .product-info h3 {
+    font-size: 1rem;
+  }
+
+  .sale-price {
+    font-size: 1.4rem;
+  }
+
+  .original-price {
+    font-size: 1rem;
+  }
+
+  /* REELS */
+  .reel-card {
+    min-width: 220px;
+    height: 400px;
+  }
+
+  /* STATS */
+  .stat-number {
+    font-size: 2.5rem;
+  }
+}
