@@ -299,13 +299,20 @@
     font-size: 2.5rem;
   }
 }
-/* ===== MOBILE MENU ===== */
+/* =========================================
+   MOBILE NAV – FINAL FIX
+   ADD AT END OF responsive.css
+========================================= */
+
+/* Hide mobile nav by default (desktop safety) */
+.mobile-nav {
+  display: none;
+}
+
+/* Mobile only */
 @media (max-width: 768px) {
 
-  .nav-links {
-    display: none;
-  }
-
+  /* Show hamburger */
   .mobile-menu {
     display: block;
     font-size: 2rem;
@@ -313,7 +320,9 @@
     z-index: 11001;
   }
 
+  /* Mobile slide menu */
   .mobile-nav {
+    display: block;
     position: fixed;
     top: 0;
     right: -100%;
@@ -325,25 +334,51 @@
     padding: 6rem 2rem;
     transition: right 0.35s ease;
     z-index: 11000;
+    overflow-y: auto;
   }
 
   .mobile-nav.active {
     right: 0;
   }
 
+  /* Remove bullets */
   .mobile-nav ul {
     list-style: none;
     padding: 0;
+    margin: 0;
   }
 
   .mobile-nav li {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.4rem;
   }
 
-  .mobile-nav a {
-    font-size: 1.2rem;
+  /* Links + dropdown labels */
+  .mobile-nav a,
+  .mobile-dropdown span {
+    font-size: 1.15rem;
     font-weight: 600;
-    text-decoration: none;
     color: var(--dark);
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+  }
+
+  /* Dropdown submenu */
+  .mobile-submenu {
+    display: none;
+    padding-left: 1rem;
+    margin-top: 0.6rem;
+  }
+
+  .mobile-submenu.open {
+    display: block;
+  }
+
+  .mobile-submenu a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #666;
+    margin-bottom: 0.6rem;
+    display: block;
   }
 }
