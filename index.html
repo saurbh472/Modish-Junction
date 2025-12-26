@@ -3669,6 +3669,32 @@ document.addEventListener("keydown", function(e) {
     });
   });
 </script>
+<script>
+/* MOBILE DROPDOWN TOGGLE */
+document.querySelectorAll(".mobile-dropdown > span").forEach(span => {
+  span.addEventListener("click", function (e) {
+    e.stopPropagation();
+
+    const submenu = this.nextElementSibling;
+
+    // close other open submenus
+    document.querySelectorAll(".mobile-submenu").forEach(menu => {
+      if (menu !== submenu) menu.classList.remove("open");
+    });
+
+    submenu.classList.toggle("open");
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll(".mobile-nav a:not(#saleLinkMobile)").forEach(link => {
+  link.addEventListener("click", () => {
+    mobileNav.classList.remove("active");
+  });
+});
+
+</script>
 
 <script>
 document.getElementById("saleLinkMobile")?.addEventListener("click", function (e) {
@@ -3681,7 +3707,7 @@ document.getElementById("saleLinkMobile")?.addEventListener("click", function (e
   document.getElementById("mobileNav").classList.remove("active");
 });
 </script>
-
+<script></script>
 
 </body>
 </html>
