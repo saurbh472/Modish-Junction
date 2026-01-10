@@ -23,6 +23,7 @@
             --black: #0d0603;
         }
 
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
@@ -48,6 +49,45 @@
             font-size: 14px;
             font-weight: 600;
         }
+         .filter-section {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(212, 89, 59, 0.1);
+        }
+.filter-section {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(212, 89, 59, 0.1);
+}
+
+.filter-btn {
+    padding: 0.7rem 1.5rem;
+    background: var(--light);
+    color: var(--dark);
+    border: 2px solid var(--accent);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
 
         nav {
             display: flex;
@@ -286,6 +326,12 @@
         <h1>👗 Dresses Collection</h1>
         <p>Elegant, trendy & stylish dresses for every occasion</p>
     </div>
+        <div class="filter-section">
+            <button class="filter-btn active">All</button>
+            <button class="filter-btn">Summer</button>
+            <button class="filter-btn">Winter</button>
+        </div>
+
 
     <div class="product-grid">
 
