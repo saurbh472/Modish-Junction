@@ -3,97 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="../css/cart-ui.css">
-     <link rel="stylesheet" href="../css/whatsapp-float.css">
-      <link rel="stylesheet" href="./css/responsive.css">
-
     <title>Top & Tees - Modish Junction</title>
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+    <!-- Base Styles (Variables & Common CSS) -->
+    <link rel="stylesheet" href="../css/base-styles.css">
+    
+    <!-- Header & Footer Styles -->
+    <link rel="stylesheet" href="../css/header-styles.css">
+    <link rel="stylesheet" href="../css/footer-styles.css">
+    
+    <!-- Other Styles -->
+    <link rel="stylesheet" href="../css/cart-ui.css">
+    <link rel="stylesheet" href="../css/whatsapp-float.css">
+    <link rel="stylesheet" href="./css/responsive.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        :root {
-            --primary: #d4593b;
-            --primary-light: #e67a5f;
-            --secondary: #e89580;
-            --dark: #1a0e08;
-            --light: #fef9f5;
-            --cream: #fffbf7;
-            --accent: #f0b8a0;
-            --black: #0d0603;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background-color: var(--cream);
-        }
-
-        header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(15px);
-            box-shadow: 0 4px 30px rgba(212, 89, 59, 0.15);
-        }
-
-        .top-bar {
-            background: linear-gradient(135deg, #d4593b 0%, #e89580 50%, #d4a574 100%);
-            color: white;
-            text-align: center;
-            padding: 10px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-img { 
-            height: 65px; 
-            width: auto; 
-        }
-
-        .logo-text {
-            font-weight: 800;
-            font-size: 1.9rem;
-            color: #b55437;
-            text-transform: uppercase;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .nav-links a:hover { 
-            color: var(--primary);
-        }
-
+    /* RESET - Must be first */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+    <!-- Page-Specific Styles -->
+    <style>
         .back-home {
             display: inline-flex;
             align-items: center;
@@ -108,7 +49,6 @@
             transition: all 0.3s;
             text-decoration: none;
             margin: 160px 5% 2rem;
-
             box-shadow: 0 4px 15px rgba(212, 89, 59, 0.2);
         }
 
@@ -124,28 +64,28 @@
             margin: 0 auto;
         }
 
-      .page-header {
-    text-align: center;
-    margin-bottom: 3rem;
-    padding: 3rem 2rem;
-    background:
-        url('../Images/western-header/western-header.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 20px;
-    color: white;
-}
-
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: url('../Images/western-header/western-header.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 20px;
+            color: white;
+        }
 
         .page-header h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
         }
 
         .page-header p {
             font-size: 1.2rem;
             opacity: 0.95;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
         }
 
         .filter-section {
@@ -170,17 +110,12 @@
             font-weight: 500;
         }
 
-        .filter-btn:hover, .filter-btn.active {
+        .filter-btn:hover, 
+        .filter-btn.active {
             background: var(--primary);
             color: white;
             border-color: var(--primary);
         }
-        .product-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 
         .product-grid {
             display: grid;
@@ -195,25 +130,14 @@
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(181, 84, 55, 0.12);
             transition: all 0.5s;
+            cursor: pointer;
+            position: relative;
         }
 
-       .product-image {
-  height: 350px;
-  overflow: hidden;
-}
-
-.product-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-  display: block;
-}
-
-.product-card:hover .product-image img {
-  transform: scale(1.08);
-}
-
+        .product-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(181, 84, 55, 0.25);
+        }
 
         .discount-badge {
             position: absolute;
@@ -230,16 +154,19 @@
 
         .product-image {
             height: 350px;
+            overflow: hidden;
             background: linear-gradient(135deg, var(--accent), #ffc8b8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-            transition: all 0.5s;
-            position: relative;
         }
 
-        .product-card:hover .product-image {
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        .product-card:hover .product-image img {
             transform: scale(1.08);
         }
 
@@ -265,15 +192,7 @@
             font-size: 1.6rem; 
             font-weight: bold; 
             color: var(--primary);
-        }.remove-btn {
-  background: none;
-  border: none;
-  color: red;
-  cursor: pointer;
-}
-
-
-
+        }
 
         .original-price { 
             text-decoration: line-through; 
@@ -298,40 +217,32 @@
             transform: scale(1.05);
             box-shadow: 0 8px 25px rgba(181, 84, 55, 0.5);
         }
+
         @media (max-width: 768px) {
-            .page-header h1 { font-size: 2rem; }
-            .product-grid { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
+            .page-header h1 { 
+                font-size: 2rem; 
+            }
+            .product-grid { 
+                grid-template-columns: 1fr; 
+            }
+            .back-home {
+                margin: 140px 5% 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="top-bar">✨ New Collection Live | Free Shipping on Orders Above ₹999 ✨</div>
-        <nav>
-            <div class="logo-container">
-                <img src="../Header-Logo/Header-logo3.png" alt="Modish Junction Logo" class="logo-img">
-                <span class="logo-text">Modish Junction</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../index.html#trending">Shop</a></li>
-                <li><a href="../index.html#sale">Sale</a></li>
-            <span onclick="openCart()" style="cursor:pointer">
-  🛒 <small id="cart-count">0</small>
-   </ul>
-</span>
+    <!-- ✅ HEADER COMPONENT -->
+    <div id="header-placeholder"></div>
 
-        </nav>
-    </header>
-
+    <!-- MAIN CONTENT -->
     <a href="../index.html" class="back-home">← Back to Home</a>
 
     <div class="page-container">
-    <div class="page-header">
-    <h1>👕 Top & Tees Collection</h1>
-    <p>Casual comfort meets trendy style</p>
-</div>
+        <div class="page-header">
+            <h1>👕 Top & Tees Collection</h1>
+            <p>Casual comfort meets trendy style</p>
+        </div>
 
         <div class="filter-section">
             <button class="filter-btn active">All</button>
@@ -344,192 +255,246 @@
         </div>
 
         <div class="product-grid">
-<div class="product-card"
-     data-id="product-toptees-1"
-     data-link="../product.html?category=toptees&slug=cotton-round-neck-tee">
+            <!-- Product 1 -->
+            <div class="product-card" data-id="product-toptees-1" data-link="../product.html?category=toptees&slug=cotton-round-neck-tee">
+                <span class="discount-badge">30% OFF</span>
+                <div class="product-image">
+                    <img src="../Images/Category/western-wear.jpg" alt="Cotton Casual Round Neck Tee">
+                </div>
+                <div class="product-info">
+                    <h3>Cotton Casual Round Neck Tee - Comfort Fit</h3>
+                    <div class="price">
+                        <span class="sale-price">₹699</span>
+                        <span class="original-price">₹999</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
 
-  <span class="discount-badge">30% OFF</span>
+            <!-- Product 2 -->
+            <div class="product-card" data-id="product-toptees-2" data-link="../product.html?category=toptees&slug=printed-graphic-tee">
+                <span class="discount-badge">40% OFF</span>
+                <div class="product-image">
+                    <img src="../Images/Category/western-wear.jpg" alt="Printed Graphic Tee">
+                </div>
+                <div class="product-info">
+                    <h3>Printed Graphic Tee - Oversized Style</h3>
+                    <div class="price">
+                        <span class="sale-price">₹899</span>
+                        <span class="original-price">₹1,499</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
 
-  <div class="product-image">
-    <img src="../Images/Category/western-wear.jpg" alt="Cotton Casual Round Neck Tee">
-  </div>
+            <!-- Product 3 -->
+            <div class="product-card" data-id="product-toptees-3" data-link="../product.html?category=toptees&slug=v-neck-solid-top">
+                <span class="discount-badge">35% OFF</span>
+                <div class="product-image">
+                    <img src="../Images/Category/western-wear.jpg" alt="V-Neck Solid Top">
+                </div>
+                <div class="product-info">
+                    <h3>V-Neck Solid Top - Premium Cotton</h3>
+                    <div class="price">
+                        <span class="sale-price">₹649</span>
+                        <span class="original-price">₹999</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
 
-  <div class="product-info">
-    <h3>Cotton Casual Round Neck Tee - Comfort Fit</h3>
-    <div class="price">
-      <span class="sale-price">₹699</span>
-      <span class="original-price">₹999</span>
+            <!-- Product 4 -->
+            <div class="product-card" data-id="product-toptees-4" data-link="../product.html?category=toptees&slug=floral-crop-top">
+                <span class="discount-badge">45% OFF</span>
+                <div class="product-image">
+                    <img src="../Images/Category/western-wear.jpg" alt="Floral Printed Crop Top">
+                </div>
+                <div class="product-info">
+                    <h3>Floral Printed Crop Top - Summer Collection</h3>
+                    <div class="price">
+                        <span class="sale-price">₹549</span>
+                        <span class="original-price">₹999</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card" data-id="product-toptees-5" data-link="../product.html?category=toptees&slug=striped-polo-neck-top">
+                <span class="discount-badge">30% OFF</span>
+                <div class="product-image">
+                    <img src="../Images/Category/western-wear.jpg" alt="Striped Polo Neck Top">
+                </div>
+                <div class="product-info">
+                    <h3>Striped Polo Neck Top - Classic Fit</h3>
+                    <div class="price">
+                        <span class="sale-price">₹1,049</span>
+                        <span class="original-price">₹1,499</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card" data-id="product-toptees-6" data-link="../product.html?category=toptees&slug=basic-tee-combo-pack">
+                <span class="discount-badge">50% OFF</span>
+                <div class="product-image">
+                    <img src="../Images/Category/western-wear.jpg" alt="Basic Tee Combo Pack">
+                </div>
+                <div class="product-info">
+                    <h3>Basic Tee Combo Pack - Set of 3</h3>
+                    <div class="price">
+                        <span class="sale-price">₹1,499</span>
+                        <span class="original-price">₹2,999</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 7 -->
+            <div class="product-card" data-id="product-toptees-7" data-link="../product.html?category=toptees&slug=puff-sleeve-casual-top">
+                <span class="discount-badge">40% OFF</span>
+                <div class="product-image">
+                    <img src="../Images/Category/western-wear.jpg" alt="Puff Sleeve Casual Top">
+                </div>
+                <div class="product-info">
+                    <h3>Puff Sleeve Casual Top - Trendy Design</h3>
+                    <div class="price">
+                        <span class="sale-price">₹899</span>
+                        <span class="original-price">₹1,499</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 8 -->
+            <div class="product-card" data-id="product-toptees-8" data-link="../product.html?category=toptees&slug=tie-dye-crop-tee">
+                <span class="discount-badge">35% OFF</span>
+                <div class="product-image">
+                    <img src="../Images/Category/western-wear.jpg" alt="Tie-Dye Crop Tee">
+                </div>
+                <div class="product-info">
+                    <h3>Tie-Dye Crop Tee - Festival Vibes</h3>
+                    <div class="price">
+                        <span class="sale-price">₹779</span>
+                        <span class="original-price">₹1,199</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <button class="add-to-cart">Add to Cart</button>
-  </div>
-</div>
+    <!-- ✅ FOOTER COMPONENT -->
+    <div id="footer-placeholder"></div>
+    <!-- ✅ JAVASCRIPT FILES -->
+    <!-- Cart functionality -->
+    <script src="../js/cart.js"></script>
+    <!-- Header and Footer scripts -->
+    <script src="../js/header-footer-scripts.js"></script>
+    <!-- ✅ LOAD HEADER & FOOTER -->
+    <!-- ✅ LOAD HEADER & FOOTER (Place this at the END before </body>) -->
+<script>
+    // Load Header
+    fetch('../includes/header.html')
+        .then(response => {
+            if (!response.ok) throw new Error('Header not found');
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById('header-placeholder').innerHTML = data;
+            // Initialize header functionality
+            initializeHeaderAfterLoad();
+            // Update cart count
+            updateCartCount();
+        })
+        .catch(error => {
+            console.error('Error loading header:', error);
+            // Fallback: show error in console but don't break page
+        });
+    
+    // Load Footer
+    fetch('../includes/footer.html')
+        .then(response => {
+            if (!response.ok) throw new Error('Footer not found');
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById('footer-placeholder').innerHTML = data;
+        })
+        .catch(error => {
+            console.error('Error loading footer:', error);
+        });
+    
+    // Initialize header functionality after dynamic load
+    function initializeHeaderAfterLoad() {
+        const menuBtn = document.getElementById("menuBtn");
+        const mobileNav = document.getElementById("mobileNav");
+        
+        if (menuBtn && mobileNav) {
+            menuBtn.addEventListener("click", () => {
+                mobileNav.classList.toggle("active");
+            });
+            
+            // Close menu when clicking links
+            document.querySelectorAll(".mobile-nav a:not(#saleLinkMobile)").forEach(link => {
+                link.addEventListener("click", () => {
+                    mobileNav.classList.remove("active");
+                });
+            });
+        }
+        
+        // Mobile dropdown
+        document.querySelectorAll(".mobile-dropdown > span").forEach(span => {
+            span.addEventListener("click", function (e) {
+                e.stopPropagation();
+                const submenu = this.nextElementSibling;
+                document.querySelectorAll(".mobile-submenu").forEach(menu => {
+                    if (menu !== submenu) menu.classList.remove("open");
+                });
+                submenu.classList.toggle("open");
+            });
+        });
+    }
+</script>
 
+<!-- Page-specific Scripts -->
+<script>
+    // Add to Cart animation
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent card click
+            this.textContent = '✓ Added!';
+            this.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+            setTimeout(() => {
+                this.textContent = 'Add to Cart';
+                this.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
+            }, 2000);
+        });
+    });
 
-<div class="product-card"
-     data-id="product-toptees-2"
-     data-link="../product.html?category=toptees&slug=printed-graphic-tee"
->
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
 
-  <span class="discount-badge">40% OFF</span>
-
-  <div class="product-image">
-    <img src="../Images/Category/western-wear.jpg" alt="Printed Graphic Tee">
-  </div>
-
-  <div class="product-info">
-    <h3>Printed Graphic Tee - Oversized Style</h3>
-    <div class="price">
-      <span class="sale-price">₹899</span>
-      <span class="original-price">₹1,499</span>
-    </div>
-    <button class="add-to-cart">Add to Cart</button>
-  </div>
-</div>
-
-
-<div class="product-card"
-     data-id="product-toptees-3"
-    data-link="../product.html?category=toptees&slug=v-neck-solid-top"
->
-
-  <span class="discount-badge">35% OFF</span>
-
-  <div class="product-image">
-    <img src="../Images/Category/western-wear.jpg" alt="V-Neck Solid Top">
-  </div>
-
-  <div class="product-info">
-    <h3>V-Neck Solid Top - Premium Cotton</h3>
-    <div class="price">
-      <span class="sale-price">₹649</span>
-      <span class="original-price">₹999</span>
-    </div>
-    <button class="add-to-cart">Add to Cart</button>
-  </div>
-</div>
-
-
-<div class="product-card"
-     data-id="product-toptees-4"
-     data-link="../product.html?category=toptees&slug=floral-crop-top"
->
-
-  <span class="discount-badge">45% OFF</span>
-
-  <div class="product-image">
-    <img src="../Images/Category/western-wear.jpg" alt="Floral Printed Crop Top">
-  </div>
-
-  <div class="product-info">
-    <h3>Floral Printed Crop Top - Summer Collection</h3>
-    <div class="price">
-      <span class="sale-price">₹549</span>
-      <span class="original-price">₹999</span>
-    </div>
-    <button class="add-to-cart">Add to Cart</button>
-  </div>
-</div>
-
-
-<div class="product-card"
-     data-id="product-toptees-5"
-     data-link="../product.html?category=toptees&slug=striped-polo-neck-top"
->
-
-  <span class="discount-badge">30% OFF</span>
-
-  <div class="product-image">
-    <img src="../Images/Category/western-wear.jpg" alt="Striped Polo Neck Top">
-  </div>
-
-  <div class="product-info">
-    <h3>Striped Polo Neck Top - Classic Fit</h3>
-    <div class="price">
-      <span class="sale-price">₹1,049</span>
-      <span class="original-price">₹1,499</span>
-    </div>
-    <button class="add-to-cart">Add to Cart</button>
-  </div>
-</div>
-
-
-<div class="product-card"
-     data-id="product-toptees-6"
-    data-link="../product.html?category=toptees&slug=basic-tee-combo-pack"
->
-
-  <span class="discount-badge">50% OFF</span>
-
-  <div class="product-image">
-    <img src="../Images/Category/western-wear.jpg" alt="Basic Tee Combo Pack">
-  </div>
-
-  <div class="product-info">
-    <h3>Basic Tee Combo Pack - Set of 3</h3>
-    <div class="price">
-      <span class="sale-price">₹1,499</span>
-      <span class="original-price">₹2,999</span>
-    </div>
-    <button class="add-to-cart">Add to Cart</button>
-  </div>
-</div>
-
-
-<div class="product-card"
-     data-id="product-toptees-7"
-     data-link="../product.html?category=toptees&slug=puff-sleeve-casual-top"
->
-
-  <span class="discount-badge">40% OFF</span>
-
-  <div class="product-image">
-    <img src="../Images/Category/western-wear.jpg" alt="Puff Sleeve Casual Top">
-  </div>
-
-  <div class="product-info">
-    <h3>Puff Sleeve Casual Top - Trendy Design</h3>
-    <div class="price">
-      <span class="sale-price">₹899</span>
-      <span class="original-price">₹1,499</span>
-    </div>
-    <button class="add-to-cart">Add to Cart</button>
-  </div>
-</div>
-
-
-<div class="product-card"
-     data-id="product-toptees-8"
-     data-link="../product.html?category=toptees&slug=tie-dye-crop-tee"
->
-
-  <span class="discount-badge">35% OFF</span>
-
-  <div class="product-image">
-    <img src="../Images/Category/western-wear.jpg" alt="Tie-Dye Crop Tee">
-  </div>
-
-  <div class="product-info">
-    <h3>Tie-Dye Crop Tee - Festival Vibes</h3>
-    <div class="price">
-      <span class="sale-price">₹779</span>
-      <span class="original-price">₹1,199</span>
-    </div>
-    <button class="add-to-cart">Add to Cart</button>
-  </div>
-</div>
-
-    </div>
-
-   <!-- Floating WhatsApp Button with direct contact -->
-<a href="https://wa.me/918949120920" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
-        <svg viewBox="0 0 32 32" fill="white" width="28" height="28">
-            <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 8.167-2.113c2.325 1.27 4.925 1.947 7.833 1.947 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.275 1.362 1.412-5.25-0.32-0.525c-1.341-2.194-2.051-4.73-2.051-7.359 0-7.72 6.28-14 14-14s14 6.28 14 14-6.28 14-14 14zM23.293 19.943c-0.396-0.199-2.348-1.158-2.713-1.291s-0.628-0.199-0.893 0.199c-0.265 0.398-1.026 1.291-1.259 1.556s-0.463 0.298-0.859 0.099c-2.219-1.108-3.674-1.975-5.134-4.475-0.387-0.662 0.387-0.615 1.108-2.050 0.121-0.265 0.060-0.496-0.034-0.695-0.094-0.199-0.893-2.151-1.224-2.945-0.322-0.774-0.649-0.669-0.893-0.681-0.231-0.012-0.496-0.015-0.76-0.015s-0.694 0.099-1.058 0.496c-0.364 0.398-1.388 1.357-1.388 3.308s1.421 3.836 1.619 4.101c0.199 0.265 2.799 4.272 6.781 5.989 2.51 1.079 3.494 1.148 4.748 0.968 0.762-0.109 2.348-0.96 2.679-1.888s0.331-1.723 0.232-1.888c-0.099-0.165-0.364-0.265-0.76-0.464z"/>
-        </svg>
-    </a>
-
+    // Product card click (navigate to product page)
+    document.querySelectorAll(".product-card").forEach(card => {
+        card.addEventListener("click", e => {
+            if (e.target.classList.contains("add-to-cart")) return;
+            window.location.href = card.dataset.link;
+        });
+    });
+</script>
+    
+    <!-- Page-specific Scripts -->
     <script>
+        // Add to Cart animation
         document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent card click
                 this.textContent = '✓ Added!';
                 this.style.background = 'linear-gradient(135deg, #10b981, #059669)';
                 setTimeout(() => {
@@ -538,38 +503,20 @@
                 }, 2000);
             });
         });
-
+        // Filter buttons
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
             });
         });
+        // Product card click (navigate to product page)
+        document.querySelectorAll(".product-card").forEach(card => {
+            card.addEventListener("click", e => {
+                if (e.target.classList.contains("add-to-cart")) return;
+                window.location.href = card.dataset.link;
+            });
+        });
     </script>
-
-    <script>
-  document.querySelectorAll(".product-card").forEach(card => {
-    card.addEventListener("click", e => {
-      if (e.target.classList.contains("add-to-cart")) return;
-      window.location.href = card.dataset.link;
-    });
-  });
-</script>
-
-    <!-- CART MODAL -->
-<div id="cart-modal" class="cart-modal">
-  <div class="cart-box">
-    <h2>🛒 Your Cart</h2>
-    <div id="cart-items"></div>
-
-    <div class="cart-footer">
-      <strong id="cart-total"></strong>
-      <div class="cart-actions">
-        <button onclick="closeCart()">Close</button>
-        <button class="whatsapp-btn" onclick="openWhatsAppOrder()">Order on WhatsApp</button>
-      </div>
-    </div>
-  </div>
-  <script src="../js/cart.js"></script>
 </body>
 </html>

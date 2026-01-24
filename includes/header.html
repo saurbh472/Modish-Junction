@@ -1,0 +1,87 @@
+<!-- Header Component -->
+<header>
+    <div class="top-bar">✨ New Autumn Winter Collection Live | Free Shipping on Orders Above ₹999 ✨</div>
+    <nav>
+        <div class="logo-container">
+            <img src="../Header-Logo/Header-logo3.png" alt="Modish Junction Logo" class="logo-img">
+            <span class="logo-text">Modish Junction</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/index.html#home">Home</a></li>
+            <li class="dropdown">
+                <a href="#Western wear">Western wear ▾</a>
+                <div class="dropdown-content">
+                    <a href="tops-tees.html">Top & Tees</a>
+                    <a href="jeans-pants.html">Jeans & Pants</a>
+                    <a href="loungewear.html">Loungewear</a>
+                    <a href="winter-wear.html">Winter Wear</a>
+                    <a href="dresses.html">Dresses</a>
+                    <a href="thrift-collection.html">Shirts</a>
+                </div>
+            </li>
+
+            <li class="dropdown">
+                <a href="#dresses">Ethnic ▾</a>
+                <div class="dropdown-content">
+                    <a href="/Ethnic-wear/co-ords.html">Co-ords</a>
+                    <a href="/Ethnic-wear/3-piece-suit.html">3 piece suit</a>
+                    <a href="/Ethnic-wear/short-kurtis.html">short kurtis</a>
+                </div>
+            </li>
+
+            <li><a href="/Ethnic-wear/Affordable-collection.html">Must-Haves</a></li>
+            <li><a href="#sale" class="sale-link" id="saleLink">
+                <span>Sale 🔥</span>
+            </a></li>
+            <li><a href="index.html#about-us">About Us</a></li>
+        </ul>
+        <div class="nav-icons">
+            <span onclick="openCart()" style="cursor:pointer">
+                🛒 <small id="cart-count">0</small>
+            </span>
+        </div>
+
+        <div class="mobile-menu" id="menuBtn">☰</div>
+
+        <div class="mobile-nav" id="mobileNav">
+            <ul>
+                <li><a href="/index.html#home">Home</a></li>
+
+                <!-- Western Wear -->
+                <li class="mobile-dropdown">
+                    <span>Western Wear ▾</span>
+                    <ul class="mobile-submenu">
+                        <li><a href="tops-tees.html">Top & Tees</a></li>
+                        <li><a href="jeans-pants.html">Jeans & Pants</a></li>
+                        <li><a href="loungewear.html">Loungewear</a></li>
+                        <li><a href="winter-wear.html">Winter Wear</a></li>
+                        <li><a href="dresses.html">Dresses</a></li>
+                        <li><a href="thrift-collection.html">Shirts</a></li>
+                    </ul>
+                </li>
+
+                <!-- Ethnic -->
+                <li class="mobile-dropdown">
+                    <span>Ethnic ▾</span>
+                    <ul class="mobile-submenu">
+                        <li><a href="/Ethnic-wear/co-ords.html">Co-ords</a></li>
+                        <li><a href="/Ethnic-wear/3-piece-suit.html">3 Piece Suit</a></li>
+                        <li><a href="/Ethnic-wear/short-kurtis.html">Short Kurtis</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#" id="saleLinkMobile">Sale 🔥</a></li>
+                <li><a href="index.html#about-us">About Us</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<!-- Popup Modal -->
+<div id="popupModal" class="popup-modal">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <h2 id="popupTitle"></h2>
+        <p id="popupText"></p>
+    </div>
+</div>
