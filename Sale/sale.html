@@ -3,400 +3,455 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modish Junction - Sale</title>
-
+    <title>Sale - Modish Junction</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-    <style>
-    /* ---------------------------
-       SALE PAGE ONLY STYLES
-    ----------------------------*/
-
-    :root {
-        --primary: #d4593b;
-        --primary-light: #e67a5f;
-        --secondary: #e89580;
-        --dark: #1a0e08;
-        --light: #fef9f5;
-        --cream: #fffbf7;
-        --accent: #f0b8a0;
-        --rose: #ffc8b8;
-        --gold: #d4a574;
-        --black: #0d0603;
-    }
-
-    body {
-        font-family: 'Segoe UI', sans-serif;
-        background: var(--cream);
-        margin: 0;
-    }
-
-    /* Header */
-    header {
-        width: 100%;
-        position: fixed;
-        top: 0;
-        background: white;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        z-index: 1000;
-    }
-
-    nav {
-        display: flex;
-        justify-content: space-between;
-        padding: 1rem 5%;
-        align-items: center;
-    }
-
-    .logo-container {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .logo-img {
-        height: 50px;
-    }
-
-    .nav-links {
-        display: flex;
-        gap: 2rem;
-        list-style: none;
-        align-items: center;
-    }
-
-    .nav-links a {
-        text-decoration: none;
-        color: var(--dark);
-        font-weight: 500;
-    }
-    .cart-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
-}
-
-.cart-box {
-  background: #fff;
-  width: 95%;
-  max-width: 420px;
-  border-radius: 16px;
-  padding: 20px;
-  max-height: 80vh;
-  overflow-y: auto;
-}
-
-.cart-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 14px;
-}
-
-.qty-controls {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-
-.qty-controls button {
-  width: 28px;
-  height: 28px;
-  border: none;
-  background: #eee;
-  font-size: 18px;
-  cursor: pointer;
-  border-radius: 6px;
-}
-
-.remove-btn {
-  background: none;
-  border: none;
-  color: red;
-  cursor: pointer;
-}
-
-.cart-footer {
-  margin-top: 15px;
-  border-top: 1px solid #ddd;
-  padding-top: 12px;
-}
-
-.cart-actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
-.whatsapp-btn {
-  background: #25D366;
-  color: #fff;
-  border: none;
-  padding: 10px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-
-    /* SALE PAGE */
-    .sale-page {
-        margin-top: 120px;
-        padding: 4rem 5%;
-    }
-
-    .sale-header {
-        text-align: center;
-        padding: 3rem 2rem;
-        background: url('./Sale/Images/img1.jpg') center/cover;
-        border-radius: 20px;
-        color: white;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        position: relative;
-    }
-
-    .sale-header h1 {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-    }
-
-    .sale-subtitle {
-        font-size: 1.4rem;
-        font-weight: 600;
-    }
-
-    .sale-badge {
-        background: rgba(255,255,255,0.3);
-        padding: 0.5rem 1.5rem;
-        display: inline-block;
-        border-radius: 30px;
-        margin-bottom: 1rem;
-        font-weight: bold;
-        letter-spacing: 2px;
-    }
-
-    /* Timer */
-    .sale-timer {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        margin-top: 2rem;
-        flex-wrap: wrap;
-    }
-
-    .timer-box {
-        background: rgba(255,255,255,0.25);
-        padding: 1.2rem 1.5rem;
-        min-width: 100px;
-        text-align: center;
-        border-radius: 12px;
-        border: 1px solid rgba(255,255,255,0.4);
-    }
-
-    .timer-box span {
-        font-size: 2rem;
-        font-weight: bold;
-    }
-
-    /* Back button */
-    .back-button {
-        padding: 1rem 2rem;
-        border-radius: 50px;
-        background: white;
-        border: 2px solid var(--primary);
-        color: var(--primary);
-        margin-bottom: 2rem;
-        cursor: pointer;
-        text-decoration: none;
-        font-size: 1rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    /* Products */
-    .product-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-        margin-top: 2rem;
-    }
-
-    .product-card {
-        background: white;
-        border-radius: 15px;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-        overflow: hidden;
-        padding-bottom: 1rem;
-        position: relative;
-    }
-
-    .discount-badge {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        padding: 0.4rem 1rem;
-        background: var(--primary);
-        color: white;
-        font-weight: bold;
-        border-radius: 20px;
-    }
-
-    .product-image {
-        height: 280px;
-        background: var(--rose);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 4rem;
-    }
-
-    .product-info {
-        padding: 1.3rem;
-    }
-
-    .price {
-        display: flex;
-        gap: 1rem;
-        margin: 0.5rem 0;
-    }
-
-    .sale-price {
-        color: var(--primary);
-        font-size: 1.4rem;
-        font-weight: bold;
-    }
-
-    .original-price {
-        text-decoration: line-through;
-        color: #888;
-    }
-
-    .add-to-cart {
-        width: 100%;
-        padding: 0.9rem;
-        background: var(--primary);
-        border: none;
-        color: white;
-        border-radius: 10px;
-        cursor: pointer;
-        font-weight: bold;
-    }
-
-    @media(max-width:768px){
-        .sale-header h1 { font-size: 2.3rem; }
-        .sale-subtitle { font-size: 1.1rem; }
-    }
-    </style>
+    <link rel="stylesheet" href="/Sale/sale.css">
+    <link rel="stylesheet" href="/css/cart-ui.css">
+    <link rel="stylesheet" href="/css/whatsapp-float.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <!-- Header & Footer Styles -->
+    <link rel="stylesheet" href="../css/header-styles.css">
+    <link rel="stylesheet" href="../css/footer-styles.css">
 </head>
-
 <body>
+    <!-- ✅ HEADER COMPONENT -->
+    <div id="header-placeholder"></div>
 
-<header>
-    <nav>
-        <div class="logo-container">
-            <img src="./Header-Logo/Header-logo3.png" class="logo-img">
-            <span style="font-size:1.4rem; font-weight:700;">Modish Junction</span>
-        </div>
-
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#">Western Wear</a></li>
-            <li><a href="#">Ethnic</a></li>
-            <li><a href="sale.html" style="color: var(--primary); font-weight:700;">SALE 🔥</a></li>
-        </ul>
-    </nav>
-</header>
-
-
-<!-- SALE PAGE -->
-<section class="sale-page">
-
-    <a href="index.html" class="back-button">← Back to Home</a>
-
-    <div class="sale-header">
-        <div class="sale-badge">MEGA SALE</div>
-        <h1>🔥 End of Season Clearance 🔥</h1>
-        <p class="sale-subtitle">Up to 70% OFF on Selected Items | Limited Time Only!</p>
-
-        <div class="sale-timer">
-            <div class="timer-box"><span id="days">00</span><br><small>Days</small></div>
-            <div class="timer-box"><span id="hours">00</span><br><small>Hours</small></div>
-            <div class="timer-box"><span id="minutes">00</span><br><small>Minutes</small></div>
-            <div class="timer-box"><span id="seconds">00</span><br><small>Seconds</small></div>
-        </div>
-    </div>
-
-
-    <!-- ⚡ FLASH DEALS -->
-    <h2 style="text-align:center; margin-top:3rem;">⚡ Flash Deals – Today Only!</h2>
-
-    <div class="product-grid">
-
-        <!-- One Example Product (copy more as needed) -->
-        <div class="product-card">
-            <span class="discount-badge">70% OFF</span>
-            <div class="product-image">🌟</div>
-            <div class="product-info">
-                <h3>Premium Silk Ethnic Set</h3>
-                <div class="price">
-                    <span class="sale-price">₹1,499</span>
-                    <span class="original-price">₹4,999</span>
+    <!-- Sale Page Content -->
+    <section class="sale-page active">
+        <button class="back-button" onclick="window.location.href='/index.html'">
+            ← Back to Home
+        </button>
+        
+        <div class="sale-header">
+            <div class="sale-badge">MEGA SALE</div>
+            <h1>🔥 End of Season Clearance 🔥</h1>
+            <p class="sale-subtitle">Up to 70% OFF on Selected Items | Limited Time Only!</p>
+            <div class="sale-timer">
+                <div class="timer-box">
+                    <span id="days">00</span>
+                    <small>Days</small>
                 </div>
-                <button class="add-to-cart">Add to Cart</button>
+                <div class="timer-box">
+                    <span id="hours">00</span>
+                    <small>Hours</small>
+                </div>
+                <div class="timer-box">
+                    <span id="minutes">00</span>
+                    <small>Minutes</small>
+                </div>
+                <div class="timer-box">
+                    <span id="seconds">00</span>
+                    <small>Seconds</small>
+                </div>
+            </div>
+            <p class="hurry-text">⚡ Hurry! Limited Stock Available ⚡</p>
+        </div>
+
+        <!-- ================= FLASH DEALS ================= -->
+        <div class="sale-category">
+            <h2 class="section-title">⚡ Flash Deals - Today Only!</h2>
+            <div class="product-grid">
+
+                <!-- Product 1 -->
+                <div class="product-card" data-id="product-sale-1"
+                    data-link="product.html?category=sale&slug=premium-silk-ethnic-set">
+                    <span class="discount-badge">70% OFF</span>
+                    <span class="flash-badge">FLASH</span>
+                    <div class="product-image">
+                        <img src="/Images/Category/western-wear.jpg" alt="Premium Silk Ethnic Set">
+                    </div>
+                    <div class="product-info">
+                        <h3>Premium Silk Ethnic Set - Clearance</h3>
+                        <p class="stock-info">⏰ Only 5 left in stock!</p>
+                        <div class="price">
+                            <span class="sale-price">₹1,499</span>
+                            <span class="original-price">₹4,999</span>
+                        </div>
+                        <div class="savings">You Save: ₹3,500</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card" data-id="product-sale-2"
+                    data-link="product.html?category=sale&slug=designer-embroidered-kurti-set">
+                    <span class="discount-badge">65% OFF</span>
+                    <span class="flash-badge">FLASH</span>
+                    <div class="product-image">
+                        <img src="/Images/Category/western-wear.jpg" alt="Designer Embroidered Kurti Set">
+                    </div>
+                    <div class="product-info">
+                        <h3>Designer Embroidered Kurti Set</h3>
+                        <p class="stock-info">⏰ Only 8 left in stock!</p>
+                        <div class="price">
+                            <span class="sale-price">₹1,749</span>
+                            <span class="original-price">₹4,999</span>
+                        </div>
+                        <div class="savings">You Save: ₹3,250</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card" data-id="product-sale-3"
+                    data-link="product.html?category=sale&slug=cotton-printed-maxi-dress">
+                    <span class="discount-badge">60% OFF</span>
+                    <span class="flash-badge">FLASH</span>
+                    <div class="product-image">
+                        <img src="/Images/Category/western-wear.jpg" alt="Cotton Printed Maxi Dress">
+                    </div>
+                    <div class="product-info">
+                        <h3>Cotton Printed Maxi Dress</h3>
+                        <p class="stock-info">⏰ Only 12 left in stock!</p>
+                        <div class="price">
+                            <span class="sale-price">₹999</span>
+                            <span class="original-price">₹2,499</span>
+                        </div>
+                        <div class="savings">You Save: ₹1,500</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card" data-id="product-sale-4"
+                    data-link="product.html?category=sale&slug=festive-anarkali-suit">
+                    <span class="discount-badge">55% OFF</span>
+                    <span class="flash-badge">FLASH</span>
+                    <div class="product-image">
+                        <img src="/Images/Category/western-wear.jpg" alt="Festive Anarkali Suit">
+                    </div>
+                    <div class="product-info">
+                        <h3>Festive Anarkali Suit with Dupatta</h3>
+                        <p class="stock-info">⏰ Only 6 left in stock!</p>
+                        <div class="price">
+                            <span class="sale-price">₹2,249</span>
+                            <span class="original-price">₹4,999</span>
+                        </div>
+                        <div class="savings">You Save: ₹2,750</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
             </div>
         </div>
 
-        <!-- Add remaining products the same way as in your original page -->
+        <!-- ================= HOT DEALS ================= -->
+        <div class="sale-category">
+            <h2 class="section-title">🔥 Hot Deals</h2>
+            <div class="product-grid">
+
+                <!-- Product 5 -->
+                <div class="product-card" data-id="product-sale-5"
+                    data-link="product.html?category=sale&slug=printed-aline-kurta-palazzo">
+                    <span class="discount-badge">50% OFF</span>
+                    <div class="product-image">
+                        <img src="/Images/Category/western-wear.jpg" alt="Printed A-Line Kurta Palazzo">
+                    </div>
+                    <div class="product-info">
+                        <h3>Printed A-Line Kurta with Palazzo</h3>
+                        <div class="price">
+                            <span class="sale-price">₹1,499</span>
+                            <span class="original-price">₹2,999</span>
+                        </div>
+                        <div class="savings">You Save: ₹1,500</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card" data-id="product-sale-6"
+                    data-link="product.html?category=sale&slug=floral-coord-set">
+                    <span class="discount-badge">45% OFF</span>
+                    <div class="product-image">
+                        <img src="/Images/Category/western-wear.jpg" alt="Floral Co-ord Set">
+                    </div>
+                    <div class="product-info">
+                        <h3>Floral Co-ord Set - Summer Collection</h3>
+                        <div class="price">
+                            <span class="sale-price">₹1,099</span>
+                            <span class="original-price">₹1,999</span>
+                        </div>
+                        <div class="savings">You Save: ₹900</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-card" data-id="product-sale-7"
+                    data-link="product.html?category=sale&slug=georgette-saree-blouse">
+                    <span class="discount-badge">50% OFF</span>
+                    <div class="product-image">
+                        <img src="/Images/Category/western-wear.jpg" alt="Georgette Saree">
+                    </div>
+                    <div class="product-info">
+                        <h3>Georgette Saree with Blouse</h3>
+                        <div class="price">
+                            <span class="sale-price">₹1,999</span>
+                            <span class="original-price">₹3,999</span>
+                        </div>
+                        <div class="savings">You Save: ₹2,000</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-card" data-id="product-sale-8"
+                    data-link="product.html?category=sale&slug=embellished-party-gown">
+                    <span class="discount-badge">40% OFF</span>
+                    <div class="product-image">
+                        <img src="/Images/Category/western-wear.jpg" alt="Embellished Party Gown">
+                    </div>
+                    <div class="product-info">
+                        <h3>Embellished Party Wear Gown</h3>
+                        <div class="price">
+                            <span class="sale-price">₹2,999</span>
+                            <span class="original-price">₹4,999</span>
+                        </div>
+                        <div class="savings">You Save: ₹2,000</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 9 -->
+                <div class="product-card" data-id="product-sale-9"
+                    data-link="product.html?category=sale&slug=rayon-straight-kurti-pack">
+                    <span class="discount-badge">45% OFF</span>
+                    <div class="product-image">
+                        <img src="/Images/Category/western-wear.jpg" alt="Rayon Straight Kurti Pack">
+                    </div>
+                    <div class="product-info">
+                        <h3>Rayon Straight Kurti - Pack of 2</h3>
+                        <div class="price">
+                            <span class="sale-price">₹1,649</span>
+                            <span class="original-price">₹2,999</span>
+                        </div>
+                        <div class="savings">You Save: ₹1,350</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 10 -->
+                <div class="product-card" data-id="product-sale-10"
+                    data-link="product.html?category=sale&slug=cotton-blend-churidar-set">
+                    <span class="discount-badge">50% OFF</span>
+                    <div class="product-image">
+                        <img src="/Images/Category/western-wear.jpg" alt="Cotton Blend Churidar Set">
+                    </div>
+                    <div class="product-info">
+                        <h3>Cotton Blend Churidar Set</h3>
+                        <div class="price">
+                            <span class="sale-price">₹1,249</span>
+                            <span class="original-price">₹2,499</span>
+                        </div>
+                        <div class="savings">You Save: ₹1,250</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= CLEARANCE ================= -->
+        <div class="sale-category">
+            <h2 class="section-title">🎯 Stock Clearance - Lowest Prices!</h2>
+            <div class="product-grid">
+
+                <!-- Product 11 -->
+                <div class="product-card" data-id="product-sale-11"
+                    data-link="product.html?category=sale&slug=winter-shawl-collection">
+                    <span class="discount-badge">70% OFF</span>
+                    <span class="clearance-badge">CLEARANCE</span>
+                    <div class="product-image">
+                        <img src="/Images/Category/western-wear.jpg" alt="Winter Shawl">
+                    </div>
+                    <div class="product-info">
+                        <h3>Winter Shawl Collection</h3>
+                        <div class="price">
+                            <span class="sale-price">₹599</span>
+                            <span class="original-price">₹1,999</span>
+                        </div>
+                        <div class="savings">You Save: ₹1,400</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 12 -->
+                <div class="product-card" data-id="product-sale-12"
+                    data-link="product.html?category=sale&slug=casual-tunic-tops">
+                    <span class="discount-badge">65% OFF</span>
+                    <span class="clearance-badge">CLEARANCE</span>
+                    <div class="product-image">
+                        <img src="/Images/Category/western-wear.jpg" alt="Casual Tunic Tops">
+                    </div>
+                    <div class="product-info">
+                        <h3>Casual Tunic Tops - Set of 3</h3>
+                        <div class="price">
+                            <span class="sale-price">₹899</span>
+                            <span class="original-price">₹2,599</span>
+                        </div>
+                        <div class="savings">You Save: ₹1,700</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 13 -->
+                <div class="product-card" data-id="product-sale-13"
+                    data-link="product.html?category=sale&slug=night-suit-combo">
+                    <span class="discount-badge">60% OFF</span>
+                    <span class="clearance-badge">CLEARANCE</span>
+                    <div class="product-image">
+                        <img src="/Images/Category/western-wear.jpg" alt="Night Suit Combo">
+                    </div>
+                    <div class="product-info">
+                        <h3>Night Suit Combo Pack</h3>
+                        <div class="price">
+                            <span class="sale-price">₹799</span>
+                            <span class="original-price">₹1,999</span>
+                        </div>
+                        <div class="savings">You Save: ₹1,200</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 14 -->
+                <div class="product-card" data-id="product-sale-14"
+                    data-link="product.html?category=sale&slug=ethnic-dupatta-collection">
+                    <span class="discount-badge">55% OFF</span>
+                    <span class="clearance-badge">CLEARANCE</span>
+                    <div class="product-image">
+                        <img src="/Images/Category/western-wear.jpg" alt="Ethnic Dupatta Collection">
+                    </div>
+                    <div class="product-info">
+                        <h3>Ethnic Dupatta Collection</h3>
+                        <div class="price">
+                            <span class="sale-price">₹449</span>
+                            <span class="original-price">₹999</span>
+                        </div>
+                        <div class="savings">You Save: ₹550</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Sale Benefits -->
+        <div class="sale-benefits">
+            <div class="benefit-card">
+                <div class="benefit-icon">🎁</div>
+                <h3>Free Gift Wrapping</h3>
+                <p>On all sale items</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🚚</div>
+                <h3>Free Shipping</h3>
+                <p>No minimum order</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🔄</div>
+                <h3>Easy Returns</h3>
+                <p>Within 7 days</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💳</div>
+                <h3>EMI Available</h3>
+                <p>Starting ₹500/month</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/918949120920" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+        <svg viewBox="0 0 32 32" fill="white" width="28" height="28">
+            <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 8.167-2.113c2.325 1.27 4.925 1.947 7.833 1.947 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.275 1.362 1.412-5.25-0.32-0.525c-1.341-2.194-2.051-4.73-2.051-7.359 0-7.72 6.28-14 14-14s14 6.28 14 14-6.28 14-14 14zM23.293 19.943c-0.396-0.199-2.348-1.158-2.713-1.291s-0.628-0.199-0.893 0.199c-0.265 0.398-1.026 1.291-1.259 1.556s-0.463 0.298-0.859 0.099c-2.219-1.108-3.674-1.975-5.134-4.475-0.387-0.662 0.387-0.615 1.108-2.050 0.121-0.265 0.060-0.496-0.034-0.695-0.094-0.199-0.893-2.151-1.224-2.945-0.322-0.774-0.649-0.669-0.893-0.681-0.231-0.012-0.496-0.015-0.76-0.015s-0.694 0.099-1.058 0.496c-0.364 0.398-1.388 1.357-1.388 3.308s1.421 3.836 1.619 4.101c0.199 0.265 2.799 4.272 6.781 5.989 2.51 1.079 3.494 1.148 4.748 0.968 0.762-0.109 2.348-0.96 2.679-1.888s0.331-1.723 0.232-1.888c-0.099-0.165-0.364-0.265-0.76-0.464z"/>
+        </svg>
+    </a>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-box">
+            <h2>🛒 Your Cart</h2>
+            <div id="cart-items"></div>
+            <div class="cart-footer">
+                <strong id="cart-total"></strong>
+                <div class="cart-actions">
+                    <button onclick="closeCart()">Close</button>
+                    <button class="whatsapp-btn" onclick="openWhatsAppOrder()">Order on WhatsApp</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-</section>
+    <!-- ✅ FOOTER COMPONENT -->
+    <div id="footer-placeholder"></div>
 
-<script>
-/* ----------------------------
-   SALE TIMER FUNCTIONALITY
------------------------------*/
-function startSaleTimer() {
-    const endDate = new Date();
-    endDate.setDate(endDate.getDate() + 3);
+    <script src="Sale/sale.js"></script>
+    <script src="/js/cart.js"></script>
+    <script>
+        document.querySelectorAll(".product-card").forEach(card => {
+            card.addEventListener("click", e => {
+                if (e.target.classList.contains("add-to-cart")) return;
+                window.location.href = card.dataset.link;
+            });
+        });
+    </script>
 
-    function updateTimer() {
-        const now = new Date().getTime();
-        const distance = endDate - now;
-
-        document.getElementById('days').textContent = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
-        document.getElementById('hours').textContent = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-        document.getElementById('minutes').textContent = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-        document.getElementById('seconds').textContent = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
-    }
-
-    updateTimer();
-    setInterval(updateTimer, 1000);
-}
-
-startSaleTimer();
-</script>
-<script src="../js/cart.js"></script>
-<!-- CART MODAL -->
-<div id="cart-modal" class="cart-modal">
-  <div class="cart-box">
-    <h2>🛒 Your Cart</h2>
-    <div id="cart-items"></div>
-
-    <div class="cart-footer">
-      <strong id="cart-total"></strong>
-      <div class="cart-actions">
-        <button onclick="closeCart()">Close</button>
-        <button class="whatsapp-btn" onclick="openWhatsAppOrder()">
-          Order on WhatsApp
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
+    <!-- ✅ LOAD HEADER & FOOTER -->
+    <script>
+        // Load Header
+        fetch('../includes/header.html')
+            .then(response => {
+                if (!response.ok) throw new Error('Header not found');
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+                initializeHeaderAfterLoad();
+                updateCartCount();
+            })
+            .catch(error => console.error('Error loading header:', error));
+        
+        // Load Footer
+        fetch('../includes/footer.html')
+            .then(response => {
+                if (!response.ok) throw new Error('Footer not found');
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error));
+        
+        // Initialize header functionality after dynamic load
+        function initializeHeaderAfterLoad() {
+            const menuBtn = document.getElementById("menuBtn");
+            const mobileNav = document.getElementById("mobileNav");
+            
+            if (menuBtn && mobileNav) {
+                menuBtn.addEventListener("click", () => {
+                    mobileNav.classList.toggle("active");
+                });
+                
+                document.querySelectorAll(".mobile-nav a:not(#saleLinkMobile)").forEach(link => {
+                    link.addEventListener("click", () => {
+                        mobileNav.classList.remove("active");
+                    });
+                });
+            }
+            
+            // Mobile dropdown
+            document.querySelectorAll(".mobile-dropdown > span").forEach(span => {
+                span.addEventListener("click", function (e) {
+                    e.stopPropagation();
+                    const submenu = this.nextElementSibling;
+                    document.querySelectorAll(".mobile-submenu").forEach(menu => {
+                        if (menu !== submenu) menu.classList.remove("open");
+                    });
+                    submenu.classList.toggle("open");
+                });
+            });
+        }
+    </script>
 </body>
 </html>
