@@ -101,17 +101,10 @@ nav {
 }
 
 .sale-link {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center;
-    padding: 6px 16px;
-    background: linear-gradient(135deg, #ff6b6b, #ff8787);
-    color: white !important;
-    border-radius: 25px;
-    font-weight: 700;
-    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-    animation: salePulse 2s ease-in-out infinite;
+    box-shadow: none;
+    animation: none;
 }
+
 
 .sale-link.active {
     background: linear-gradient(135deg, #ff5252, #ff6b6b);

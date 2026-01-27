@@ -436,11 +436,13 @@
             });
             
             // Close menu when clicking links
-            document.querySelectorAll(".mobile-nav a:not(#saleLinkMobile)").forEach(link => {
-                link.addEventListener("click", () => {
-                    mobileNav.classList.remove("active");
-                });
-            });
+document.querySelectorAll(".mobile-nav a").forEach(link => {
+    link.addEventListener("click", () => {
+        mobileNav.classList.remove("active");
+    });
+});
+
+
         }
         
         // Mobile dropdown

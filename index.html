@@ -2029,39 +2029,11 @@
 }
 
     /* Sale Page Styles (keeping your existing ones) */
-    .sale-page {
-        display: none;
-        margin-top: 120px;
-        padding: 4rem 5%;
-        background: var(--cream);
-        min-height: 100vh;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.4s ease;
-    }
-
+  
     .sale-page.active {
         opacity: 1;
         transform: translateY(0);
     }
-
-   .sale-header {
-    text-align: center;
-    margin-bottom: 3rem;
-    padding: 3rem 2rem;
-
-    background:
-        url('./Sale/Images/img1.jpg');   /* <-- Add your image here */
-
-    background-size: cover;
-    background-position: center;
-
-    border-radius: 20px;
-    color: white;
-    box-shadow: 0 15px 50px rgba(212, 89, 59, 0.3);
-    position: relative;
-    overflow: hidden;
-}
 
 
     .sale-header::before {
@@ -2093,26 +2065,6 @@
         opacity: 0.95;
         position: relative;
         z-index: 1;
-    }
-
-    .sale-timer {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        margin-top: 2rem;
-        flex-wrap: wrap;
-        position: relative;
-        z-index: 1;
-    }
-
-    .timer-box {
-        background: rgba(255, 255, 255, 0.25);
-        backdrop-filter: blur(10px);
-        padding: 1.5rem;
-        border-radius: 15px;
-        min-width: 100px;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        transition: all 0.3s;
     }
 
     .timer-box:hover {
@@ -2191,38 +2143,9 @@
         50% { opacity: 0.7; }
     }
 
-    .flash-badge {
-        position: absolute;
-        top: 15px;
-        left: 15px;
-        background: linear-gradient(135deg, #FFD700, #FFA500);
-        color: #000;
-        padding: 0.4rem 0.8rem;
-        border-radius: 15px;
-        font-weight: 900;
-        font-size: 0.75rem;
-        z-index: 2;
-        animation: flashPulse 1s infinite;
-        box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
-    }
-
     @keyframes flashPulse {
         0%, 100% { transform: scale(1); box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5); }
         50% { transform: scale(1.1); box-shadow: 0 6px 15px rgba(255, 215, 0, 0.8); }
-    }
-
-    .clearance-badge {
-        position: absolute;
-        top: 55px;
-        right: 15px;
-        background: linear-gradient(135deg, #8B0000, #DC143C);
-        color: white;
-        padding: 0.4rem 0.8rem;
-        border-radius: 15px;
-        font-weight: 700;
-        font-size: 0.7rem;
-        z-index: 2;
-        box-shadow: 0 4px 10px rgba(139, 0, 0, 0.5);
     }
 
     .stock-info {
@@ -2269,22 +2192,7 @@
         box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
     }
 
-    .sale-category {
-        margin: 4rem 0;
-        animation: fadeInUp 0.6s ease;
-    }
 
-    .sale-benefits {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        max-width: 1400px;
-        margin: 4rem auto;
-        padding: 3rem;
-        background: white;
-        border-radius: 20px;
-        box-shadow: 0 10px 40px rgba(212, 89, 59, 0.15);
-    }
 
     .benefit-card {
         text-align: center;
@@ -2375,11 +2283,11 @@
 
    <li><a href="./Ethnic-wear/Affordable-collection.html">Must-Haves</a>
                 <!-- <li><a href="#coords">Co-ords</a></li> -->
-                <li><a href="#sale" class="sale-link" id="saleLink">
-    <span>Sale 🔥</span>
-    
-
+                <li>
+                    <a href="/Sale/sale.html" class="sale-link">
+  <span>Sale 🔥</span>
 </a>
+
 </li>
 
 <li><a href="#about-us">About Us</a></li>
@@ -2432,351 +2340,7 @@
         
     </header>
 
-    <!-- Sale Page -->
-    <section class="sale-page" id="salePage">
-        <button class="back-button" id="backButton">
-            ← Back to Home
-        </button>
-        
-        <div class="sale-header">
-            <div class="sale-badge">MEGA SALE</div>
-            <h1>🔥 End of Season Clearance 🔥</h1>
-            <p class="sale-subtitle">Up to 70% OFF on Selected Items | Limited Time Only!</p>
-            <div class="sale-timer">
-                <div class="timer-box">
-                    <span id="days">00</span>
-                    <small>Days</small>
-                </div>
-                <div class="timer-box">
-                    <span id="hours">00</span>
-                    <small>Hours</small>
-                </div>
-                <div class="timer-box">
-                    <span id="minutes">00</span>
-                    <small>Minutes</small>
-                </div>
-                <div class="timer-box">
-                    <span id="seconds">00</span>
-                    <small>Seconds</small>
-                </div>
-            </div>
-            <p class="hurry-text">⚡ Hurry! Limited Stock Available ⚡</p>
-        </div>
-
-    <!-- ================= FLASH DEALS ================= -->
-<div class="sale-category">
-  <h2 class="section-title">⚡ Flash Deals - Today Only!</h2>
-  <div class="product-grid">
-
-    <!-- 1 -->
-    <div class="product-card" data-id="product-sale-1"
-      data-link="./product.html?category=sale&slug=premium-silk-ethnic-set">
-      <span class="discount-badge">70% OFF</span>
-      <span class="flash-badge">FLASH</span>
-      <div class="product-image">
-        <img src="./Images/Category/western-wear.jpg" alt="Premium Silk Ethnic Set">
-      </div>
-      <div class="product-info">
-        <h3>Premium Silk Ethnic Set - Clearance</h3>
-        <p class="stock-info">⏰ Only 5 left in stock!</p>
-        <div class="price">
-          <span class="sale-price">₹1,499</span>
-          <span class="original-price">₹4,999</span>
-        </div>
-        <div class="savings">You Save: ₹3,500</div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
-    <!-- 2 -->
-    <div class="product-card" data-id="product-sale-2"
-      data-link="./product.html?category=sale&slug=designer-embroidered-kurti-set">
-      <span class="discount-badge">65% OFF</span>
-      <span class="flash-badge">FLASH</span>
-      <div class="product-image">
-        <img src="./Images/Category/western-wear.jpg" alt="Designer Embroidered Kurti Set">
-      </div>
-      <div class="product-info">
-        <h3>Designer Embroidered Kurti Set</h3>
-        <p class="stock-info">⏰ Only 8 left in stock!</p>
-        <div class="price">
-          <span class="sale-price">₹1,749</span>
-          <span class="original-price">₹4,999</span>
-        </div>
-        <div class="savings">You Save: ₹3,250</div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
-    <!-- 3 -->
-    <div class="product-card" data-id="product-sale-3"
-      data-link="./product.html?category=sale&slug=cotton-printed-maxi-dress">
-      <span class="discount-badge">60% OFF</span>
-      <span class="flash-badge">FLASH</span>
-      <div class="product-image">
-        <img src="./Images/Category/western-wear.jpg" alt="Cotton Printed Maxi Dress">
-      </div>
-      <div class="product-info">
-        <h3>Cotton Printed Maxi Dress</h3>
-        <p class="stock-info">⏰ Only 12 left in stock!</p>
-        <div class="price">
-          <span class="sale-price">₹999</span>
-          <span class="original-price">₹2,499</span>
-        </div>
-        <div class="savings">You Save: ₹1,500</div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
-    <!-- 4 -->
-    <div class="product-card" data-id="product-sale-4"
-      data-link="./product.html?category=sale&slug=festive-anarkali-suit">
-      <span class="discount-badge">55% OFF</span>
-      <span class="flash-badge">FLASH</span>
-      <div class="product-image">
-        <img src="./Images/Category/western-wear.jpg" alt="Festive Anarkali Suit">
-      </div>
-      <div class="product-info">
-        <h3>Festive Anarkali Suit with Dupatta</h3>
-        <p class="stock-info">⏰ Only 6 left in stock!</p>
-        <div class="price">
-          <span class="sale-price">₹2,249</span>
-          <span class="original-price">₹4,999</span>
-        </div>
-        <div class="savings">You Save: ₹2,750</div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ================= HOT DEALS ================= -->
-<div class="sale-category">
-  <h2 class="section-title">🔥 Hot Deals</h2>
-  <div class="product-grid">
-
-    <!-- 5 -->
-    <div class="product-card" data-id="product-sale-5"
-      data-link="./product.html?category=sale&slug=printed-aline-kurta-palazzo">
-      <span class="discount-badge">50% OFF</span>
-      <div class="product-image">
-        <img src="./Images/Category/western-wear.jpg" alt="Printed A-Line Kurta Palazzo">
-      </div>
-      <div class="product-info">
-        <h3>Printed A-Line Kurta with Palazzo</h3>
-        <div class="price">
-          <span class="sale-price">₹1,499</span>
-          <span class="original-price">₹2,999</span>
-        </div>
-        <div class="savings">You Save: ₹1,500</div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
-    <!-- 6 -->
-    <div class="product-card" data-id="product-sale-6"
-      data-link="./product.html?category=sale&slug=floral-coord-set">
-      <span class="discount-badge">45% OFF</span>
-      <div class="product-image">
-        <img src="./Images/Category/western-wear.jpg" alt="Floral Co-ord Set">
-      </div>
-      <div class="product-info">
-        <h3>Floral Co-ord Set - Summer Collection</h3>
-        <div class="price">
-          <span class="sale-price">₹1,099</span>
-          <span class="original-price">₹1,999</span>
-        </div>
-        <div class="savings">You Save: ₹900</div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
-    <!-- 7 -->
-    <div class="product-card" data-id="product-sale-7"
-      data-link="./product.html?category=sale&slug=georgette-saree-blouse">
-      <span class="discount-badge">50% OFF</span>
-      <div class="product-image">
-        <img src="./Images/Category/western-wear.jpg" alt="Georgette Saree">
-      </div>
-      <div class="product-info">
-        <h3>Georgette Saree with Blouse</h3>
-        <div class="price">
-          <span class="sale-price">₹1,999</span>
-          <span class="original-price">₹3,999</span>
-        </div>
-        <div class="savings">You Save: ₹2,000</div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
-    <!-- 8 -->
-    <div class="product-card" data-id="product-sale-8"
-      data-link="./product.html?category=sale&slug=embellished-party-gown">
-      <span class="discount-badge">40% OFF</span>
-      <div class="product-image">
-        <img src="./Images/Category/western-wear.jpg" alt="Embellished Party Gown">
-      </div>
-      <div class="product-info">
-        <h3>Embellished Party Wear Gown</h3>
-        <div class="price">
-          <span class="sale-price">₹2,999</span>
-          <span class="original-price">₹4,999</span>
-        </div>
-        <div class="savings">You Save: ₹2,000</div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
-    <!-- 9 -->
-    <div class="product-card" data-id="product-sale-9"
-      data-link="./product.html?category=sale&slug=rayon-straight-kurti-pack">
-      <span class="discount-badge">45% OFF</span>
-      <div class="product-image">
-        <img src="./Images/Category/western-wear.jpg" alt="Rayon Straight Kurti Pack">
-      </div>
-      <div class="product-info">
-        <h3>Rayon Straight Kurti - Pack of 2</h3>
-        <div class="price">
-          <span class="sale-price">₹1,649</span>
-          <span class="original-price">₹2,999</span>
-        </div>
-        <div class="savings">You Save: ₹1,350</div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
-    <!-- 10 -->
-    <div class="product-card" data-id="product-sale-10"
-      data-link="./product.html?category=sale&slug=cotton-blend-churidar-set">
-      <span class="discount-badge">50% OFF</span>
-      <div class="product-image">
-        <img src="./Images/Category/western-wear.jpg" alt="Cotton Blend Churidar Set">
-      </div>
-      <div class="product-info">
-        <h3>Cotton Blend Churidar Set</h3>
-        <div class="price">
-          <span class="sale-price">₹1,249</span>
-          <span class="original-price">₹2,499</span>
-        </div>
-        <div class="savings">You Save: ₹1,250</div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ================= CLEARANCE ================= -->
-<div class="sale-category">
-  <h2 class="section-title">🎯 Stock Clearance - Lowest Prices!</h2>
-  <div class="product-grid">
-
-    <!-- 11 -->
-    <div class="product-card" data-id="product-sale-11"
-      data-link="./product.html?category=sale&slug=winter-shawl-collection">
-      <span class="discount-badge">70% OFF</span>
-      <span class="clearance-badge">CLEARANCE</span>
-      <div class="product-image">
-        <img src="./Images/Category/western-wear.jpg" alt="Winter Shawl">
-      </div>
-      <div class="product-info">
-        <h3>Winter Shawl Collection</h3>
-        <div class="price">
-          <span class="sale-price">₹599</span>
-          <span class="original-price">₹1,999</span>
-        </div>
-        <div class="savings">You Save: ₹1,400</div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
-    <!-- 12 -->
-    <div class="product-card" data-id="product-sale-12"
-      data-link="./product.html?category=sale&slug=casual-tunic-tops">
-      <span class="discount-badge">65% OFF</span>
-      <span class="clearance-badge">CLEARANCE</span>
-      <div class="product-image">
-        <img src="./Images/Category/western-wear.jpg" alt="Casual Tunic Tops">
-      </div>
-      <div class="product-info">
-        <h3>Casual Tunic Tops - Set of 3</h3>
-        <div class="price">
-          <span class="sale-price">₹899</span>
-          <span class="original-price">₹2,599</span>
-        </div>
-        <div class="savings">You Save: ₹1,700</div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
-    <!-- 13 -->
-    <div class="product-card" data-id="product-sale-13"
-      data-link="./product.html?category=sale&slug=night-suit-combo">
-      <span class="discount-badge">60% OFF</span>
-      <span class="clearance-badge">CLEARANCE</span>
-      <div class="product-image">
-        <img src="./Images/Category/western-wear.jpg" alt="Night Suit Combo">
-      </div>
-      <div class="product-info">
-        <h3>Night Suit Combo Pack</h3>
-        <div class="price">
-          <span class="sale-price">₹799</span>
-          <span class="original-price">₹1,999</span>
-        </div>
-        <div class="savings">You Save: ₹1,200</div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
-    <!-- 14 -->
-    <div class="product-card" data-id="product-sale-14"
-      data-link="./product.html?category=sale&slug=ethnic-dupatta-collection">
-      <span class="discount-badge">55% OFF</span>
-      <span class="clearance-badge">CLEARANCE</span>
-      <div class="product-image">
-        <img src="./Images/Category/western-wear.jpg" alt="Ethnic Dupatta Collection">
-      </div>
-      <div class="product-info">
-        <h3>Ethnic Dupatta Collection</h3>
-        <div class="price">
-          <span class="sale-price">₹449</span>
-          <span class="original-price">₹999</span>
-        </div>
-        <div class="savings">You Save: ₹550</div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-
-        <!-- Sale Benefits -->
-        <div class="sale-benefits">
-            <div class="benefit-card">
-                <div class="benefit-icon">🎁</div>
-                <h3>Free Gift Wrapping</h3>
-                <p>On all sale items</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">🚚</div>
-                <h3>Free Shipping</h3>
-                <p>No minimum order</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">🔄</div>
-                <h3>Easy Returns</h3>
-                <p>Within 7 days</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">💳</div>
-                <h3>EMI Available</h3>
-                <p>Starting ₹500/month</p>
-            </div>
-        </div>
-    </section>
+   
 
     <!-- Main Page Content -->
     <section class="hero" id="home">
@@ -3425,122 +2989,6 @@
             });
         }
 
-        // Sale Page Navigation with Smooth Transition
-        document.addEventListener('DOMContentLoaded', function() {
-            const saleLink = document.getElementById('saleLink');
-            const salePage = document.getElementById('salePage');
-            const backButton = document.getElementById('backButton');
-            const mainSections = document.querySelectorAll('.hero, .categories, .products, .stories-section, .reels-section, .reviews-section, .features');
-
-            if (saleLink) {
-                saleLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    // Add fade out effect to main content
-                    mainSections.forEach(section => {
-                        section.style.opacity = '0';
-                        section.style.transform = 'translateY(20px)';
-                        section.style.transition = 'all 0.4s ease';
-                    });
-                    
-                    // After fade out, hide main content and show sale page
-                    setTimeout(() => {
-                        mainSections.forEach(section => {
-                            section.style.display = 'none';
-                        });
-                        
-                        // Show sale page with fade in effect
-                        salePage.style.display = 'block';
-                        salePage.classList.add('active');
-                        
-                        // Trigger fade in animation
-                        setTimeout(() => {
-                            salePage.style.opacity = '1';
-                            salePage.style.transform = 'translateY(0)';
-                        }, 50);
-                        
-                        // Scroll to top smoothly
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }, 400);
-                });
-            }
-
-            if (backButton) {
-                backButton.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    
-                    // Add fade out effect to sale page
-                    salePage.style.opacity = '0';
-                    salePage.style.transform = 'translateY(20px)';
-                    salePage.style.transition = 'all 0.4s ease';
-                    
-                    // After fade out, hide sale page and show main content
-                    setTimeout(() => {
-                        salePage.classList.remove('active');
-                        salePage.style.display = 'none';
-                        
-                        // Show and fade in main content
-                        mainSections.forEach(section => {
-                            section.style.display = '';
-                            section.style.opacity = '0';
-                            section.style.transform = 'translateY(20px)';
-                        });
-                        
-                        // Trigger fade in animation
-                        setTimeout(() => {
-                            mainSections.forEach(section => {
-                                section.style.opacity = '1';
-                                section.style.transform = 'translateY(0)';
-                                section.style.transition = 'all 0.4s ease';
-                            });
-                        }, 50);
-                        
-                        // Scroll to top smoothly
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }, 400);
-                });
-            }
-
-            // Sale Timer Countdown
-            function startSaleTimer() {
-                const endDate = new Date();
-                endDate.setDate(endDate.getDate() + 3); // 3 days from now
-                
-                function updateTimer() {
-                    const now = new Date().getTime();
-                    const distance = endDate - now;
-                    
-                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                    
-                    const daysEl = document.getElementById('days');
-                    const hoursEl = document.getElementById('hours');
-                    const minutesEl = document.getElementById('minutes');
-                    const secondsEl = document.getElementById('seconds');
-                    
-                    if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
-                    if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
-                    if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
-                    if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
-                    
-                    if (distance < 0) {
-                        clearInterval(timerInterval);
-                        const timerEl = document.querySelector('.sale-timer');
-                        if (timerEl) {
-                            timerEl.innerHTML = '<h2 style="color: white;">Sale Ended!</h2>';
-                        }
-                    }
-                }
-                
-                updateTimer();
-                const timerInterval = setInterval(updateTimer, 1000);
-            }
-
-            startSaleTimer();
-        });
 
     </script>
      <!-- ✅ ADD QUICK VIEW MODAL HERE -->
