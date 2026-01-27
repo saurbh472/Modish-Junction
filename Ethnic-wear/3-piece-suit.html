@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="../css/cart-ui.css">
-     <link rel="stylesheet" href="../css/whatsapp-float.css">
-      <link rel="stylesheet" href="./css/responsive.css">
+    
+    <link rel="stylesheet" href="../css/header-styles.css">
+    <link rel="stylesheet" href="../css/footer-styles.css">
+    
+    <!-- Other Styles -->
+    <link rel="stylesheet" href="../css/cart-ui.css">
+    <link rel="stylesheet" href="../css/whatsapp-float.css">
+    <link rel="stylesheet" href="./css/responsive.css">
 
     <title>3 Piece Suit - Modish Junction</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -233,26 +238,8 @@
 
 <body>
 
-<header>
-    <div class="top-bar">✨ Luxury 3 Piece Suits Available Now | Free Shipping Above ₹999 ✨</div>
-
-    <nav>
-        <div class="logo-container">
-            <img src="../Header-Logo/Header-logo3.png" class="logo-img">
-            <span class="logo-text">Modish Junction</span>
-        </div>
-
-      <ul class="nav-links">
-    <li><a href="../index.html">Home</a></li>
-    <li><a href="../index.html#trending">Shop</a></li>
-    <li><a href="../index.html#sale">Sale</a></li>
-    <li onclick="openCart()" style="cursor:pointer">
-        🛒 <small id="cart-count">0</small>
-    </li>
-</ul>
-
-    </nav>
-</header>
+     <!-- ✅ HEADER COMPONENT -->
+    <div id="header-placeholder"></div>
 
 <a href="../index.html" class="back-home">← Back to Home</a>
 
@@ -329,6 +316,7 @@
 
 
 </div>
+</div>
    <!-- Floating WhatsApp Button with direct contact -->
 <a href="https://wa.me/918949120920" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
         <svg viewBox="0 0 32 32" fill="white" width="28" height="28">
@@ -336,51 +324,66 @@
         </svg>
     </a>
 
-<script src="../js/cart.js"></script>
-
+    <!-- ✅ FOOTER COMPONENT -->
+    <div id="footer-placeholder"></div>
+    <!-- ✅ JAVASCRIPT FILES -->
+    <!-- Cart functionality -->
+    <script src="../js/cart.js"></script>
+    <!-- Header and Footer scripts -->
+    <script src="../js/header-footer-scripts.js"></script>
+    <!-- ✅ LOAD HEADER & FOOTER -->
 <script>
-  // Add to cart UI feedback (non-breaking)
-  document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', function (e) {
-      e.stopPropagation(); // prevent card navigation
-      this.textContent = '✓ Added!';
-      this.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-      setTimeout(() => {
-        this.textContent = 'Add to Cart';
-        this.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
-      }, 2000);
-    });
-  });
+    // Load Header
+    fetch('../includes/header.html')
+        .then(response => {
+            if (!response.ok) throw new Error('Header not found');
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById('header-placeholder').innerHTML = data;
+            initializeHeaderAfterLoad();
+            updateCartCount();
+        })
+        .catch(error => console.error('Error loading header:', error));
+
+    // Load Footer
+    fetch('../includes/footer.html')
+        .then(response => {
+            if (!response.ok) throw new Error('Footer not found');
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById('footer-placeholder').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading footer:', error));
+
+    function initializeHeaderAfterLoad() {
+        const menuBtn = document.getElementById("menuBtn");
+        const mobileNav = document.getElementById("mobileNav");
+
+        if (menuBtn && mobileNav) {
+            menuBtn.addEventListener("click", () => {
+                mobileNav.classList.toggle("active");
+            });
+
+            document.querySelectorAll(".mobile-nav a").forEach(link => {
+                link.addEventListener("click", () => {
+                    mobileNav.classList.remove("active");
+                });
+            });
+        }
+
+        document.querySelectorAll(".mobile-dropdown > span").forEach(span => {
+            span.addEventListener("click", function (e) {
+                e.stopPropagation();
+                const submenu = this.nextElementSibling;
+                document.querySelectorAll(".mobile-submenu").forEach(menu => {
+                    if (menu !== submenu) menu.classList.remove("open");
+                });
+                submenu.classList.toggle("open");
+            });
+        });
+    }
 </script>
-
-<script>
-  // Card click → product page
-  document.querySelectorAll(".product-card").forEach(card => {
-    card.addEventListener("click", e => {
-      if (e.target.classList.contains("add-to-cart")) return;
-      window.location.href = card.dataset.link;
-    });
-  });
-</script>
-
-
-<!-- CART MODAL -->
-<div id="cart-modal" class="cart-modal">
-  <div class="cart-box">
-    <h2>🛒 Your Cart</h2>
-    <div id="cart-items"></div>
-
-    <div class="cart-footer">
-      <strong id="cart-total"></strong>
-      <div class="cart-actions">
-        <button onclick="closeCart()">Close</button>
-        <button class="whatsapp-btn" onclick="openWhatsAppOrder()">
-          Order on WhatsApp
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
 </body>
 </html>
