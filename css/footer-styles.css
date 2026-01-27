@@ -56,7 +56,7 @@
 .footer {
     margin: 0 !important;
     padding-top: 3rem;
-    padding-bottom: 0 !important;
+    padding-bottom: 2rem !important;
 }
 
 .footer-section:hover h3::after {
@@ -230,6 +230,11 @@
     }
 }
 
+footer.footer {
+    display: block;
+}
+
+
 /* Cart Modal Styles */
 .cart-modal {
     display: none;
@@ -322,6 +327,13 @@
     cursor: pointer;
     transition: all 0.3s ease;
 }
+.footer p {
+    margin-bottom: 0;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
 
 .cart-actions button:first-child {
     background: #f0f0f0;
@@ -379,3 +391,11 @@
         flex-direction: column;
     }
 }
+/* .footer p,
+.footer-bottom p {
+    margin: 0;
+}
+
+.footer {
+    padding-bottom: 2rem;
+} */
