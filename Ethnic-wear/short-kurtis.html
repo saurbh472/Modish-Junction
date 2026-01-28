@@ -18,12 +18,39 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        :root {
-            --primary: #d4593b;
-            --secondary: #e89580;
-            --dark: #1a0e08;
-            --cream: #fffbf7;
-        }
+     /* Add these CSS variables that footer needs */
+:root {
+    --primary: #d4593b;
+    --primary-light: #e67a5f;
+    --secondary: #e89580;
+    --dark: #1a0e08;
+    --cream: #fffbf7;
+    --black: #1a0e08;  /* ADD THIS */
+    --accent: #F48FB1; /* ADD THIS - matches your page header */
+    --gold: #d4a574;   /* ADD THIS */
+}
+
+/* Force footer to display properly */
+footer, .footer {
+    background-color: #1a0e08 !important;
+    color: #fff !important;
+    display: block !important;
+    margin-top: 3rem;
+}
+
+.footer-section h3,
+.footer-section ul li a,
+.footer-section p {
+    color: #ccc !important;
+}
+
+.footer-section ul li a:hover {
+    color: #F48FB1 !important;
+}
+
+.footer-bottom {
+    color: #ccc !important;
+}
 
         body {
             font-family: "Segoe UI", sans-serif;
