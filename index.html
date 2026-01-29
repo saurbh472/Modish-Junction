@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="./css/cart-ui.css">
-     <link rel="stylesheet" href="./css/whatsapp-float.css">
-     <link rel="stylesheet" href="./css/responsive.css">
-
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="./css/cart-ui.css">
+    <link rel="stylesheet" href="./css/whatsapp-float.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    <link rel="stylesheet" href="./css/header-styles.css">
+    <link rel="stylesheet" href="./css/footer-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <title>Modish Junction - Where Comfort Meets Fashion</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
     <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -34,368 +38,7 @@
         background-color: var(--cream);
     }
 
-    /* Enhanced Header with Smooth Entry */
-    header {
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 1000;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        box-shadow: 0 4px 30px rgba(212, 89, 59, 0.15);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        border-bottom: 1px solid rgba(212, 89, 59, 0.1);
-        animation: slideDown 0.6s ease-out;
-    }
-
-    @keyframes slideDown {
-        from {
-            transform: translateY(-100%);
-            opacity: 0;
-        }
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-
-    header.scrolled {
-        background: rgba(255, 255, 255, 0.98);
-        box-shadow: 0 8px 40px rgba(212, 89, 59, 0.25);
-        padding: 0.5rem 0;
-    }
-
-    .top-bar {
-        background: linear-gradient(135deg, #d4593b 0%, #e89580 50%, #d4a574 100%);
-        color: white;
-        text-align: center;
-        padding: 10px;
-        font-size: 14px;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        position: relative;
-        overflow: visible;
-
-    }
-
-    .top-bar::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        animation: shine 3s infinite;
-    }
-
-    @keyframes shine {
-        0% { left: -100%; }
-        100% { left: 100%; }
-    }
-
-    nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1rem 5%;
-        max-width: 1400px;
-        margin: 0 auto;
-        transition: all 0.3s ease;
-    }
-
-    .logo-container {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        flex-shrink: 0;
-        animation: fadeInLeft 0.8s ease-out;
-    }
-
-    @keyframes fadeInLeft {
-        from {
-            opacity: 0;
-            transform: translateX(-30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    .logo-img { 
-        height: 65px; 
-        width: auto; 
-        object-fit: contain;
-        transition: transform 0.3s ease;
-    }
-
-    .logo-img:hover {
-        transform: scale(1.05) rotate(2deg);
-    }
-
-    .logo-text {
-        font-family: 'Playfair Display', serif;
-        font-weight: 800;
-        font-size: 1.9rem;
-        letter-spacing: 1px;
-        color: #b55437;
-        text-transform: uppercase;
-        line-height: 1;
-        transition: all 0.3s ease;
-    }
-
-    .logo-text:hover {
-        color: var(--primary);
-        text-shadow: 2px 2px 8px rgba(212, 89, 59, 0.3);
-    }
-
-    .nav-links {
-    display: flex;
-    list-style: none;
-    gap: 2.5rem;
-    align-items: center;
-    animation: fadeInRight 0.8s ease-out;
-}
-
-    @keyframes fadeInRight {
-        from {
-            opacity: 0;
-            transform: translateX(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    .nav-links a {
-    text-decoration: none;
-    color: var(--dark);
-    font-weight: 500;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    padding: 5px 0;
-    display: flex;               /* NEW */
-    align-items: center;         /* NEW */
-}
-
-
-    .nav-links a:hover { 
-        color: var(--primary);
-        transform: translateY(-2px);
-    }
-
-    .nav-links a::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 0;
-        height: 2px;
-        background: linear-gradient(90deg, var(--primary), var(--secondary));
-        transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .nav-links a:hover::after { width: 100%; }
-
-
-
-
-.sale-link {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center;
-    padding: 6px 16px;
-    height: 34px;
-    line-height: 1 !important;
-    
-}
-
-.sale-link span {
-    display: flex;
-    align-items: center;
-    height: 100%;
-}
-
-
-
-
-.popup-modal {
-    position: absolute;
-    z-index: 3000;
-    display: none;
-}
-
-.popup-modal.active {
-    display: block;
-}
-
-.popup-content {
-    background: #fff;
-    width: 320px;
-    padding: 18px 20px;
-    border-radius: 10px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-    position: relative;
-    animation: fadeIn 0.2s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-.close-btn {
-    position: absolute;
-    top: 8px;
-    right: 12px;
-    cursor: pointer;
-    font-size: 20px;
-}
-
-
-
-
-    .sale-link::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.3);
-        transform: translate(-50%, -50%);
-        transition: width 0.6s, height 0.6s;
-    }
-
-    .sale-link:hover::before {
-        width: 70px;
-        height: 70px;
-    }
-
-    .sale-link:hover {
-    transform: scale(1.08) translateY(-3px);
-    animation: none;
-}
-
-    .sale-link::after {
-        display: none;
-    }
-
-    @keyframes salePulse {
-        0%, 100% { 
-            transform: scale(1);
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-        }
-        50% { 
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
-        }
-    }
-
-    .dropdown { 
-    position: relative; 
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: white;
-    min-width: 200px;
-    box-shadow: 0 8px 30px rgba(181, 84, 55, 0.15);
-    border-radius: 8px;
-    padding: 1rem 0;
-    margin-top: 0.5rem;
-    z-index: 1000;
-}
-
-.dropdown:hover .dropdown-content { 
-    display: block;
-}
-
-    @keyframes fadeInDown {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .dropdown-content a {
-        display: block;
-        padding: 0.7rem 1.5rem;
-        color: var(--dark);
-        transition: all 0.3s ease;
-        border-left: 3px solid transparent;
-    }
-
-   .dropdown:hover .dropdown-content,
-.dropdown-content:hover {
-    display: block;
-}
-
-
-    .dropdown::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 20px; /* increase gap coverage */
-    background: transparent;
-}
-
-    .nav-icons {
-        display: flex;
-        gap: 1.5rem;
-        font-size: 1.2rem;
-        cursor: pointer;
-        color: var(--dark);
-    }
-
-    .nav-icons span {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-    }
-
-    .nav-icons span:hover {
-        color: var(--primary);
-        transform: scale(1.2) translateY(-3px);
-    }
-
-    .nav-icons span::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 0;
-        height: 2px;
-        background: var(--primary);
-        transition: width 0.3s ease;
-    }
-
-    .nav-icons span:hover::after {
-        width: 100%;
-    }
-
-    .mobile-menu {
-        display: none;
-        font-size: 1.5rem;
-        cursor: pointer;
-        color: var(--dark);
-    }
-
-    /* Enhanced Hero Section with Parallax Effect */
+    /* Hero Section */
     .hero {
         margin-top: 100px;
         height: 90vh;
@@ -415,19 +58,18 @@
         z-index: 0;
     }
 
- .hero-slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 2s ease-in-out;
-    background-size: cover;       /* ensures image fits without distortion */
-    background-repeat: no-repeat;
-    background-position: center;  /* centers image */
-    object-fit: cover;            /* optional */
-    filter: brightness(0.9);
-}
-
+    .hero-slide {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 2s ease-in-out;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        object-fit: cover;
+        filter: brightness(0.9);
+    }
 
     .hero-slide.active {
         opacity: 1;
@@ -445,26 +87,6 @@
         100% { 
             transform: scale(1.15) translateX(-20px);
             filter: brightness(0.95);
-        }
-    }
-
-/* .hero::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(181, 84, 55, 0.85) 0%, rgba(196, 116, 86, 0.75) 100%);
-    z-index: 1;
-    animation: gradientShift 8s ease-in-out infinite;
-} */
-
-
-    @keyframes gradientShift {
-        0%, 100% {
-            background: linear-gradient(135deg, rgba(181, 84, 55, 0.85) 0%, rgba(196, 116, 86, 0.75) 100%);
-        }
-        50% {
-            background: linear-gradient(135deg, rgba(196, 116, 86, 0.85) 0%, rgba(212, 89, 59, 0.75) 100%);
         }
     }
 
@@ -563,7 +185,7 @@
         z-index: 1;
     }
 
-    /* Enhanced Categories Section */
+    /* Categories Section */
     .categories { 
         padding: 5rem 5%; 
         background: var(--light);
@@ -697,21 +319,21 @@
     }
 
     .category-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 20px 20px 0 0; /* match top rounded corners */
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0; /* ensures gradient + animations work */
-}
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 20px 20px 0 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+    }
 
-.category-link {
-    text-decoration: none; 
-    color: inherit; 
-    display: block;
-}
+    .category-link {
+        text-decoration: none; 
+        color: inherit; 
+        display: block;
+    }
 
     .category-image::before {
         content: '';
@@ -773,7 +395,7 @@
         color: var(--dark);
     }
 
-    /* Enhanced Products Section */
+    /* Products Section */
     .products { 
         padding: 5rem 5%; 
         background: var(--cream);
@@ -796,6 +418,7 @@
         transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
         animation: fadeInUp 0.6s ease both;
+        cursor: pointer;
     }
 
     .product-card:nth-child(1) { animation-delay: 0.1s; }
@@ -846,6 +469,13 @@
         transition: all 0.5s ease;
         position: relative;
         overflow: hidden;
+    }
+
+    .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
     }
 
     .product-image::after {
@@ -955,7 +585,7 @@
         box-shadow: 0 8px 25px rgba(181, 84, 55, 0.5);
     }
 
-    /* Enhanced Stories Section */
+    /* Stories Section */
     .stories-section { 
         padding: 5rem 5%; 
         background: white; 
@@ -1043,7 +673,7 @@
         transform: scale(1.1);
     }
 
-    /* Enhanced Reels Section */
+    /* Reels Section */
     .reels-section { 
         padding: 5rem 5%; 
         background: var(--light); 
@@ -1181,7 +811,7 @@
     .reel-prev { left: 0; }
     .reel-next { right: 0; }
 
-    /* Enhanced Reviews Section */
+    /* Reviews Section */
     .reviews-section { 
         padding: 5rem 5%; 
         background: var(--cream);
@@ -1332,711 +962,291 @@
         transform: translateX(5px);
     }
 
-    /* Enhanced Features Section */
-    .features {
+    /* About Us Section */
+    .about-us-section {
         padding: 5rem 5%;
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        color: white;
+        background: linear-gradient(135deg, var(--cream) 0%, var(--light) 100%);
         position: relative;
         overflow: hidden;
     }
 
-    .features::before {
+    .about-us-section::before {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>');
-        animation: moveBackground 20s linear infinite;
+        background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="1" fill="%23d4593b" opacity="0.05"/></svg>');
+        pointer-events: none;
     }
 
-    @keyframes moveBackground {
-        from { transform: translateX(0) translateY(0); }
-        to { transform: translateX(100px) translateY(100px); }
-    }
-
-    .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 3rem;
+    .about-container {
         max-width: 1400px;
-        margin: 3rem auto;
+        margin: 0 auto;
         position: relative;
         z-index: 1;
     }
 
-    .feature-item {
+    .about-header {
         text-align: center;
-        padding: 2.5rem 2rem;
-        background: rgba(255,255,255,0.15);
+        margin-bottom: 4rem;
+    }
+
+    .about-subtitle {
+        font-size: 1.3rem;
+        color: var(--primary);
+        margin-top: 1rem;
+        font-weight: 600;
+        font-style: italic;
+    }
+
+    .about-content {
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+    }
+
+    .about-story {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+    }
+
+    .story-card-large {
+        background: white;
+        padding: 3rem 2rem;
         border-radius: 20px;
-        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 40px rgba(212, 89, 59, 0.12);
         transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        border: 2px solid rgba(255,255,255,0.2);
-        animation: fadeInUp 0.6s ease both;
+        border: 2px solid transparent;
+        text-align: center;
+        animation: fadeInUp 0.8s ease both;
     }
 
-    .feature-item:nth-child(1) { animation-delay: 0.1s; }
-    .feature-item:nth-child(2) { animation-delay: 0.2s; }
-    .feature-item:nth-child(3) { animation-delay: 0.3s; }
-    .feature-item:nth-child(4) { animation-delay: 0.4s; }
+    .story-card-large:nth-child(1) { animation-delay: 0.1s; }
+    .story-card-large:nth-child(2) { animation-delay: 0.2s; }
+    .story-card-large:nth-child(3) { animation-delay: 0.3s; }
 
-    .feature-item:hover {
-        background: rgba(255,255,255,0.25);
-        transform: translateY(-10px) scale(1.03);
-        border-color: rgba(255,255,255,0.4);
-        box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    .story-card-large:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 60px rgba(212, 89, 59, 0.2);
+        border-color: var(--accent);
     }
 
-    .feature-icon { 
-        font-size: 3.5rem; 
+    .story-icon {
+        font-size: 3.5rem;
         margin-bottom: 1.5rem;
         display: inline-block;
         transition: all 0.5s ease;
     }
 
-    .feature-item:hover .feature-icon {
+    .story-card-large:hover .story-icon {
         transform: scale(1.2) rotate(10deg);
-        filter: drop-shadow(0 0 20px rgba(255,255,255,0.5));
-    }
-
-    .feature-item h3 {
-        font-size: 1.3rem;
-        margin-bottom: 0.8rem;
-        transition: all 0.3s ease;
-    }
-
-    .feature-item:hover h3 {
-        transform: scale(1.05);
-        text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-    }
-
-    .feature-item p {
-        opacity: 0.95;
-        transition: all 0.3s ease;
-    }
-
-    .feature-item:hover p {
-        opacity: 1;
-        transform: translateY(-2px);
-    }
-
-    /* Footer Enhancements */
-    .footer { 
-        background-color: var(--black); 
-        color: #fff; 
-        padding: 3rem 2rem;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .footer::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 5px;
-        background: linear-gradient(90deg, var(--primary), var(--secondary), var(--gold), var(--primary));
-        background-size: 200% 100%;
-        animation: gradientMove 3s linear infinite;
-    }
-
-    @keyframes gradientMove {
-        0% { background-position: 0% 50%; }
-        100% { background-position: 200% 50%; }
-    }
-
-    .footer-content {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 2rem;
-        margin-bottom: 2.5rem;
-        max-width: 1400px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .footer-section h3 { 
-        font-size: 1.2rem; 
-        margin-bottom: 1rem; 
-        color: var(--accent);
-        position: relative;
-        padding-bottom: 0.5rem;
-    }
-
-    .footer-section h3::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 40px;
-        height: 2px;
-        background: var(--accent);
-        transition: width 0.3s ease;
-    }
-
-    .footer-section:hover h3::after {
-        width: 60px;
-    }
-
-    .footer-section ul { 
-        list-style: none; 
-        padding: 0; 
-    }
-
-    .footer-section ul li { 
-        margin-bottom: 0.7rem;
-        transition: all 0.3s ease;
-    }
-
-    .footer-section ul li:hover {
-        transform: translateX(5px);
-    }
-
-    .footer-section ul li a {
-        color: #bbb;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        position: relative;
-        padding-left: 0;
-    }
-
-    .footer-section ul li a::before {
-        content: '→';
-        position: absolute;
-        left: -20px;
-        opacity: 0;
-        transition: all 0.3s ease;
-    }
-
-    .footer-section ul li a:hover {
-        color: var(--accent);
-        padding-left: 20px;
-    }
-
-    .footer-section ul li a:hover::before {
-        opacity: 1;
-        left: 0;
-    }
-
-    .footer-section p, .footer-section a { 
-        color: #ccc; 
-        font-size: 0.9rem;
-        line-height: 1.8;
-    }
-
-    .footer .contact-link {
-        display: inline-block;
-        color: var(--accent);
-        font-weight: 600;
-        margin-top: 0.5rem;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        padding: 0.5rem 1rem;
-        border: 2px solid var(--accent);
-        border-radius: 25px;
-    }
-
-    .footer .contact-link:hover {
-        background: var(--accent);
-        color: var(--black);
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(212, 133, 149, 0.3);
-    }
-
-    .footer-social { 
-        display: flex; 
-        justify-content: center; 
-        gap: 20px; 
-        margin-bottom: 2rem;
-    }
-
-    .social-btn {
-        width: 45px;
-        height: 45px;
-        background-color: rgba(181, 84, 55, 0.3);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        font-size: 1.2rem;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .social-btn::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        background: var(--primary);
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        transition: width 0.4s, height 0.4s;
-    }
-
-    .social-btn:hover::before {
-        width: 100px;
-        height: 100px;
-    }
-
-    .social-btn:hover { 
-        transform: translateY(-5px) scale(1.1);
-        box-shadow: 0 8px 25px rgba(212, 89, 59, 0.4);
-    }
-
-    .social-btn i {
-        position: relative;
-        z-index: 1;
-    }
-
-    .footer-bottom {
-        text-align: center;
-        border-top: 1px solid rgba(181, 84, 55, 0.3);
-        padding-top: 1.5rem;
-        font-size: 0.9rem;
-        color: #ccc;
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-
-    .footer-bottom strong { 
-        color: var(--accent);
-        transition: all 0.3s ease;
-    }
-
-    .footer-bottom:hover strong {
-        text-shadow: 0 0 10px rgba(212, 133, 149, 0.5);
-    }
-    @keyframes ripple {
-        0% {
-            transform: scale(1);
-            opacity: 1;
-        }
-        100% {
-            transform: scale(1.8);
-            opacity: 0;
-        }
-    }
-    /* About Us Section Styles */
-.about-us-section {
-    padding: 5rem 5%;
-    background: linear-gradient(135deg, var(--cream) 0%, var(--light) 100%);
-    position: relative;
-    overflow: hidden;
-}
-
-.about-us-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="1" fill="%23d4593b" opacity="0.05"/></svg>');
-    pointer-events: none;
-}
-
-.about-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-}
-
-.about-header {
-    text-align: center;
-    margin-bottom: 4rem;
-}
-
-.about-subtitle {
-    font-size: 1.3rem;
-    color: var(--primary);
-    margin-top: 1rem;
-    font-weight: 600;
-    font-style: italic;
-}
-
-.about-content {
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-}
-
-.about-story {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-}
-
-.story-card-large {
-    background: white;
-    padding: 3rem 2rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(212, 89, 59, 0.12);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 2px solid transparent;
-    text-align: center;
-    animation: fadeInUp 0.8s ease both;
-}
-
-.story-card-large:nth-child(1) { animation-delay: 0.1s; }
-.story-card-large:nth-child(2) { animation-delay: 0.2s; }
-.story-card-large:nth-child(3) { animation-delay: 0.3s; }
-
-.story-card-large:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 60px rgba(212, 89, 59, 0.2);
-    border-color: var(--accent);
-}
-
-.story-icon {
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
-    display: inline-block;
-    transition: all 0.5s ease;
-}
-
-.story-card-large:hover .story-icon {
-    transform: scale(1.2) rotate(10deg);
-}
-
-.story-card-large h3 {
-    font-size: 1.8rem;
-    color: var(--primary);
-    margin-bottom: 1rem;
-    font-weight: 700;
-}
-
-.story-card-large p {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: #555;
-}
-
-.about-values {
-    background: white;
-    padding: 3rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(212, 89, 59, 0.12);
-}
-
-.values-title {
-    text-align: center;
-    font-size: 2.2rem;
-    color: var(--dark);
-    margin-bottom: 3rem;
-    position: relative;
-}
-
-.values-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    border-radius: 2px;
-}
-
-.values-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-}
-
-.value-item {
-    text-align: center;
-    padding: 2rem;
-    background: linear-gradient(135deg, var(--light), white);
-    border-radius: 15px;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-}
-
-.value-item:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary);
-    box-shadow: 0 10px 30px rgba(212, 89, 59, 0.15);
-}
-
-.value-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    display: inline-block;
-    transition: transform 0.3s ease;
-}
-
-.value-item:hover .value-icon {
-    transform: scale(1.2);
-}
-
-.value-item h4 {
-    font-size: 1.3rem;
-    color: var(--dark);
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-}
-
-.value-item p {
-    color: #666;
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
-.about-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    padding: 3rem 0;
-}
-
-.stat-box {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    padding: 3rem 2rem;
-    border-radius: 20px;
-    text-align: center;
-    color: white;
-    box-shadow: 0 10px 30px rgba(212, 89, 59, 0.3);
-    transition: all 0.4s ease;
-    animation: fadeInUp 0.8s ease both;
-}
-
-.stat-box:nth-child(1) { animation-delay: 0.1s; }
-.stat-box:nth-child(2) { animation-delay: 0.2s; }
-.stat-box:nth-child(3) { animation-delay: 0.3s; }
-.stat-box:nth-child(4) { animation-delay: 0.4s; }
-
-.stat-box:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 15px 40px rgba(212, 89, 59, 0.4);
-}
-
-.stat-number {
-    font-size: 3.5rem;
-    font-weight: 900;
-    margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-}
-
-.stat-label {
-    font-size: 1.1rem;
-    opacity: 0.95;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-}
-
-.about-promise {
-    background: white;
-    padding: 3rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(212, 89, 59, 0.12);
-}
-
-.about-promise h3 {
-    text-align: center;
-    font-size: 2.2rem;
-    color: var(--dark);
-    margin-bottom: 3rem;
-    position: relative;
-}
-
-.about-promise h3::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    border-radius: 2px;
-}
-
-.promise-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-
-.promise-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.5rem;
-    background: linear-gradient(135deg, var(--light), white);
-    border-radius: 15px;
-    transition: all 0.3s ease;
-    border-left: 4px solid var(--primary);
-}
-
-.promise-item:hover {
-    transform: translateX(10px);
-    box-shadow: 0 5px 20px rgba(212, 89, 59, 0.15);
-}
-
-.promise-check {
-    font-size: 1.8rem;
-    color: var(--primary);
-    font-weight: bold;
-    flex-shrink: 0;
-}
-
-.promise-item p {
-    font-size: 1.05rem;
-    color: var(--dark);
-    margin: 0;
-    line-height: 1.6;
-}
-
-.about-cta {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    padding: 4rem 3rem;
-    border-radius: 25px;
-    text-align: center;
-    color: white;
-    box-shadow: 0 15px 50px rgba(212, 89, 59, 0.3);
-    position: relative;
-    overflow: hidden;
-}
-
-.about-cta::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    animation: shimmer 3s infinite;
-}
-
-.about-cta h3 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    position: relative;
-    z-index: 1;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-}
-
-.about-cta > p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    opacity: 0.95;
-    position: relative;
-    z-index: 1;
-}
-
-.cta-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    position: relative;
-    z-index: 1;
-}
-
-.cta-button-outline {
-    padding: 1.2rem 3rem;
-    background: transparent;
-    color: white;
-    border: 3px solid white;
-    border-radius: 50px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.cta-button-outline:hover {
-    background: white;
-    color: var(--primary);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(255,255,255,0.3);
-}.remove-btn {
-  background: none;
-  border: none;
-  color: red;
-  cursor: pointer;
-}
-
-/* Responsive Design for About Section */
-@media (max-width: 768px) {
-    .about-us-section {
-        padding: 3rem 5%;
-    }
-
-    .about-header {
-        margin-bottom: 2rem;
-    }
-
-    .about-subtitle {
-        font-size: 1.1rem;
-    }
-
-    .story-card-large {
-        padding: 2rem 1.5rem;
     }
 
     .story-card-large h3 {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+        font-weight: 700;
     }
 
     .story-card-large p {
-        font-size: 1rem;
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: #555;
     }
 
-    .values-title, .about-promise h3 {
-        font-size: 1.8rem;
+    .about-values {
+        background: white;
+        padding: 3rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(212, 89, 59, 0.12);
+    }
+
+    .values-title {
+        text-align: center;
+        font-size: 2.2rem;
+        color: var(--dark);
+        margin-bottom: 3rem;
+        position: relative;
+    }
+
+    .values-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        border-radius: 2px;
+    }
+
+    .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+
+    .value-item {
+        text-align: center;
+        padding: 2rem;
+        background: linear-gradient(135deg, var(--light), white);
+        border-radius: 15px;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+
+    .value-item:hover {
+        transform: translateY(-5px);
+        border-color: var(--primary);
+        box-shadow: 0 10px 30px rgba(212, 89, 59, 0.15);
+    }
+
+    .value-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        display: inline-block;
+        transition: transform 0.3s ease;
+    }
+
+    .value-item:hover .value-icon {
+        transform: scale(1.2);
+    }
+
+    .value-item h4 {
+        font-size: 1.3rem;
+        color: var(--dark);
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+
+    .value-item p {
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .about-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        padding: 3rem 0;
+    }
+
+    .stat-box {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        padding: 3rem 2rem;
+        border-radius: 20px;
+        text-align: center;
+        color: white;
+        box-shadow: 0 10px 30px rgba(212, 89, 59, 0.3);
+        transition: all 0.4s ease;
+        animation: fadeInUp 0.8s ease both;
+    }
+
+    .stat-box:nth-child(1) { animation-delay: 0.1s; }
+    .stat-box:nth-child(2) { animation-delay: 0.2s; }
+    .stat-box:nth-child(3) { animation-delay: 0.3s; }
+    .stat-box:nth-child(4) { animation-delay: 0.4s; }
+
+    .stat-box:hover {
+        transform: translateY(-10px) scale(1.05);
+        box-shadow: 0 15px 40px rgba(212, 89, 59, 0.4);
     }
 
     .stat-number {
-        font-size: 2.5rem;
+        font-size: 3.5rem;
+        font-weight: 900;
+        margin-bottom: 0.5rem;
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
     }
 
     .stat-label {
-        font-size: 1rem;
-    }
-
-    .about-cta h3 {
-        font-size: 2rem;
-    }
-
-    .about-cta > p {
         font-size: 1.1rem;
+        opacity: 0.95;
+        font-weight: 600;
+        letter-spacing: 0.5px;
     }
 
-    .cta-buttons {
-        flex-direction: column;
+    .about-promise {
+        background: white;
+        padding: 3rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(212, 89, 59, 0.12);
+    }
+
+    .about-promise h3 {
+        text-align: center;
+        font-size: 2.2rem;
+        color: var(--dark);
+        margin-bottom: 3rem;
+        position: relative;
+    }
+
+    .about-promise h3::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        border-radius: 2px;
+    }
+
+    .promise-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .promise-item {
+        display: flex;
         align-items: center;
+        gap: 1rem;
+        padding: 1.5rem;
+        background: linear-gradient(135deg, var(--light), white);
+        border-radius: 15px;
+        transition: all 0.3s ease;
+        border-left: 4px solid var(--primary);
     }
 
-    .cta-button, .cta-button-outline {
-        width: 100%;
-        max-width: 300px;
-    }
-}
-
-    /* Sale Page Styles (keeping your existing ones) */
-  
-    .sale-page.active {
-        opacity: 1;
-        transform: translateY(0);
+    .promise-item:hover {
+        transform: translateX(10px);
+        box-shadow: 0 5px 20px rgba(212, 89, 59, 0.15);
     }
 
+    .promise-check {
+        font-size: 1.8rem;
+        color: var(--primary);
+        font-weight: bold;
+        flex-shrink: 0;
+    }
 
-    .sale-header::before {
+    .promise-item p {
+        font-size: 1.05rem;
+        color: var(--dark);
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    .about-cta {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        padding: 4rem 3rem;
+        border-radius: 25px;
+        text-align: center;
+        color: white;
+        box-shadow: 0 15px 50px rgba(212, 89, 59, 0.3);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .about-cta::before {
         content: '';
         position: absolute;
         top: -50%;
@@ -2052,479 +1262,267 @@
         100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
     }
 
-    .sale-header h1 {
-        font-size: 3.5rem;
+    .about-cta h3 {
+        font-size: 2.5rem;
         margin-bottom: 1rem;
-        text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
         position: relative;
         z-index: 1;
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
     }
 
-    .sale-header p {
-        font-size: 1.3rem;
+    .about-cta > p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
         opacity: 0.95;
         position: relative;
         z-index: 1;
     }
 
-    .timer-box:hover {
-        transform: scale(1.1);
-        background: rgba(255, 255, 255, 0.35);
+    .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
     }
 
-    .timer-box span {
-        display: block;
-        font-size: 2.5rem;
+    .cta-button-outline {
+        padding: 1.2rem 3rem;
+        background: transparent;
+        color: white;
+        border: 3px solid white;
+        border-radius: 50px;
+        font-size: 1.1rem;
         font-weight: bold;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        cursor: pointer;
+        transition: all 0.4s ease;
+        text-decoration: none;
+        display: inline-block;
     }
 
-    .timer-box small {
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        opacity: 0.9;
-    }
-
-    .back-button {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 1rem 2rem;
+    .cta-button-outline:hover {
         background: white;
         color: var(--primary);
-        border: 2px solid var(--primary);
-        border-radius: 50px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s;
-        margin-bottom: 2rem;
-        text-decoration: none;
-        font-size: 1rem;
-        box-shadow: 0 4px 15px rgba(212, 89, 59, 0.2);
-    }
-
-    .back-button:hover {
-        background: var(--primary);
-        color: white;
-        transform: translateX(-5px);
-        box-shadow: 0 6px 25px rgba(212, 89, 59, 0.4);
-    }
-
-    .sale-badge {
-        display: inline-block;
-        background: rgba(255, 255, 255, 0.3);
-        padding: 0.5rem 2rem;
-        border-radius: 30px;
-        font-size: 0.9rem;
-        font-weight: 700;
-        letter-spacing: 2px;
-        margin-bottom: 1rem;
-        border: 2px solid rgba(255, 255, 255, 0.5);
-        position: relative;
-        z-index: 1;
-    }
-
-    .sale-subtitle {
-        font-size: 1.4rem !important;
-        font-weight: 600;
-    }
-
-    .hurry-text {
-        margin-top: 1.5rem;
-        font-size: 1.1rem;
-        font-weight: 700;
-        animation: blink 1.5s infinite;
-        position: relative;
-        z-index: 1;
-    }
-
-    @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.7; }
-    }
-
-    @keyframes flashPulse {
-        0%, 100% { transform: scale(1); box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5); }
-        50% { transform: scale(1.1); box-shadow: 0 6px 15px rgba(255, 215, 0, 0.8); }
-    }
-
-    .stock-info {
-        color: #ff4444;
-        font-size: 0.85rem;
-        font-weight: 600;
-        margin: 0.5rem 0;
-        animation: urgentBlink 2s infinite;
-    }
-
-    @keyframes urgentBlink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.6; }
-    }
-.product-image {
-  width: 100%;
-  height: 260px;          /* control image height */
-  overflow: hidden;      /* crop extra image */
-  border-radius: 16px 16px 0 0;
-  background: #f7b8a0;   /* fallback background */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.product-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;     /* 🔥 KEY FIX */
-  display: block;
-}
-
-
-
-    .savings {
-        background: linear-gradient(135deg, #10b981, #059669);
-        color: white;
-        padding: 0.4rem 0.8rem;
-        border-radius: 8px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        text-align: center;
-        margin: 0.8rem 0;
-        box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
-    }
-
-
-
-    .benefit-card {
-        text-align: center;
-        padding: 2rem;
-        background: linear-gradient(135deg, var(--light), white);
-        border-radius: 15px;
-        transition: all 0.3s;
-        border: 2px solid transparent;
-    }
-
-    .benefit-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(212, 89, 59, 0.2);
-        border-color: var(--primary);
-    }
-
-    .benefit-icon {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-    }
-
-    .benefit-card h3 {
-        color: var(--primary);
-        font-size: 1.2rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .benefit-card p {
-        color: #666;
-        font-size: 0.9rem;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(255,255,255,0.3);
     }
 
     /* Responsive Design */
     @media (max-width: 768px) {
-        .nav-links { display: none; }
-        .mobile-menu { display: block; }
-        .hero h1 { font-size: 2.5rem; }
-        .hero p { font-size: 1.2rem; }
-        .section-title { font-size: 2rem; }
-        .logo-img { height: 55px; }
-        .logo-text { font-size: 1.5rem; }
-        .sale-header h1 { font-size: 2.5rem; }
-        .sale-header p { font-size: 1.1rem; }
-        .timer-box { min-width: 80px; padding: 1rem; }
-        .timer-box span { font-size: 2rem; }
-        .sale-timer { gap: 1rem; }
-        .cta-button { padding: 1rem 2.5rem; font-size: 1rem; }
-        .product-grid { grid-template-columns: 1fr; }
-        .category-grid { grid-template-columns: 1fr; }
+        .hero {
+            margin-top: 80px;
+        }
+        .hero h1 { 
+            font-size: 2.5rem; 
+        }
+        .hero p { 
+            font-size: 1.2rem; 
+        }
+        .section-title { 
+            font-size: 2rem; 
+        }
+        .cta-button { 
+            padding: 1rem 2.5rem; 
+            font-size: 1rem; 
+        }
+        .product-grid { 
+            grid-template-columns: 1fr; 
+        }
+        .category-grid { 
+            grid-template-columns: 1fr; 
+        }
+        .about-us-section {
+            padding: 3rem 5%;
+        }
+        .about-header {
+            margin-bottom: 2rem;
+        }
+        .about-subtitle {
+            font-size: 1.1rem;
+        }
+        .story-card-large {
+            padding: 2rem 1.5rem;
+        }
+        .story-card-large h3 {
+            font-size: 1.5rem;
+        }
+        .story-card-large p {
+            font-size: 1rem;
+        }
+        .values-title, .about-promise h3 {
+            font-size: 1.8rem;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+        }
+        .stat-label {
+            font-size: 1rem;
+        }
+        .about-cta h3 {
+            font-size: 2rem;
+        }
+        .about-cta > p {
+            font-size: 1.1rem;
+        }
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+        .cta-button, .cta-button-outline {
+            width: 100%;
+            max-width: 300px;
+        }
     }
     </style>
 </head>
 <body>
-    <header>
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
 
-        
-        <div class="top-bar">✨ New Autumn Winter Collection Live | Free Shipping on Orders Above ₹999 ✨</div>
-        <nav>
-            <div class="logo-container">
-                <img src="./Header-Logo/Header-logo3.png" alt="Modish Junction Logo" class="logo-img">
-                <span class="logo-text">Modish Junction</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li class="dropdown">
-                    <a href="#Western wear">Western wear ▾</a>
-                    <div class="dropdown-content">
-    <a href="western-wear/tops-tees.html">Top & Tees</a>
-    <a href="western-wear/jeans-pants.html">Jeans & Pants</a>
-    <a href="western-wear/loungewear.html">Loungewear</a>
-    <a href="western-wear/winter-wear.html">Winter Wear</a>
-     <a href="western-wear/dresses.html">Dresses</a>
-    <a href="western-wear/thrift-collection.html">Shirts</a>
-</div>
-                
-                </li>
-
-                <li class="dropdown">
-                    <a href="#dresses">Ethnic ▾</a>
-                    <div class="dropdown-content">
-                        <a href="./Ethnic-wear/co-ords.html">Co-ords</a>
-                        <a href="./Ethnic-wear/3-piece-suit.html">3 piece suit</a>
-                        <a href="./Ethnic-wear/short-kurtis.html">short kurtis</a>
-                    </div>
-                </li>
-
-        
-
-   <li><a href="./Ethnic-wear/Affordable-collection.html">Must-Haves</a>
-<li>
-                    <a href="/Sale/sale.html" class="sale-link">
-  <span>Sale 🔥</span>
-</a>
-
-</li>
-
-<li><a href="#about-us">About Us</a></li>
-            </ul><div class="nav-icons">
-    <span onclick="openCart()" style="cursor:pointer">
-        🛒 <small id="cart-count">0</small>
-    </span>
-</div>
-
-           <div class="mobile-menu" id="menuBtn">☰</div>
-
-<div class="mobile-nav" id="mobileNav">
-  <ul>
-    <li><a href="#home">Home</a></li>
-
-    <!-- Western Wear -->
-    <li class="mobile-dropdown">
-      <span>Western Wear ▾</span>
-      <ul class="mobile-submenu">
-        <li><a href="western-wear/tops-tees.html">Top & Tees</a></li>
-        <li><a href="western-wear/jeans-pants.html">Jeans & Pants</a></li>
-        <li><a href="western-wear/loungewear.html">Loungewear</a></li>
-        <li><a href="western-wear/winter-wear.html">Winter Wear</a></li>
-        <li><a href="western-wear/dresses.html">Dresses</a></li>
-        <li><a href="western-wear/thrift-collection.html">Shirts</a></li>
-      </ul>
-    </li>
-
-    <!-- Ethnic -->
-    <li class="mobile-dropdown">
-      <span>Ethnic ▾</span>
-      <ul class="mobile-submenu">
-        <li><a href="./Ethnic-wear/co-ords.html">Co-ords</a></li>
-        <li><a href="./Ethnic-wear/3-piece-suit.html">3 Piece Suit</a></li>
-        <li><a href="./Ethnic-wear/short-kurtis.html">Short Kurtis</a></li>
-      </ul>
-    </li>
-
-   <li><a href="#" id="saleLinkMobile">Sale 🔥</a></li>
-    <li><a href="#about-us">About Us</a></li>
-  </ul>
-</div>
-
-
-        </nav>
-
-        
-    </header>
-
-   
-
-    <!-- Main Page Content -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-background">
             <div class="hero-slide active" style="background-image: url('./Header-Landing-page/Img1.png');"></div>
             <div class="hero-slide" style="background-image: url('./Header-Landing-page/img3.jpg');"></div>
-            <!-- <div class="hero-slide" style="background-image: url('./Header-Landing-page/img2.png');"></div> -->
             <div class="hero-slide" style="background-image: url('./Header-Landing-page/img4.jpg');"></div>
-            <!-- <div class="hero-slide" style="background-image: url('./Header-Landing-page/img5.jpg');"></div> -->
             <div class="hero-slide" style="background-image: url('./Header-Landing-page/img6.jpg');"></div>
         </div>
         <div class="hero-content">
             <h1>Where Comfort Meets Fashion</h1>
             <p>Discover the perfect blend of elegance and contemporary style in every stitch</p>
-           <button class="cta-button"><span>Explore Collection</span></button>
+            <button class="cta-button"><span>Explore Collection</span></button>
         </div>
     </section>
 
-    </section>  <!-- Hero ends -->
+    <!-- Live Shopping Section -->
+    <section id="live-shopping-section"></section>
 
-<!-- ✅ NEW: Live Shopping Section -->
-<section id="live-shopping-section"></section>
+    <!-- Categories Section -->
+    <section class="categories">
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="category-grid">
+            <a href="./western-wear/jeans-pants.html" class="category-link">
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="./Images/Category/western-wear.jpg" alt="Western Wear">
+                    </div>
+                    <div class="category-info">
+                        <h3>Western wear</h3>
+                        <p>Timeless elegance for every occasion</p>
+                    </div>
+                </div>
+            </a>
 
+            <a href="./Ethnic-wear/short-kurtis.html" class="category-link">
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="./Images/Category/Ethnic-wear-img.png" alt="Ethnic Sets">
+                    </div>
+                    <div class="category-info">
+                        <h3>Ethnic Sets</h3>
+                        <p>Complete coordinated perfection</p>
+                    </div>
+                </div>
+            </a>
 
+            <a href="./western-wear/dresses.html" class="category-link">
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="./Images/Category/Dresses.png" alt="Designer Dresses">
+                    </div>
+                    <div class="category-info">
+                        <h3>Designer Dresses</h3>
+                        <p>Modern silhouettes with traditional charm</p>
+                    </div>
+                </div>
+            </a>
 
-<!-- Products Section continues... -->
-   <section class="categories">
-    <h2 class="section-title">Shop by Category</h2>
-
-    <div class="category-grid">
-
-       <a href="./western-wear/jeans-pants.html" class="category-link">
-    <div class="category-card">
-        <div class="category-image">
-            <img src="./Images/Category/western-wear.jpg" alt="Western Wear">
+            <a href="./Ethnic-wear/co-ords.html" class="category-link">
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="./Images/Category/co-ords-set.png" alt="Co-ord Sets">
+                    </div>
+                    <div class="category-info">
+                        <h3>Co-ord Sets</h3>
+                        <p>Effortless style, perfectly matched</p>
+                    </div>
+                </div>
+            </a>
         </div>
-        <div class="category-info">
-            <h3>Western wear</h3>
-            <p>Timeless elegance for every occasion</p>
+    </section>
+
+    <!-- Trending Products Section -->
+    <section class="products" id="trending">
+        <h2 class="section-title">Trending This Season</h2>
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card" data-id="product-kurta-1" data-link="./product.html?category=trending&slug=liva-embroidered-kurta-set">
+                <span class="discount-badge">30% OFF</span>
+                <div class="product-image">
+                    <img src="./Images/Category/western-wear.jpg" alt="Women Liva Embroidered Kurta Set with Dupatta">
+                </div>
+                <div class="product-info">
+                    <h3>Women Liva Embroidered Kurta Set with Dupatta</h3>
+                    <div class="price">
+                        <span class="sale-price">₹3,499</span>
+                        <span class="original-price">₹4,999</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card" data-id="product-dress-1" data-link="./product.html?category=trending&slug=cotton-floral-aline-dress">
+                <span class="discount-badge">40% OFF</span>
+                <div class="product-image">
+                    <img src="./Images/Category/western-wear.jpg" alt="Cotton Floral Print A-Line Dress">
+                </div>
+                <div class="product-info">
+                    <h3>Cotton Floral Print A-Line Dress</h3>
+                    <div class="price">
+                        <span class="sale-price">₹1,199</span>
+                        <span class="original-price">₹1,999</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card" data-id="product-ethnic-1" data-link="./product.html?category=trending&slug=silk-blend-embroidered-ethnic-set">
+                <span class="discount-badge">50% OFF</span>
+                <div class="product-image">
+                    <img src="./Images/Category/western-wear.jpg" alt="Silk Blend Embroidered Ethnic Set">
+                </div>
+                <div class="product-info">
+                    <h3>Silk Blend Embroidered Ethnic Set</h3>
+                    <div class="price">
+                        <span class="sale-price">₹2,499</span>
+                        <span class="original-price">₹4,999</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card" data-id="product-shawl-1" data-link="./product.html?category=trending&slug=soft-knitted-warm-shawl">
+                <span class="discount-badge">20% OFF</span>
+                <div class="product-image">
+                    <img src="./Images/Category/western-wear.jpg" alt="Soft Knitted Warm Women Shawl">
+                </div>
+                <div class="product-info">
+                    <h3>Soft Knitted Warm Women Shawl</h3>
+                    <div class="price">
+                        <span class="sale-price">₹2,152</span>
+                        <span class="original-price">₹2,690</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
         </div>
-    </div>
-</a>
+    </section>
 
-<a href="./Ethnic-wear/short-kurtis.html" class="category-link">
-    <div class="category-card">
-        <div class="category-image">
-            <img src="./Images/Category/Ethnic-wear-img.png" alt="Ethnic Sets">
-        </div>
-        <div class="category-info">
-            <h3>Ethnic Sets</h3>
-            <p>Complete coordinated perfection</p>
-        </div>
-    </div>
-</a>
-
-<a href="./western-wear/dresses.html" class="category-link">
-    <div class="category-card">
-        <div class="category-image">
-            <img src="./Images/Category/Dresses.png" alt="Designer Dresses">
-        </div>
-        <div class="category-info">
-            <h3>Designer Dresses</h3>
-            <p>Modern silhouettes with traditional charm</p>
-        </div>
-    </div>
-</a>
-
-<a href="./Ethnic-wear/co-ords.html" class="category-link">
-    <div class="category-card">
-        <div class="category-image">
-            <img src="./Images/Category/co-ords-set.png" alt="Co-ord Sets">
-        </div>
-        <div class="category-info">
-            <h3>Co-ord Sets</h3>
-            <p>Effortless style, perfectly matched</p>
-        </div>
-    </div>
-</a>
-
-
-    </div>
-</section>
-
-
-
-<!-- ✅ NEW: Shop by Occasion Section -->
-<!-- ✅ Trending This Season Section -->
-<!-- ================= TRENDING THIS SEASON ================= -->
-<section class="products" id="trending">
-  <h2 class="section-title">Trending This Season</h2>
-
-  <div class="product-grid">
-
-    <!-- PRODUCT 1 -->
-    <div class="product-card"
-         data-id="product-kurta-1"
-         data-link="./product.html?category=trending&slug=liva-embroidered-kurta-set">
-
-      <span class="discount-badge">30% OFF</span>
-
-      <div class="product-image">
-        <img src="./Images/Category/western-wear.jpg"
-             alt="Women Liva Embroidered Kurta Set with Dupatta">
-      </div>
-
-      <div class="product-info">
-        <h3>Women Liva Embroidered Kurta Set with Dupatta</h3>
-        <div class="price">
-          <span class="sale-price">₹3,499</span>
-          <span class="original-price">₹4,999</span>
-        </div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
-    <!-- PRODUCT 2 -->
-    <div class="product-card"
-         data-id="product-dress-1"
-         data-link="./product.html?category=trending&slug=cotton-floral-aline-dress">
-
-      <span class="discount-badge">40% OFF</span>
-
-      <div class="product-image">
-        <img src="./Images/Category/western-wear.jpg"
-             alt="Cotton Floral Print A-Line Dress">
-      </div>
-
-      <div class="product-info">
-        <h3>Cotton Floral Print A-Line Dress</h3>
-        <div class="price">
-          <span class="sale-price">₹1,199</span>
-          <span class="original-price">₹1,999</span>
-        </div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
-    <!-- PRODUCT 3 -->
-    <div class="product-card"
-         data-id="product-ethnic-1"
-         data-link="./product.html?category=trending&slug=silk-blend-embroidered-ethnic-set">
-
-      <span class="discount-badge">50% OFF</span>
-
-      <div class="product-image">
-        <img src="./Images/Category/western-wear.jpg"
-             alt="Silk Blend Embroidered Ethnic Set">
-      </div>
-
-      <div class="product-info">
-        <h3>Silk Blend Embroidered Ethnic Set</h3>
-        <div class="price">
-          <span class="sale-price">₹2,499</span>
-          <span class="original-price">₹4,999</span>
-        </div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
-    <!-- PRODUCT 4 -->
-    <div class="product-card"
-         data-id="product-shawl-1"
-         data-link="./product.html?category=trending&slug=soft-knitted-warm-shawl">
-
-      <span class="discount-badge">20% OFF</span>
-
-      <div class="product-image">
-        <img src="./Images/Category/western-wear.jpg"
-             alt="Soft Knitted Warm Women Shawl">
-      </div>
-
-      <div class="product-info">
-        <h3>Soft Knitted Warm Women Shawl</h3>
-        <div class="price">
-          <span class="sale-price">₹2,152</span>
-          <span class="original-price">₹2,690</span>
-        </div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-
-
-
+    <!-- Stories Section -->
     <section class="stories-section">
         <h2 class="section-title">Modish Junction Stories</h2>
         <p style="text-align: center; color: #666; margin-bottom: 2rem;">@modishjunction</p>
@@ -2540,6 +1538,7 @@
         </div>
     </section>
 
+    <!-- Reels Section -->
     <section class="reels-section">
         <h2 class="section-title">Feel the Reel</h2>
         <p style="text-align: center; color: #666; margin-bottom: 2rem;">Experience Fashion in Motion</p>
@@ -2547,18 +1546,49 @@
             <button class="reel-nav reel-prev">‹</button>
             <div class="reels-wrapper">
                 <div class="reels-track">
-                    <div class="reel-card"><video src="./Video/MJ1.mp4" class="reel-video" muted loop></video><div class="reel-overlay"><p class="reel-title">Golden Dusk Black Cotton Linen Co-ord</p></div></div>
-                    <div class="reel-card"><video src="./Video/MJ2.mp4" class="reel-video" muted loop></video><div class="reel-overlay"><p class="reel-title">Evergreen Elegance Green Linen Blend</p></div></div>
-                    <div class="reel-card"><video src="./Video/MJ3.mp4" class="reel-video" muted loop></video><div class="reel-overlay"><p class="reel-title">Lil Breeze Beige Viscose Dress</p></div></div>
-                    <div class="reel-card"><video src="./Video/MJ4.mp4" class="reel-video" muted loop></video><div class="reel-overlay"><p class="reel-title">Ebonheart Black Printed Maternity</p></div></div>
-                    <div class="reel-card"><video src="./Video/MJ5.mp4" class="reel-video" muted loop></video><div class="reel-overlay"><p class="reel-title">Summer Collection Highlights</p></div></div>
-                    <div class="reel-card"><video src="./Video/MJ6.mp4" class="reel-video" muted loop</video><div class="reel-overlay"><p class="reel-title">Festive Season Special</p></div></div>
+                    <div class="reel-card">
+                        <video src="./Video/MJ1.mp4" class="reel-video" muted loop></video>
+                        <div class="reel-overlay">
+                            <p class="reel-title">Golden Dusk Black Cotton Linen Co-ord</p>
+                        </div>
+                    </div>
+                    <div class="reel-card">
+                        <video src="./Video/MJ2.mp4" class="reel-video" muted loop></video>
+                        <div class="reel-overlay">
+                            <p class="reel-title">Evergreen Elegance Green Linen Blend</p>
+                        </div>
+                    </div>
+                    <div class="reel-card">
+                        <video src="./Video/MJ3.mp4" class="reel-video" muted loop></video>
+                        <div class="reel-overlay">
+                            <p class="reel-title">Lil Breeze Beige Viscose Dress</p>
+                        </div>
+                    </div>
+                    <div class="reel-card">
+                        <video src="./Video/MJ4.mp4" class="reel-video" muted loop></video>
+                        <div class="reel-overlay">
+                            <p class="reel-title">Ebonheart Black Printed Maternity</p>
+                        </div>
+                    </div>
+                    <div class="reel-card">
+                        <video src="./Video/MJ5.mp4" class="reel-video" muted loop></video>
+                        <div class="reel-overlay">
+                            <p class="reel-title">Summer Collection Highlights</p>
+                        </div>
+                    </div>
+                    <div class="reel-card">
+                        <video src="./Video/MJ6.mp4" class="reel-video" muted loop></video>
+                        <div class="reel-overlay">
+                            <p class="reel-title">Festive Season Special</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <button class="reel-nav reel-next">›</button>
         </div>
     </section>
 
+    <!-- Reviews Section -->
     <section class="reviews-section">
         <h2 class="section-title">Happy Customers ❤️</h2>
         <div class="reviews-grid">
@@ -2637,364 +1667,318 @@
         </div>
     </section>
 
-    
-
     <!-- About Us Section -->
-<section class="about-us-section" id="about-us">
-    <div class="about-container">
-        <div class="about-header">
-            <h2 class="section-title">Our Story</h2>
-            <p class="about-subtitle">Where Comfort Meets Fashion</p>
-        </div>
-
-        <div class="about-content">
-            <div class="about-story">
-                <div class="story-card-large">
-                    <div class="story-icon">✨</div>
-                    <h3>Our Beginning</h3>
-                    <p>Modish Junction was born from a simple belief: every woman deserves to feel comfortable and confident in what she wears. As a startup fashion brand based in Udaipurwati, Rajasthan, we started with a vision to bridge the gap between traditional elegance and contemporary style.</p>
-                </div>
-
-                <div class="story-card-large">
-                    <div class="story-icon">🎯</div>
-                    <h3>Our Mission</h3>
-                    <p>We're on a mission to revolutionize women's fashion by offering high-quality, trendy clothing that doesn't compromise on comfort. Every week, we bring you fresh collections that blend timeless traditions with modern aesthetics, ensuring you're always in vogue.</p>
-                </div>
-
-                <div class="story-card-large">
-                    <div class="story-icon">💝</div>
-                    <h3>What Makes Us Special</h3>
-                    <p>At Modish Junction, we understand that fashion is personal. That's why we curate every piece with care, focusing on quality fabrics, intricate detailing, and designs that celebrate the modern Indian woman. We stay updated with the latest trends to bring you new collections every week.</p>
-                </div>
+    <section class="about-us-section" id="about-us">
+        <div class="about-container">
+            <div class="about-header">
+                <h2 class="section-title">Our Story</h2>
+                <p class="about-subtitle">Where Comfort Meets Fashion</p>
             </div>
 
-            <div class="about-values">
-                <h3 class="values-title">Our Core Values</h3>
-                <div class="values-grid">
-                    <div class="value-item">
-                        <div class="value-icon">🌟</div>
-                        <h4>Quality First</h4>
-                        <p>Premium fabrics and expert craftsmanship in every stitch</p>
+            <div class="about-content">
+                <div class="about-story">
+                    <div class="story-card-large">
+                        <div class="story-icon">✨</div>
+                        <h3>Our Beginning</h3>
+                        <p>Modish Junction was born from a simple belief: every woman deserves to feel comfortable and confident in what she wears. As a startup fashion brand based in Udaipurwati, Rajasthan, we started with a vision to bridge the gap between traditional elegance and contemporary style.</p>
                     </div>
-                    <div class="value-item">
-                        <div class="value-icon">🤝</div>
-                        <h4>Customer Trust</h4>
-                        <p>Building lasting relationships through transparency and honesty</p>
-                    </div>
-                    <div class="value-item">
-                        <div class="value-icon">🎨</div>
-                        <h4>Innovation</h4>
-                        <p>Fresh designs every week, staying ahead of fashion trends</p>
-                    </div>
-                    <div class="value-item">
-                        <div class="value-icon">🇮🇳</div>
-                        <h4>Supporting Local</h4>
-                        <p>Proudly Made in India, empowering local artisans</p>
-                    </div>
-                    <div class="value-item">
-                        <div class="value-icon">♻️</div>
-                        <h4>Sustainability</h4>
-                        <p>Conscious fashion choices for a better tomorrow</p>
-                    </div>
-                    <div class="value-item">
-                        <div class="value-icon">⚡</div>
-                        <h4>Fast Fashion</h4>
-                        <p>Quick dispatch and delivery to keep you stylish on time</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="about-stats">
-                <div class="stat-box">
-                    <div class="stat-number">1000+</div>
-                    <div class="stat-label">Happy Customers</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number">300+</div>
-                    <div class="stat-label">Products</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">New Arrivals Weekly</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Quality Assured</div>
-                </div>
-            </div>
+                    <div class="story-card-large">
+                        <div class="story-icon">🎯</div>
+                        <h3>Our Mission</h3>
+                        <p>We're on a mission to revolutionize women's fashion by offering high-quality, trendy clothing that doesn't compromise on comfort. Every week, we bring you fresh collections that blend timeless traditions with modern aesthetics, ensuring you're always in vogue.</p>
+                    </div>
 
-            <div class="about-promise">
-                <h3>Our Promise to You</h3>
-                <div class="promise-grid">
-                    <div class="promise-item">
-                        <span class="promise-check">✓</span>
-                        <p>Authentic, high-quality products only</p>
-                    </div>
-                    <div class="promise-item">
-                        <span class="promise-check">✓</span>
-                        <p>Weekly fresh collections to keep you trendy</p>
-                    </div>
-                    <div class="promise-item">
-                        <span class="promise-check">✓</span>
-                        <p>Affordable luxury for every occasion</p>
-                    </div>
-                    <div class="promise-item">
-                        <span class="promise-check">✓</span>
-                        <p>Hassle-free shopping experience</p>
-                    </div>
-                    <div class="promise-item">
-                        <span class="promise-check">✓</span>
-                        <p>Responsive customer support always ready to help</p>
-                    </div>
-                    <div class="promise-item">
-                        <span class="promise-check">✓</span>
-                        <p>Secure payment and safe delivery</p>
+                    <div class="story-card-large">
+                        <div class="story-icon">💝</div>
+                        <h3>What Makes Us Special</h3>
+                        <p>At Modish Junction, we understand that fashion is personal. That's why we curate every piece with care, focusing on quality fabrics, intricate detailing, and designs that celebrate the modern Indian woman. We stay updated with the latest trends to bring you new collections every week.</p>
                     </div>
                 </div>
-            </div>
 
-            <div class="about-cta">
-                <h3>Join the Modish Junction Family</h3>
-                <p>Be part of our growing community of fashion-forward women who believe in looking good and feeling great.</p>
-                <div class="cta-buttons">
-                    <button class="cta-button"><span>Shop Now</span></button>
-                    <a href="https://www.instagram.com/modish_junction/" target="_blank" class="cta-button-outline"><span>Follow Us on Instagram</span></a>
+                <div class="about-values">
+                    <h3 class="values-title">Our Core Values</h3>
+                    <div class="values-grid">
+                        <div class="value-item">
+                            <div class="value-icon">🌟</div>
+                            <h4>Quality First</h4>
+                            <p>Premium fabrics and expert craftsmanship in every stitch</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">🤝</div>
+                            <h4>Customer Trust</h4>
+                            <p>Building lasting relationships through transparency and honesty</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">🎨</div>
+                            <h4>Innovation</h4>
+                            <p>Fresh designs every week, staying ahead of fashion trends</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">🇮🇳</div>
+                            <h4>Supporting Local</h4>
+                            <p>Proudly Made in India, empowering local artisans</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">♻️</div>
+                            <h4>Sustainability</h4>
+                            <p>Conscious fashion choices for a better tomorrow</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">⚡</div>
+                            <h4>Fast Fashion</h4>
+                            <p>Quick dispatch and delivery to keep you stylish on time</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- <section class="features">
-        <h2 class="section-title" style="color: white;">Why Choose Modish Junction?</h2>
-        <div class="features-grid">
-            <div class="feature-item">
-                <div class="feature-icon">🚚</div>
-                <h3>Free Delivery</h3>
-                <p>On all orders above ₹999</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">🔄</div>
-                <h3>Easy Returns</h3>
-                <p>Return is only available if the product is defective (opening video required) , Return should be applied withing 7 days.</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">🇮🇳</div>
-                <h3>Made in India</h3>
-                <p>Supporting local artisans</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">💳</div>
-                <h3>Secure Payments</h3>
-              <p>100% safe and secure checkout</p>
+
+                <div class="about-stats">
+                    <div class="stat-box">
+                        <div class="stat-number">1000+</div>
+                        <div class="stat-label">Happy Customers</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">300+</div>
+                        <div class="stat-label">Products</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">New Arrivals Weekly</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Quality Assured</div>
+                    </div>
+                </div>
+
+                <div class="about-promise">
+                    <h3>Our Promise to You</h3>
+                    <div class="promise-grid">
+                        <div class="promise-item">
+                            <span class="promise-check">✓</span>
+                            <p>Authentic, high-quality products only</p>
+                        </div>
+                        <div class="promise-item">
+                            <span class="promise-check">✓</span>
+                            <p>Weekly fresh collections to keep you trendy</p>
+                        </div>
+                        <div class="promise-item">
+                            <span class="promise-check">✓</span>
+                            <p>Affordable luxury for every occasion</p>
+                        </div>
+                        <div class="promise-item">
+                            <span class="promise-check">✓</span>
+                            <p>Hassle-free shopping experience</p>
+                        </div>
+                        <div class="promise-item">
+                            <span class="promise-check">✓</span>
+                            <p>Responsive customer support always ready to help</p>
+                        </div>
+                        <div class="promise-item">
+                            <span class="promise-check">✓</span>
+                            <p>Secure payment and safe delivery</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-cta">
+                    <h3>Join the Modish Junction Family</h3>
+                    <p>Be part of our growing community of fashion-forward women who believe in looking good and feeling great.</p>
+                    <div class="cta-buttons">
+                        <button class="cta-button"><span>Shop Now</span></button>
+                        <a href="https://www.instagram.com/modish_junction/" target="_blank" class="cta-button-outline">Follow Us on Instagram</a>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-    </section> -->
-
-   <!-- Floating WhatsApp Button with direct contact -->
-<a href="https://wa.me/918949120920" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/918949120920" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
         <svg viewBox="0 0 32 32" fill="white" width="28" height="28">
             <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 8.167-2.113c2.325 1.27 4.925 1.947 7.833 1.947 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.275 1.362 1.412-5.25-0.32-0.525c-1.341-2.194-2.051-4.73-2.051-7.359 0-7.72 6.28-14 14-14s14 6.28 14 14-6.28 14-14 14zM23.293 19.943c-0.396-0.199-2.348-1.158-2.713-1.291s-0.628-0.199-0.893 0.199c-0.265 0.398-1.026 1.291-1.259 1.556s-0.463 0.298-0.859 0.099c-2.219-1.108-3.674-1.975-5.134-4.475-0.387-0.662 0.387-0.615 1.108-2.050 0.121-0.265 0.060-0.496-0.034-0.695-0.094-0.199-0.893-2.151-1.224-2.945-0.322-0.774-0.649-0.669-0.893-0.681-0.231-0.012-0.496-0.015-0.76-0.015s-0.694 0.099-1.058 0.496c-0.364 0.398-1.388 1.357-1.388 3.308s1.421 3.836 1.619 4.101c0.199 0.265 2.799 4.272 6.781 5.989 2.51 1.079 3.494 1.148 4.748 0.968 0.762-0.109 2.348-0.96 2.679-1.888s0.331-1.723 0.232-1.888c-0.099-0.165-0.364-0.265-0.76-0.464z"/>
         </svg>
     </a>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>About Modish Junction</h3>
-                <p>At Modish Junction we believe in providing comfort with fashion. As the name suggest we keep ourself updated with fashion and provide you new collection every week.</p>
-            </div>
-    <div class="footer-section">
-    <h3>Useful Links</h3>
-    <ul>
-<li><a href="#" onclick="openPopup(event, 'shipping')">Shipping Policy</a></li>
-<li><a href="#" onclick="openPopup(event, 'returns')">Return & Exchange Policy</a></li>
-<li><a href="#" onclick="openPopup(event, 'privacy')">Privacy Policy</a></li>
-<li><a href="#" onclick="openPopup(event, 'stores')">Store Locator</a></li>
-<li><a href="#" onclick="openPopup(event, 'about')">About Us</a></li>
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
 
-
-    </ul>
-</div>
-
-<div class="footer-section">
-    <h3>Collections</h3>
-    <ul>
-        <!-- Western Wear -->
-        <li><a href="western-wear/tops-tees.html">Top & Tees</a></li>
-        <li><a href="western-wear/jeans-pants.html">Jeans & Pants</a></li>
-        <li><a href="western-wear/loungewear.html">Loungewear</a></li>
-        <li><a href="western-wear/winter-wear.html">Winter Wear</a></li>
-        <li><a href="western-wear/dresses.html">Dresses</a></li>
-        <li><a href="western-wear/thrift-collection.html">Shirts</a></li>
-
-        <!-- Ethnic Wear -->
-        <li><a href="Ethnic-wear/co-ords.html">Ethnic Co-ords</a></li>
-        <li><a href="Ethnic-wear/3-piece-suit.html">Ethnic 3 Piece Suit</a></li>
-        <li><a href="Ethnic-wear/short-kurtis.html">Ethnic Short Kurtis</a></li>
-
-        <!-- Other Collections -->
-        <!-- <li><a href="#coords">Co-ord Sets</a></li>
-        <li><a href="#bottom-wear">Bottom Wear</a></li>
-        <li><a href="#tunics">Tunics</a></li>
-        <li><a href="#autumn-winter-25">Autumn Winter 25</a></li> -->
-        <li><a href="../index.html">All Collections</a></li>
-    </ul>
-</div>
-
-
-            <div class="footer-section">
-                <h3>Contact Information</h3>
-                <p><strong>Official Address:</strong><br>
-                    Basant Bihar Colony, near Government Hospital,<br>
-                    Udaipurwati, Rajasthan 333307
-                </p>
-                <p><strong>Phone:</strong><br>
-                    <a href="tel:+919886179612">+91 98861 79612</a>
-                </p>
-                <!-- <p><strong>Business Hours:</strong><br>
-                    Mon – Fri: 10 AM – 6 PM<br>
-                    Saturday – Sunday: CLOSED
-                </p> -->
-                <a href="#contact" class="contact-link">📞 Contact Us</a>
-            </div>
-        </div>
-        <div class="footer-social">
-            <a href="https://www.instagram.com/modish_junction/" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
-           <a href="https://chat.whatsapp.com/Ba06dhsRBq6HtQFMqNtUvN" target="_blank" class="social-btn"><i class="fab fa-whatsapp"></i></a>
-            <!-- <a href="https://www.facebook.com" target="_blank" class="social-btn"><i class="fab fa-facebook-f"></i></a> -->
-        </div>
-        <div class="footer-bottom">
-            <p>© 2025 Modish Junction. All Rights Reserved.</p>
-            <p>Powered by <strong>Modish Junction</strong> | Where Comfort Meets Fashion ✨</p>
-        </div>
-    </footer>
-
-    <script>
-        // Hero background slideshow with Ken Burns effect
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.hero-slide');
-        
-        function nextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-        
-        setInterval(nextSlide, 5000);
-
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.boxShadow = '0 5px 30px rgba(0,0,0,0.2)';
-            } else {
-                header.style.boxShadow = '0 4px 30px rgba(212, 89, 59, 0.15)';
-            }
-        });
-
-        // Add to cart animation
-    
-
-
-        // Duplicate stories for infinite scroll
-        const storiesTrack = document.querySelector('.stories-track');
-        const storyCards = document.querySelectorAll('.story-card');
-        storyCards.forEach(card => {
-            const clone = card.cloneNode(true);
-            storiesTrack.appendChild(clone);
-        });
-
-        // Reels carousel functionality
-        const reelsTrack = document.querySelector('.reels-track');
-        const reelCards = document.querySelectorAll('.reel-card');
-        const prevButton = document.querySelector('.reel-prev');
-        const nextButton = document.querySelector('.reel-next');
-        
-        let currentReelIndex = 0;
-        const reelsToShow = window.innerWidth <= 768 ? 1 : 4;
-        const reelCardWidth = 280 + 32;
-        
-        function updateReelPosition() {
-            const offset = -currentReelIndex * reelCardWidth;
-            reelsTrack.style.transform = `translateX(${offset}px)`;
-        }
-        
-        if (nextButton) {
-            nextButton.addEventListener('click', () => {
-                if (currentReelIndex < reelCards.length - reelsToShow) {
-                    currentReelIndex++;
-                    updateReelPosition();
-                }
-            });
-        }
-        
-        if (prevButton) {
-            prevButton.addEventListener('click', () => {
-                if (currentReelIndex > 0) {
-                    currentReelIndex--;
-                    updateReelPosition();
-                }
-            });
-        }
-
-        // Ensure all videos autoplay
-        document.querySelectorAll('.reel-video').forEach(video => {
-            video.play().catch(err => {
-                console.log('Autoplay prevented:', err);
-            });
-        });
-
-        // Auto-scroll reels
-        let reelAutoScroll = setInterval(() => {
-            if (currentReelIndex < reelCards.length - reelsToShow) {
-                currentReelIndex++;
-            } else {
-                currentReelIndex = 0;
-            }
-            updateReelPosition();
-        }, 3000);
-
-        // Pause auto-scroll on user interaction
-        if (prevButton) {
-            prevButton.addEventListener('click', () => {
-                clearInterval(reelAutoScroll);
-                reelAutoScroll = setInterval(() => {
-                    if (currentReelIndex < reelCards.length - reelsToShow) {
-                        currentReelIndex++;
-                    } else {
-                        currentReelIndex = 0;
-                    }
-                    updateReelPosition();
-                }, 3000);
-            });
-        }
-
-        if (nextButton) {
-            nextButton.addEventListener('click', () => {
-                clearInterval(reelAutoScroll);
-                reelAutoScroll = setInterval(() => {
-                    if (currentReelIndex < reelCards.length - reelsToShow) {
-                        currentReelIndex++;
-                    } else {
-                        currentReelIndex = 0;
-                    }
-                    updateReelPosition();
-                }, 3000);
-            });
-        }
-
-
-    </script>
-     <!-- ✅ ADD QUICK VIEW MODAL HERE -->
+    <!-- Modals -->
     <div id="quick-view-modal"></div>
-    <!-- Modal will be populated by JavaScript when user clicks Quick View -->
-      <!-- ✅ ADD SOCIAL PROOF CONTAINER HERE -->
     <div id="social-proof-container"></div>
-    <!-- Notification popups will be injected here by JavaScript -->
+    <div id="popupModal" class="popup-modal">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2 id="popupTitle"></h2>
+            <p id="popupText"></p>
+        </div>
+    </div>
 
-       <!-- ✅ ADD ALL NEW SCRIPT FILES HERE -->
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-box">
+            <h2>🛒 Your Cart</h2>
+            <div id="cart-items"></div>
+            <div class="cart-footer">
+                <strong id="cart-total"></strong>
+                <div class="cart-actions">
+                    <button onclick="closeCart()">Close</button>
+                    <button class="whatsapp-btn" onclick="openWhatsAppOrder()">Order on WhatsApp</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="./js/cart.js"></script>
+    <script src="./js/header-footer-scripts.js"></script>
+    
+    <script>
+        // Load Header
+        fetch('./includes/header.html')
+            .then(response => {
+                if (!response.ok) throw new Error('Header not found');
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+                initializeHeaderAfterLoad();
+                if (typeof updateCartCount === 'function') updateCartCount();
+            })
+            .catch(error => console.error('Error loading header:', error));
+        
+        // Load Footer
+        fetch('./includes/footer.html')
+            .then(response => {
+                if (!response.ok) throw new Error('Footer not found');
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error));
+        
+        // Initialize header functionality after dynamic load
+        function initializeHeaderAfterLoad() {
+            const menuBtn = document.getElementById("menuBtn");
+            const mobileNav = document.getElementById("mobileNav");
+            
+            if (menuBtn && mobileNav) {
+                menuBtn.addEventListener("click", () => {
+                    mobileNav.classList.toggle("active");
+                });
+                
+                document.querySelectorAll(".mobile-nav a").forEach(link => {
+                    link.addEventListener("click", () => {
+                        mobileNav.classList.remove("active");
+                    });
+                });
+            }
+
+            // Hero slideshow
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.hero-slide');
+            
+            function nextSlide() {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
+            
+            setInterval(nextSlide, 5000);
+
+            // Duplicate stories for infinite scroll
+            const storiesTrack = document.querySelector('.stories-track');
+            const storyCards = document.querySelectorAll('.story-card');
+            storyCards.forEach(card => {
+                const clone = card.cloneNode(true);
+                storiesTrack.appendChild(clone);
+            });
+
+            // Reels carousel
+            const reelsTrack = document.querySelector('.reels-track');
+            const reelCards = document.querySelectorAll('.reel-card');
+            const prevButton = document.querySelector('.reel-prev');
+            const nextButton = document.querySelector('.reel-next');
+            
+            let currentReelIndex = 0;
+            const reelsToShow = window.innerWidth <= 768 ? 1 : 4;
+            const reelCardWidth = 280 + 32;
+            
+            function updateReelPosition() {
+                const offset = -currentReelIndex * reelCardWidth;
+                reelsTrack.style.transform = `translateX(${offset}px)`;
+            }
+            
+            if (nextButton) {
+                nextButton.addEventListener('click', () => {
+                    if (currentReelIndex < reelCards.length - reelsToShow) {
+                        currentReelIndex++;
+                        updateReelPosition();
+                    }
+                });
+            }
+            
+            if (prevButton) {
+                prevButton.addEventListener('click', () => {
+                    if (currentReelIndex > 0) {
+                        currentReelIndex--;
+                        updateReelPosition();
+                    }
+                });
+            }
+
+            // Autoplay videos
+            document.querySelectorAll('.reel-video').forEach(video => {
+                video.play().catch(err => console.log('Autoplay prevented:', err));
+            });
+        }
+
+        // Product card click
+        document.querySelectorAll(".product-card").forEach(card => {
+            card.addEventListener("click", e => {
+                if (e.target.classList.contains("add-to-cart")) return;
+                window.location.href = card.dataset.link;
+            });
+        });
+
+        // Popup functions
+        function openPopup(event, type) {
+            event.preventDefault();
+            event.stopPropagation();
+            const modal = document.getElementById("popupModal");
+            const title = document.getElementById("popupTitle");
+            const text = document.getElementById("popupText");
+
+            const content = {
+                shipping: { title: "Shipping Policy", text: "Orders are shipped within 3–5 business days." },
+                returns: { title: "Return & Exchange Policy", text: "Returns accepted within 7 days (opening video required)." },
+                privacy: { title: "Privacy Policy", text: "Your personal information is never shared." },
+                stores: { title: "Store Locator", text: "Currently online only. Stores coming soon." },
+                about: { title: "About Us", text: "Modish Junction – Where Comfort Meets Fashion." }
+            };
+
+            if (content[type]) {
+                title.innerText = content[type].title;
+                text.innerText = content[type].text;
+            }
+
+            const rect = event.target.getBoundingClientRect();
+            modal.style.top = window.scrollY + rect.bottom + 10 + "px";
+            modal.style.left = window.scrollX + rect.left + "px";
+            modal.classList.add("active");
+        }
+
+        function closePopup() {
+            document.getElementById("popupModal").classList.remove("active");
+        }
+
+        document.addEventListener("click", closePopup);
+        document.addEventListener("keydown", e => { if (e.key === "Escape") closePopup(); });
+        document.querySelector(".popup-content")?.addEventListener("click", e => e.stopPropagation());
+    </script>
+
+    <!-- Additional feature scripts -->
     <script src="data/products.js"></script>
     <script src="data/occasions.js"></script>
     <script src="data/live-events.js"></script>
@@ -3004,154 +1988,5 @@
     <script src="js/shop-by-occasion.js"></script>
     <script src="js/live-shopping.js"></script>
     <script src="js/main.js"></script>
-
-    
-<script src="js/cart.js"></script>
-<!-- CART MODAL -->
-<div id="cart-modal" class="cart-modal">
-  <div class="cart-box">
-    <h2>🛒 Your Cart</h2>
-    <div id="cart-items"></div>
-
-    <div class="cart-footer">
-      <strong id="cart-total"></strong>
-      <div class="cart-actions">
-        <button onclick="closeCart()">Close</button>
-        <button class="whatsapp-btn" onclick="openWhatsAppOrder()">Order on WhatsApp</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-<script>
-function openPopup(event, type) {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const modal = document.getElementById("popupModal");
-    const title = document.getElementById("popupTitle");
-    const text = document.getElementById("popupText");
-
-    if (type === "shipping") {
-        title.innerText = "Shipping Policy";
-        text.innerText = "Orders are shipped within 3–5 business days.";
-    } 
-    else if (type === "returns") {
-        title.innerText = "Return & Exchange Policy";
-        text.innerText = "Returns accepted within 7 days (opening video required).";
-    } 
-    else if (type === "privacy") {
-        title.innerText = "Privacy Policy";
-        text.innerText = "Your personal information is never shared.";
-    } 
-    else if (type === "stores") {
-        title.innerText = "Store Locator";
-        text.innerText = "Currently online only. Stores coming soon.";
-    } 
-    else if (type === "about") {
-        title.innerText = "About Us";
-        text.innerText = "Modish Junction – Where Comfort Meets Fashion.";
-    }
-
-    const rect = event.target.getBoundingClientRect();
-
-    modal.style.top = window.scrollY + rect.bottom + 10 + "px";
-    modal.style.left = window.scrollX + rect.left + "px";
-
-    modal.classList.add("active");
-}
-
-function closePopup() {
-    document.getElementById("popupModal").classList.remove("active");
-}
-
-/* Stop click inside popup */
-document.querySelector(".popup-content").addEventListener("click", function(e) {
-    e.stopPropagation();
-});
-
-/* Close when clicking outside */
-document.addEventListener("click", function() {
-    closePopup();
-});
-
-/* Close with ESC */
-document.addEventListener("keydown", function(e) {
-    if (e.key === "Escape") closePopup();
-});
-</script>
-
-  <script>
-  document.querySelectorAll(".product-card").forEach(card => {
-    card.addEventListener("click", e => {
-      if (e.target.classList.contains("add-to-cart")) return;
-      window.location.href = card.dataset.link;
-    });
-  });
-</script>
-<div id="popupModal" class="popup-modal">
-    <div class="popup-content">
-        <span class="close-btn" onclick="closePopup()">&times;</span>
-        <h2 id="popupTitle"></h2>
-        <p id="popupText"></p>
-    </div>
-</div>
-<script>
-  const menuBtn = document.getElementById("menuBtn");
-  const mobileNav = document.getElementById("mobileNav");
-
-  menuBtn.addEventListener("click", () => {
-    mobileNav.classList.toggle("active");
-  });
-
-  // Close menu when clicking a link
-  document.querySelectorAll(".mobile-nav a").forEach(link => {
-    link.addEventListener("click", () => {
-      mobileNav.classList.remove("active");
-    });
-  });
-</script>
-<script>
-/* MOBILE DROPDOWN TOGGLE */
-document.querySelectorAll(".mobile-dropdown > span").forEach(span => {
-  span.addEventListener("click", function (e) {
-    e.stopPropagation();
-
-    const submenu = this.nextElementSibling;
-
-    // close other open submenus
-    document.querySelectorAll(".mobile-submenu").forEach(menu => {
-      if (menu !== submenu) menu.classList.remove("open");
-    });
-
-    submenu.classList.toggle("open");
-  });
-});
-</script>
-
-<script>
-document.querySelectorAll(".mobile-nav a:not(#saleLinkMobile)").forEach(link => {
-  link.addEventListener("click", () => {
-    mobileNav.classList.remove("active");
-  });
-});
-
-</script>
-
-<script>
-document.getElementById("saleLinkMobile")?.addEventListener("click", function (e) {
-  e.preventDefault();
-
-  // trigger desktop sale logic
-  document.getElementById("saleLink")?.click();
-
-  // close mobile menu after click
-  document.getElementById("mobileNav").classList.remove("active");
-});
-</script>
-<script></script>
-
 </body>
 </html>
