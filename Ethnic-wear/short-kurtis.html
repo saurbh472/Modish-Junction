@@ -472,6 +472,48 @@ footer, .footer {
         });
     }
 </script>
+
+<script>
+// Handle product card clicks
+document.querySelectorAll('.product-card').forEach(card => {
+  card.addEventListener('click', function(e) {
+    // Don't navigate if clicking the Add to Cart button
+    if (e.target.classList.contains('add-to-cart')) {
+      return;
+    }
+    
+    const link = this.getAttribute('data-link');
+    if (link) {
+      window.location.href = link;
+    }
+  });
+  
+  // Make card clickable with cursor
+  card.style.cursor = 'pointer';
+});
+
+// Handle Add to Cart button clicks
+document.querySelectorAll('.add-to-cart').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation(); // Prevent card click
+    
+    const card = this.closest('.product-card');
+    const productId = card.getAttribute('data-id');
+    const productName = card.querySelector('h3').innerText;
+    const productPrice = card.querySelector('.sale-price').innerText.replace('₹', '');
+    const productLink = card.getAttribute('data-link');
+    
+    // Add to cart (you'll need to implement this function in cart.js)
+    addToCart(productId, productName, parseInt(productPrice), productLink);
+    
+    // Optional: Change button text temporarily
+    this.innerText = '✓ Added';
+    setTimeout(() => {
+      this.innerText = 'Add to Cart';
+    }, 2000);
+  });
+});
+</script>
 <!-- CART MODAL -->
 <div id="cart-modal" class="cart-modal">
   <div class="cart-box">
