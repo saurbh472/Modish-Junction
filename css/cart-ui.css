@@ -119,3 +119,40 @@
   border: none;
   box-shadow: 0 8px 20px rgba(37,211,102,0.35);
 }
+
+
+/* ---------- PRICE SUMMARY ---------- */
+
+#cart-total {
+  margin-top: 16px;
+  padding: 14px;
+  background: #fafafa;
+  border-radius: 16px;
+  border: 1px solid #eee;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+.price-row span:last-child {
+  font-weight: 600;
+}
+
+.price-row.total-row {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed #ddd;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.price-row.total-row span:last-child {
+  font-size: 18px;
+}

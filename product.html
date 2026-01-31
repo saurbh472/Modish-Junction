@@ -4,15 +4,81 @@
   <meta charset="UTF-8">
   <title id="page-title">Product | Modish Junction</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="./css/cart-ui.css">
-
+  
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Header & Footer Styles -->
+  <link rel="stylesheet" href="../css/header-styles.css">
+  <link rel="stylesheet" href="../css/footer-styles.css">
+  
+  <!-- Other Styles -->
+  <link rel="stylesheet" href="../css/cart-ui.css">
+  <link rel="stylesheet" href="../css/whatsapp-float.css">
+  <!-- <link rel="stylesheet" href="./css/responsive.css"> -->
+  
   <style>
-    :root {
-      --primary: #d4593b;
-      --secondary: #e89580;
-      --dark: #1a0e08;
-      --cream: #fffbf7;
-    }
+  :root {
+    --primary: #d4593b;
+    --primary-light: #e67a5f;
+    --secondary: #e89580;
+    --dark: #1a0e08;
+    --cream: #fffbf7;
+    --black: #1a0e08;
+    --accent: #F48FB1;
+    --gold: #d4a574;
+}
+
+/* Force footer to display properly */
+footer, .footer {
+    background-color: #1a0e08 !important;
+    color: #fff !important;
+    display: block !important;
+    margin-top: 3rem;
+}
+
+.footer-section h3,
+.footer-section ul li a,
+.footer-section p {
+    color: #ccc !important;
+}
+
+.footer-section ul li a:hover {
+    color: #F48FB1 !important;
+}
+
+.footer-bottom {
+    color: #ccc !important;
+}
+
+/* Footer Social Icons Fix */
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    background: var(--accent);
+    transform: translateY(-3px);
+}
+
+.social-icons i {
+    font-size: 18px;
+}
 
     * {
       margin: 0;
@@ -140,26 +206,29 @@
       color: #444;
     }
 
-
     .thumbs {
-  display: flex;
-  gap: 10px;
-  margin-top: 12px;
-}
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
 
-.thumbs img {
-  width: 70px;
-  height: 70px;
-  object-fit: cover;
-  border-radius: 10px;
-  cursor: pointer;
-  border: 2px solid transparent;
-  transition: 0.3s;
-}
+    .thumbs img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: 0.3s;
+    }
 
-.thumbs img:hover {
-  border-color: var(--primary);
-}
+    .thumbs img:hover {
+      border-color: var(--primary);
+    }
+
+    .thumbs img.active {
+      border-color: var(--primary);
+    }
 
     .add-btn {
       padding: 14px 26px;
@@ -178,119 +247,143 @@
       box-shadow: 0 8px 20px rgba(212,89,59,0.4);
     }
 
-
-    
-
-    /* ================= CART MODAL ================= */
+    /* ================= NAV LINKS ================= */
     .nav-links {
-  display: flex;
-  list-style: none;
-  gap: 2.5rem;
-  align-items: center;
-}
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+      align-items: center;
+    }
 
-.nav-links a {
-  text-decoration: none;
-  color: var(--dark);
-  font-weight: 500;
-  transition: 0.3s;
-}
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: 0.3s;
+    }
 
-.nav-links a:hover {
-  color: var(--primary);
-}
+    .nav-links a:hover {
+      color: var(--primary);
+    }
 
-/* CART ITEM – SAME STYLE AS DRESSES PAGE */
-.cart-nav {
-  cursor: pointer;
-  font-weight: 600;
-  color: var(--dark);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  transition: 0.3s;
-}
+    /* CART ITEM */
+    .cart-nav {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: 0.3s;
+    }
 
-.cart-nav:hover {
-  color: var(--primary);
-}
+    .cart-nav:hover {
+      color: var(--primary);
+    }
 
-/* CART COUNT */
-#cart-count {
-  font-size: 14px;
-  font-weight: bold;
-  color: var(--primary);
-}
+    /* CART COUNT */
+    #cart-count {
+      font-size: 14px;
+      font-weight: bold;
+      color: var(--primary);
+    }
 
-
+    /* ================= IMAGE NAVIGATION ================= */
     .image-viewer {
-  position: relative;
-}
+      position: relative;
+    }
 
-.nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255,255,255,0.9);
-  border: none;
-  font-size: 22px;
-  padding: 10px 14px;
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.9);
+      border: none;
+      font-size: 22px;
+      padding: 10px 14px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 10;
+    }
 
-.nav-btn.left {
-  left: 10px;
-}
+    .nav-btn.left {
+      left: 10px;
+    }
 
-.nav-btn.right {
-  right: 10px;
-}
+    .nav-btn.right {
+      right: 10px;
+    }
 
-.nav-btn:hover {
-  background: var(--primary);
-  color: #fff;
-}
+    .nav-btn:hover {
+      background: var(--primary);
+      color: #fff;
+    }
 
-.thumbs img.active {
-  border-color: var(--primary);
-}
-.size-box {
-  margin: 20px 0;
-}
+    /* ================= SIZE SELECTION ================= */
+    .size-box {
+      margin: 20px 0;
+    }
 
-.sizes {
-  display: flex;
-  gap: 12px;
-  margin-top: 10px;
-}
+    .sizes {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
 
-.size-btn {
-  padding: 10px 16px;
-  border-radius: 10px;
-  border: 2px solid #ddd;
-  background: #fff;
-  cursor: pointer;
-  font-weight: bold;
-}
+    .size-btn {
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: 2px solid #ddd;
+      background: #fff;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
 
-.size-btn.active,
-.size-btn:hover {
-  background: var(--primary);
-  color: #fff;
-  border-color: var(--primary);
-}
+    .size-btn.active,
+    .size-btn:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
 
-.product-points {
-  margin: 20px 0;
-  font-size: 14px;
-  line-height: 1.8;
-}
+    .product-points {
+      margin: 20px 0;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .product-points p {
+      margin-bottom: 5px;
+    }
 
     @media (max-width: 768px) {
+      body {
+        padding-top: 120px;
+      }
+
       .product-wrapper {
         grid-template-columns: 1fr;
+        padding: 20px;
+      }
+
+      .product-img img {
+        max-height: 400px;
+      }
+
+      .product-details h1 {
+        font-size: 24px;
+      }
+
+      .sale {
+        font-size: 22px;
+      }
+
+      .nav-btn {
+        padding: 8px 12px;
+        font-size: 18px;
       }
     }
   </style>
@@ -298,254 +391,330 @@
 
 <body>
 
-<!-- HEADER -->
-<header>
-  <div class="top-bar">✨ Free Shipping on Orders Above ₹999 ✨</div>
-  <nav>
-    <div class="logo">Modish Junction</div>
-    <ul class="nav-links">
-    <li><a href="./index.html">Home</a></li>
-    <li><a href="./index.html#trending">Shop</a></li>
-    <li><a href="./index.html#sale">Sale</a></li>
-    <li onclick="openCart()" style="cursor:pointer">
-        🛒 <small id="cart-count">0</small>
-    </li>
-</ul>
-     </nav>
-</header>
+  <!-- ✅ HEADER COMPONENT -->
+  <div id="header-placeholder"></div>
 
-<!-- BACK TO HOME -->
-<div class="back-home">
-  <a id="backLink"></a>
-</div>
+  <!-- BACK TO HOME -->
+  <div class="back-home">
+    <a id="backLink"></a>
+  </div>
 
+  <!-- PRODUCT -->
+  <div id="product-container" class="product-wrapper"></div>
 
-<!-- PRODUCT -->
-<div id="product-container" class="product-wrapper"></div>
+  <!-- ✅ FOOTER COMPONENT -->
+  <div id="footer-placeholder"></div>
 
+  <!-- ============= PRODUCT DATA SCRIPTS ============= -->
+  <script src="./js/data/products-winterwear.js"></script>
+  <script src="./js/data/products-dresses.js"></script>
+  <script src="./js/data/products-jeans.js"></script>
+  <script src="./js/data/products-loungewear.js"></script>
+  <script src="./js/data/products-toptees.js"></script>
+  <script src="./js/data/products-thrift.js"></script>
+  <script src="./js/data/products-3piece.js"></script>
+  <script src="./js/data/products-coords.js"></script>
+  <script src="./js/data/products-kurtis.js"></script>
+  <script src="./js/data/products-sale.js"></script>
+  <script src="./js/data/products-trending.js"></script>
 
-<script src="./js/data/products-winterwear.js"></script>
-<script src="./js/data/products-dresses.js"></script>
-<script src="./js/data/products-jeans.js"></script>
-<script src="./js/data/products-loungewear.js"></script>
-<script src="./js/data/products-toptees.js"></script>
-<script src="./js/data/products-thrift.js"></script>
-<script src="./js/data/products-3piece.js"></script>
-<script src="./js/data/products-coords.js"></script>
-<script src="./js/data/products-kurtis.js"></script>
-<script src="./js/data/products-sale.js"></script>
-<script src="./js/data/products-trending.js"></script>
+  <!-- ✅ CART FUNCTIONALITY - Load BEFORE product logic -->
+  <script src="../js/cart.js"></script>
 
+  <!-- ============= PRODUCT PAGE LOGIC ============= -->
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get("slug");
+    const cleanSlug = slug?.trim().toLowerCase();
+    const category = params.get("category") || "winter";
 
-<script>
-  
-  const params = new URLSearchParams(window.location.search);
-  const slug = params.get("slug");
-  const cleanSlug = slug?.trim().toLowerCase();
+    // Select the correct product array based on category
+    let products;
+    if (category === "dress") products = dressProducts;
+    else if (category === "jeans") products = jeansProducts;
+    else if (category === "loungewear") products = loungewearProducts;
+    else if (category === "toptees") products = topteesProducts;
+    else if (category === "thrift") products = thriftProducts;
+    else if (category === "threepiece") products = threePieceProducts;
+    else if (category === "coords") products = coordsProducts;
+    else if (category === "kurtis") products = kurtisProducts;
+    else if (category === "sale") products = saleProducts;
+    else if (category === "trending") products = trendingProducts;
+    else products = winterProducts;
 
+    // Find the specific product
+    const product = products.find(p => p.slug.toLowerCase() === cleanSlug);
 
-const category = params.get("category") || "winter";
+    if (!product) {
+      document.getElementById("product-container").innerHTML =
+        "<h2 style='text-align:center; padding:50px;'>Product not found</h2>";
+    } else {
+      // Update page title
+      document.getElementById("page-title").innerText = product.name + " | Modish Junction";
 
-let products;
-if (category === "dress") products = dressProducts;
-else if (category === "jeans") products = jeansProducts;
-else if (category === "loungewear") products = loungewearProducts;
-else if (category === "toptees") products = topteesProducts;
-else if (category === "thrift") products = thriftProducts;
-else if (category === "threepiece") products = threePieceProducts;
-else if (category === "coords") products = coordsProducts;
-else if (category === "kurtis") products = kurtisProducts;
-else if (category === "sale") products = saleProducts;
-else if (category === "trending") products = trendingProducts;
-else products = winterProducts;
+      // Render product HTML
+      document.getElementById("product-container").innerHTML = `
+        <div class="product-img">
+          <div class="image-viewer">
+            <button class="nav-btn left" onclick="prevImage()" aria-label="Previous image">❮</button>
+            <img id="mainImage" src="${product.images[0]}" alt="${product.name}">
+            <button class="nav-btn right" onclick="nextImage()" aria-label="Next image">❯</button>
+          </div>
 
-
-
-
-
-const product = products.find(
-  p => p.slug.toLowerCase() === cleanSlug
-);
-
-
-  if (!product) {
-    document.getElementById("product-container").innerHTML =
-      "<h2>Product not found</h2>";
-  } else {
-    document.getElementById("page-title").innerText =
-      product.name + " | Modish Junction";
-
-    document.getElementById("product-container").innerHTML = `
-      <div class="product-img">
-        <div class="image-viewer">
-          <button class="nav-btn left" onclick="prevImage()">❮</button>
-          <img id="mainImage" src="${product.images[0]}">
-          <button class="nav-btn right" onclick="nextImage()">❯</button>
-        </div>
-
-        <div class="thumbs">
-          ${product.images.map((img, i) => `
-            <img src="${img}" onclick="changeImageByIndex(${i})"
-                 class="${i === 0 ? 'active' : ''}">
-          `).join("")}
-        </div>
-      </div>
-
-      <div class="product-details">
-        <h1>${product.name}</h1>
-
-        <div class="price">
-          <span class="sale">₹${product.price}</span>
-          <span class="original">₹${product.originalPrice}</span>
-        </div>
-
-        <p class="description">${product.description}</p>
-
-        <div class="size-box">
-          <strong>Select Size:</strong>
-          <div class="sizes">
-            ${product.sizes.map(size => `
-              <button class="size-btn" onclick="selectSize(this)">
-                ${size}
-              </button>
+          <div class="thumbs">
+            ${product.images.map((img, i) => `
+              <img src="${img}" onclick="changeImageByIndex(${i})"
+                   class="${i === 0 ? 'active' : ''}" alt="Thumbnail ${i + 1}">
             `).join("")}
           </div>
         </div>
 
-        <div class="product-points">
-          <p>✓ 100% Authentic Vintage</p>
-          <p>✓ Professionally cleaned & sanitized</p>
-          <p>✓ Quality checked for condition</p>
-          <p>✓ Free shipping on orders above ₹999</p>
-          <p>✓ 7-day return policy</p>
+        <div class="product-details">
+          <h1>${product.name}</h1>
+
+          <div class="price">
+            <span class="sale">₹${product.price}</span>
+            <span class="original">₹${product.originalPrice}</span>
+          </div>
+
+          <p class="description">${product.description}</p>
+
+          <div class="size-box">
+            <strong>Select Size:</strong>
+            <div class="sizes">
+              ${product.sizes.map(size => `
+                <button class="size-btn" onclick="selectSize(this)">
+                  ${size}
+                </button>
+              `).join("")}
+            </div>
+          </div>
+
+          <div class="product-points">
+            <p>✓ 100% Authentic Vintage</p>
+            <p>✓ Professionally cleaned & sanitized</p>
+            <p>✓ Quality checked for condition</p>
+            <p>✓ Free shipping on orders above ₹999</p>
+            <p>✓ 7-day return policy</p>
+          </div>
+
+          <button class="add-btn" id="addBtn">Add to Cart</button>
         </div>
+      `;
 
-        <button class="add-btn" id="addBtn">Add to Cart</button>
-      </div>
-    `;
+      /* ================= IMAGE NAVIGATION LOGIC ================= */
+      let currentImageIndex = 0;
+      const images = product.images;
 
-    /* ================= IMAGE LOGIC ================= */
-    let currentImageIndex = 0;
-    const images = product.images;
+      window.updateImage = function () {
+        document.getElementById("mainImage").src = images[currentImageIndex];
+        document.querySelectorAll(".thumbs img").forEach((img, i) => {
+          img.classList.toggle("active", i === currentImageIndex);
+        });
+      };
 
-    window.updateImage = function () {
-      document.getElementById("mainImage").src = images[currentImageIndex];
-      document.querySelectorAll(".thumbs img").forEach((img, i) => {
-        img.classList.toggle("active", i === currentImageIndex);
+      window.nextImage = function () {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        updateImage();
+      };
+
+      window.prevImage = function () {
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+        updateImage();
+      };
+
+      window.changeImageByIndex = function (index) {
+        currentImageIndex = index;
+        updateImage();
+      };
+
+      /* ================= SIZE SELECTION ================= */
+      let selectedSize = null;
+
+      window.selectSize = function (btn) {
+        document.querySelectorAll(".size-btn").forEach(b =>
+          b.classList.remove("active")
+        );
+        btn.classList.add("active");
+        selectedSize = btn.innerText;
+      };
+
+      /* ================= ADD TO CART ================= */
+      document.getElementById("addBtn").onclick = () => {
+        if (!selectedSize) {
+          alert("Please select a size");
+          return;
+        }
+
+        // Check if addToCart function exists (from cart.js)
+        if (typeof addToCart === 'function') {
+          addToCart(
+            product.id + "-" + selectedSize,
+            product.name + " (Size: " + selectedSize + ")",
+            product.price,
+            window.location.href
+          );
+
+          // Update button text and action
+          const addBtn = document.getElementById("addBtn");
+          addBtn.innerText = "✓ Added to Cart";
+          addBtn.style.background = "linear-gradient(135deg, #27ae60, #2ecc71)";
+          
+          // Optional: Change button to go to cart after 1.5 seconds
+          setTimeout(() => {
+            addBtn.innerText = "View Cart";
+            addBtn.style.background = "linear-gradient(135deg, var(--primary), var(--secondary))";
+            addBtn.onclick = () => {
+              if (typeof openCart === 'function') {
+                openCart();
+              } else {
+                // Fallback: scroll to top where cart icon is
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                alert("Click the cart icon in the header to view your cart");
+              }
+            };
+          }, 1500);
+
+          // Update cart count if function exists
+          if (typeof updateCartCount === 'function') {
+            updateCartCount();
+          }
+        } else {
+          console.error("addToCart function not found. Make sure cart.js is loaded.");
+          alert("Cart functionality is not available. Please refresh the page.");
+        }
+      };
+    }
+
+    /* ================= BACK LINK CONFIGURATION ================= */
+    const backLink = document.getElementById("backLink");
+
+    if (category === "dress") {
+      backLink.href = "./western-wear/dresses.html";
+      backLink.innerText = "← Back to Dresses";
+    } else if (category === "jeans") {
+      backLink.href = "./western-wear/jeans-pants.html";
+      backLink.innerText = "← Back to Jeans & Pants";
+    } else if (category === "loungewear") {
+      backLink.href = "./western-wear/loungewear.html";
+      backLink.innerText = "← Back to Loungewear";
+    } else if (category === "toptees") {
+      backLink.href = "./western-wear/tops-tees.html";
+      backLink.innerText = "← Back to Tops & Tees";
+    } else if (category === "threepiece") {
+      backLink.href = "./Ethnic-wear/3-piece-suit.html";
+      backLink.innerText = "← Back to 3 Piece Suits";
+    } else if (category === "thrift") {
+      backLink.href = "./western-wear/thrift-collection.html";
+      backLink.innerText = "← Back to Thrift Collection";
+    } else if (category === "coords") {
+      backLink.href = "./Ethnic-wear/co-ords.html";
+      backLink.innerText = "← Back to Co-ords";
+    } else if (category === "kurtis") {
+      backLink.href = "./Ethnic-wear/short-kurtis.html";
+      backLink.innerText = "← Back to Short Kurtis";
+    } else if (category === "sale") {
+      backLink.href = "./Sale/sale.html";
+      backLink.innerText = "← Back to Sale";
+    } else if (category === "trending") {
+      backLink.href = "./index.html";
+      backLink.innerText = "← Back to Home";
+    } else {
+      backLink.href = "./western-wear/winter-wear.html";
+      backLink.innerText = "← Back to Winter Wear";
+    }
+  </script>
+
+  <!-- ✅ HEADER & FOOTER LOADER SCRIPT -->
+  <script>
+    // Load Header
+    fetch('../includes/header.html')
+      .then(response => {
+        if (!response.ok) throw new Error('Header not found');
+        return response.text();
+      })
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+        
+        // Initialize header functionality after load
+        initializeHeaderAfterLoad();
+        
+        // Update cart count if function exists
+        if (typeof updateCartCount === 'function') {
+          updateCartCount();
+        }
+      })
+      .catch(error => {
+        console.error('Error loading header:', error);
+        // Fallback header
+        document.getElementById('header-placeholder').innerHTML = `
+          <header>
+            <div class="top-bar">✨ Free Shipping on Orders Above ₹999</div>
+            <nav>
+              <div class="logo">Modish Junction</div>
+              <div class="cart-nav" onclick="if(typeof openCart === 'function') openCart()">
+                🛒 Cart (<span id="cart-count">0</span>)
+              </div>
+            </nav>
+          </header>
+        `;
       });
-    };
 
-    window.nextImage = function () {
-      currentImageIndex = (currentImageIndex + 1) % images.length;
-      updateImage();
-    };
+    // Load Footer
+    fetch('../includes/footer.html')
+      .then(response => {
+        if (!response.ok) throw new Error('Footer not found');
+        return response.text();
+      })
+      .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+        
+        // Ensure Font Awesome icons are loaded
+        if (!document.querySelector('link[href*="font-awesome"]')) {
+          const faLink = document.createElement('link');
+          faLink.rel = 'stylesheet';
+          faLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+          document.head.appendChild(faLink);
+        }
+      })
+      .catch(error => {
+        console.error('Error loading footer:', error);
+      });
 
-    window.prevImage = function () {
-      currentImageIndex =
-        (currentImageIndex - 1 + images.length) % images.length;
-      updateImage();
-    };
+    // Initialize header functionality after dynamic load
+    function initializeHeaderAfterLoad() {
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileNav = document.getElementById("mobileNav");
 
-    window.changeImageByIndex = function (index) {
-      currentImageIndex = index;
-      updateImage();
-    };
+      if (menuBtn && mobileNav) {
+        menuBtn.addEventListener("click", () => {
+          mobileNav.classList.toggle("active");
+        });
 
-    /* ================= SIZE ================= */
-    let selectedSize = null;
+        // Close menu when clicking links
+        document.querySelectorAll(".mobile-nav a").forEach(link => {
+          link.addEventListener("click", () => {
+            mobileNav.classList.remove("active");
+          });
+        });
+      }
 
-    window.selectSize = function (btn) {
-      document.querySelectorAll(".size-btn").forEach(b =>
-        b.classList.remove("active")
-      );
-      btn.classList.add("active");
-      selectedSize = btn.innerText;
-    };
+      // Mobile dropdown functionality
+      document.querySelectorAll(".mobile-dropdown > span").forEach(span => {
+        span.addEventListener("click", function (e) {
+          e.stopPropagation();
+          const submenu = this.nextElementSibling;
+          document.querySelectorAll(".mobile-submenu").forEach(menu => {
+            if (menu !== submenu) menu.classList.remove("open");
+          });
+          submenu.classList.toggle("open");
+        });
+      });
+    }
+  </script>
 
-    /* ================= ADD TO CART =================*/
-document.getElementById("addBtn").onclick = () => {
-  if (!selectedSize) {
-    alert("Please select a size");
-    return;
-  }
-
-  addToCart(
-    product.id + "-" + selectedSize,
-    product.name + " (Size: " + selectedSize + ")",
-    product.price,
-    window.location.href
-  );
-
-  document.getElementById("addBtn").innerText = "View Cart";
-  document.getElementById("addBtn").onclick = openCart;
-};
-
-  }
-
-
-const backLink = document.getElementById("backLink");
-
-if (category === "dress") {
-  backLink.href = "./western-wear/dresses.html";
-  backLink.innerText = "← Back to Dresses";
-} else if (category === "jeans") {
-  backLink.href = "./western-wear/jeans-pants.html";
-  backLink.innerText = "← Back to Jeans & Pants";
-}else if (category === "loungewear") {
-  backLink.href = "./western-wear/loungewear.html";
-  backLink.innerText = "← Back to Loungewear";
-} 
-else if (category === "toptees") {
-  backLink.href = "./western-wear/tops-tees.html";
-  backLink.innerText = "← Back to Tops & Tees";
-}
-else if (category === "threepiece") {
-  backLink.href = "./Ethnic-wear/3-piece-suit.html";
-  backLink.innerText = "← Back to 3 Piece Suits";
-}
-else if (category === "thrift") {
-  backLink.href = "./western-wear/thrift-collection.html";
-  backLink.innerText = "← Back to Thrift Collection";
-}
-else if (category === "coords") {
-  backLink.href = "./Ethnic-wear/co-ords.html";
-  backLink.innerText = "← Back to Co-ords";
-}
-else if (category === "kurtis") {
-  backLink.href = "./Ethnic-wear/short-kurtis.html";
-  backLink.innerText = "← Back to Short Kurtis";
-}
-else if (category === "sale") {
-  backLink.href = "./Sale/sale.html";
-  backLink.innerText = "← Back to Sale";
-}
-else if (category === "trending") {
-  backLink.href = "./index.html";
-  backLink.innerText = "← Back to Home";
-}
-else {
-  backLink.href = "./western-wear/winter-wear.html";
-  backLink.innerText = "← Back to Winter Wear";
-}
-
-
-</script>
-
-<script src="./js/cart.js"></script>
-<!-- CART MODAL -->
-<div id="cart-modal" class="cart-modal">
-  <div class="cart-box">
-    <h2>🛒 Your Cart</h2>
-    <div id="cart-items"></div>
-
-    <div class="cart-footer">
-      <strong id="cart-total"></strong>
-      <div class="cart-actions">
-        <button onclick="closeCart()">Close</button>
-        <button class="whatsapp-btn" onclick="openWhatsAppOrder()">Order on WhatsApp</button>
-      </div>
-    </div>
-  </div>
+  <!-- ✅ HEADER AND FOOTER SCRIPTS (if you have additional scripts) -->
+  <script src="../js/header-footer-scripts.js"></script>
 
 </body>
 </html>

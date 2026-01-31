@@ -2,6 +2,7 @@
    CONFIG
 ========================= */
 const DEALER_WHATSAPP = "918949120920"; // your WhatsApp number
+const SHIPPING_CHARGE = 45; // ₹45 flat per order
 
 /* =========================
    CART STORAGE
@@ -57,7 +58,9 @@ function bindAddToCartButtons() {
     const btn = card.querySelector(".add-to-cart");
     if (!btn) return;
 
-    btn.onclick = () => {
+    btn.onclick = (e) => {
+      e.stopPropagation();
+
       const id = card.dataset.id;
       const name = card.querySelector("h3")?.innerText.trim();
       const priceText = card.querySelector(".sale-price")?.innerText || "₹0";
@@ -91,10 +94,10 @@ function openCart() {
     itemsEl.innerHTML = "<p>Your cart is empty</p>";
     totalEl.innerText = "";
   } else {
-    let total = 0;
+    let subtotal = 0;
 
     cart.forEach((item, index) => {
-      total += item.price * item.qty;
+      subtotal += item.price * item.qty;
 
       itemsEl.innerHTML += `
         <div class="cart-item">
@@ -113,7 +116,25 @@ function openCart() {
       `;
     });
 
-    totalEl.innerText = `Total: ₹${total}`;
+    const shipping = SHIPPING_CHARGE;
+    const grandTotal = subtotal + shipping;
+
+  totalEl.innerHTML = `
+  <div class="price-row">
+    <span>Subtotal</span>
+    <span>₹${subtotal}</span>
+  </div>
+
+  <div class="price-row">
+    <span>Shipping</span>
+    <span>₹${shipping}</span>
+  </div>
+
+  <div class="price-row total-row">
+    <span>Total Payable</span>
+    <span>₹${grandTotal}</span>
+  </div>
+`;
   }
 
   modal.style.display = "flex";
@@ -159,15 +180,20 @@ I want to place an order:
 
 `;
 
-  let total = 0;
+  let subtotal = 0;
 
   cart.forEach((item, i) => {
     message += `${i + 1}. ${item.name} - ₹${item.price} x ${item.qty}\n`;
-    if (item.link) message += `${encodeURI(item.link)}\n\n`;
-    total += item.price * item.qty;
+    if (item.link) message += `${item.link}\n\n`;
+    subtotal += item.price * item.qty;
   });
 
-  message += `Total: ₹${total}`;
+  const shipping = SHIPPING_CHARGE;
+  const grandTotal = subtotal + shipping;
+
+  message += `Subtotal: ₹${subtotal}\n`;
+  message += `Shipping: ₹${shipping}\n`;
+  message += `Total Payable: ₹${grandTotal}`;
 
   window.open(
     `https://wa.me/${DEALER_WHATSAPP}?text=${encodeURIComponent(message)}`,
