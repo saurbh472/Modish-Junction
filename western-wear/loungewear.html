@@ -319,18 +319,17 @@
         </div>
 
         <div class="filter-section">
-            <button class="filter-btn active">All</button>
-            <button class="filter-btn">Night suits / cordsets </button>
-            <button class="filter-btn">trousers / pajama</button>
-            <button class="filter-btn">shorts</button>
-            <!-- <button class="filter-btn">Robes</button>
-            <button class="filter-btn">Pajamas</button> -->
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="night suits / cordsets">Night suits / cordsets</button>
+            <button class="filter-btn" data-filter="trousers / pajama">trousers / pajama</button>
+            <button class="filter-btn" data-filter="shorts">shorts</button>
         </div>
 
         <div class="product-grid">
       <!-- PRODUCT 1 -->
 <div class="product-card"
      data-id="product-loungewear-1"
+     data-category="night suits / cordsets"
     data-link="../product.html?category=loungewear&slug=cotton-night-suit-floral"
 >
 
@@ -353,6 +352,7 @@
 
 <div class="product-card"
      data-id="product-loungewear-2"
+     data-category="trousers / pajama"
     data-link="../product.html?category=loungewear&slug=satin-pajama-lounge-set"
 >
 
@@ -375,6 +375,7 @@
 
 <div class="product-card"
      data-id="product-loungewear-3"
+     data-category="night suits / cordsets"
      data-link="../product.html?category=loungewear&slug=terry-cloth-bathrobe"
 >
 
@@ -397,6 +398,7 @@
 
 <div class="product-card"
      data-id="product-loungewear-4"
+     data-category="shorts"
      data-link="../product.html?category=loungewear&slug=top-shorts-sleep-set"
 >
 
@@ -419,6 +421,7 @@
 
 <div class="product-card"
      data-id="product-loungewear-5"
+     data-category="trousers / pajama"
      data-link="../product.html?category=loungewear&slug=fleece-lounge-pants"
 >
 
@@ -441,6 +444,7 @@
 
 <div class="product-card"
      data-id="product-loungewear-6"
+     data-category="night suits / cordsets"
      data-link="../product.html?category=loungewear&slug=oversized-sleep-shirt"
 >
 
@@ -463,6 +467,7 @@
 
 <div class="product-card"
      data-id="product-loungewear-7"
+     data-category="trousers / pajama"
      data-link="../product.html?category=loungewear&slug=printed-capri-pajama-set"
 >
 
@@ -485,6 +490,7 @@
 
 <div class="product-card"
      data-id="product-loungewear-8"
+     data-category="night suits / cordsets"
      data-link="../product.html?category=loungewear&slug=modal-blend-nightgown"
 >
 
@@ -507,6 +513,7 @@
 
 <div class="product-card"
      data-id="product-loungewear-9"
+     data-category="night suits / cordsets"
     data-link="../product.html?category=loungewear&slug=hooded-lounge-set"
 >
 
@@ -636,6 +643,32 @@ document.querySelectorAll('.add-to-cart').forEach(btn => {
       this.innerText = 'Add to Cart';
     }, 2000);
   });
+});
+</script>
+
+<!-- Filter functionality -->
+<script>
+document.querySelectorAll('.filter-btn').forEach(button => {
+    button.addEventListener('click', () => {
+
+        // Active button UI
+        document.querySelectorAll('.filter-btn')
+            .forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const filter = button.dataset.filter.toLowerCase();
+        const products = document.querySelectorAll('.product-card');
+
+        products.forEach(product => {
+            const category = product.dataset.category ? product.dataset.category.toLowerCase() : '';
+
+            if (filter === 'all' || category === filter) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    });
 });
 </script>
 </body>

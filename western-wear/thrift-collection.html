@@ -862,49 +862,11 @@
             <div class="eco-badge">🌱 Eco-Friendly Fashion</div>
         </div>
 
-        <!-- <div class="impact-tracker">
-            <h3><i class="fas fa-leaf"></i> Your Sustainability Impact</h3>
-            <p>See the positive change you're making with every thrifted piece!</p>
-            <div class="impact-stats">
-                <div class="impact-stat">
-                    <div class="icon">💧</div>
-                    <span class="number">2,450L</span>
-                    <span class="label">Water Saved</span>
-                </div>
-                <div class="impact-stat">
-                    <div class="icon">🌍</div>
-                    <span class="number">15kg</span>
-                    <span class="label">CO2 Reduced</span>
-                </div>
-                <div class="impact-stat">
-                    <div class="icon">👕</div>
-                    <span class="number">8</span>
-                    <span class="label">Items Rescued</span>
-                </div>
-                <div class="impact-stat">
-                    <div class="icon">🌳</div>
-                    <span class="number">3</span>
-                    <span class="label">Trees Worth</span>
-                </div>
-            </div>
-        </div> -->
-
         <div class="filter-section">
-            <!-- <button class="filter-btn active">All</button> -->
-            <!-- <button class="filter-btn">Denim</button>
-            <button class="filter-btn">Vintage Tees</button>
-            <button class="filter-btn">Jackets</button>
-            <button class="filter-btn">Dresses</button>
-            <button class="filter-btn">Accessories</button> -->
-            <button class="filter-btn active">All</button>
-            <button class="filter-btn">Formal shirt</button>
-            <button class="filter-btn">Crop shirt</button>
-            <button class="filter-btn">Casual shirt</button>
-
-
-
-
-
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="formal shirt">Formal shirt</button>
+            <button class="filter-btn" data-filter="crop shirt">Crop shirt</button>
+            <button class="filter-btn" data-filter="casual shirt">Casual shirt</button>
 
             <div class="price-filter">
                 <label>Sort by:</label>
@@ -922,7 +884,7 @@
   <!-- PRODUCT 1 -->
  <div class="product-card"
      data-id="product-thriftcollection-1"
-     data-category="formal-shirt"
+     data-category="formal shirt"
     data-link="../product.html?category=thrift&slug=vintage-denim-jacket"
 >
 
@@ -973,7 +935,7 @@
   <!-- PRODUCT 2 -->
   <div class="product-card"
        data-id="product-thriftcollection-2"
-       data-category="crop-shirt"
+       data-category="crop shirt"
        data-link="../product.html?category=thrift&slug=retro-band-graphic-tee"
 >
 
@@ -1009,7 +971,7 @@
   <!-- PRODUCT 3 -->
   <div class="product-card"
        data-id="product-thriftcollection-3"
-       data-category="casual-shirt"
+       data-category="casual shirt"
        data-link="../product.html?category=thrift&slug=floral-maxi-dress"
 >
 
@@ -1046,7 +1008,7 @@
   <!-- PRODUCT 4 -->
   <div class="product-card"
        data-id="product-thriftcollection-4"
-       data-category="jackets"
+       data-category="casual shirt"
       data-link="../product.html?category=thrift&slug=leather-bomber-jacket"
 >
 
@@ -1082,7 +1044,7 @@
   <!-- PRODUCT 5 -->
   <div class="product-card"
        data-id="product-thriftcollection-5"
-       data-category="formal-shirt"
+       data-category="formal shirt"
        data-link="../product.html?category=thrift&slug=high-waist-mom-jeans"
 >
 
@@ -1117,7 +1079,7 @@
   <!-- PRODUCT 6 -->
   <div class="product-card"
        data-id="product-thriftcollection-6"
-       data-category="casual-shirt"
+       data-category="casual shirt"
        data-link="../product.html?category=thrift&slug=bohemian-embroidered-blouse"
 >
 
@@ -1174,21 +1136,6 @@
             </div>
         </div>
 
-        <!-- <div class="instagram-section">
-            <h2>📸 #ModishThrift</h2>
-            <p>Join our community! Tag us in your thrift finds</p>
-            <div class="instagram-grid">
-                <div class="insta-post">📷</div>
-                <div class="insta-post">👗</div>
-                <div class="insta-post">🎨</div>
-                <div class="insta-post">✨</div>
-                <div class="insta-post">🌟</div>
-                <div class="insta-post">💫</div>
-            </div>
-            <button style="margin-top: 2rem; padding: 1rem 2rem; background: white; color: #833ab4; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; font-size: 1rem;">
-                Follow Us @ModishJunction
-            </button>
-        </div> -->
     </div>
 
     <!-- Quick View Modal -->
@@ -1242,23 +1189,6 @@
             </div>
         </div>
     </div>
-
-<!-- Newsletter Popup -->
-<!-- Newsletter Popup -->
-<!-- <div class="newsletter-popup" id="newsletterPopup">
-    <span class="newsletter-close" onclick="closeNewsletter()">✕</span>
-    <h3>✨ Never Miss What’s New</h3>
-    <p>
-        Join our style updates to receive weekly or monthly news on new arrivals,
-        outfit inspiration, and sustainable fashion tips.
-    </p>
-    <form class="newsletter-form">
-        <input type="email" placeholder="Enter your email" required>
-        <button type="submit">Get Updates</button>
-    </form>
-</div> -->
-
-
 
    <!-- Floating WhatsApp Button with direct contact -->
 <a href="https://wa.me/918949120920" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
@@ -1356,27 +1286,24 @@
         });
 
         // Filter functionality
-document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        
-        const filterText = this.textContent.toLowerCase().trim();
-        const productCards = document.querySelectorAll('.product-card');
-        
-        productCards.forEach(card => {
-            if (filterText === 'all') {
-                card.style.display = 'block';
+document.querySelectorAll('.filter-btn').forEach(button => {
+    button.addEventListener('click', () => {
+
+        // Active button UI
+        document.querySelectorAll('.filter-btn')
+            .forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const filter = button.dataset.filter.toLowerCase();
+        const products = document.querySelectorAll('.product-card');
+
+        products.forEach(product => {
+            const category = product.dataset.category ? product.dataset.category.toLowerCase() : '';
+
+            if (filter === 'all' || category === filter) {
+                product.style.display = 'block';
             } else {
-                const category = card.getAttribute('data-category');
-                // Convert filter text to match category format (e.g., "Vintage Tees" -> "vintage-tees")
-                const normalizedFilter = filterText.replace(/\s+/g, '-');
-                
-                if (category === normalizedFilter || category.includes(normalizedFilter) || normalizedFilter.includes(category)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
+                product.style.display = 'none';
             }
         });
     });
@@ -1489,19 +1416,28 @@ function openModal(index) {
 
         // Newsletter popup (shows after 5 seconds)
         setTimeout(() => {
-            document.getElementById('newsletterPopup').classList.add('show');
+            const popup = document.getElementById('newsletterPopup');
+            if (popup) {
+                popup.classList.add('show');
+            }
         }, 5000);
 
         function closeNewsletter() {
-            document.getElementById('newsletterPopup').classList.remove('show');
+            const popup = document.getElementById('newsletterPopup');
+            if (popup) {
+                popup.classList.remove('show');
+            }
         }
 
         // Newsletter form submission
-        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thanks for subscribing! Check your email for your 10% discount code 🎉');
-            closeNewsletter();
-        });
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thanks for subscribing! Check your email for your 10% discount code 🎉');
+                closeNewsletter();
+            });
+        }
 
         // Search functionality
         const searchInput = document.querySelector('.search-bar input');

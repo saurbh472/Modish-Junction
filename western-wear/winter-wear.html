@@ -315,18 +315,19 @@
         </div>
 
         <div class="filter-section">
-            <button class="filter-btn active">All</button>
-            <button class="filter-btn">Sweaters and top</button>
-            <button class="filter-btn">Jacket and cardigan</button>
-            <button class="filter-btn">Hoodie and sweatshirt</button>
-            <button class="filter-btn">Highneck</button>
-            <button class="filter-btn">Bottoms</button>
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="sweaters and top">Sweaters and top</button>
+            <button class="filter-btn" data-filter="jacket and cardigan">Jacket and cardigan</button>
+            <button class="filter-btn" data-filter="hoodie and sweatshirt">Hoodie and sweatshirt</button>
+            <button class="filter-btn" data-filter="highneck">Highneck</button>
+            <button class="filter-btn" data-filter="bottoms">Bottoms</button>
         </div>
 
         <div class="product-grid">
              <!-- PRODUCT 1 -->
 <div class="product-card"
      data-id="product-winterwear-1"
+     data-category="jacket and cardigan"
      data-link="../product.html?slug=wool-blend-trench-coat"
 >
 
@@ -350,6 +351,7 @@
 
 <div class="product-card"
      data-id="product-winterwear-2"
+     data-category="highneck"
      data-link="../product.html?slug=knitted-turtleneck-sweater">
 
   <span class="discount-badge">40% OFF</span>
@@ -371,6 +373,7 @@
 
 <div class="product-card"
      data-id="product-winterwear-3"
+     data-category="sweaters and top"
      data-link="../product.html?slug=pashmina-shawl-luxury">
 
   <span class="discount-badge">45% OFF</span>
@@ -392,6 +395,7 @@
 
 <div class="product-card"
      data-id="product-winterwear-4"
+     data-category="jacket and cardigan"
       data-link="../product.html?slug=puffer-jacket-quilted">
 
   <span class="discount-badge">30% OFF</span>
@@ -413,6 +417,7 @@
 
 <div class="product-card"
      data-id="product-winterwear-5"
+     data-category="hoodie and sweatshirt"
       data-link="../product.html?slug=long-cardigan-belted">
 
   <span class="discount-badge">50% OFF</span>
@@ -434,6 +439,7 @@
 
 <div class="product-card"
      data-id="product-winterwear-6"
+     data-category="jacket and cardigan"
      data-link="../product.html?slug=puffer-jacket-quilted">
 
   <span class="discount-badge">40% OFF</span>
@@ -455,6 +461,7 @@
 
 <div class="product-card"
      data-id="product-winterwear-7"
+     data-category="bottoms"
     data-link="../product.html?slug=thermal-inner-wear-heat-tech">
 
   <span class="discount-badge">35% OFF</span>
@@ -476,6 +483,7 @@
 
 <div class="product-card"
      data-id="product-winterwear-8"
+     data-category="sweaters and top"
      data-link="../product.html?slug=wool-scarf-gloves-set">
 
   <span class="discount-badge">45% OFF</span>
@@ -497,6 +505,7 @@
 
 <div class="product-card"
      data-id="product-winterwear-9"
+     data-category="jacket and cardigan"
       data-link="../product.html?slug=sherpa-lined-denim-jacket">
 
   <span class="discount-badge">30% OFF</span>
@@ -608,6 +617,32 @@
       window.location.href = card.dataset.link;
     });
   });
+</script>
+
+<!-- Filter functionality -->
+<script>
+document.querySelectorAll('.filter-btn').forEach(button => {
+    button.addEventListener('click', () => {
+
+        // Active button UI
+        document.querySelectorAll('.filter-btn')
+            .forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const filter = button.dataset.filter.toLowerCase();
+        const products = document.querySelectorAll('.product-card');
+
+        products.forEach(product => {
+            const category = product.dataset.category ? product.dataset.category.toLowerCase() : '';
+
+            if (filter === 'all' || category === filter) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    });
+});
 </script>
 
 </body>

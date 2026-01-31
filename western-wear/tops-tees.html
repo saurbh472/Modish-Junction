@@ -245,18 +245,21 @@
         </div>
 
         <div class="filter-section">
-            <button class="filter-btn active">All</button>
-            <button class="filter-btn">Crop tops</button>
-            <button class="filter-btn">Tops</button>
-            <button class="filter-btn">Crop / baby tees</button>
-            <button class="filter-btn">Casual tees</button>
-            <button class="filter-btn">Oversized tees</button>
-            <button class="filter-btn">Plus size tees/tops</button>
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="crop tops">Crop tops</button>
+            <button class="filter-btn" data-filter="tops">Tops</button>
+            <button class="filter-btn" data-filter="crop / baby tees">Crop / baby tees</button>
+            <button class="filter-btn" data-filter="casual tees">Casual tees</button>
+            <button class="filter-btn" data-filter="oversized tees">Oversized tees</button>
+            <button class="filter-btn" data-filter="plus size tees/tops">Plus size tees/tops</button>
         </div>
 
         <div class="product-grid">
             <!-- Product 1 -->
-            <div class="product-card" data-id="product-toptees-1" data-link="../product.html?category=toptees&slug=cotton-round-neck-tee">
+            <div class="product-card" 
+                data-id="product-toptees-1" 
+                data-category="casual tees"
+                data-link="../product.html?category=toptees&slug=cotton-round-neck-tee">
                 <span class="discount-badge">30% OFF</span>
                 <div class="product-image">
                     <img src="../Images/Category/western-wear.jpg" alt="Cotton Casual Round Neck Tee">
@@ -272,7 +275,10 @@
             </div>
 
             <!-- Product 2 -->
-            <div class="product-card" data-id="product-toptees-2" data-link="../product.html?category=toptees&slug=printed-graphic-tee">
+            <div class="product-card" 
+                data-id="product-toptees-2" 
+                data-category="casual tees"
+                data-link="../product.html?category=toptees&slug=printed-graphic-tee">
                 <span class="discount-badge">40% OFF</span>
                 <div class="product-image">
                     <img src="../Images/Category/western-wear.jpg" alt="Printed Graphic Tee">
@@ -288,7 +294,10 @@
             </div>
 
             <!-- Product 3 -->
-            <div class="product-card" data-id="product-toptees-3" data-link="../product.html?category=toptees&slug=v-neck-solid-top">
+            <div class="product-card" 
+                data-id="product-toptees-3" 
+                data-category="tops"
+                data-link="../product.html?category=toptees&slug=v-neck-solid-top">
                 <span class="discount-badge">35% OFF</span>
                 <div class="product-image">
                     <img src="../Images/Category/western-wear.jpg" alt="V-Neck Solid Top">
@@ -304,7 +313,10 @@
             </div>
 
             <!-- Product 4 -->
-            <div class="product-card" data-id="product-toptees-4" data-link="../product.html?category=toptees&slug=floral-crop-top">
+            <div class="product-card"
+                data-id="product-toptees-4" 
+                data-category="crop tops"
+                data-link="../product.html?category=toptees&slug=floral-crop-top">
                 <span class="discount-badge">45% OFF</span>
                 <div class="product-image">
                     <img src="../Images/Category/western-wear.jpg" alt="Floral Printed Crop Top">
@@ -320,7 +332,10 @@
             </div>
 
             <!-- Product 5 -->
-            <div class="product-card" data-id="product-toptees-5" data-link="../product.html?category=toptees&slug=striped-polo-neck-top">
+            <div class="product-card" 
+                data-id="product-toptees-5" 
+                data-category="tops"
+                data-link="../product.html?category=toptees&slug=striped-polo-neck-top">
                 <span class="discount-badge">30% OFF</span>
                 <div class="product-image">
                     <img src="../Images/Category/western-wear.jpg" alt="Striped Polo Neck Top">
@@ -336,7 +351,10 @@
             </div>
 
             <!-- Product 6 -->
-            <div class="product-card" data-id="product-toptees-6" data-link="../product.html?category=toptees&slug=basic-tee-combo-pack">
+            <div class="product-card"
+                data-id="product-toptees-6" 
+                data-category="oversized tees"
+                data-link="../product.html?category=toptees&slug=basic-tee-combo-pack">
                 <span class="discount-badge">50% OFF</span>
                 <div class="product-image">
                     <img src="../Images/Category/western-wear.jpg" alt="Basic Tee Combo Pack">
@@ -352,7 +370,10 @@
             </div>
 
             <!-- Product 7 -->
-            <div class="product-card" data-id="product-toptees-7" data-link="../product.html?category=toptees&slug=puff-sleeve-casual-top">
+            <div class="product-card" 
+                data-id="product-toptees-7" 
+                data-category="oversized tees"
+                data-link="../product.html?category=toptees&slug=puff-sleeve-casual-top">
                 <span class="discount-badge">40% OFF</span>
                 <div class="product-image">
                     <img src="../Images/Category/western-wear.jpg" alt="Puff Sleeve Casual Top">
@@ -368,7 +389,10 @@
             </div>
 
             <!-- Product 8 -->
-            <div class="product-card" data-id="product-toptees-8" data-link="../product.html?category=toptees&slug=tie-dye-crop-tee">
+            <div class="product-card" 
+                data-id="product-toptees-8" 
+                data-category="crop / baby tees"
+                data-link="../product.html?category=toptees&slug=tie-dye-crop-tee">
                 <span class="discount-badge">35% OFF</span>
                 <div class="product-image">
                     <img src="../Images/Category/western-wear.jpg" alt="Tie-Dye Crop Tee">
@@ -435,13 +459,11 @@
             });
             
             // Close menu when clicking links
-document.querySelectorAll(".mobile-nav a").forEach(link => {
-    link.addEventListener("click", () => {
-        mobileNav.classList.remove("active");
-    });
-});
-
-
+            document.querySelectorAll(".mobile-nav a").forEach(link => {
+                link.addEventListener("click", () => {
+                    mobileNav.classList.remove("active");
+                });
+            });
         }
         
         // Mobile dropdown
@@ -519,5 +541,31 @@ document.querySelectorAll(".mobile-nav a").forEach(link => {
             });
         });
     </script>
+
+    <script>
+document.querySelectorAll('.filter-btn').forEach(button => {
+    button.addEventListener('click', () => {
+
+        // Active button UI
+        document.querySelectorAll('.filter-btn')
+            .forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const filter = button.dataset.filter.toLowerCase();
+        const products = document.querySelectorAll('.product-card');
+
+        products.forEach(product => {
+            const category = product.dataset.category.toLowerCase();
+
+            if (filter === 'all' || category === filter) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+
 </body>
 </html>

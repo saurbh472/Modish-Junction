@@ -309,19 +309,20 @@
         </div>
 
         <div class="filter-section">
-            <button class="filter-btn active">All</button>
-            <button class="filter-btn">Wide leg / flared jeans </button>
-            <button class="filter-btn">Loose fit / relaxed fit jeans </button>
-            <button class="filter-btn">Cargo jeans / pants</button>
-            <button class="filter-btn">Korean pants</button>
-            <button class="filter-btn">Formal Pants </button>
-             <button class="filter-btn">Casual pants</button>
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="wide leg / flared jeans">Wide leg / flared jeans</button>
+            <button class="filter-btn" data-filter="loose fit / relaxed fit jeans">Loose fit / relaxed fit jeans</button>
+            <button class="filter-btn" data-filter="cargo jeans / pants">Cargo jeans / pants</button>
+            <button class="filter-btn" data-filter="korean pants">Korean pants</button>
+            <button class="filter-btn" data-filter="formal pants">Formal Pants</button>
+            <button class="filter-btn" data-filter="casual pants">Casual pants</button>
         </div>
 
         <div class="product-grid">
            <!-- PRODUCT 1 -->
 <div class="product-card"
      data-id="product-jense-1"
+     data-category="loose fit / relaxed fit jeans"
      data-link="../product.html?category=jeans&slug=high-waist-skinny-jeans">
 
   <span class="discount-badge">40% OFF</span>
@@ -343,6 +344,7 @@
 
 <div class="product-card"
      data-id="product-jense-2"
+     data-category="loose fit / relaxed fit jeans"
      data-link="../product.html?category=jeans&slug=boyfriend-jeans-light-wash">
 
   <span class="discount-badge">45% OFF</span>
@@ -364,6 +366,7 @@
 
 <div class="product-card"
      data-id="product-jense-3"
+     data-category="casual pants"
      data-link="../product.html?category=jeans&slug=ripped-denim-jeans">
 
   <span class="discount-badge">35% OFF</span>
@@ -385,6 +388,7 @@
 
 <div class="product-card"
      data-id="product-jense-4"
+     data-category="wide leg / flared jeans"
      data-link="../product.html?category=jeans&slug=wide-leg-palazzo-pants">
 
   <span class="discount-badge">50% OFF</span>
@@ -406,6 +410,7 @@
 
 <div class="product-card"
      data-id="product-jense-5"
+     data-category="cargo jeans / pants"
     data-link="../product.html?category=jeans&slug=black-cargo-pants">
 
   <span class="discount-badge">40% OFF</span>
@@ -427,6 +432,7 @@
 
 <div class="product-card"
      data-id="product-jense-6"
+     data-category="formal pants"
      data-link="../product.html?category=jeans&slug=straight-fit-formal-pants">
 
   <span class="discount-badge">45% OFF</span>
@@ -448,6 +454,7 @@
 
 <div class="product-card"
      data-id="product-jense-7"
+     data-category="formal pants"
      data-link="../product.html?category=jeans&slug=cigarette-pants-ankle-length">
 
   <span class="discount-badge">35% OFF</span>
@@ -469,6 +476,7 @@
 
 <div class="product-card"
      data-id="product-jense-8"
+     data-category="wide leg / flared jeans"
      data-link="../product.html?category=jeans&slug=flare-jeans-retro">
 
   <span class="discount-badge">40% OFF</span>
@@ -490,6 +498,7 @@
 
 <div class="product-card"
      data-id="product-jense-9"
+     data-category="korean pants"
      data-link="../product.html?category=jeans&slug=jogger-pants-casual">
 
   <span class="discount-badge">50% OFF</span>
@@ -587,6 +596,31 @@
   });
 </script>
 
+<!-- Filter functionality -->
+<script>
+document.querySelectorAll('.filter-btn').forEach(button => {
+    button.addEventListener('click', () => {
+
+        // Active button UI
+        document.querySelectorAll('.filter-btn')
+            .forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const filter = button.dataset.filter.toLowerCase();
+        const products = document.querySelectorAll('.product-card');
+
+        products.forEach(product => {
+            const category = product.dataset.category ? product.dataset.category.toLowerCase() : '';
+
+            if (filter === 'all' || category === filter) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
 
     <!-- CART MODAL -->
 <div id="cart-modal" class="cart-modal">

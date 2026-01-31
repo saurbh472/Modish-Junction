@@ -314,9 +314,9 @@
         <p>Elegant, trendy & stylish dresses for every occasion</p>
     </div>
         <div class="filter-section">
-            <button class="filter-btn active">All</button>
-            <button class="filter-btn">Summer</button>
-            <button class="filter-btn">Winter</button>
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="summer">Summer</button>
+            <button class="filter-btn" data-filter="winter">Winter</button>
         </div>
 
 
@@ -324,6 +324,7 @@
 
      <div class="product-card"
      data-id="product-dress-1"
+     data-category="summer"
      data-link="../product.html?category=dress&slug=floral-summer-dress">
 
   <span class="discount-badge">40% OFF</span>
@@ -345,6 +346,7 @@
 
 <div class="product-card"
      data-id="product-dress-2"
+     data-category="winter"
      data-link="../product.html?category=dress&slug=elegant-bodycon-dress">
 
   <span class="discount-badge">50% OFF</span>
@@ -367,6 +369,7 @@
 
 <div class="product-card"
      data-id="product-dress-3"
+     data-category="summer"
      data-link="../product.html?category=dress&slug=a-line-midi-dress">
 
   <span class="discount-badge">35% OFF</span>
@@ -387,6 +390,7 @@
 
 <div class="product-card"
      data-id="product-dress-4"
+     data-category="winter"
      data-link="../product.html?category=dress&slug=wrap-style-midi-dress">
 
   <span class="discount-badge">35% OFF</span>
@@ -406,6 +410,7 @@
 </div>
 <div class="product-card"
      data-id="product-dress-5"
+     data-category="summer"
      data-link="../product.html?category=dress&slug=pleated-skater-dress">
 
   <span class="discount-badge">35% OFF</span>
@@ -425,6 +430,7 @@
 </div>
 <div class="product-card"
      data-id="product-dress-6"
+     data-category="winter"
      data-link="../product.html?category=dress&slug=maxi-dress-flowy-fit">
 
   <span class="discount-badge">35% OFF</span>
@@ -520,6 +526,32 @@
       window.location.href = card.dataset.link;
     });
   });
+</script>
+
+<!-- Filter functionality -->
+<script>
+document.querySelectorAll('.filter-btn').forEach(button => {
+    button.addEventListener('click', () => {
+
+        // Active button UI
+        document.querySelectorAll('.filter-btn')
+            .forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const filter = button.dataset.filter.toLowerCase();
+        const products = document.querySelectorAll('.product-card');
+
+        products.forEach(product => {
+            const category = product.dataset.category ? product.dataset.category.toLowerCase() : '';
+
+            if (filter === 'all' || category === filter) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    });
+});
 </script>
 
 <!-- CART MODAL -->
