@@ -2,20 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title id="page-title">Product | Modish Junction</title>
+  <title id="page-title">Product Details | Modish Junction</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- Font Awesome for Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   
+  <!-- Base Styles (Exact Home Variables) -->
+  <link rel="stylesheet" href="./css/base-styles.css">
+
   <!-- Header & Footer Styles -->
-  <link rel="stylesheet" href="../css/header-styles.css">
-  <link rel="stylesheet" href="../css/footer-styles.css">
+  <link rel="stylesheet" href="./css/header-styles.css">
+  <link rel="stylesheet" href="./css/footer-styles.css">
   
   <!-- Other Styles -->
-  <link rel="stylesheet" href="../css/cart-ui.css">
-  <link rel="stylesheet" href="../css/whatsapp-float.css">
-  <!-- <link rel="stylesheet" href="./css/responsive.css"> -->
+  <link rel="stylesheet" href="./css/cart-ui.css">
+  <link rel="stylesheet" href="./css/whatsapp-float.css">
+  <link rel="stylesheet" href="./css/responsive.css">
   
   <style>
   :root {
@@ -23,714 +26,607 @@
     --primary-light: #e67a5f;
     --secondary: #e89580;
     --dark: #1a0e08;
+    --light: #fef9f5;
     --cream: #fffbf7;
-    --black: #1a0e08;
-    --accent: #F48FB1;
+    --accent: #f0b8a0;
+    --rose: #ffc8b8;
+    --black: #0d0603;
     --gold: #d4a574;
-}
+  }
 
-/* Force footer to display properly */
-footer, .footer {
-    background-color: #1a0e08 !important;
-    color: #fff !important;
-    display: block !important;
-    margin-top: 3rem;
-}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
 
-.footer-section h3,
-.footer-section ul li a,
-.footer-section p {
-    color: #ccc !important;
-}
-
-.footer-section ul li a:hover {
-    color: #F48FB1 !important;
-}
-
-.footer-bottom {
-    color: #ccc !important;
-}
-
-/* Footer Social Icons Fix */
-.social-icons {
+  body {
+    background-color: var(--cream);
+    color: var(--dark);
+    min-height: 100vh;
     display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-}
+    flex-direction: column;
+  }
 
-.social-icons a {
+  /* Fixed Header Offset */
+  .product-page-main {
+    max-width: 1200px;
+    margin: 160px auto 4rem;
+    padding: 0 1.5rem;
+    flex: 1;
+    width: 100%;
+  }
+
+  .back-btn-container {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.6rem 1.4rem;
+    background: white;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 25px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(212, 89, 59, 0.15);
+  }
+
+  .back-btn:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateX(-5px);
+    box-shadow: 0 6px 20px rgba(212, 89, 59, 0.3);
+  }
+
+  .product-wrapper {
+    background: white;
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 40px rgba(26, 14, 8, 0.08);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    border: 1px solid #f0ebe6;
+  }
+
+  /* Gallery */
+  .gallery-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .main-image-box {
+    position: relative;
+    width: 100%;
+    height: 480px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #fdfaf7;
+    border: 1px solid #eee;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .main-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.25s ease;
+  }
+
+  .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff !important;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    font-size: 16px;
+    color: var(--dark);
+    transition: 0.2s;
+    z-index: 2;
+  }
 
-.social-icons a:hover {
-    background: var(--accent);
-    transform: translateY(-3px);
-}
+  .nav-arrow:hover {
+    background: var(--primary);
+    color: white;
+  }
 
-.social-icons i {
-    font-size: 18px;
-}
+  .nav-arrow.prev { left: 12px; }
+  .nav-arrow.next { right: 12px; }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+  .thumbnail-strip {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+  }
+
+  .thumbnail-item {
+    width: 75px;
+    height: 75px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+    flex-shrink: 0;
+    background: #eee;
+    transition: 0.2s;
+  }
+
+  .thumbnail-item.active {
+    border-color: var(--primary);
+    box-shadow: 0 2px 8px rgba(212, 89, 59, 0.3);
+  }
+
+  .thumbnail-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Info */
+  .details-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .product-category-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    background: #fef0eb;
+    color: var(--primary);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    width: fit-content;
+  }
+
+  .product-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--dark);
+    line-height: 1.25;
+    margin-bottom: 1rem;
+  }
+
+  .price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 1.25rem;
+  }
+
+  .sale-price {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+  }
+
+  .original-price {
+    font-size: 1.2rem;
+    color: #999;
+    text-decoration: line-through;
+  }
+
+  .discount-pill {
+    background: #fdedec;
+    color: #e74c3c;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+  }
+
+  .description-text {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .fabric-info {
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 1.5rem;
+    padding: 10px 14px;
+    background: #faf8f5;
+    border-radius: 8px;
+    border-left: 3px solid var(--primary);
+  }
+
+  /* Size Selector */
+  .size-section {
+    margin-bottom: 2rem;
+  }
+
+  .size-label {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--dark);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .size-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .size-btn {
+    padding: 10px 18px;
+    border: 1.5px solid #ddd;
+    border-radius: 10px;
+    background: white;
+    color: var(--dark);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .size-btn:hover {
+    border-color: var(--primary);
+  }
+
+  .size-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(212, 89, 59, 0.3);
+  }
+
+  /* Add to Cart Button */
+  .btn-add-cart {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 6px 20px rgba(212, 89, 59, 0.3);
+    transition: 0.2s;
+  }
+
+  .btn-add-cart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(212, 89, 59, 0.4);
+  }
+
+  /* Perks List */
+  .perks-list {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    font-size: 13px;
+    color: #666;
+  }
+
+  .perk-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .perk-item i {
+    color: #27ae60;
+  }
+
+  @media (max-width: 850px) {
+    .product-page-main {
+      margin-top: 120px;
     }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: var(--cream);
-      color: var(--dark);
-      padding-top: 140px;
-    }
-
-    /* ================= HEADER ================= */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 2000;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 25px rgba(0,0,0,0.08);
-    }
-
-    .top-bar {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #fff;
-      text-align: center;
-      padding: 8px;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    nav {
-      max-width: 1200px;
-      margin: auto;
-      padding: 16px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--primary);
-    }
-
-    .cart-icon {
-      cursor: pointer;
-      font-size: 18px;
-    }
-
-    /* ================= BACK BUTTON ================= */
-    .back-home {
-      max-width: 1200px;
-      margin: 20px auto 0;
-      padding: 0 20px;
-    }
-
-    .back-home a {
-      display: inline-block;
-      padding: 10px 22px;
-      border-radius: 30px;
-      background: #fff;
-      color: var(--primary);
-      border: 2px solid var(--primary);
-      font-weight: 600;
-      text-decoration: none;
-      transition: 0.3s;
-      box-shadow: 0 4px 15px rgba(212,89,59,0.2);
-    }
-
-    .back-home a:hover {
-      background: var(--primary);
-      color: #fff;
-      transform: translateX(-4px);
-    }
-
-    /* ================= PRODUCT ================= */
     .product-wrapper {
-      max-width: 1100px;
-      margin: 30px auto;
-      background: #fff;
-      border-radius: 22px;
-      padding: 30px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.1);
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 1.5rem;
     }
-
-    .product-img img {
-      width: 100%;
-      max-height: 520px;
-      object-fit: cover;
-      border-radius: 18px;
+    .main-image-box {
+      height: 380px;
     }
-
-    .product-details h1 {
-      font-size: 28px;
-      margin-bottom: 15px;
+    .product-title {
+      font-size: 1.6rem;
     }
-
-    .price {
-      margin: 15px 0;
+    .perks-list {
+      grid-template-columns: 1fr;
     }
-
-    .sale {
-      font-size: 26px;
-      color: var(--primary);
-      font-weight: bold;
-    }
-
-    .original {
-      text-decoration: line-through;
-      color: #999;
-      margin-left: 12px;
-    }
-
-    .description {
-      margin: 20px 0;
-      line-height: 1.7;
-      color: #444;
-    }
-
-    .thumbs {
-      display: flex;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .thumbs img {
-      width: 70px;
-      height: 70px;
-      object-fit: cover;
-      border-radius: 10px;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: 0.3s;
-    }
-
-    .thumbs img:hover {
-      border-color: var(--primary);
-    }
-
-    .thumbs img.active {
-      border-color: var(--primary);
-    }
-
-    .add-btn {
-      padding: 14px 26px;
-      font-size: 16px;
-      font-weight: bold;
-      border: none;
-      border-radius: 14px;
-      cursor: pointer;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #fff;
-      transition: 0.3s;
-    }
-
-    .add-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(212,89,59,0.4);
-    }
-
-    /* ================= NAV LINKS ================= */
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 2.5rem;
-      align-items: center;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--dark);
-      font-weight: 500;
-      transition: 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: var(--primary);
-    }
-
-    /* CART ITEM */
-    .cart-nav {
-      cursor: pointer;
-      font-weight: 600;
-      color: var(--dark);
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      transition: 0.3s;
-    }
-
-    .cart-nav:hover {
-      color: var(--primary);
-    }
-
-    /* CART COUNT */
-    #cart-count {
-      font-size: 14px;
-      font-weight: bold;
-      color: var(--primary);
-    }
-
-    /* ================= IMAGE NAVIGATION ================= */
-    .image-viewer {
-      position: relative;
-    }
-
-    .nav-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255,255,255,0.9);
-      border: none;
-      font-size: 22px;
-      padding: 10px 14px;
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      z-index: 10;
-    }
-
-    .nav-btn.left {
-      left: 10px;
-    }
-
-    .nav-btn.right {
-      right: 10px;
-    }
-
-    .nav-btn:hover {
-      background: var(--primary);
-      color: #fff;
-    }
-
-    /* ================= SIZE SELECTION ================= */
-    .size-box {
-      margin: 20px 0;
-    }
-
-    .sizes {
-      display: flex;
-      gap: 12px;
-      margin-top: 10px;
-      flex-wrap: wrap;
-    }
-
-    .size-btn {
-      padding: 10px 16px;
-      border-radius: 10px;
-      border: 2px solid #ddd;
-      background: #fff;
-      cursor: pointer;
-      font-weight: bold;
-      transition: all 0.3s ease;
-    }
-
-    .size-btn.active,
-    .size-btn:hover {
-      background: var(--primary);
-      color: #fff;
-      border-color: var(--primary);
-    }
-
-    .product-points {
-      margin: 20px 0;
-      font-size: 14px;
-      line-height: 1.8;
-    }
-
-    .product-points p {
-      margin-bottom: 5px;
-    }
-
-    @media (max-width: 768px) {
-      body {
-        padding-top: 120px;
-      }
-
-      .product-wrapper {
-        grid-template-columns: 1fr;
-        padding: 20px;
-      }
-
-      .product-img img {
-        max-height: 400px;
-      }
-
-      .product-details h1 {
-        font-size: 24px;
-      }
-
-      .sale {
-        font-size: 22px;
-      }
-
-      .nav-btn {
-        padding: 8px 12px;
-        font-size: 18px;
-      }
-    }
+  }
   </style>
 </head>
-
 <body>
 
-  <!-- ✅ HEADER COMPONENT -->
+  <!-- ✅ HEADER COMPONENT (Loaded dynamically) -->
   <div id="header-placeholder"></div>
 
-  <!-- BACK TO HOME -->
-  <div class="back-home">
-    <a id="backLink"></a>
-  </div>
+  <!-- MAIN PRODUCT CONTAINER -->
+  <main class="product-page-main">
+    <div class="back-btn-container">
+      <a href="./index.html" class="back-btn" id="backLink">
+        <i class="fa-solid fa-arrow-left"></i> <span>Back to Catalog</span>
+      </a>
+    </div>
 
-  <!-- PRODUCT -->
-  <div id="product-container" class="product-wrapper"></div>
+    <div id="product-container">
+      <div style="text-align: center; padding: 80px 20px; color: #888;">
+        <i class="fa-solid fa-spinner fa-spin fa-3x" style="color: var(--primary); margin-bottom: 15px; display: block;"></i>
+        <p style="font-size: 1.1rem;">Loading product details...</p>
+      </div>
+    </div>
+  </main>
 
-  <!-- ✅ FOOTER COMPONENT -->
+  <!-- ✅ FOOTER COMPONENT (Loaded dynamically) -->
   <div id="footer-placeholder"></div>
 
-  <!-- ============= FIREBASE & PRODUCT DATA SCRIPTS ============= -->
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/918949120920" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+    <svg viewBox="0 0 32 32" fill="white" width="28" height="28">
+      <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 8.167-2.113c2.325 1.27 4.925 1.947 7.833 1.947 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.275 1.362 1.412-5.25-0.32-0.525c-1.341-2.194-2.051-4.73-2.051-7.359 0-7.72 6.28-14 14-14s14 6.28 14 14-6.28 14-14 14zM23.293 19.943c-0.396-0.199-2.348-1.158-2.713-1.291s-0.628-0.199-0.893 0.199c-0.265 0.398-1.026 1.291-1.259 1.556s-0.463 0.298-0.859 0.099c-2.219-1.108-3.674-1.975-5.134-4.475-0.387-0.662 0.387-0.615 1.108-2.050 0.121-0.265 0.060-0.496-0.034-0.695-0.094-0.199-0.893-2.151-1.224-2.945-0.322-0.774-0.649-0.669-0.893-0.681-0.231-0.012-0.496-0.015-0.76-0.015s-0.694 0.099-1.058 0.496c-0.364 0.398-1.388 1.357-1.388 3.308s1.421 3.836 1.619 4.101c0.199 0.265 2.799 4.272 6.781 5.989 2.51 1.079 3.494 1.148 4.748 0.968 0.762-0.109 2.348-0.96 2.679-1.888s0.331-1.723 0.232-1.888c-0.099-0.165-0.364-0.265-0.76-0.464z"/>
+    </svg>
+  </a>
+
+  <!-- ============= SCRIPTS ============= -->
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
   <script src="./js/firebase-config.js"></script>
   <script src="./js/product-service.js"></script>
-
-  <!-- Legacy data fallback -->
-  <script src="./js/data/products-winterwear.js"></script>
-  <script src="./js/data/products-dresses.js"></script>
-  <script src="./js/data/products-jeans.js"></script>
-  <script src="./js/data/products-loungewear.js"></script>
-  <script src="./js/data/products-toptees.js"></script>
-  <script src="./js/data/products-thrift.js"></script>
-  <script src="./js/data/products-3piece.js"></script>
-  <script src="./js/data/products-coords.js"></script>
-  <script src="./js/data/products-kurtis.js"></script>
-  <script src="./js/data/products-sale.js"></script>
-  <script src="./js/data/products-trending.js"></script>
-
-  <!-- Cart functionality -->
+  <script src="./js/migrate-data.js"></script>
   <script src="./js/cart.js"></script>
+  <script src="./js/header-footer-scripts.js"></script>
 
-  <!-- ============= DYNAMIC PRODUCT PAGE LOGIC ============= -->
   <script>
-    async function initProductPage() {
-      const params = new URLSearchParams(window.location.search);
-      const id = params.get("id");
-      const slug = params.get("slug");
-      const category = params.get("category") || "winter";
-
+    async function loadProductDetails() {
       const container = document.getElementById("product-container");
-      container.innerHTML = `
-        <div style="text-align: center; padding: 60px; grid-column: 1/-1;">
-          <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: var(--primary);"></i>
-          <p style="margin-top: 10px; color: #888;">Loading product details...</p>
-        </div>
-      `;
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+        const slug = params.get("slug");
+        const category = params.get("category") || "winter";
 
-      let product = null;
-      if (id) {
-        product = await ProductService.getProductByIdOrSlug(id);
-      }
-      if (!product && slug) {
-        product = await ProductService.getProductByIdOrSlug(slug);
-      }
+        let product = null;
 
-      if (!product) {
-        let legacyProducts = typeof winterProducts !== 'undefined' ? winterProducts : [];
-        if (category === "dress" && typeof dressProducts !== 'undefined') legacyProducts = dressProducts;
-        else if (category === "jeans" && typeof jeansProducts !== 'undefined') legacyProducts = jeansProducts;
-        else if (category === "loungewear" && typeof loungewearProducts !== 'undefined') legacyProducts = loungewearProducts;
-        else if (category === "toptees" && typeof topteesProducts !== 'undefined') legacyProducts = topteesProducts;
-        else if (category === "thrift" && typeof thriftProducts !== 'undefined') legacyProducts = thriftProducts;
-        else if (category === "threepiece" && typeof threePieceProducts !== 'undefined') legacyProducts = threePieceProducts;
-        else if (category === "coords" && typeof coordsProducts !== 'undefined') legacyProducts = coordsProducts;
-        else if (category === "kurtis" && typeof kurtisProducts !== 'undefined') legacyProducts = kurtisProducts;
-        else if (category === "sale" && typeof saleProducts !== 'undefined') legacyProducts = saleProducts;
-        else if (category === "trending" && typeof trendingProducts !== 'undefined') legacyProducts = trendingProducts;
+        if (id) product = await ProductService.getProductByIdOrSlug(id);
+        if (!product && slug) product = await ProductService.getProductByIdOrSlug(slug);
 
-        if (slug) {
-          product = legacyProducts.find(p => p.slug && p.slug.toLowerCase() === slug.toLowerCase());
-        }
-      }
-
-      if (!product) {
-        container.innerHTML = `
-          <div style="text-align:center; padding: 60px 20px; grid-column: 1/-1;">
-            <h2 style="color: var(--primary); margin-bottom: 10px;">Product not found</h2>
-            <p style="color: #666; margin-bottom: 20px;">The product you are looking for is currently unavailable.</p>
-            <a href="./index.html" class="add-btn" style="text-decoration:none; display:inline-block; width:auto; padding: 12px 24px;">Return to Shop</a>
-          </div>
-        `;
-        return;
-      }
-
-      document.getElementById("page-title").innerText = product.name + " | Modish Junction";
-
-      const images = product.images && product.images.length > 0 ? product.images : ['./Images/Category/western-wear.jpg'];
-      const sizes = Array.isArray(product.sizes) && product.sizes.length > 0 ? product.sizes : ['S', 'M', 'L', 'XL'];
-
-      container.innerHTML = `
-        <div class="product-img">
-          <div class="image-viewer">
-            <button class="nav-btn left" onclick="prevImage()" aria-label="Previous image">❮</button>
-            <img id="mainImage" src="${images[0]}" alt="${product.name}" onerror="this.src='./Images/Category/western-wear.jpg'">
-            <button class="nav-btn right" onclick="nextImage()" aria-label="Next image">❯</button>
-          </div>
-
-          <div class="thumbs">
-            ${images.map((img, i) => `
-              <img src="${img}" onclick="changeImageByIndex(${i})"
-                   class="${i === 0 ? 'active' : ''}" alt="Thumbnail ${i + 1}"
-                   onerror="this.src='./Images/Category/western-wear.jpg'">
-            `).join("")}
-          </div>
-        </div>
-
-        <div class="product-details">
-          <h1>${product.name}</h1>
-
-          <div class="price">
-            <span class="sale">₹${Number(product.price).toLocaleString('en-IN')}</span>
-            ${product.originalPrice && product.originalPrice > product.price ? `<span class="original">₹${Number(product.originalPrice).toLocaleString('en-IN')}</span>` : ''}
-          </div>
-
-          <p class="description">${product.description}</p>
-          ${product.fabric ? `<p style="font-size: 14px; color: #666; margin-bottom: 15px;"><strong>Fabric:</strong> ${product.fabric}</p>` : ''}
-
-          <div class="size-box">
-            <strong>Select Size:</strong>
-            <div class="sizes">
-              ${sizes.map(size => `
-                <button class="size-btn" onclick="selectSize(this)">
-                  ${size}
-                </button>
-              `).join("")}
+        if (!product) {
+          container.innerHTML = `
+            <div style="text-align:center; padding: 60px 20px;">
+              <h2 style="color: var(--primary); margin-bottom: 10px;">Item Not Found</h2>
+              <p style="color: #666; margin-bottom: 20px;">The requested product could not be loaded.</p>
+              <a href="./index.html" class="back-btn" style="display:inline-block; padding:12px 24px;">Back to Store</a>
             </div>
-          </div>
-
-          <div class="product-points">
-            <p>✓ 100% Authentic Quality Garment</p>
-            <p>✓ Professionally sanitized & quality checked</p>
-            <p>✓ Free shipping on orders above ₹999</p>
-            <p>✓ 7-day return policy (opening video required)</p>
-          </div>
-
-          <button class="add-btn" id="addBtn">Add to Cart</button>
-        </div>
-      `;
-
-      let currentImageIndex = 0;
-      window.updateImage = function () {
-        document.getElementById("mainImage").src = images[currentImageIndex];
-        document.querySelectorAll(".thumbs img").forEach((img, i) => {
-          img.classList.toggle("active", i === currentImageIndex);
-        });
-      };
-      window.nextImage = function () {
-        currentImageIndex = (currentImageIndex + 1) % images.length;
-        updateImage();
-      };
-      window.prevImage = function () {
-        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-        updateImage();
-      };
-      window.changeImageByIndex = function (index) {
-        currentImageIndex = index;
-        updateImage();
-      };
-
-      let selectedSize = sizes.length === 1 ? sizes[0] : null;
-      if (sizes.length === 1) {
-        document.querySelector(".size-btn")?.classList.add("active");
-      }
-      window.selectSize = function (btn) {
-        document.querySelectorAll(".size-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        selectedSize = btn.innerText;
-      };
-
-      document.getElementById("addBtn").onclick = () => {
-        if (!selectedSize) {
-          alert("Please select a size first!");
+          `;
           return;
         }
-        if (typeof addToCart === 'function') {
-          addToCart(
-            product.id + "-" + selectedSize,
-            product.name + " (Size: " + selectedSize + ")",
-            product.price,
-            window.location.href
-          );
-          const addBtn = document.getElementById("addBtn");
-          addBtn.innerText = "✓ Added to Cart";
-          addBtn.style.background = "linear-gradient(135deg, #27ae60, #2ecc71)";
-          setTimeout(() => {
-            addBtn.innerText = "View Cart";
-            addBtn.style.background = "linear-gradient(135deg, var(--primary), var(--secondary))";
-            addBtn.onclick = () => {
-              if (typeof openCart === 'function') {
-                openCart();
-              } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                alert("Click the cart icon in the header to view your cart");
-              }
-            };
-          }, 1500);
-          if (typeof updateCartCount === 'function') {
-            updateCartCount();
-          }
-        }
-      };
 
-      const backLink = document.getElementById("backLink");
-      const cat = (product.subCategory || category || '').toLowerCase();
-      if (cat.includes("dress")) {
-        backLink.href = "./western-wear/dresses.html";
-        backLink.innerText = "← Back to Dresses";
-      } else if (cat.includes("jean") || cat.includes("pant")) {
-        backLink.href = "./western-wear/jeans-pants.html";
-        backLink.innerText = "← Back to Jeans & Pants";
-      } else if (cat.includes("lounge")) {
-        backLink.href = "./western-wear/loungewear.html";
-        backLink.innerText = "← Back to Loungewear";
-      } else if (cat.includes("top") || cat.includes("tee")) {
-        backLink.href = "./western-wear/tops-tees.html";
-        backLink.innerText = "← Back to Tops & Tees";
-      } else if (cat.includes("3piece") || cat.includes("3-piece") || cat.includes("threepiece")) {
-        backLink.href = "./Ethnic-wear/3-piece-suit.html";
-        backLink.innerText = "← Back to 3 Piece Suits";
-      } else if (cat.includes("thrift") || cat.includes("shirt")) {
-        backLink.href = "./western-wear/thrift-collection.html";
-        backLink.innerText = "← Back to Thrift Collection";
-      } else if (cat.includes("coord") || cat.includes("co-ord")) {
-        backLink.href = "./Ethnic-wear/co-ords.html";
-        backLink.innerText = "← Back to Co-ords";
-      } else if (cat.includes("kurti")) {
-        backLink.href = "./Ethnic-wear/short-kurtis.html";
-        backLink.innerText = "← Back to Short Kurtis";
-      } else if (cat.includes("affordable") || cat.includes("must-have")) {
-        backLink.href = "./Ethnic-wear/Affordable-collection.html";
-        backLink.innerText = "← Back to Must-Haves";
-      } else if (cat.includes("sale")) {
-        backLink.href = "./Sale/sale.html";
-        backLink.innerText = "← Back to Sale";
-      } else if (cat.includes("trending")) {
-        backLink.href = "./index.html";
-        backLink.innerText = "← Back to Home";
-      } else {
-        backLink.href = "./western-wear/winter-wear.html";
-        backLink.innerText = "← Back to Winter Wear";
-      }
-    }
-    document.addEventListener("DOMContentLoaded", initProductPage);
-  </script>
+        document.getElementById("page-title").innerText = product.name + " | Modish Junction";
 
-  <!-- ✅ HEADER & FOOTER LOADER SCRIPT -->
-  <script>
-    // Load Header
-    fetch('../includes/header.html')
-      .then(response => {
-        if (!response.ok) throw new Error('Header not found');
-        return response.text();
-      })
-      .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-        
-        // Initialize header functionality after load
-        initializeHeaderAfterLoad();
-        
-        // Update cart count if function exists
-        if (typeof updateCartCount === 'function') {
-          updateCartCount();
-        }
-      })
-      .catch(error => {
-        console.error('Error loading header:', error);
-        // Fallback header
-        document.getElementById('header-placeholder').innerHTML = `
-          <header>
-            <div class="top-bar">✨ Free Shipping on Orders Above ₹999</div>
-            <nav>
-              <div class="logo">Modish Junction</div>
-              <div class="cart-nav" onclick="if(typeof openCart === 'function') openCart()">
-                🛒 Cart (<span id="cart-count">0</span>)
+        // Images
+        let images = product.images && product.images.length > 0 ? product.images : ['./Images/Category/western-wear.jpg'];
+        images = images.map(img => {
+          if (!img) return './Images/Category/western-wear.jpg';
+          if (img.startsWith('http') || img.startsWith('data:')) return img;
+          return img.replace(/^(\.\/|\.\.\/)+/, './');
+        });
+
+        // Sizes
+        const sizes = Array.isArray(product.sizes) && product.sizes.length > 0 ? product.sizes : ['S', 'M', 'L', 'XL'];
+        let selectedSize = sizes.length === 1 ? sizes[0] : null;
+
+        // Discount
+        const discount = product.discount || (product.originalPrice > product.price ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) : 0);
+
+        container.innerHTML = `
+          <div class="product-wrapper">
+            <!-- Gallery -->
+            <div class="gallery-container">
+              <div class="main-image-box">
+                ${images.length > 1 ? '<button class="nav-arrow prev" onclick="changeImage(-1)">❮</button>' : ''}
+                <img id="activeMainImage" src="${images[0]}" alt="${product.name}" onerror="this.src='./Images/Category/western-wear.jpg'">
+                ${images.length > 1 ? '<button class="nav-arrow next" onclick="changeImage(1)">❯</button>' : ''}
               </div>
-            </nav>
-          </header>
+
+              ${images.length > 1 ? `
+                <div class="thumbnail-strip">
+                  ${images.map((img, i) => `
+                    <div class="thumbnail-item ${i === 0 ? 'active' : ''}" onclick="selectThumb(${i})">
+                      <img src="${img}" alt="Thumbnail ${i+1}" onerror="this.src='./Images/Category/western-wear.jpg'">
+                    </div>
+                  `).join('')}
+                </div>
+              ` : ''}
+            </div>
+
+            <!-- Info -->
+            <div class="details-container">
+              <span class="product-category-tag">${(product.subCategory || product.mainCategory || 'Fashion').replace('-', ' ')}</span>
+              <h1 class="product-title">${product.name}</h1>
+
+              <div class="price-row">
+                <span class="sale-price">₹${Number(product.price).toLocaleString('en-IN')}</span>
+                ${product.originalPrice && product.originalPrice > product.price ? `<span class="original-price">₹${Number(product.originalPrice).toLocaleString('en-IN')}</span>` : ''}
+                ${discount > 0 ? `<span class="discount-pill">${discount}% OFF</span>` : ''}
+              </div>
+
+              <p class="description-text">${product.description || 'Premium quality fashion designed for comfort and effortless elegance.'}</p>
+              
+              ${product.fabric ? `<div class="fabric-info"><strong>Fabric:</strong> ${product.fabric}</div>` : ''}
+
+              <!-- Size Selector -->
+              <div class="size-section">
+                <div class="size-label">
+                  <span>Select Size:</span>
+                  <span id="selectedSizeLabel" style="color: var(--primary); font-weight: 600;">${selectedSize ? `Selected: ${selectedSize}` : 'Please select a size'}</span>
+                </div>
+                <div class="size-options">
+                  ${sizes.map(s => `
+                    <button type="button" class="size-btn ${selectedSize === s ? 'active' : ''}" onclick="pickSize(this, '${s}')">
+                      ${s}
+                    </button>
+                  `).join('')}
+                </div>
+              </div>
+
+              <!-- Add to Cart -->
+              <button class="btn-add-cart" id="btnProductAddToCart">
+                <i class="fa-solid fa-bag-shopping"></i> <span>Add to Cart</span>
+              </button>
+
+              <!-- Perks -->
+              <div class="perks-list">
+                <div class="perk-item"><i class="fa-solid fa-circle-check"></i> 100% Quality Assured</div>
+                <div class="perk-item"><i class="fa-solid fa-truck-fast"></i> Free Shipping Above ₹999</div>
+                <div class="perk-item"><i class="fa-solid fa-rotate-left"></i> 7 Days Easy Returns</div>
+                <div class="perk-item"><i class="fa-solid fa-shield-halved"></i> Sanitized Packaging</div>
+              </div>
+
+            </div>
+          </div>
         `;
-      });
 
-    // Load Footer
-    fetch('../includes/footer.html')
-      .then(response => {
-        if (!response.ok) throw new Error('Footer not found');
-        return response.text();
-      })
-      .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-        
-        // Ensure Font Awesome icons are loaded
-        if (!document.querySelector('link[href*="font-awesome"]')) {
-          const faLink = document.createElement('link');
-          faLink.rel = 'stylesheet';
-          faLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
-          document.head.appendChild(faLink);
+        // Back button link logic
+        const backLink = document.getElementById("backLink");
+        const cat = (product.subCategory || category || '').toLowerCase();
+        if (cat.includes("dress")) {
+          backLink.href = "./western-wear/dresses.html";
+          backLink.querySelector("span").innerText = "← Back to Dresses";
+        } else if (cat.includes("jean") || cat.includes("pant")) {
+          backLink.href = "./western-wear/jeans-pants.html";
+          backLink.querySelector("span").innerText = "← Back to Jeans & Pants";
+        } else if (cat.includes("lounge")) {
+          backLink.href = "./western-wear/loungewear.html";
+          backLink.querySelector("span").innerText = "← Back to Loungewear";
+        } else if (cat.includes("top") || cat.includes("tee")) {
+          backLink.href = "./western-wear/tops-tees.html";
+          backLink.querySelector("span").innerText = "← Back to Tops & Tees";
+        } else if (cat.includes("3piece") || cat.includes("3-piece")) {
+          backLink.href = "./Ethnic-wear/3-piece-suit.html";
+          backLink.querySelector("span").innerText = "← Back to 3 Piece Suits";
+        } else if (cat.includes("thrift") || cat.includes("shirt")) {
+          backLink.href = "./western-wear/thrift-collection.html";
+          backLink.querySelector("span").innerText = "← Back to Shirts / Thrift";
+        } else if (cat.includes("coord") || cat.includes("co-ord")) {
+          backLink.href = "./Ethnic-wear/co-ords.html";
+          backLink.querySelector("span").innerText = "← Back to Co-ords";
+        } else if (cat.includes("kurti")) {
+          backLink.href = "./Ethnic-wear/short-kurtis.html";
+          backLink.querySelector("span").innerText = "← Back to Short Kurtis";
+        } else if (cat.includes("affordable") || cat.includes("must")) {
+          backLink.href = "./Ethnic-wear/Affordable-collection.html";
+          backLink.querySelector("span").innerText = "← Back to Must-Haves";
+        } else if (cat.includes("sale")) {
+          backLink.href = "./Sale/sale.html";
+          backLink.querySelector("span").innerText = "← Back to Sale";
         }
-      })
-      .catch(error => {
-        console.error('Error loading footer:', error);
-      });
 
-    // Initialize header functionality after dynamic load
-    function initializeHeaderAfterLoad() {
-      const menuBtn = document.getElementById("menuBtn");
-      const mobileNav = document.getElementById("mobileNav");
-
-      if (menuBtn && mobileNav) {
-        menuBtn.addEventListener("click", () => {
-          mobileNav.classList.toggle("active");
-        });
-
-        // Close menu when clicking links
-        document.querySelectorAll(".mobile-nav a").forEach(link => {
-          link.addEventListener("click", () => {
-            mobileNav.classList.remove("active");
+        // Gallery Switcher
+        let activeImgIdx = 0;
+        window.selectThumb = function(idx) {
+          activeImgIdx = idx;
+          document.getElementById('activeMainImage').src = images[idx];
+          document.querySelectorAll('.thumbnail-item').forEach((t, i) => {
+            t.classList.toggle('active', i === idx);
           });
-        });
+        };
+
+        window.changeImage = function(delta) {
+          activeImgIdx = (activeImgIdx + delta + images.length) % images.length;
+          selectThumb(activeImgIdx);
+        };
+
+        // Size Picker
+        window.pickSize = function(btn, size) {
+          document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          selectedSize = size;
+          document.getElementById('selectedSizeLabel').innerText = `Selected: ${size}`;
+          document.getElementById('selectedSizeLabel').style.color = 'var(--primary)';
+        };
+
+        // Add to Cart
+        document.getElementById('btnProductAddToCart').onclick = () => {
+          if (!selectedSize) {
+            const label = document.getElementById('selectedSizeLabel');
+            label.innerText = "⚠️ Please select a size first!";
+            label.style.color = "#e74c3c";
+            return;
+          }
+
+          const cartItemId = `${product.id}-${selectedSize}`;
+          const cartItemName = `${product.name} (Size: ${selectedSize})`;
+          
+          if (typeof addToCart === 'function') {
+            addToCart(cartItemId, cartItemName, product.price, window.location.href, images[0]);
+            
+            const btn = document.getElementById('btnProductAddToCart');
+            btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> <span>✓ Added to Cart!</span>';
+            btn.style.background = 'linear-gradient(135deg, #27ae60, #2ecc71)';
+
+            setTimeout(() => {
+              btn.innerHTML = '<i class="fa-solid fa-cart-shopping"></i> <span>View Cart</span>';
+              btn.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
+              btn.onclick = () => {
+                if (typeof openCart === 'function') openCart();
+              };
+            }, 1500);
+
+            if (typeof updateCartCount === 'function') {
+              updateCartCount();
+            }
+          }
+        };
+
+      } catch (err) {
+        console.error("Error loading product:", err);
+        if (container) {
+          container.innerHTML = `
+            <div style="text-align:center; padding: 60px 20px;">
+              <h2 style="color: var(--primary); margin-bottom: 10px;">Item Load Error</h2>
+              <p style="color: #666; margin-bottom: 20px;">${err.message || 'Please refresh.'}</p>
+              <a href="./index.html" class="back-btn" style="display:inline-block; padding:12px 24px;">Back to Store</a>
+            </div>
+          `;
+        }
       }
+    }
 
-      // Mobile dropdown functionality
-      document.querySelectorAll(".mobile-dropdown > span").forEach(span => {
-        span.addEventListener("click", function (e) {
-          e.stopPropagation();
-          const submenu = this.nextElementSibling;
-          document.querySelectorAll(".mobile-submenu").forEach(menu => {
-            if (menu !== submenu) menu.classList.remove("open");
-          });
-          submenu.classList.toggle("open");
-        });
-      });
+    if (document.readyState === 'loading') {
+      document.addEventListener("DOMContentLoaded", loadProductDetails);
+    } else {
+      loadProductDetails();
     }
   </script>
-
-  <!-- ✅ HEADER AND FOOTER SCRIPTS (if you have additional scripts) -->
-  <script src="../js/header-footer-scripts.js"></script>
-
 </body>
 </html>
