@@ -782,7 +782,7 @@
 
     .product-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: 2.5rem;
         max-width: 1400px;
         margin: 2rem auto;
@@ -2432,96 +2432,7 @@
 <section class="products" id="trending">
   <h2 class="section-title">Trending This Season</h2>
 
-  <div class="product-grid">
-
-    <!-- PRODUCT 1 -->
-    <div class="product-card"
-         data-id="product-kurta-1"
-         data-link="./product.html?category=trending&slug=liva-embroidered-kurta-set">
-
-      <span class="discount-badge">30% OFF</span>
-
-      <div class="product-image">
-        <img src="./Images/Category/western-wear.jpg"
-             alt="Women Liva Embroidered Kurta Set with Dupatta">
-      </div>
-
-      <div class="product-info">
-        <h3>Women Liva Embroidered Kurta Set with Dupatta</h3>
-        <div class="price">
-          <span class="sale-price">₹3,499</span>
-          <span class="original-price">₹4,999</span>
-        </div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
-    <!-- PRODUCT 2 -->
-    <div class="product-card"
-         data-id="product-dress-1"
-         data-link="./product.html?category=trending&slug=cotton-floral-aline-dress">
-
-      <span class="discount-badge">40% OFF</span>
-
-      <div class="product-image">
-        <img src="./Images/Category/western-wear.jpg"
-             alt="Cotton Floral Print A-Line Dress">
-      </div>
-
-      <div class="product-info">
-        <h3>Cotton Floral Print A-Line Dress</h3>
-        <div class="price">
-          <span class="sale-price">₹1,199</span>
-          <span class="original-price">₹1,999</span>
-        </div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
-    <!-- PRODUCT 3 -->
-    <div class="product-card"
-         data-id="product-ethnic-1"
-         data-link="./product.html?category=trending&slug=silk-blend-embroidered-ethnic-set">
-
-      <span class="discount-badge">50% OFF</span>
-
-      <div class="product-image">
-        <img src="./Images/Category/western-wear.jpg"
-             alt="Silk Blend Embroidered Ethnic Set">
-      </div>
-
-      <div class="product-info">
-        <h3>Silk Blend Embroidered Ethnic Set</h3>
-        <div class="price">
-          <span class="sale-price">₹2,499</span>
-          <span class="original-price">₹4,999</span>
-        </div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
-    <!-- PRODUCT 4 -->
-    <div class="product-card"
-         data-id="product-shawl-1"
-         data-link="./product.html?category=trending&slug=soft-knitted-warm-shawl">
-
-      <span class="discount-badge">20% OFF</span>
-
-      <div class="product-image">
-        <img src="./Images/Category/western-wear.jpg"
-             alt="Soft Knitted Warm Women Shawl">
-      </div>
-
-      <div class="product-info">
-        <h3>Soft Knitted Warm Women Shawl</h3>
-        <div class="price">
-          <span class="sale-price">₹2,152</span>
-          <span class="original-price">₹2,690</span>
-        </div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
+  <div class="product-grid" id="trending-product-grid">
   </div>
 </section>
 
@@ -3156,6 +3067,19 @@ document.getElementById("saleLinkMobile")?.addEventListener("click", function (e
 });
 </script>
 <script></script>
+
+
+    <!-- Firebase + Dynamic Product Renderer -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/product-service.js"></script>
+    <script src="js/product-renderer.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        ProductRenderer.renderInto('#trending-product-grid', { isTrendingHome: true, limit: 8 });
+      });
+    </script>
 
 </body>
 </html>

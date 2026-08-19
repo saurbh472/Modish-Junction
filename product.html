@@ -405,7 +405,13 @@ footer, .footer {
   <!-- ✅ FOOTER COMPONENT -->
   <div id="footer-placeholder"></div>
 
-  <!-- ============= PRODUCT DATA SCRIPTS ============= -->
+  <!-- ============= FIREBASE & PRODUCT DATA SCRIPTS ============= -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="./js/firebase-config.js"></script>
+  <script src="./js/product-service.js"></script>
+
+  <!-- Legacy data fallback -->
   <script src="./js/data/products-winterwear.js"></script>
   <script src="./js/data/products-dresses.js"></script>
   <script src="./js/data/products-jeans.js"></script>
@@ -418,53 +424,80 @@ footer, .footer {
   <script src="./js/data/products-sale.js"></script>
   <script src="./js/data/products-trending.js"></script>
 
-  <!-- ✅ CART FUNCTIONALITY - Load BEFORE product logic -->
-  <script src="../js/cart.js"></script>
+  <!-- Cart functionality -->
+  <script src="./js/cart.js"></script>
 
-  <!-- ============= PRODUCT PAGE LOGIC ============= -->
+  <!-- ============= DYNAMIC PRODUCT PAGE LOGIC ============= -->
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const slug = params.get("slug");
-    const cleanSlug = slug?.trim().toLowerCase();
-    const category = params.get("category") || "winter";
+    async function initProductPage() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
+      const slug = params.get("slug");
+      const category = params.get("category") || "winter";
 
-    // Select the correct product array based on category
-    let products;
-    if (category === "dress") products = dressProducts;
-    else if (category === "jeans") products = jeansProducts;
-    else if (category === "loungewear") products = loungewearProducts;
-    else if (category === "toptees") products = topteesProducts;
-    else if (category === "thrift") products = thriftProducts;
-    else if (category === "threepiece") products = threePieceProducts;
-    else if (category === "coords") products = coordsProducts;
-    else if (category === "kurtis") products = kurtisProducts;
-    else if (category === "sale") products = saleProducts;
-    else if (category === "trending") products = trendingProducts;
-    else products = winterProducts;
+      const container = document.getElementById("product-container");
+      container.innerHTML = `
+        <div style="text-align: center; padding: 60px; grid-column: 1/-1;">
+          <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: var(--primary);"></i>
+          <p style="margin-top: 10px; color: #888;">Loading product details...</p>
+        </div>
+      `;
 
-    // Find the specific product
-    const product = products.find(p => p.slug.toLowerCase() === cleanSlug);
+      let product = null;
+      if (id) {
+        product = await ProductService.getProductByIdOrSlug(id);
+      }
+      if (!product && slug) {
+        product = await ProductService.getProductByIdOrSlug(slug);
+      }
 
-    if (!product) {
-      document.getElementById("product-container").innerHTML =
-        "<h2 style='text-align:center; padding:50px;'>Product not found</h2>";
-    } else {
-      // Update page title
+      if (!product) {
+        let legacyProducts = typeof winterProducts !== 'undefined' ? winterProducts : [];
+        if (category === "dress" && typeof dressProducts !== 'undefined') legacyProducts = dressProducts;
+        else if (category === "jeans" && typeof jeansProducts !== 'undefined') legacyProducts = jeansProducts;
+        else if (category === "loungewear" && typeof loungewearProducts !== 'undefined') legacyProducts = loungewearProducts;
+        else if (category === "toptees" && typeof topteesProducts !== 'undefined') legacyProducts = topteesProducts;
+        else if (category === "thrift" && typeof thriftProducts !== 'undefined') legacyProducts = thriftProducts;
+        else if (category === "threepiece" && typeof threePieceProducts !== 'undefined') legacyProducts = threePieceProducts;
+        else if (category === "coords" && typeof coordsProducts !== 'undefined') legacyProducts = coordsProducts;
+        else if (category === "kurtis" && typeof kurtisProducts !== 'undefined') legacyProducts = kurtisProducts;
+        else if (category === "sale" && typeof saleProducts !== 'undefined') legacyProducts = saleProducts;
+        else if (category === "trending" && typeof trendingProducts !== 'undefined') legacyProducts = trendingProducts;
+
+        if (slug) {
+          product = legacyProducts.find(p => p.slug && p.slug.toLowerCase() === slug.toLowerCase());
+        }
+      }
+
+      if (!product) {
+        container.innerHTML = `
+          <div style="text-align:center; padding: 60px 20px; grid-column: 1/-1;">
+            <h2 style="color: var(--primary); margin-bottom: 10px;">Product not found</h2>
+            <p style="color: #666; margin-bottom: 20px;">The product you are looking for is currently unavailable.</p>
+            <a href="./index.html" class="add-btn" style="text-decoration:none; display:inline-block; width:auto; padding: 12px 24px;">Return to Shop</a>
+          </div>
+        `;
+        return;
+      }
+
       document.getElementById("page-title").innerText = product.name + " | Modish Junction";
 
-      // Render product HTML
-      document.getElementById("product-container").innerHTML = `
+      const images = product.images && product.images.length > 0 ? product.images : ['./Images/Category/western-wear.jpg'];
+      const sizes = Array.isArray(product.sizes) && product.sizes.length > 0 ? product.sizes : ['S', 'M', 'L', 'XL'];
+
+      container.innerHTML = `
         <div class="product-img">
           <div class="image-viewer">
             <button class="nav-btn left" onclick="prevImage()" aria-label="Previous image">❮</button>
-            <img id="mainImage" src="${product.images[0]}" alt="${product.name}">
+            <img id="mainImage" src="${images[0]}" alt="${product.name}" onerror="this.src='./Images/Category/western-wear.jpg'">
             <button class="nav-btn right" onclick="nextImage()" aria-label="Next image">❯</button>
           </div>
 
           <div class="thumbs">
-            ${product.images.map((img, i) => `
+            ${images.map((img, i) => `
               <img src="${img}" onclick="changeImageByIndex(${i})"
-                   class="${i === 0 ? 'active' : ''}" alt="Thumbnail ${i + 1}">
+                   class="${i === 0 ? 'active' : ''}" alt="Thumbnail ${i + 1}"
+                   onerror="this.src='./Images/Category/western-wear.jpg'">
             `).join("")}
           </div>
         </div>
@@ -473,16 +506,17 @@ footer, .footer {
           <h1>${product.name}</h1>
 
           <div class="price">
-            <span class="sale">₹${product.price}</span>
-            <span class="original">₹${product.originalPrice}</span>
+            <span class="sale">₹${Number(product.price).toLocaleString('en-IN')}</span>
+            ${product.originalPrice && product.originalPrice > product.price ? `<span class="original">₹${Number(product.originalPrice).toLocaleString('en-IN')}</span>` : ''}
           </div>
 
           <p class="description">${product.description}</p>
+          ${product.fabric ? `<p style="font-size: 14px; color: #666; margin-bottom: 15px;"><strong>Fabric:</strong> ${product.fabric}</p>` : ''}
 
           <div class="size-box">
             <strong>Select Size:</strong>
             <div class="sizes">
-              ${product.sizes.map(size => `
+              ${sizes.map(size => `
                 <button class="size-btn" onclick="selectSize(this)">
                   ${size}
                 </button>
@@ -491,62 +525,51 @@ footer, .footer {
           </div>
 
           <div class="product-points">
-            <p>✓ 100% Authentic Vintage</p>
-            <p>✓ Professionally cleaned & sanitized</p>
-            <p>✓ Quality checked for condition</p>
+            <p>✓ 100% Authentic Quality Garment</p>
+            <p>✓ Professionally sanitized & quality checked</p>
             <p>✓ Free shipping on orders above ₹999</p>
-            <p>✓ 7-day return policy</p>
+            <p>✓ 7-day return policy (opening video required)</p>
           </div>
 
           <button class="add-btn" id="addBtn">Add to Cart</button>
         </div>
       `;
 
-      /* ================= IMAGE NAVIGATION LOGIC ================= */
       let currentImageIndex = 0;
-      const images = product.images;
-
       window.updateImage = function () {
         document.getElementById("mainImage").src = images[currentImageIndex];
         document.querySelectorAll(".thumbs img").forEach((img, i) => {
           img.classList.toggle("active", i === currentImageIndex);
         });
       };
-
       window.nextImage = function () {
         currentImageIndex = (currentImageIndex + 1) % images.length;
         updateImage();
       };
-
       window.prevImage = function () {
         currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
         updateImage();
       };
-
       window.changeImageByIndex = function (index) {
         currentImageIndex = index;
         updateImage();
       };
 
-      /* ================= SIZE SELECTION ================= */
-      let selectedSize = null;
-
+      let selectedSize = sizes.length === 1 ? sizes[0] : null;
+      if (sizes.length === 1) {
+        document.querySelector(".size-btn")?.classList.add("active");
+      }
       window.selectSize = function (btn) {
-        document.querySelectorAll(".size-btn").forEach(b =>
-          b.classList.remove("active")
-        );
+        document.querySelectorAll(".size-btn").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
         selectedSize = btn.innerText;
       };
 
-      /* ================= ADD TO CART ================= */
       document.getElementById("addBtn").onclick = () => {
         if (!selectedSize) {
-          alert("Please select a size");
+          alert("Please select a size first!");
           return;
         }
-
-        // Check if addToCart function exists (from cart.js)
         if (typeof addToCart === 'function') {
           addToCart(
             product.id + "-" + selectedSize,
@@ -554,13 +577,9 @@ footer, .footer {
             product.price,
             window.location.href
           );
-
-          // Update button text and action
           const addBtn = document.getElementById("addBtn");
           addBtn.innerText = "✓ Added to Cart";
           addBtn.style.background = "linear-gradient(135deg, #27ae60, #2ecc71)";
-          
-          // Optional: Change button to go to cart after 1.5 seconds
           setTimeout(() => {
             addBtn.innerText = "View Cart";
             addBtn.style.background = "linear-gradient(135deg, var(--primary), var(--secondary))";
@@ -568,61 +587,58 @@ footer, .footer {
               if (typeof openCart === 'function') {
                 openCart();
               } else {
-                // Fallback: scroll to top where cart icon is
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 alert("Click the cart icon in the header to view your cart");
               }
             };
           }, 1500);
-
-          // Update cart count if function exists
           if (typeof updateCartCount === 'function') {
             updateCartCount();
           }
-        } else {
-          console.error("addToCart function not found. Make sure cart.js is loaded.");
-          alert("Cart functionality is not available. Please refresh the page.");
         }
       };
-    }
 
-    /* ================= BACK LINK CONFIGURATION ================= */
-    const backLink = document.getElementById("backLink");
-
-    if (category === "dress") {
-      backLink.href = "./western-wear/dresses.html";
-      backLink.innerText = "← Back to Dresses";
-    } else if (category === "jeans") {
-      backLink.href = "./western-wear/jeans-pants.html";
-      backLink.innerText = "← Back to Jeans & Pants";
-    } else if (category === "loungewear") {
-      backLink.href = "./western-wear/loungewear.html";
-      backLink.innerText = "← Back to Loungewear";
-    } else if (category === "toptees") {
-      backLink.href = "./western-wear/tops-tees.html";
-      backLink.innerText = "← Back to Tops & Tees";
-    } else if (category === "threepiece") {
-      backLink.href = "./Ethnic-wear/3-piece-suit.html";
-      backLink.innerText = "← Back to 3 Piece Suits";
-    } else if (category === "thrift") {
-      backLink.href = "./western-wear/thrift-collection.html";
-      backLink.innerText = "← Back to Thrift Collection";
-    } else if (category === "coords") {
-      backLink.href = "./Ethnic-wear/co-ords.html";
-      backLink.innerText = "← Back to Co-ords";
-    } else if (category === "kurtis") {
-      backLink.href = "./Ethnic-wear/short-kurtis.html";
-      backLink.innerText = "← Back to Short Kurtis";
-    } else if (category === "sale") {
-      backLink.href = "./Sale/sale.html";
-      backLink.innerText = "← Back to Sale";
-    } else if (category === "trending") {
-      backLink.href = "./index.html";
-      backLink.innerText = "← Back to Home";
-    } else {
-      backLink.href = "./western-wear/winter-wear.html";
-      backLink.innerText = "← Back to Winter Wear";
+      const backLink = document.getElementById("backLink");
+      const cat = (product.subCategory || category || '').toLowerCase();
+      if (cat.includes("dress")) {
+        backLink.href = "./western-wear/dresses.html";
+        backLink.innerText = "← Back to Dresses";
+      } else if (cat.includes("jean") || cat.includes("pant")) {
+        backLink.href = "./western-wear/jeans-pants.html";
+        backLink.innerText = "← Back to Jeans & Pants";
+      } else if (cat.includes("lounge")) {
+        backLink.href = "./western-wear/loungewear.html";
+        backLink.innerText = "← Back to Loungewear";
+      } else if (cat.includes("top") || cat.includes("tee")) {
+        backLink.href = "./western-wear/tops-tees.html";
+        backLink.innerText = "← Back to Tops & Tees";
+      } else if (cat.includes("3piece") || cat.includes("3-piece") || cat.includes("threepiece")) {
+        backLink.href = "./Ethnic-wear/3-piece-suit.html";
+        backLink.innerText = "← Back to 3 Piece Suits";
+      } else if (cat.includes("thrift") || cat.includes("shirt")) {
+        backLink.href = "./western-wear/thrift-collection.html";
+        backLink.innerText = "← Back to Thrift Collection";
+      } else if (cat.includes("coord") || cat.includes("co-ord")) {
+        backLink.href = "./Ethnic-wear/co-ords.html";
+        backLink.innerText = "← Back to Co-ords";
+      } else if (cat.includes("kurti")) {
+        backLink.href = "./Ethnic-wear/short-kurtis.html";
+        backLink.innerText = "← Back to Short Kurtis";
+      } else if (cat.includes("affordable") || cat.includes("must-have")) {
+        backLink.href = "./Ethnic-wear/Affordable-collection.html";
+        backLink.innerText = "← Back to Must-Haves";
+      } else if (cat.includes("sale")) {
+        backLink.href = "./Sale/sale.html";
+        backLink.innerText = "← Back to Sale";
+      } else if (cat.includes("trending")) {
+        backLink.href = "./index.html";
+        backLink.innerText = "← Back to Home";
+      } else {
+        backLink.href = "./western-wear/winter-wear.html";
+        backLink.innerText = "← Back to Winter Wear";
+      }
     }
+    document.addEventListener("DOMContentLoaded", initProductPage);
   </script>
 
   <!-- ✅ HEADER & FOOTER LOADER SCRIPT -->

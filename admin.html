@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Modish Junction</title>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <!-- Admin Styles -->
+  <link rel="stylesheet" href="./css/admin.css">
+</head>
+<body>
+
+  <!-- ================= AUTHENTICATION OVERLAY ================= -->
+  <div id="authOverlay" class="auth-overlay">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <i class="fa-solid fa-crown"></i>
+        <span>Modish Junction</span>
+      </div>
+      <p class="auth-subtitle">Admin Control Panel</p>
+      
+      <div class="auth-input-group">
+        <label for="adminPasscode">Enter Admin Passcode</label>
+        <input type="password" id="adminPasscode" class="auth-input" placeholder="Enter passcode..." autocomplete="current-password">
+      </div>
+      
+      <button id="loginBtn" class="auth-btn">
+        <i class="fa-solid fa-lock-open"></i> Unlock Dashboard
+      </button>
+      
+      <p id="authError" class="auth-error">Incorrect passcode. Please try again.</p>
+    </div>
+  </div>
+
+  <!-- ================= ADMIN NAVBAR ================= -->
+  <nav class="admin-navbar">
+    <a href="./admin.html" class="admin-brand">
+      <i class="fa-solid fa-store" style="font-size: 24px; color: var(--primary);"></i>
+      <div>
+        <h1>Modish Junction</h1>
+      </div>
+      <span class="badge">Admin Hub</span>
+    </a>
+
+    <div class="admin-actions">
+      <button id="btnOpenAddModal" class="btn btn-primary">
+        <i class="fa-solid fa-plus"></i> Add New Cloth
+      </button>
+      <button id="btnMigrateData" class="btn btn-outline" title="Import all existing hardcoded clothes into Firestore">
+        <i class="fa-solid fa-cloud-arrow-up"></i> Sync Initial Products
+      </button>
+      <a href="./index.html" target="_blank" class="btn btn-outline">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> View Store
+      </a>
+      <button id="btnLogout" class="btn btn-outline btn-sm" title="Lock Dashboard">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ================= MAIN DASHBOARD CONTAINER ================= -->
+  <main class="admin-container">
+    
+    <!-- STATS CARDS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon total">
+          <i class="fa-solid fa-shirt"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="statTotal">0</h3>
+          <p>Total Products</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon instock">
+          <i class="fa-solid fa-check-circle"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="statInStock">0</h3>
+          <p>In Stock</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon outstock">
+          <i class="fa-solid fa-ban"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="statOutStock">0</h3>
+          <p>Out of Stock</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon categories">
+          <i class="fa-solid fa-fire"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="statTrending">0</h3>
+          <p>Home Trending</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTROLS & SEARCH BAR -->
+    <div class="panel-header">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search by name, category, or fabric...">
+      </div>
+
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all">All Products</button>
+        <button class="filter-tab" data-filter="western">Western Wear</button>
+        <button class="filter-tab" data-filter="ethnic">Ethnic Wear</button>
+        <button class="filter-tab" data-filter="must-haves">Must-Haves</button>
+        <button class="filter-tab" data-filter="sale">Sale Items 🔥</button>
+        <button class="filter-tab" data-filter="trending">Home Trending</button>
+        <button class="filter-tab" data-filter="outofstock">Out of Stock</button>
+      </div>
+    </div>
+
+    <!-- PRODUCTS TABLE -->
+    <div class="table-container">
+      <table class="products-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Subcategory</th>
+            <th>Price</th>
+            <th>Badges</th>
+            <th>In Stock</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="productsTableBody">
+          <tr>
+            <td colspan="7" style="text-align: center; padding: 40px; color: #888;">
+              <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: var(--primary); margin-bottom: 10px; display:block;"></i>
+              Loading database products...
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <!-- ================= ADD / EDIT PRODUCT MODAL ================= -->
+  <div id="productModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Add New Clothing Item</h2>
+        <button id="modalCloseBtn" class="modal-close">&times;</button>
+      </div>
+
+      <form id="productForm">
+        <input type="hidden" id="formProductId">
+        
+        <div class="modal-body">
+          <div class="form-grid">
+            
+            <!-- Product Title -->
+            <div class="form-group full">
+              <label for="pName">Product Name *</label>
+              <input type="text" id="pName" class="form-control" placeholder="e.g. Silk Embroidered Ethnic Set with Dupatta" required>
+            </div>
+
+            <!-- Main Category -->
+            <div class="form-group">
+              <label for="pMainCategory">Main Category *</label>
+              <select id="pMainCategory" class="form-control" required>
+                <option value="western">Western Wear</option>
+                <option value="ethnic">Ethnic Wear</option>
+                <option value="must-haves">Must-Haves Collection</option>
+                <option value="sale">Sale / Clearance</option>
+              </select>
+            </div>
+
+            <!-- Sub Category -->
+            <div class="form-group">
+              <label for="pSubCategory">Subcategory *</label>
+              <select id="pSubCategory" class="form-control" required>
+                <!-- Populated dynamically via JS -->
+              </select>
+            </div>
+
+            <!-- Dress Subfilter (Visible when subCategory is dresses) -->
+            <div class="form-group" id="subFilterGroup" style="display: none;">
+              <label for="pSubFilter">Season Filter (Dresses)</label>
+              <select id="pSubFilter" class="form-control">
+                <option value="all">All Seasons</option>
+                <option value="summer">Summer Collection</option>
+                <option value="winter">Winter Collection</option>
+              </select>
+            </div>
+
+            <!-- Fabric -->
+            <div class="form-group">
+              <label for="pFabric">Fabric / Material</label>
+              <input type="text" id="pFabric" class="form-control" placeholder="e.g. Pure Cotton, Georgette, Silk">
+            </div>
+
+            <!-- Price & Original Price -->
+            <div class="form-group">
+              <label for="pPrice">Selling Price (₹) *</label>
+              <input type="number" id="pPrice" class="form-control" placeholder="e.g. 1499" min="0" required>
+            </div>
+
+            <div class="form-group">
+              <label for="pOriginalPrice">Original MRP Price (₹)</label>
+              <input type="number" id="pOriginalPrice" class="form-control" placeholder="e.g. 2999" min="0">
+              <small id="discountPreview" style="color: var(--primary); font-weight: 600; margin-top: 4px; display: block;"></small>
+            </div>
+
+            <!-- Available Sizes -->
+            <div class="form-group full">
+              <label>Available Sizes</label>
+              <div class="size-checkboxes">
+                <label class="size-pill"><input type="checkbox" name="sizes" value="XS"><span>XS</span></label>
+                <label class="size-pill"><input type="checkbox" name="sizes" value="S" checked><span>S</span></label>
+                <label class="size-pill"><input type="checkbox" name="sizes" value="M" checked><span>M</span></label>
+                <label class="size-pill"><input type="checkbox" name="sizes" value="L" checked><span>L</span></label>
+                <label class="size-pill"><input type="checkbox" name="sizes" value="XL" checked><span>XL</span></label>
+                <label class="size-pill"><input type="checkbox" name="sizes" value="XXL"><span>XXL</span></label>
+                <label class="size-pill"><input type="checkbox" name="sizes" value="Free Size"><span>Free Size</span></label>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="form-group full">
+              <label for="pDescription">Product Description</label>
+              <textarea id="pDescription" class="form-control" placeholder="Describe the style, fit, details, styling tips..."></textarea>
+            </div>
+
+            <!-- Product Images -->
+            <div class="form-group full">
+              <label>Product Images (Photos)</label>
+              
+              <div class="image-upload-area" id="dropZone">
+                <i class="fa-solid fa-cloud-arrow-up fa-2x" style="color: var(--primary); margin-bottom: 8px;"></i>
+                <p><strong>Click to upload photo files</strong> or drag & drop</p>
+                <p style="font-size: 12px; color: #888; margin-top: 4px;">Supports JPG, PNG, WEBP</p>
+                <input type="file" id="fileInput" multiple accept="image/*" style="display: none;">
+              </div>
+
+              <!-- Or Paste Image URL -->
+              <div style="display: flex; gap: 10px; margin-top: 12px;">
+                <input type="text" id="imgUrlInput" class="form-control" placeholder="Or paste image URL (e.g. https://... or ../Images/...)">
+                <button type="button" id="btnAddImgUrl" class="btn btn-outline">Add URL</button>
+              </div>
+
+              <!-- Image Previews Container -->
+              <div id="imagePreviews" class="image-previews-grid"></div>
+            </div>
+
+            <!-- Feature Visibility Flags -->
+            <div class="form-group full">
+              <label>Store Visibility & Badges</label>
+              <div class="flags-container">
+                <label class="flag-label">
+                  <input type="checkbox" id="flagTrending">
+                  <span>⭐ Show on Home Page ("Trending This Season")</span>
+                </label>
+                <label class="flag-label">
+                  <input type="checkbox" id="flagSale">
+                  <span>🔥 Add to Sale Collection</span>
+                </label>
+                <label class="flag-label">
+                  <input type="checkbox" id="flagMustHave">
+                  <span>✨ Add to Must-Haves</span>
+                </label>
+                <label class="flag-label">
+                  <input type="checkbox" id="flagInStock" checked>
+                  <span>✅ Available In Stock</span>
+                </label>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="btnCancelModal" class="btn btn-outline">Cancel</button>
+          <button type="submit" id="btnSaveProduct" class="btn btn-primary">
+            <i class="fa-solid fa-floppy-disk"></i> Save Product
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= FIREBASE SDK (CDN) ================= -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+  <!-- Modish Junction Scripts -->
+  <script src="./js/firebase-config.js"></script>
+  <script src="./js/product-service.js"></script>
+  <script src="./js/migrate-data.js"></script>
+  <script src="./js/admin.js"></script>
+</body>
+</html>

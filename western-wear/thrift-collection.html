@@ -328,7 +328,7 @@
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2.5rem;
             margin-bottom: 3rem;
         }
@@ -879,318 +879,10 @@
             </div>
         </div>
 
-       <div class="product-grid">
-
-  <!-- PRODUCT 1 -->
- <div class="product-card"
-     data-id="product-thriftcollection-1"
-     data-category="formal shirt"
-    data-link="../product.html?category=thrift&slug=vintage-denim-jacket"
->
-
-    <!-- Wishlist -->
-    <div class="wishlist-btn">
-        <i class="far fa-heart"></i>
-    </div>
-
-    <!-- Badges -->
-    <span class="discount-badge">60% OFF</span>
-    <span class="vintage-badge">VINTAGE</span>
-    <span class="stock-badge">Only 2 left!</span>
-
-    <!-- Image -->
-    <div class="product-image">
-        <img src="../Images/Category/co-ords-set.png"
-             alt="Vintage Oversized Denim Jacket"
-             loading="lazy">
-    </div>
-
-    <!-- Quick View -->
-    <button class="quick-view-btn" onclick="openModal(0)">
-        Quick View
-    </button>
-
-    <!-- Product Info -->
-    <div class="product-info">
-
-       <h3>Formal Vintage Denim Shirt – 90s Tailored Fit</h3>
-<p class="product-story">
-    "Sharp vintage denim shirt styled for a clean formal look"
-</p>
-
-
-        <div class="price">
-            <span class="sale-price">₹1,199</span>
-            <span class="original-price">₹2,999</span>
-        </div>
-
-        <button class="add-to-cart">
-            Add to Cart
-        </button>
-
+       <div class="product-grid" id="thrift-grid">
     </div>
 </div>
-
-
-  <!-- PRODUCT 2 -->
-  <div class="product-card"
-       data-id="product-thriftcollection-2"
-       data-category="crop shirt"
-       data-link="../product.html?category=thrift&slug=retro-band-graphic-tee"
->
-
-    <div class="wishlist-btn"><i class="far fa-heart"></i></div>
-    <span class="discount-badge">65% OFF</span>
-    <span class="vintage-badge">VINTAGE</span>
-
-    <div class="product-image">
-      <img src="../Images/Category/co-ords-set.png"
-           alt="Retro Band Graphic Tee"
-           loading="lazy">
-    </div>
-
-    <button class="quick-view-btn" onclick="openModal(1)">Quick View</button>
-
-    <div class="product-info">
-      <div class="product-rating">
-      </div>
-
-   <h3>Retro Crop Shirt – Vintage Graphic Style</h3>
-<p class="product-story">
-    "Authentic cropped vintage shirt with bold retro graphics"
-</p>
-
-      <div class="price">
-        <span class="sale-price">₹599</span>
-        <span class="original-price">₹1,699</span>
-      </div>
-      <button class="add-to-cart">Add to Cart</button>
-    </div>
-  </div>
-
-  <!-- PRODUCT 3 -->
-  <div class="product-card"
-       data-id="product-thriftcollection-3"
-       data-category="casual shirt"
-       data-link="../product.html?category=thrift&slug=floral-maxi-dress"
->
-
-    <div class="wishlist-btn"><i class="far fa-heart"></i></div>
-    <span class="discount-badge">55% OFF</span>
-    <span class="vintage-badge">VINTAGE</span>
-    <span class="stock-badge">Only 1 left!</span>
-
-    <div class="product-image">
-      <img src="../Images/Category/co-ords-set.png"
-           alt="Floral Maxi Dress"
-           loading="lazy">
-    </div>
-
-    <button class="quick-view-btn" onclick="openModal(2)">Quick View</button>
-
-    <div class="product-info">
-      <div class="product-rating">
-      </div>
-  
-<h3>Floral Casual Shirt – 70s Inspired Print</h3>
-<p class="product-story">
-    "Relaxed floral shirt with soft fabric and vintage charm"
-</p>
-
-      <div class="price">
-        <span class="sale-price">₹1,349</span>
-        <span class="original-price">₹2,999</span>
-      </div>
-      <button class="add-to-cart">Add to Cart</button>
-    </div>
-  </div>
-
-  <!-- PRODUCT 4 -->
-  <div class="product-card"
-       data-id="product-thriftcollection-4"
-       data-category="casual shirt"
-      data-link="../product.html?category=thrift&slug=leather-bomber-jacket"
->
-
-    <div class="wishlist-btn"><i class="far fa-heart"></i></div>
-    <span class="discount-badge">70% OFF</span>
-    <span class="vintage-badge">VINTAGE</span>
-
-    <div class="product-image">
-      <img src="../Images/Category/co-ords-set.png"
-           alt="Leather Bomber Jacket"
-           loading="lazy">
-    </div>
-
-    <button class="quick-view-btn" onclick="openModal(3)">Quick View</button>
-
-    <div class="product-info">
-      <div class="product-rating">
-
-      </div>
-<h3>Oversized Casual Shirt – Vintage Street Style</h3>
-<p class="product-story">
-    "Loose-fit casual shirt inspired by classic vintage streetwear"
-</p>
-
-      <div class="price">
-        <span class="sale-price">₹2,499</span>
-        <span class="original-price">₹8,299</span>
-      </div>
-      <button class="add-to-cart">Add to Cart</button>
-    </div>
-  </div>
-
-  <!-- PRODUCT 5 -->
-  <div class="product-card"
-       data-id="product-thriftcollection-5"
-       data-category="formal shirt"
-       data-link="../product.html?category=thrift&slug=high-waist-mom-jeans"
->
-
-    <div class="wishlist-btn"><i class="far fa-heart"></i></div>
-    <span class="discount-badge">60% OFF</span>
-    <span class="vintage-badge">VINTAGE</span>
-
-    <div class="product-image">
-      <img src="../Images/Category/co-ords-set.png"
-           alt="High-Waist Mom Jeans"
-           loading="lazy">
-    </div>
-
-    <button class="quick-view-btn" onclick="openModal(4)">Quick View</button>
-
-    <div class="product-info">
-      <div class="product-rating">
-      </div>
-<h3>Classic Formal Shirt – Vintage Wash Finish</h3>
-<p class="product-story">
-    "Minimal formal shirt with timeless vintage texture"
-</p>
-
-      <div class="price">
-        <span class="sale-price">₹999</span>
-        <span class="original-price">₹2,499</span>
-      </div>
-      <button class="add-to-cart">Add to Cart</button>
-    </div>
-  </div>
-
-  <!-- PRODUCT 6 -->
-  <div class="product-card"
-       data-id="product-thriftcollection-6"
-       data-category="casual shirt"
-       data-link="../product.html?category=thrift&slug=bohemian-embroidered-blouse"
->
-
-    <div class="wishlist-btn"><i class="far fa-heart"></i></div>
-    <span class="discount-badge">50% OFF</span>
-    <span class="vintage-badge">VINTAGE</span>
-    <span class="stock-badge">Only 3 left!</span>
-
-    <div class="product-image">
-      <img src="../Images/Category/co-ords-set.png"
-           alt="Bohemian Embroidered Blouse"
-           loading="lazy">
-    </div>
-
-    <button class="quick-view-btn" onclick="openModal(5)">Quick View</button>
-
-    <div class="product-info">
-      <div class="product-rating">
-      </div>
-<h3>Bohemian Casual Shirt – Handcrafted Embroidery</h3>
-<p class="product-story">
-    "Artisan embroidered shirt with relaxed boho vibes"
-</p>
-
-      <div class="price">
-        <span class="sale-price">₹899</span>
-        <span class="original-price">₹1,799</span>
-      </div>
-      <button class="add-to-cart">Add to Cart</button>
-    </div>
-  </div>
-
-</div>
-
-
-        <div class="style-section">
-            <h2>🎨 Style It Your Way</h2>
-            <div class="style-grid">
-                <div class="style-card">
-                    <div class="style-icon">🌟</div>
-                    <h3>Casual Chic</h3>
-                    <p>Pair vintage denim with a graphic tee and sneakers for effortless style</p>
-                </div>
-                <div class="style-card">
-                    <div class="style-icon">✨</div>
-                    <h3>Boho Vibes</h3>
-                    <p>Mix floral prints with embroidered pieces for that free-spirit look</p>
-                </div>
-                <div class="style-card">
-                    <div class="style-icon">🔥</div>
-                    <h3>Edgy Rock</h3>
-                    <p>Layer leather jackets over band tees for a rebellious edge</p>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Quick View Modal -->
-    <div class="modal" id="quickViewModal">
-        <div class="modal-content">
-            <div class="modal-close" onclick="closeModal()">✕</div>
-            <div class="modal-grid">
-                <div class="modal-image" id="modalImage">👚</div>
-                <div class="modal-details">
-                    <div class="product-rating">
-                        <span class="stars">⭐⭐⭐⭐⭐</span>
-                        <span class="review-count">(24 reviews)</span>
-                    </div>
-                    <h2 id="modalTitle">Vintage Oversized Denim Jacket</h2>
-                    <p id="modalStory" class="product-story">"From a Portland vintage shop, authentic 90s grunge vibes"</p>
-                    <div class="price">
-                        <span class="sale-price" id="modalPrice">₹1,199</span>
-                        <span class="original-price" id="modalOriginalPrice">₹2,999</span>
-                    </div>
-                    
-                    <div class="size-guide">
-                        <h4>Select Size:</h4>
-                        <div class="size-options">
-                            <button class="size-btn">S</button>
-                            <button class="size-btn active">M</button>
-                            <button class="size-btn">L</button>
-                            <button class="size-btn">XL</button>
-                        </div>
-                    </div>
-
-                    <div class="share-buttons">
-                        <div class="share-btn" style="background: #1877f2;"><i class="fab fa-facebook-f"></i></div>
-                        <div class="share-btn" style="background: #1da1f2;"><i class="fab fa-twitter"></i></div>
-                        <div class="share-btn" style="background: #25d366;"><i class="fab fa-whatsapp"></i></div>
-                        <div class="share-btn" style="background: #e4405f;"><i class="fab fa-instagram"></i></div>
-                    </div>
-
-                    <button class="add-to-cart" style="margin-top: 1rem;">Add to Cart</button>
-                    
-                    <div style="margin-top: 2rem; padding: 1rem; background: var(--light); border-radius: 10px;">
-                        <h4 style="margin-bottom: 0.5rem;">Product Details:</h4>
-                        <ul style="list-style: none; padding: 0; font-size: 0.9rem; color: #666;">
-                            <li>✓ 100% Authentic Vintage</li>
-                            <li>✓ Professionally cleaned & sanitized</li>
-                            <li>✓ Quality checked for condition</li>
-                            <li>✓ Free shipping on orders above ₹999</li>
-                            <li>✓ 7-day return policy</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-   <!-- Floating WhatsApp Button with direct contact -->
+<!-- Floating WhatsApp Button with direct contact -->
 <a href="https://wa.me/918949120920" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
         <svg viewBox="0 0 32 32" fill="white" width="28" height="28">
             <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 8.167-2.113c2.325 1.27 4.925 1.947 7.833 1.947 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.275 1.362 1.412-5.25-0.32-0.525c-1.341-2.194-2.051-4.73-2.051-7.359 0-7.72 6.28-14 14-14s14 6.28 14 14-6.28 14-14 14zM23.293 19.943c-0.396-0.199-2.348-1.158-2.713-1.291s-0.628-0.199-0.893 0.199c-0.265 0.398-1.026 1.291-1.259 1.556s-0.463 0.298-0.859 0.099c-2.219-1.108-3.674-1.975-5.134-4.475-0.387-0.662 0.387-0.615 1.108-2.050 0.121-0.265 0.060-0.496-0.034-0.695-0.094-0.199-0.893-2.151-1.224-2.945-0.322-0.774-0.649-0.669-0.893-0.681-0.231-0.012-0.496-0.015-0.76-0.015s-0.694 0.099-1.058 0.496c-0.364 0.398-1.388 1.357-1.388 3.308s1.421 3.836 1.619 4.101c0.199 0.265 2.799 4.272 6.781 5.989 2.51 1.079 3.494 1.148 4.748 0.968 0.762-0.109 2.348-0.96 2.679-1.888s0.331-1.723 0.232-1.888c-0.099-0.165-0.364-0.265-0.76-0.464z"/>
@@ -1497,5 +1189,18 @@ function openModal(index) {
     </div>
   </div>
   <script src="../js/cart.js"></script>
+
+    <!-- ✅ FIREBASE & DYNAMIC PRODUCT SCRIPTS -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/product-service.js"></script>
+    <script src="../js/product-renderer.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        ProductRenderer.renderInto('#thrift-grid', { mainCategory: 'western', subCategory: 'thrift' });
+      });
+    </script>
+
 </body>
 </html>
