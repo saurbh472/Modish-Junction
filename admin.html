@@ -4,6 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard | Modish Junction</title>
+
+  <!-- Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+               script-src 'self' https://www.gstatic.com https://cdnjs.cloudflare.com 'unsafe-inline';
+               style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline';
+               font-src https://cdnjs.cloudflare.com https://fonts.gstatic.com;
+               img-src 'self' data: https:;
+               connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebasestorage.app;">
   
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -23,15 +32,20 @@
       <p class="auth-subtitle">Admin Control Panel</p>
       
       <div class="auth-input-group">
-        <label for="adminPasscode">Enter Admin Passcode</label>
-        <input type="password" id="adminPasscode" class="auth-input" placeholder="Enter passcode..." autocomplete="current-password">
+        <label for="adminEmail">Admin Email</label>
+        <input type="email" id="adminEmail" class="auth-input" placeholder="admin@modishjunction.com" autocomplete="email">
+      </div>
+
+      <div class="auth-input-group">
+        <label for="adminPassword">Password</label>
+        <input type="password" id="adminPassword" class="auth-input" placeholder="Enter password..." autocomplete="current-password">
       </div>
       
       <button id="loginBtn" class="auth-btn">
         <i class="fa-solid fa-lock-open"></i> Unlock Dashboard
       </button>
       
-      <p id="authError" class="auth-error">Incorrect passcode. Please try again.</p>
+      <p id="authError" class="auth-error"></p>
     </div>
   </div>
 
@@ -299,9 +313,12 @@
   <!-- ================= FIREBASE SDK (CDN) ================= -->
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 
   <!-- Modish Junction Scripts -->
   <script src="./js/firebase-config.js"></script>
+  <script src="./js/sanitize.js"></script>
+  <script src="./js/auth-guard.js"></script>
   <script src="./js/product-service.js"></script>
   <script src="./js/migrate-data.js"></script>
   <script src="./js/admin.js"></script>

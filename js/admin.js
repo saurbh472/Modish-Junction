@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentFilter = 'all';
   let searchQuery = '';
   let uploadedImages = [];
-  const DEFAULT_PASSCODE = 'admin123';
 
   const SUBCATEGORIES = {
     western: [
@@ -32,8 +31,18 @@ document.addEventListener('DOMContentLoaded', () => {
     ]
   };
 
+  // Input validation limits
+  const VALIDATION = {
+    NAME_MAX_LENGTH: 200,
+    DESCRIPTION_MAX_LENGTH: 2000,
+    FABRIC_MAX_LENGTH: 100,
+    PRICE_MIN: 0,
+    PRICE_MAX: 999999
+  };
+
   const authOverlay = document.getElementById('authOverlay');
-  const adminPasscode = document.getElementById('adminPasscode');
+  const adminEmail = document.getElementById('adminEmail');
+  const adminPassword = document.getElementById('adminPassword');
   const loginBtn = document.getElementById('loginBtn');
   const authError = document.getElementById('authError');
   const btnLogout = document.getElementById('btnLogout');
@@ -68,42 +77,80 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnAddImgUrl = document.getElementById('btnAddImgUrl');
   const imagePreviews = document.getElementById('imagePreviews');
 
-  function checkAuth() {
-    const isAuth = sessionStorage.getItem('mj_admin_authenticated');
-    if (isAuth === 'true') {
-      authOverlay.style.display = 'none';
-      loadProducts();
-    } else {
-      authOverlay.style.display = 'flex';
-      adminPasscode.focus();
-    }
+  // ========== AUTHENTICATION (Firebase Auth) ==========
+
+  function initAuth() {
+    AuthGuard.onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in — show dashboard
+        authOverlay.style.display = 'none';
+        loadProducts();
+      } else {
+        // User is not signed in — show login
+        authOverlay.style.display = 'flex';
+        if (adminEmail) adminEmail.focus();
+      }
+    });
   }
 
-  function login() {
-    const entered = adminPasscode.value.trim();
-    if (entered === DEFAULT_PASSCODE || entered === 'modish2026' || entered === 'admin') {
-      sessionStorage.setItem('mj_admin_authenticated', 'true');
-      authOverlay.style.display = 'none';
-      authError.style.display = 'none';
-      adminPasscode.value = '';
-      showToast('Welcome to Modish Junction Admin!', 'success');
-      loadProducts();
-    } else {
-      authError.style.display = 'block';
-      adminPasscode.value = '';
-      adminPasscode.focus();
+  async function login() {
+    const email = adminEmail.value.trim();
+    const password = adminPassword.value;
+
+    if (!email || !password) {
+      showAuthError('Please enter both email and password.');
+      return;
     }
+
+    // Disable button during login attempt
+    loginBtn.disabled = true;
+    loginBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Signing in...';
+
+    const result = await AuthGuard.signIn(email, password);
+
+    if (result.success) {
+      hideAuthError();
+      adminEmail.value = '';
+      adminPassword.value = '';
+      showToast(result.message, 'success');
+      // onAuthStateChanged will handle showing dashboard
+    } else {
+      showAuthError(result.message);
+      adminPassword.value = '';
+      adminPassword.focus();
+    }
+
+    loginBtn.disabled = false;
+    loginBtn.innerHTML = '<i class="fa-solid fa-lock-open"></i> Unlock Dashboard';
+  }
+
+  function showAuthError(msg) {
+    authError.textContent = msg;
+    authError.style.display = 'block';
+  }
+
+  function hideAuthError() {
+    authError.textContent = '';
+    authError.style.display = 'none';
   }
 
   loginBtn.addEventListener('click', login);
-  adminPasscode.addEventListener('keypress', (e) => {
+  adminPassword.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') login();
   });
-
-  btnLogout.addEventListener('click', () => {
-    sessionStorage.removeItem('mj_admin_authenticated');
-    checkAuth();
+  adminEmail.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      adminPassword.focus();
+    }
   });
+
+  btnLogout.addEventListener('click', async () => {
+    await AuthGuard.signOut();
+    showToast('Signed out successfully.', 'success');
+    // onAuthStateChanged will handle showing login overlay
+  });
+
+  // ========== PRODUCT LOADING ==========
 
   async function loadProducts() {
     productsTableBody.innerHTML = `
@@ -120,7 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
       updateStats();
       renderProductsTable();
     } catch (err) {
-      console.error("Error loading products:", err);
       productsTableBody.innerHTML = `
         <tr>
           <td colspan="7" style="text-align: center; padding: 30px; color: var(--danger);">
@@ -142,6 +188,8 @@ document.addEventListener('DOMContentLoaded', () => {
     statOutStock.innerText = outStock;
     statTrending.innerText = trending;
   }
+
+  // ========== PRODUCT TABLE RENDERING (Sanitized) ==========
 
   function renderProductsTable() {
     let filtered = currentProducts;
@@ -182,27 +230,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     productsTableBody.innerHTML = filtered.map(p => {
-      const mainImg = p.images && p.images.length > 0 ? p.images[0] : './Images/Category/western-wear.jpg';
+      const mainImg = p.images && p.images.length > 0 ? Sanitize.url(p.images[0], './Images/Category/western-wear.jpg') : './Images/Category/western-wear.jpg';
       const categoryBadgeClass = p.mainCategory === 'ethnic' ? 'badge-ethnic' : (p.mainCategory === 'sale' ? 'badge-sale' : (p.mainCategory === 'must-haves' ? 'badge-musthave' : 'badge-western'));
       const inStockChecked = p.inStock !== false ? 'checked' : '';
 
+      const safeName = Sanitize.text(p.name);
+      const safeSlug = Sanitize.text(p.slug);
+      const safeSubCat = Sanitize.text((p.subCategory || 'General').replace('-', ' '));
+      const safeSubFilter = Sanitize.text(p.subFilter || '');
+      const safeMainCat = Sanitize.text((p.mainCategory || 'western').toUpperCase());
+      const safeId = Sanitize.attr(p.id);
+      const safeNameAttr = Sanitize.attr(p.name);
+
       return `
-        <tr data-id="${p.id}">
+        <tr data-id="${safeId}">
           <td>
             <div class="product-cell">
-              <img src="${mainImg}" alt="${p.name}" class="product-thumb" onerror="this.src='./Images/Category/western-wear.jpg'">
+              <img src="${mainImg}" alt="${safeNameAttr}" class="product-thumb" onerror="this.src='./Images/Category/western-wear.jpg'">
               <div>
-                <div class="product-title">${p.name}</div>
-                <div class="product-slug">/${p.slug}</div>
+                <div class="product-title">${safeName}</div>
+                <div class="product-slug">/${safeSlug}</div>
               </div>
             </div>
           </td>
           <td>
-            <span class="badge-tag ${categoryBadgeClass}">${(p.mainCategory || 'western').toUpperCase()}</span>
+            <span class="badge-tag ${categoryBadgeClass}">${safeMainCat}</span>
           </td>
           <td style="text-transform: capitalize; color: #555;">
-            ${(p.subCategory || 'General').replace('-', ' ')}
-            ${p.subFilter && p.subFilter !== 'all' ? `<br><small style="color:#888;">(${p.subFilter})</small>` : ''}
+            ${safeSubCat}
+            ${p.subFilter && p.subFilter !== 'all' ? `<br><small style="color:#888;">(${safeSubFilter})</small>` : ''}
           </td>
           <td>
             <strong>₹${Number(p.price).toLocaleString('en-IN')}</strong>
@@ -213,21 +269,21 @@ document.addEventListener('DOMContentLoaded', () => {
               ${p.isTrendingHome ? '<span style="font-size:11px; background:#fff3cd; color:#856404; padding:2px 6px; border-radius:4px; font-weight:600;">⭐ Trending</span>' : ''}
               ${p.isSale ? '<span style="font-size:11px; background:#f8d7da; color:#721c24; padding:2px 6px; border-radius:4px; font-weight:600;">🔥 Sale</span>' : ''}
               ${p.isMustHave ? '<span style="font-size:11px; background:#d4edda; color:#155724; padding:2px 6px; border-radius:4px; font-weight:600;">✨ Must-Have</span>' : ''}
-              ${p.discount > 0 ? `<span style="font-size:11px; color:var(--primary); font-weight:700;">${p.discount}% OFF</span>` : ''}
+              ${p.discount > 0 ? `<span style="font-size:11px; color:var(--primary); font-weight:700;">${Number(p.discount)}% OFF</span>` : ''}
             </div>
           </td>
           <td>
             <label class="switch">
-              <input type="checkbox" class="stock-toggle" data-id="${p.id}" ${inStockChecked}>
+              <input type="checkbox" class="stock-toggle" data-id="${safeId}" ${inStockChecked}>
               <span class="slider"></span>
             </label>
           </td>
           <td>
             <div style="display: flex; gap: 8px;">
-              <button class="btn btn-outline btn-sm btn-edit" data-id="${p.id}" title="Edit details">
+              <button class="btn btn-outline btn-sm btn-edit" data-id="${safeId}" title="Edit details">
                 <i class="fa-solid fa-pen-to-square"></i>
               </button>
-              <button class="btn btn-outline btn-sm btn-delete" data-id="${p.id}" data-name="${p.name.replace(/"/g, '&quot;')}" style="color: var(--danger);" title="Delete product">
+              <button class="btn btn-outline btn-sm btn-delete" data-id="${safeId}" data-name="${safeNameAttr}" style="color: var(--danger);" title="Delete product">
                 <i class="fa-solid fa-trash-can"></i>
               </button>
             </div>
@@ -238,6 +294,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     attachTableEvents();
   }
+
+  // ========== TABLE EVENTS ==========
 
   function attachTableEvents() {
     document.querySelectorAll('.stock-toggle').forEach(toggle => {
@@ -269,14 +327,16 @@ document.addEventListener('DOMContentLoaded', () => {
             currentProducts = currentProducts.filter(p => p.id !== id);
             updateStats();
             renderProductsTable();
-            showToast(`Deleted "${name}"`, 'success');
+            showToast(`Deleted "${Sanitize.text(name)}"`, 'success');
           } catch (err) {
-            alert('Failed to delete: ' + err.message);
+            alert('Failed to delete product. Please try again.');
           }
         }
       });
     });
   }
+
+  // ========== SEARCH & FILTERS ==========
 
   searchInput.addEventListener('input', (e) => {
     searchQuery = e.target.value;
@@ -292,10 +352,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ========== SUBCATEGORY & FORM HELPERS ==========
+
   function populateSubcategories(mainCat, selectedSub = null) {
     const list = SUBCATEGORIES[mainCat] || SUBCATEGORIES.western;
     pSubCategory.innerHTML = list.map(item => 
-      `<option value="${item.id}" ${selectedSub === item.id ? 'selected' : ''}>${item.name}</option>`
+      `<option value="${Sanitize.attr(item.id)}" ${selectedSub === item.id ? 'selected' : ''}>${Sanitize.text(item.name)}</option>`
     ).join('');
 
     checkDressSubFilter();
@@ -329,13 +391,18 @@ document.addEventListener('DOMContentLoaded', () => {
   pPrice.addEventListener('input', calculateDiscountDisplay);
   pOriginalPrice.addEventListener('input', calculateDiscountDisplay);
 
+  // ========== IMAGE MANAGEMENT ==========
+
   function renderImagePreviews() {
-    imagePreviews.innerHTML = uploadedImages.map((imgUrl, idx) => `
-      <div class="img-preview-card">
-        <img src="${imgUrl}" alt="Product Photo ${idx+1}">
-        <button type="button" class="remove-img" data-index="${idx}">&times;</button>
-      </div>
-    `).join('');
+    imagePreviews.innerHTML = uploadedImages.map((imgUrl, idx) => {
+      const safeUrl = Sanitize.url(imgUrl, './Images/Category/western-wear.jpg');
+      return `
+        <div class="img-preview-card">
+          <img src="${safeUrl}" alt="Product Photo ${idx+1}">
+          <button type="button" class="remove-img" data-index="${idx}">&times;</button>
+        </div>
+      `;
+    }).join('');
 
     document.querySelectorAll('.remove-img').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -349,7 +416,13 @@ document.addEventListener('DOMContentLoaded', () => {
   btnAddImgUrl.addEventListener('click', () => {
     const url = imgUrlInput.value.trim();
     if (url) {
-      uploadedImages.push(url);
+      // Validate the URL before adding
+      const safeUrl = Sanitize.url(url);
+      if (!safeUrl) {
+        alert('Invalid image URL. Please use http://, https://, or a relative path.');
+        return;
+      }
+      uploadedImages.push(safeUrl);
       imgUrlInput.value = '';
       renderImagePreviews();
     }
@@ -403,6 +476,8 @@ document.addEventListener('DOMContentLoaded', () => {
       callback(canvas.toDataURL('image/jpeg', 0.80));
     };
   }
+
+  // ========== MODAL OPEN / CLOSE ==========
 
   btnOpenAddModal.addEventListener('click', () => {
     modalTitle.innerText = "Add New Clothing Item";
@@ -459,6 +534,55 @@ document.addEventListener('DOMContentLoaded', () => {
   modalCloseBtn.addEventListener('click', closeModal);
   btnCancelModal.addEventListener('click', closeModal);
 
+  // ========== INPUT VALIDATION ==========
+
+  function validateProductInput(data) {
+    const errors = [];
+
+    if (!data.name || data.name.trim().length === 0) {
+      errors.push('Product name is required.');
+    } else if (data.name.length > VALIDATION.NAME_MAX_LENGTH) {
+      errors.push(`Product name must be under ${VALIDATION.NAME_MAX_LENGTH} characters.`);
+    }
+
+    if (data.description && data.description.length > VALIDATION.DESCRIPTION_MAX_LENGTH) {
+      errors.push(`Description must be under ${VALIDATION.DESCRIPTION_MAX_LENGTH} characters.`);
+    }
+
+    if (data.fabric && data.fabric.length > VALIDATION.FABRIC_MAX_LENGTH) {
+      errors.push(`Fabric field must be under ${VALIDATION.FABRIC_MAX_LENGTH} characters.`);
+    }
+
+    if (data.price < VALIDATION.PRICE_MIN || data.price > VALIDATION.PRICE_MAX) {
+      errors.push(`Price must be between ₹${VALIDATION.PRICE_MIN} and ₹${VALIDATION.PRICE_MAX}.`);
+    }
+
+    if (data.originalPrice && (data.originalPrice < VALIDATION.PRICE_MIN || data.originalPrice > VALIDATION.PRICE_MAX)) {
+      errors.push(`Original price must be between ₹${VALIDATION.PRICE_MIN} and ₹${VALIDATION.PRICE_MAX}.`);
+    }
+
+    // Validate image URLs
+    if (data.images && data.images.length > 0) {
+      for (let i = 0; i < data.images.length; i++) {
+        const validUrl = Sanitize.url(data.images[i]);
+        if (!validUrl) {
+          errors.push(`Image ${i + 1} has an invalid URL.`);
+        }
+      }
+    }
+
+    return errors;
+  }
+
+  /**
+   * Strip HTML tags from form text inputs to prevent stored XSS
+   */
+  function cleanTextInput(str) {
+    return Sanitize.stripTags(str || '').trim();
+  }
+
+  // ========== FORM SUBMIT (with validation) ==========
+
   productForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btnSave = document.getElementById('btnSaveProduct');
@@ -474,41 +598,59 @@ document.addEventListener('DOMContentLoaded', () => {
         uploadedImages.push('./Images/Category/western-wear.jpg');
       }
 
+      // Sanitize all image URLs
+      const sanitizedImages = uploadedImages
+        .map(img => Sanitize.url(img, ''))
+        .filter(img => img.length > 0);
+
+      if (sanitizedImages.length === 0) {
+        sanitizedImages.push('./Images/Category/western-wear.jpg');
+      }
+
       const productPayload = {
-        name: document.getElementById('pName').value.trim(),
+        name: cleanTextInput(document.getElementById('pName').value).substring(0, VALIDATION.NAME_MAX_LENGTH),
         mainCategory: document.getElementById('pMainCategory').value,
         subCategory: document.getElementById('pSubCategory').value,
         subFilter: document.getElementById('pSubFilter').value,
-        fabric: document.getElementById('pFabric').value.trim(),
-        price: Number(document.getElementById('pPrice').value),
-        originalPrice: Number(document.getElementById('pOriginalPrice').value) || Number(document.getElementById('pPrice').value),
+        fabric: cleanTextInput(document.getElementById('pFabric').value).substring(0, VALIDATION.FABRIC_MAX_LENGTH),
+        price: Math.min(Math.max(Number(document.getElementById('pPrice').value) || 0, VALIDATION.PRICE_MIN), VALIDATION.PRICE_MAX),
+        originalPrice: Math.min(Math.max(Number(document.getElementById('pOriginalPrice').value) || Number(document.getElementById('pPrice').value), VALIDATION.PRICE_MIN), VALIDATION.PRICE_MAX),
         sizes: selectedSizes,
-        description: document.getElementById('pDescription').value.trim(),
-        images: uploadedImages,
+        description: cleanTextInput(document.getElementById('pDescription').value).substring(0, VALIDATION.DESCRIPTION_MAX_LENGTH),
+        images: sanitizedImages,
         isTrendingHome: document.getElementById('flagTrending').checked,
         isSale: document.getElementById('flagSale').checked,
         isMustHave: document.getElementById('flagMustHave').checked,
         inStock: document.getElementById('flagInStock').checked
       };
 
+      // Validate
+      const errors = validateProductInput(productPayload);
+      if (errors.length > 0) {
+        alert('Validation errors:\n\n' + errors.join('\n'));
+        return;
+      }
+
       if (id) {
         await ProductService.updateProduct(id, productPayload);
-        showToast(`Updated "${productPayload.name}"!`, 'success');
+        showToast(`Updated "${Sanitize.text(productPayload.name)}"!`, 'success');
       } else {
         await ProductService.addProduct(productPayload);
-        showToast(`Added "${productPayload.name}" to catalog!`, 'success');
+        showToast(`Added "${Sanitize.text(productPayload.name)}" to catalog!`, 'success');
       }
 
       closeModal();
       await loadProducts();
 
     } catch (err) {
-      alert("Error saving product: " + err.message);
+      alert("Error saving product. Please try again.");
     } finally {
       btnSave.disabled = false;
       btnSave.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Save Product';
     }
   });
+
+  // ========== DATA MIGRATION ==========
 
   btnMigrateData.addEventListener('click', async () => {
     if (confirm("Import all existing hardcoded clothes into Firestore? (Duplicates will be skipped)")) {
@@ -522,7 +664,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showToast(`Migration Complete! Added ${res.migrated} items (${res.alreadyExisted} already in DB).`, 'success');
         await loadProducts();
       } catch (err) {
-        alert("Migration error: " + err.message);
+        alert("Migration error. Please try again.");
       } finally {
         btnMigrateData.disabled = false;
         btnMigrateData.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> Sync Initial Products';
@@ -530,13 +672,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // ========== TOAST NOTIFICATION (Sanitized) ==========
+
   function showToast(message, type = 'success') {
     const existing = document.querySelector('.toast-msg');
     if (existing) existing.remove();
 
     const toast = document.createElement('div');
     toast.className = `toast-msg ${type}`;
-    toast.innerHTML = `<i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation'}"></i> <span>${message}</span>`;
+    
+    const icon = document.createElement('i');
+    icon.className = `fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation'}`;
+    
+    const span = document.createElement('span');
+    span.textContent = Sanitize.stripTags(message);
+    
+    toast.appendChild(icon);
+    toast.appendChild(document.createTextNode(' '));
+    toast.appendChild(span);
     document.body.appendChild(toast);
 
     setTimeout(() => {
@@ -545,5 +698,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3000);
   }
 
-  checkAuth();
+  // ========== INIT ==========
+  initAuth();
 });

@@ -4,6 +4,15 @@
   <meta charset="UTF-8">
   <title id="page-title">Product Details | Modish Junction</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+               script-src 'self' https://www.gstatic.com https://cdnjs.cloudflare.com 'unsafe-inline';
+               style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline';
+               font-src https://cdnjs.cloudflare.com https://fonts.gstatic.com;
+               img-src 'self' data: https:;
+               connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebasestorage.app;">
   
   <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -397,10 +406,10 @@
     </svg>
   </a>
 
-  <!-- ============= SCRIPTS ============= -->
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
   <script src="./js/firebase-config.js"></script>
+  <script src="./js/sanitize.js"></script>
   <script src="./js/product-service.js"></script>
   <script src="./js/migrate-data.js"></script>
   <script src="./js/cart.js"></script>
@@ -431,12 +440,24 @@
           return;
         }
 
+        const safeName = Sanitize.text(product.name);
+        const safeNameAttr = Sanitize.attr(product.name);
+        const safeDesc = Sanitize.text(product.description || 'Premium quality fashion designed for comfort and effortless elegance.');
+        const safeFabric = Sanitize.text(product.fabric || '');
+        const safeCatTag = Sanitize.text((product.subCategory || product.mainCategory || 'Fashion').replace('-', ' '));
+
         document.getElementById("page-title").innerText = product.name + " | Modish Junction";
 
         // Images
         let images = product.images && product.images.length > 0 ? product.images : ['./Images/Category/western-wear.jpg'];
         images = images.map(img => {
           if (!img) return './Images/Category/western-wear.jpg';
+          if (typeof Sanitize !== 'undefined') {
+            const safe = Sanitize.url(img, './Images/Category/western-wear.jpg');
+            if (!safe) return './Images/Category/western-wear.jpg';
+            if (safe.startsWith('http') || safe.startsWith('data:')) return safe;
+            return safe.replace(/^(\.\/|\.\.\/)+/, './');
+          }
           if (img.startsWith('http') || img.startsWith('data:')) return img;
           return img.replace(/^(\.\/|\.\.\/)+/, './');
         });
@@ -454,7 +475,7 @@
             <div class="gallery-container">
               <div class="main-image-box">
                 ${images.length > 1 ? '<button class="nav-arrow prev" onclick="changeImage(-1)">❮</button>' : ''}
-                <img id="activeMainImage" src="${images[0]}" alt="${product.name}" onerror="this.src='./Images/Category/western-wear.jpg'">
+                <img id="activeMainImage" src="${images[0]}" alt="${safeNameAttr}" onerror="this.src='./Images/Category/western-wear.jpg'">
                 ${images.length > 1 ? '<button class="nav-arrow next" onclick="changeImage(1)">❯</button>' : ''}
               </div>
 
@@ -471,8 +492,8 @@
 
             <!-- Info -->
             <div class="details-container">
-              <span class="product-category-tag">${(product.subCategory || product.mainCategory || 'Fashion').replace('-', ' ')}</span>
-              <h1 class="product-title">${product.name}</h1>
+              <span class="product-category-tag">${safeCatTag}</span>
+              <h1 class="product-title">${safeName}</h1>
 
               <div class="price-row">
                 <span class="sale-price">₹${Number(product.price).toLocaleString('en-IN')}</span>
@@ -480,9 +501,9 @@
                 ${discount > 0 ? `<span class="discount-pill">${discount}% OFF</span>` : ''}
               </div>
 
-              <p class="description-text">${product.description || 'Premium quality fashion designed for comfort and effortless elegance.'}</p>
+              <p class="description-text">${safeDesc}</p>
               
-              ${product.fabric ? `<div class="fabric-info"><strong>Fabric:</strong> ${product.fabric}</div>` : ''}
+              ${product.fabric ? `<div class="fabric-info"><strong>Fabric:</strong> ${safeFabric}</div>` : ''}
 
               <!-- Size Selector -->
               <div class="size-section">
@@ -614,7 +635,7 @@
           container.innerHTML = `
             <div style="text-align:center; padding: 60px 20px;">
               <h2 style="color: var(--primary); margin-bottom: 10px;">Item Load Error</h2>
-              <p style="color: #666; margin-bottom: 20px;">${err.message || 'Please refresh.'}</p>
+              <p style="color: #666; margin-bottom: 20px;">Something went wrong. Please refresh the page or try again later.</p>
               <a href="./index.html" class="back-btn" style="display:inline-block; padding:12px 24px;">Back to Store</a>
             </div>
           `;

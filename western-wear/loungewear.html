@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+               script-src 'self' https://www.gstatic.com https://cdnjs.cloudflare.com 'unsafe-inline';
+               style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline';
+               font-src https://cdnjs.cloudflare.com https://fonts.gstatic.com;
+               img-src 'self' data: https:;
+               connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebasestorage.app;">
         <!-- Header & Footer Styles -->
     <link rel="stylesheet" href="../css/header-styles.css">
     <link rel="stylesheet" href="../css/footer-styles.css">
@@ -13,7 +21,7 @@
     <link rel="stylesheet" href="../css/responsive.css"> 
 
     <title>Loungewear - Modish Junction</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -468,7 +476,8 @@ document.querySelectorAll('.filter-btn').forEach(button => {
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <script src="../js/firebase-config.js"></script>
-    <script src="../js/product-service.js"></script>
+      <script src="../js/sanitize.js"></script>
+  <script src="../js/product-service.js"></script>
     <script src="../js/product-renderer.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', () => {

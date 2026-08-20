@@ -24,11 +24,9 @@ try {
       firebaseApp = firebase.app();
     }
     db = firebase.firestore();
-    window.db = db;
-    console.log("✅ Firebase Firestore initialized for Modish Junction!");
-  } else {
-    console.warn("⚠️ Firebase SDK not loaded yet.");
+    // NOTE: db is intentionally NOT attached to window to prevent
+    // direct Firestore manipulation from the browser console.
   }
 } catch (err) {
-  console.error("❌ Firebase init error:", err);
+  // Firebase initialization error — will fall back to local cache
 }

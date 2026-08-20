@@ -9,7 +9,6 @@ const ProductService = {
 
   getDb() {
     if (typeof db !== 'undefined' && db !== null) return db;
-    if (typeof window.db !== 'undefined' && window.db !== null) return window.db;
     if (typeof firebase !== 'undefined' && firebase.apps && firebase.apps.length > 0) {
       return firebase.firestore();
     }
@@ -103,7 +102,7 @@ const ProductService = {
           return products;
         }
       } catch (err) {
-        console.warn("Firestore read error, checking local fallback:", err);
+        console.warn("Firestore read unavailable, using local fallback.");
       }
     }
 
@@ -194,45 +193,34 @@ const ProductService = {
     const clean = String(identifier).trim();
     const cleanLower = clean.toLowerCase();
     const firestore = this.getDb();
-    console.log("🔍 Looking up product:", clean, "| Firestore available:", !!firestore);
 
-    // 1. Direct doc lookup by ID in Firestore first (ultra fast!)
+    // 1. Direct doc lookup by ID in Firestore first
     if (firestore && clean.length >= 10) {
       try {
-        console.log("🔍 Step 1: Direct Firestore doc lookup for ID:", clean);
         const docSnap = await firestore.collection(this.COLLECTION).doc(clean).get();
         if (docSnap.exists) {
-          console.log("✅ Found product by ID in Firestore:", docSnap.id);
           return this.normalizeProduct(docSnap.data(), docSnap.id);
-        } else {
-          console.warn("⚠️ No document found with ID:", clean);
         }
       } catch (e) {
-        console.error("❌ Direct doc lookup error:", e.code, e.message, e);
+        // Direct doc lookup failed, try slug query
       }
     }
 
     // 2. Query by slug in Firestore
     if (firestore) {
       try {
-        console.log("🔍 Step 2: Slug query for:", cleanLower);
         const slugQuery = await firestore.collection(this.COLLECTION).where('slug', '==', cleanLower).limit(1).get();
         if (!slugQuery.empty) {
           const doc = slugQuery.docs[0];
-          console.log("✅ Found product by slug in Firestore:", doc.id);
           return this.normalizeProduct(doc.data(), doc.id);
-        } else {
-          console.warn("⚠️ No document found with slug:", cleanLower);
         }
       } catch (e) {
-        console.error("❌ Slug query error:", e.code, e.message, e);
+        // Slug query failed, fall back to local data
       }
     }
 
     // 3. Fallback to full list / local cache / initial migration array
-    console.log("🔍 Step 3: Falling back to getAllProducts()");
     const all = await this.getAllProducts();
-    console.log("📦 Total products from getAllProducts():", all.length);
     let found = all.find(p => String(p.id).toLowerCase() === cleanLower);
     if (found) return found;
 
@@ -240,7 +228,6 @@ const ProductService = {
     if (found) return found;
 
     found = all.find(p => cleanLower.includes(p.slug.toLowerCase()) || p.slug.toLowerCase().includes(cleanLower));
-    console.log("🔍 Final fuzzy match result:", found ? found.name : "NOT FOUND");
     return found || null;
   },
 
@@ -257,7 +244,6 @@ const ProductService = {
         localStorage.removeItem('mj_products_cache');
         return normalized;
       } catch (err) {
-        console.error("Firestore add error:", err);
         throw err;
       }
     } else {
@@ -280,7 +266,6 @@ const ProductService = {
         localStorage.removeItem('mj_products_cache');
         return normalized;
       } catch (err) {
-        console.error("Firestore update error:", err);
         throw err;
       }
     } else {
@@ -302,7 +287,7 @@ const ProductService = {
         localStorage.removeItem('mj_products_cache');
         return true;
       } catch (err) {
-        console.error("Stock toggle error:", err);
+        // Stock toggle error, fall through to local update
       }
     }
     const all = await this.getAllProducts();
@@ -323,7 +308,6 @@ const ProductService = {
         localStorage.removeItem('mj_products_cache');
         return true;
       } catch (err) {
-        console.error("Delete error:", err);
         throw err;
       }
     } else {
