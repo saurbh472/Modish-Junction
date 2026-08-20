@@ -210,7 +210,7 @@
     if (cart.length === 0) {
       itemsEl.innerHTML = `
         <div style="text-align: center; padding: 40px 20px; color: #888;">
-          <p style="font-size: 2rem; margin-bottom: 10px;">🛍️</p>
+          <p style="font-size: 2.2rem; margin-bottom: 10px;">🛍️</p>
           <p style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 6px;">Your cart is empty</p>
           <p style="font-size: 0.85rem; color: #999;">Explore our latest collections to add clothes.</p>
         </div>
@@ -220,7 +220,9 @@
       let subtotal = 0;
 
       cart.forEach((item, index) => {
-        const itemTotal = item.price * item.qty;
+        const itemPrice = Math.max(0, Number(item.price) || 0);
+        const itemQty = Math.max(1, Number(item.qty) || 1);
+        const itemTotal = itemPrice * itemQty;
         subtotal += itemTotal;
         const safeName = esc(item.name);
 
@@ -228,12 +230,12 @@
           <div class="cart-item" style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid #f0f0f0;">
             <div style="flex:1; padding-right:10px;">
               <strong style="font-size:14px; color:#1a0e08;">${safeName}</strong><br>
-              <span style="color:var(--primary, #d4593b); font-weight:600; font-size:13px;">₹${Number(item.price).toLocaleString('en-IN')}</span>
+              <span style="color:var(--primary, #d4593b); font-weight:600; font-size:13px;">₹${itemPrice.toLocaleString('en-IN')}</span>
             </div>
 
             <div class="qty-controls" style="display:flex; align-items:center; gap:8px;">
               <button onclick="changeQty(${index}, -1)" style="width:28px; height:28px; border-radius:6px; border:1px solid #ddd; background:#fff; cursor:pointer; font-weight:bold;">−</button>
-              <span style="font-weight:600; font-size:14px; min-width:18px; text-align:center;">${item.qty}</span>
+              <span style="font-weight:600; font-size:14px; min-width:18px; text-align:center;">${itemQty}</span>
               <button onclick="changeQty(${index}, 1)" style="width:28px; height:28px; border-radius:6px; border:1px solid #ddd; background:#fff; cursor:pointer; font-weight:bold;">+</button>
               <button class="remove-btn" onclick="removeItem(${index})" style="background:none; border:none; color:#e74c3c; cursor:pointer; font-size:16px; margin-left:6px;" title="Remove item">✕</button>
             </div>
@@ -241,19 +243,42 @@
         `;
       });
 
-      const shipping = SHIPPING_CHARGE;
+      // Shipping & Free Shipping calculation (>= 999 is Free)
+      const isFreeShipping = subtotal >= 999;
+      const shipping = isFreeShipping ? 0 : SHIPPING_CHARGE;
       const grandTotal = subtotal + shipping;
 
+      // Retrieve saved buyer details if any
+      let savedBuyer = {};
+      try {
+        savedBuyer = JSON.parse(localStorage.getItem('mj_buyer_details')) || {};
+      } catch (e) {}
+
+      const safeBuyerName = esc(savedBuyer.name || '');
+      const safeBuyerAddress = esc(savedBuyer.address || '');
+      const safeBuyerPhone = esc(savedBuyer.phone || '');
+
       totalEl.innerHTML = `
-        <div style="margin-top: 15px; border-top: 2px dashed #eee; padding-top: 12px;">
+        <!-- Optional Customer Delivery Details -->
+        <div class="cart-customer-section" style="margin-top: 14px; padding: 12px; background: #fdfaf7; border-radius: 12px; border: 1px solid #f2e9e4;">
+          <div style="font-size: 12px; font-weight: 700; color: #1a0e08; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
+            <span>📍 Delivery Details (Optional)</span>
+            <small style="color: #888; font-weight: normal;">Pre-fills WhatsApp</small>
+          </div>
+          <input type="text" id="cartCustomerName" placeholder="Your Name (e.g. Priya Sharma)" maxlength="60" value="${safeBuyerName}" style="width: 100%; padding: 8px 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 13px; margin-bottom: 6px; box-sizing: border-box;">
+          <input type="text" id="cartCustomerAddress" placeholder="Address, City & Pincode" maxlength="150" value="${safeBuyerAddress}" style="width: 100%; padding: 8px 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 13px; margin-bottom: 6px; box-sizing: border-box;">
+          <input type="tel" id="cartCustomerPhone" placeholder="Alternate Phone / WhatsApp (Optional)" maxlength="20" value="${safeBuyerPhone}" style="width: 100%; padding: 8px 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 13px; box-sizing: border-box;">
+        </div>
+
+        <div style="margin-top: 14px; border-top: 2px dashed #eee; padding-top: 12px;">
           <div class="price-row" style="display:flex; justify-content:space-between; margin-bottom:6px; font-size:14px; color:#666;">
             <span>Subtotal</span>
             <span>₹${Number(subtotal).toLocaleString('en-IN')}</span>
           </div>
 
           <div class="price-row" style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:14px; color:#666;">
-            <span>Shipping (Flat)</span>
-            <span>₹${Number(shipping).toLocaleString('en-IN')}</span>
+            <span>Shipping</span>
+            <span>${isFreeShipping ? '<span style="color: #27ae60; font-weight:700;">🎉 FREE (Above ₹999)</span>' : `₹${shipping}`}</span>
           </div>
 
           <div class="price-row total-row" style="display:flex; justify-content:space-between; font-weight:bold; font-size:16px; color:#1a0e08; border-top:1px solid #eee; padding-top:8px;">
@@ -305,29 +330,81 @@
       return;
     }
 
-    let message = `Hello Modish Junction! 🌸\n\nI want to place an order from your website:\n\n`;
+    // Capture & sanitize customer details
+    const nameInput = document.getElementById("cartCustomerName");
+    const addressInput = document.getElementById("cartCustomerAddress");
+    const phoneInput = document.getElementById("cartCustomerPhone");
+
+    const custName = (nameInput?.value || "").trim().slice(0, 60);
+    const custAddress = (addressInput?.value || "").trim().slice(0, 150);
+    const custPhone = (phoneInput?.value || "").trim().slice(0, 20);
+
+    // Save for convenient future re-orders
+    try {
+      localStorage.setItem("mj_buyer_details", JSON.stringify({
+        name: custName,
+        address: custAddress,
+        phone: custPhone
+      }));
+    } catch (e) {}
+
+    // Unique Order Reference ID & Formatted Date
+    const orderRef = `#MJ-${Math.floor(10000 + Math.random() * 90000)}`;
+    const now = new Date();
+    const dateStr = now.toLocaleDateString("en-IN", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric"
+    }) + ", " + now.toLocaleTimeString("en-IN", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true
+    });
+
+    let message = `🛍️ *NEW ORDER - MODISH JUNCTION* 🌸\n`;
+    message += `🔖 *Order Ref:* ${orderRef}\n`;
+    message += `📅 *Date:* ${dateStr}\n\n`;
+
+    if (custName || custAddress || custPhone) {
+      message += `👤 *Customer Details:*\n`;
+      if (custName) message += `• Name: ${custName}\n`;
+      if (custAddress) message += `• Delivery Address: ${custAddress}\n`;
+      if (custPhone) message += `• Contact: ${custPhone}\n`;
+      message += `\n`;
+    }
+
+    message += `👗 *Items Ordered:*\n`;
+    message += `━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
 
     let subtotal = 0;
 
     cart.forEach((item, i) => {
-      const itemTotal = item.price * item.qty;
+      const unitPrice = Math.max(0, Number(item.price) || 0);
+      const qty = Math.max(1, Number(item.qty) || 1);
+      const itemTotal = unitPrice * qty;
       subtotal += itemTotal;
-      message += `🛒 ${i + 1}. *${item.name}*\n   Qty: ${item.qty} | Price: ₹${item.price} (Sub: ₹${itemTotal})\n`;
+
+      message += `${i + 1}️⃣ *${item.name}*\n`;
+      message += `   • Qty: ${qty} × ₹${unitPrice.toLocaleString('en-IN')} = ₹${itemTotal.toLocaleString('en-IN')}\n`;
       if (item.link) {
-        message += `   🔗 ${item.link}\n`;
+        message += `   • Link: ${item.link}\n`;
       }
       message += `\n`;
     });
 
-    const shipping = SHIPPING_CHARGE;
+    message += `━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+
+    const isFreeShipping = subtotal >= 999;
+    const shipping = isFreeShipping ? 0 : SHIPPING_CHARGE;
     const grandTotal = subtotal + shipping;
 
-    message += `━━━━━━━━━━━━━━━━━━━━━\n`;
-    message += `📦 *Subtotal:* ₹${subtotal}\n`;
-    message += `🚚 *Shipping:* ₹${shipping}\n`;
-    message += `💰 *Total Payable:* ₹${grandTotal}\n\n`;
-    message += `⚠️ *Note:* Prices are as listed on the website. Please verify before confirming.\n`;
-    message += `Please confirm my order and share payment details! ✨`;
+    message += `💰 *Price Summary:*\n`;
+    message += `• Items Subtotal: ₹${subtotal.toLocaleString('en-IN')}\n`;
+    message += `• Delivery / Shipping: ${isFreeShipping ? '₹0 (🎉 FREE Shipping above ₹999)' : `₹${shipping}`}\n`;
+    message += `• *Grand Total: ₹${grandTotal.toLocaleString('en-IN')}*\n\n`;
+
+    message += `💳 *Payment Mode:* Please share UPI QR / Bank Transfer details to confirm payment.\n`;
+    message += `✨ Looking forward to confirming my order!`;
 
     window.open(
       `https://wa.me/${DEALER_WHATSAPP}?text=${encodeURIComponent(message)}`,
