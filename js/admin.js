@@ -731,32 +731,45 @@ document.addEventListener('DOMContentLoaded', () => {
   // ========== REVIEWS TAB & MANAGEMENT ==========
   let currentReviews = [];
   let reviewsSearchQuery = '';
+  let currentStories = [];
 
   const btnTabProducts = document.getElementById('btnTabProducts');
   const btnTabReviews = document.getElementById('btnTabReviews');
+  const btnTabStories = document.getElementById('btnTabStories');
   const viewProductsSection = document.getElementById('viewProductsSection');
   const viewReviewsSection = document.getElementById('viewReviewsSection');
+  const viewStoriesSection = document.getElementById('viewStoriesSection');
   const searchReviewsInput = document.getElementById('searchReviewsInput');
   const reviewsTableBody = document.getElementById('reviewsTableBody');
   const badgeReviewCount = document.getElementById('badgeReviewCount');
+  const badgeStoriesCount = document.getElementById('badgeStoriesCount');
+  const storiesGrid = document.getElementById('storiesGrid');
 
   function switchAdminTab(tab) {
+    [btnTabProducts, btnTabReviews, btnTabStories].forEach(b => {
+      if (b) b.className = 'btn btn-outline';
+    });
+    [viewProductsSection, viewReviewsSection, viewStoriesSection].forEach(v => {
+      if (v) v.style.display = 'none';
+    });
+
     if (tab === 'products') {
-      btnTabProducts.className = 'btn btn-primary';
-      btnTabReviews.className = 'btn btn-outline';
-      viewProductsSection.style.display = 'block';
-      viewReviewsSection.style.display = 'none';
-    } else {
-      btnTabReviews.className = 'btn btn-primary';
-      btnTabProducts.className = 'btn btn-outline';
-      viewProductsSection.style.display = 'none';
-      viewReviewsSection.style.display = 'block';
+      if (btnTabProducts) btnTabProducts.className = 'btn btn-primary';
+      if (viewProductsSection) viewProductsSection.style.display = 'block';
+    } else if (tab === 'reviews') {
+      if (btnTabReviews) btnTabReviews.className = 'btn btn-primary';
+      if (viewReviewsSection) viewReviewsSection.style.display = 'block';
       loadReviews();
+    } else if (tab === 'stories') {
+      if (btnTabStories) btnTabStories.className = 'btn btn-primary';
+      if (viewStoriesSection) viewStoriesSection.style.display = 'block';
+      loadStories();
     }
   }
 
   if (btnTabProducts) btnTabProducts.addEventListener('click', () => switchAdminTab('products'));
   if (btnTabReviews) btnTabReviews.addEventListener('click', () => switchAdminTab('reviews'));
+  if (btnTabStories) btnTabStories.addEventListener('click', () => switchAdminTab('stories'));
 
   async function loadReviews() {
     if (!reviewsTableBody) return;
@@ -889,6 +902,167 @@ document.addEventListener('DOMContentLoaded', () => {
     searchReviewsInput.addEventListener('input', (e) => {
       reviewsSearchQuery = e.target.value;
       renderReviewsTable();
+    });
+  }
+
+  // ========== STORIES MANAGEMENT ==========
+
+  async function loadStories() {
+    if (!storiesGrid) return;
+    storiesGrid.innerHTML = `
+      <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #888;">
+        <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: var(--primary); margin-bottom: 10px; display:block;"></i>
+        Loading Stories photos...
+      </div>
+    `;
+
+    try {
+      currentStories = await ProductService.getStories();
+      if (badgeStoriesCount) badgeStoriesCount.innerText = currentStories.length;
+      renderStoriesGrid();
+    } catch (err) {
+      storiesGrid.innerHTML = `
+        <div style="grid-column: 1/-1; text-align: center; padding: 30px; color: var(--danger);">
+          Failed to load stories.
+        </div>
+      `;
+    }
+  }
+
+  function renderStoriesGrid() {
+    if (!storiesGrid) return;
+    if (currentStories.length === 0) {
+      storiesGrid.innerHTML = `
+        <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #888;">
+          No stories found. Click "+ Add New Story Photo" above to add your first photo!
+        </div>
+      `;
+      return;
+    }
+
+    storiesGrid.innerHTML = currentStories.map(s => {
+      const safeImg = Sanitize.url(s.image, './Images/Category/western-wear.jpg');
+      const safeTitle = Sanitize.text(s.title || 'Story');
+      const safeId = Sanitize.attr(s.id);
+
+      return `
+        <div style="background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.06); border:1px solid #eee; display:flex; flex-direction:column; position:relative;">
+          <div style="height:260px; overflow:hidden; position:relative; background:#f5f5f5;">
+            <img src="${safeImg}" alt="${safeTitle}" style="width:100%; height:100%; object-fit:cover; display:block;" onerror="this.src='./Images/Category/western-wear.jpg'">
+            <button class="btn-delete-story" data-id="${safeId}" style="position:absolute; top:10px; right:10px; background:rgba(231,76,60,0.9); color:#fff; border:none; width:32px; height:32px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.2);" title="Delete story photo">
+              <i class="fa-solid fa-trash-can" style="font-size:13px;"></i>
+            </button>
+          </div>
+          <div style="padding:12px; font-size:13px; font-weight:600; color:var(--dark); text-align:center; background:#fafafa;">
+            ${safeTitle}
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    document.querySelectorAll('.btn-delete-story').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const id = btn.getAttribute('data-id');
+        if (confirm("Delete this story photo from the homepage carousel?")) {
+          await ProductService.deleteStory(id);
+          currentStories = currentStories.filter(s => s.id !== id);
+          if (badgeStoriesCount) badgeStoriesCount.innerText = currentStories.length;
+          renderStoriesGrid();
+          showToast("Story photo deleted!", 'success');
+        }
+      });
+    });
+  }
+
+  // Story Modal Logic
+  const storyModal = document.getElementById('storyModal');
+  const btnOpenAddStoryModal = document.getElementById('btnOpenAddStoryModal');
+  const modalCloseStoryBtn = document.getElementById('modalCloseStoryBtn');
+  const btnCancelStoryModal = document.getElementById('btnCancelStoryModal');
+  const storyForm = document.getElementById('storyForm');
+  const storyDropZone = document.getElementById('storyDropZone');
+  const storyFileInput = document.getElementById('storyFileInput');
+  const storyUrlInput = document.getElementById('storyUrlInput');
+  const storyPreviewBox = document.getElementById('storyPreviewBox');
+  const storyPreviewImg = document.getElementById('storyPreviewImg');
+  const storyTitleInput = document.getElementById('storyTitleInput');
+  let currentStoryImageBase64 = '';
+
+  if (btnOpenAddStoryModal) {
+    btnOpenAddStoryModal.addEventListener('click', () => {
+      if (storyForm) storyForm.reset();
+      currentStoryImageBase64 = '';
+      if (storyPreviewBox) storyPreviewBox.style.display = 'none';
+      if (storyModal) storyModal.classList.add('active');
+    });
+  }
+
+  function closeStoryModal() {
+    if (storyModal) storyModal.classList.remove('active');
+  }
+
+  if (modalCloseStoryBtn) modalCloseStoryBtn.addEventListener('click', closeStoryModal);
+  if (btnCancelStoryModal) btnCancelStoryModal.addEventListener('click', closeStoryModal);
+
+  if (storyDropZone && storyFileInput) {
+    storyDropZone.addEventListener('click', () => storyFileInput.click());
+    storyFileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          compressImage(event.target.result, (compressed) => {
+            currentStoryImageBase64 = compressed;
+            if (storyPreviewImg) storyPreviewImg.src = compressed;
+            if (storyPreviewBox) storyPreviewBox.style.display = 'block';
+          });
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  }
+
+  if (storyUrlInput) {
+    storyUrlInput.addEventListener('input', (e) => {
+      const url = e.target.value.trim();
+      if (url) {
+        currentStoryImageBase64 = url;
+        if (storyPreviewImg) storyPreviewImg.src = url;
+        if (storyPreviewBox) storyPreviewBox.style.display = 'block';
+      }
+    });
+  }
+
+  if (storyForm) {
+    storyForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btnSave = document.getElementById('btnSaveStory');
+      if (btnSave) {
+        btnSave.disabled = true;
+        btnSave.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Saving...';
+      }
+
+      try {
+        const img = currentStoryImageBase64 || storyUrlInput?.value?.trim();
+        const title = storyTitleInput?.value?.trim() || 'Modish Story';
+
+        if (!img) {
+          alert('Please select a photo file or paste an image URL.');
+          return;
+        }
+
+        await ProductService.addStory(img, title);
+        closeStoryModal();
+        await loadStories();
+        showToast('Story photo added to homepage!', 'success');
+      } catch (err) {
+        alert('Failed to save story photo. Please try again.');
+      } finally {
+        if (btnSave) {
+          btnSave.disabled = false;
+          btnSave.innerHTML = '<i class="fa-solid fa-check"></i> Add to Stories';
+        }
+      }
     });
   }
 

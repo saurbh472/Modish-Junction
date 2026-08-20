@@ -455,6 +455,86 @@ const ProductService = {
       return true;
     }
     return false;
+  },
+
+  STORIES_COLLECTION: 'stories',
+
+  async getStories() {
+    const firestore = this.getDb();
+    if (firestore) {
+      try {
+        const snap = await firestore.collection(this.STORIES_COLLECTION).get();
+        if (!snap.empty) {
+          const list = [];
+          snap.forEach(doc => {
+            const d = doc.data();
+            list.push({
+              id: doc.id,
+              image: d.image,
+              title: d.title || 'Story',
+              createdAt: d.createdAt
+            });
+          });
+          try {
+            localStorage.setItem('mj_stories_cache', JSON.stringify(list));
+          } catch (e) {}
+          return list;
+        }
+      } catch (err) {
+        // Fallback to local
+      }
+    }
+
+    try {
+      const local = JSON.parse(localStorage.getItem('mj_stories_cache'));
+      if (Array.isArray(local) && local.length > 0) return local;
+    } catch (e) {}
+
+    return [];
+  },
+
+  async addStory(imageData, title = 'Story') {
+    if (!imageData) return null;
+    const firestore = this.getDb();
+    const payload = {
+      image: imageData,
+      title: title || 'Story',
+      createdAt: new Date().toISOString()
+    };
+
+    if (firestore) {
+      try {
+        const docRef = await firestore.collection(this.STORIES_COLLECTION).add(payload);
+        payload.id = docRef.id;
+      } catch (err) {}
+    }
+
+    try {
+      const stories = await this.getStories();
+      if (!payload.id) payload.id = 'story_' + Date.now();
+      stories.push(payload);
+      localStorage.setItem('mj_stories_cache', JSON.stringify(stories));
+    } catch (e) {}
+
+    return payload;
+  },
+
+  async deleteStory(storyId) {
+    if (!storyId) return false;
+    const firestore = this.getDb();
+    if (firestore) {
+      try {
+        await firestore.collection(this.STORIES_COLLECTION).doc(storyId).delete();
+      } catch (err) {}
+    }
+
+    try {
+      let stories = await this.getStories();
+      stories = stories.filter(s => s.id !== storyId);
+      localStorage.setItem('mj_stories_cache', JSON.stringify(stories));
+    } catch (e) {}
+
+    return true;
   }
 };
 

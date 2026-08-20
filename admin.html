@@ -121,13 +121,16 @@
       </div>
     </div>
 
-    <!-- MAIN TAB NAVIGATION (Products vs Reviews) -->
-    <div style="display: flex; gap: 12px; margin-bottom: 24px; border-bottom: 2px solid #eee; padding-bottom: 14px;">
+    <!-- MAIN TAB NAVIGATION (Products vs Reviews vs Stories) -->
+    <div style="display: flex; gap: 12px; margin-bottom: 24px; border-bottom: 2px solid #eee; padding-bottom: 14px; flex-wrap: wrap;">
       <button id="btnTabProducts" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px; border-radius: 25px; padding: 10px 22px;">
         <i class="fa-solid fa-shirt"></i> Products Catalog
       </button>
       <button id="btnTabReviews" class="btn btn-outline" style="display: inline-flex; align-items: center; gap: 8px; border-radius: 25px; padding: 10px 22px;">
         <i class="fa-solid fa-star"></i> Customer Reviews <span id="badgeReviewCount" style="background: var(--primary); color: #fff; border-radius: 10px; padding: 1px 7px; font-size: 11px; font-weight: 700;">0</span>
+      </button>
+      <button id="btnTabStories" class="btn btn-outline" style="display: inline-flex; align-items: center; gap: 8px; border-radius: 25px; padding: 10px 22px;">
+        <i class="fa-solid fa-camera-retro"></i> Stories & Highlights <span id="badgeStoriesCount" style="background: #27ae60; color: #fff; border-radius: 10px; padding: 1px 7px; font-size: 11px; font-weight: 700;">0</span>
       </button>
     </div>
 
@@ -207,6 +210,26 @@
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+
+    <!-- VIEW 3: STORIES SECTION -->
+    <div id="viewStoriesSection" style="display: none;">
+      <div class="panel-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;">
+        <div>
+          <h2 style="font-size: 1.35rem; color: var(--dark); margin-bottom: 4px;">Modish Junction Stories</h2>
+          <p style="color: #666; font-size: 14px;">Manage the customer story cards displayed on the homepage story carousel.</p>
+        </div>
+        <button id="btnOpenAddStoryModal" class="btn btn-primary" style="border-radius: 25px; padding: 10px 22px;">
+          <i class="fa-solid fa-plus"></i> Add New Story Photo
+        </button>
+      </div>
+
+      <div id="storiesGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-top: 15px;">
+        <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #888;">
+          <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: var(--primary); margin-bottom: 10px; display:block;"></i>
+          Loading stories...
+        </div>
       </div>
     </div>
 
@@ -355,6 +378,50 @@
           <button type="button" id="btnCancelModal" class="btn btn-outline">Cancel</button>
           <button type="submit" id="btnSaveProduct" class="btn btn-primary">
             <i class="fa-solid fa-floppy-disk"></i> Save Product
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= ADD STORY PHOTO MODAL ================= -->
+  <div id="storyModal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 460px;">
+      <div class="modal-header">
+        <h2>Add Story Photo</h2>
+        <button id="modalCloseStoryBtn" class="modal-close">&times;</button>
+      </div>
+
+      <form id="storyForm">
+        <div class="modal-body">
+          <div class="form-group full">
+            <label>Story Image *</label>
+            <div class="image-upload-area" id="storyDropZone" style="padding: 24px; text-align:center; border:2px dashed #ddd; border-radius:12px; cursor:pointer; background:#fafafa;">
+              <i class="fa-solid fa-cloud-arrow-up fa-2x" style="color: var(--primary); margin-bottom: 8px;"></i>
+              <p style="margin:0; font-size:14px;"><strong>Click to upload photo</strong></p>
+              <p style="font-size: 12px; color: #888; margin-top: 4px;">Supports JPG, PNG, WEBP</p>
+              <input type="file" id="storyFileInput" accept="image/*" style="display: none;">
+            </div>
+
+            <div style="margin-top: 12px;">
+              <input type="text" id="storyUrlInput" class="form-control" placeholder="Or paste image URL (e.g. ./Images/img1.jpg or https://...)">
+            </div>
+
+            <div id="storyPreviewBox" style="margin-top: 12px; display: none; text-align: center;">
+              <img id="storyPreviewImg" src="" style="width: 100%; max-height: 220px; object-fit: cover; border-radius: 12px; border: 1px solid #eee;">
+            </div>
+          </div>
+
+          <div class="form-group full">
+            <label for="storyTitleInput">Story Tag / Dimensions (Optional)</label>
+            <input type="text" id="storyTitleInput" class="form-control" placeholder="e.g. Length- 22 to 25 Bust- 42">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="btnCancelStoryModal" class="btn btn-outline">Cancel</button>
+          <button type="submit" id="btnSaveStory" class="btn btn-primary">
+            <i class="fa-solid fa-check"></i> Add to Stories
           </button>
         </div>
       </form>

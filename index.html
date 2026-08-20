@@ -2459,12 +2459,7 @@
         <p style="text-align: center; color: #666; margin-bottom: 2rem;">@modishjunction</p>
         <div class="stories-container">
             <div class="stories-track">
-                <div class="story-card"><img src="./Images/img1.jpg" alt="Story 1"></div>
-                <div class="story-card"><img src="./Images/img2.jpg" alt="Story 2"></div>
-                <div class="story-card"><img src="./Images/img3.jpg" alt="Story 3"></div>
-                <div class="story-card"><img src="./Images/img4.jpg" alt="Story 4"></div>
-                <div class="story-card"><img src="./Images/img5.jpg" alt="Story 5"></div>
-                <div class="story-card"><img src="./Images/img6.jpg" alt="Story 6"></div>
+                <!-- Dynamically loaded from Admin Panel / Firestore -->
             </div>
         </div>
     </section>
@@ -3047,14 +3042,10 @@ document.addEventListener("keydown", function(e) {
 document.querySelectorAll(".mobile-dropdown > span").forEach(span => {
   span.addEventListener("click", function (e) {
     e.stopPropagation();
-
     const submenu = this.nextElementSibling;
-
-    // close other open submenus
     document.querySelectorAll(".mobile-submenu").forEach(menu => {
       if (menu !== submenu) menu.classList.remove("open");
     });
-
     submenu.classList.toggle("open");
   });
 });
@@ -3067,23 +3058,14 @@ document.querySelectorAll(".mobile-nav a:not(#saleLinkMobile)").forEach(link => 
   });
 });
 
-</script>
-
-<script>
 document.getElementById("saleLinkMobile")?.addEventListener("click", function (e) {
   e.preventDefault();
-
-  // trigger desktop sale logic
   document.getElementById("saleLink")?.click();
-
-  // close mobile menu after click
   document.getElementById("mobileNav").classList.remove("active");
 });
 </script>
-<script></script>
 
-
-    <!-- Firebase + Dynamic Product Renderer -->
+    <!-- Firebase + Dynamic Product Renderer + Stories -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <script src="js/firebase-config.js"></script>
@@ -3091,8 +3073,26 @@ document.getElementById("saleLinkMobile")?.addEventListener("click", function (e
     <script src="js/product-service.js"></script>
     <script src="js/product-renderer.js"></script>
     <script>
+      async function loadHomepageStories() {
+        const track = document.querySelector('.stories-track');
+        if (!track) return;
+        try {
+          if (typeof ProductService !== 'undefined' && typeof ProductService.getStories === 'function') {
+            const stories = await ProductService.getStories();
+            if (stories && stories.length > 0) {
+              track.innerHTML = stories.map(s => {
+                const safeImg = typeof Sanitize !== 'undefined' ? Sanitize.url(s.image, './Images/Category/western-wear.jpg') : s.image;
+                const safeTitle = typeof Sanitize !== 'undefined' ? Sanitize.text(s.title || 'Story') : (s.title || 'Story');
+                return `<div class="story-card"><img src="${safeImg}" alt="${safeTitle}" onerror="this.src='./Images/Category/western-wear.jpg'"></div>`;
+              }).join('');
+            }
+          }
+        } catch (e) {}
+      }
+
       document.addEventListener('DOMContentLoaded', () => {
         ProductRenderer.renderInto('#trending-product-grid', { isTrendingHome: true, limit: 8 });
+        loadHomepageStories();
       });
     </script>
 
