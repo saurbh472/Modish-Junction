@@ -35,8 +35,11 @@
             </a></li>
             <li><a href="./index.html#about-us">About Us</a></li>
         </ul>
-        <div class="nav-icons">
-            <span onclick="openCart()" style="cursor:pointer">
+        <div class="nav-icons" style="display: flex; align-items: center; gap: 16px;">
+            <span onclick="if(typeof openWishlist === 'function') openWishlist()" style="cursor:pointer" title="Saved Wishlist">
+                🤍 <small id="wishlist-count" style="background: var(--primary, #d4593b); color: #fff; border-radius: 10px; padding: 1px 6px; font-size: 11px; font-weight: 700;">0</small>
+            </span>
+            <span onclick="openCart()" style="cursor:pointer" title="Your Cart">
                 🛒 <small id="cart-count">0</small>
             </span>
         </div>

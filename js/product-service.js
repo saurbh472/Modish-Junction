@@ -316,6 +316,145 @@ const ProductService = {
       localStorage.setItem('mj_products_cache', JSON.stringify(all));
       return true;
     }
+  },
+
+  REVIEWS_COLLECTION: 'reviews',
+
+  async getReviews(productId) {
+    if (!productId) return [];
+    const firestore = this.getDb();
+    if (firestore) {
+      try {
+        const snap = await firestore.collection(this.REVIEWS_COLLECTION)
+          .where('productId', '==', String(productId).trim())
+          .get();
+        if (!snap.empty) {
+          const list = [];
+          snap.forEach(doc => {
+            const d = doc.data();
+            if (d.status !== 'hidden') {
+              list.push({
+                id: doc.id,
+                productId: d.productId,
+                name: d.name || 'Anonymous',
+                rating: Number(d.rating) || 5,
+                date: d.date || 'Recent',
+                verified: d.verified !== false,
+                text: d.text || '',
+                tag: d.tag || 'Fit: True to size',
+                status: d.status || 'approved',
+                createdAt: d.createdAt
+              });
+            }
+          });
+          if (list.length > 0) return list;
+        }
+      } catch (err) {
+        // Fallback to local on connection issues
+      }
+    }
+
+    // Local fallback
+    try {
+      const local = JSON.parse(localStorage.getItem(`mj_reviews_${productId}`));
+      if (Array.isArray(local) && local.length > 0) return local;
+    } catch (e) {}
+
+    return [
+      {
+        name: 'Ananya Sharma',
+        rating: 5,
+        date: '2 days ago',
+        verified: true,
+        text: 'Absolutely in love with the fabric! Fits like a glove and the color looks even better in person.',
+        tag: 'Fit: True to size'
+      },
+      {
+        name: 'Pooja Verma',
+        rating: 5,
+        date: '1 week ago',
+        verified: true,
+        text: 'Super comfy and breathable. Got so many compliments at a family dinner!',
+        tag: 'Quality: Premium'
+      },
+      {
+        name: 'Sneha Patel',
+        rating: 4,
+        date: '2 weeks ago',
+        verified: true,
+        text: 'Great finishing and stitching. Fast delivery too! Highly recommend Modish Junction.',
+        tag: 'Style: Elegant'
+      }
+    ];
+  },
+
+  async addReview(productId, reviewData) {
+    if (!productId || !reviewData) return null;
+    const firestore = this.getDb();
+    const payload = {
+      productId: String(productId).trim(),
+      name: String(reviewData.name || 'Verified Buyer').trim().substring(0, 50),
+      rating: Math.min(Math.max(Number(reviewData.rating) || 5, 1), 5),
+      date: reviewData.date || 'Just now',
+      verified: true,
+      text: String(reviewData.text || '').trim().substring(0, 500),
+      tag: String(reviewData.tag || 'Fit: True to size').trim().substring(0, 50),
+      status: 'approved',
+      createdAt: new Date().toISOString()
+    };
+
+    if (firestore) {
+      try {
+        const docRef = await firestore.collection(this.REVIEWS_COLLECTION).add(payload);
+        payload.id = docRef.id;
+      } catch (err) {
+        // Fallback to local
+      }
+    }
+
+    try {
+      const key = `mj_reviews_${productId}`;
+      const existing = JSON.parse(localStorage.getItem(key)) || [];
+      existing.unshift(payload);
+      localStorage.setItem(key, JSON.stringify(existing.slice(0, 20)));
+    } catch (e) {}
+
+    return payload;
+  },
+
+  async getAllReviews() {
+    const firestore = this.getDb();
+    const reviews = [];
+    if (firestore) {
+      try {
+        const snap = await firestore.collection(this.REVIEWS_COLLECTION).get();
+        snap.forEach(doc => {
+          reviews.push({ id: doc.id, ...doc.data() });
+        });
+        return reviews;
+      } catch (err) {}
+    }
+    return reviews;
+  },
+
+  async deleteReview(reviewId) {
+    if (!reviewId) return false;
+    const firestore = this.getDb();
+    if (firestore) {
+      await firestore.collection(this.REVIEWS_COLLECTION).doc(reviewId).delete();
+      return true;
+    }
+    return false;
+  },
+
+  async toggleReviewStatus(reviewId, status) {
+    if (!reviewId) return false;
+    const firestore = this.getDb();
+    if (firestore) {
+      await firestore.collection(this.REVIEWS_COLLECTION).doc(reviewId).update({ status: status });
+      return true;
+    }
+    return false;
   }
 };
 

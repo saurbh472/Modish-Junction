@@ -192,30 +192,39 @@ document.addEventListener('DOMContentLoaded', () => {
   // ========== PRODUCT TABLE RENDERING (Sanitized) ==========
 
   function renderProductsTable() {
-    let filtered = currentProducts;
+    let filtered = [...currentProducts];
 
-    if (currentFilter === 'western') {
-      filtered = filtered.filter(p => p.mainCategory === 'western');
-    } else if (currentFilter === 'ethnic') {
-      filtered = filtered.filter(p => p.mainCategory === 'ethnic');
-    } else if (currentFilter === 'must-haves') {
-      filtered = filtered.filter(p => p.isMustHave || p.mainCategory === 'must-haves' || p.subCategory === 'affordable');
-    } else if (currentFilter === 'sale') {
-      filtered = filtered.filter(p => p.isSale || p.discount >= 20 || p.mainCategory === 'sale');
-    } else if (currentFilter === 'trending') {
-      filtered = filtered.filter(p => p.isTrendingHome);
-    } else if (currentFilter === 'outofstock') {
-      filtered = filtered.filter(p => p.inStock === false);
+    if (currentFilter && currentFilter !== 'all') {
+      const f = currentFilter.toLowerCase().trim();
+      if (f === 'western') {
+        filtered = filtered.filter(p => String(p.mainCategory || '').toLowerCase().includes('western'));
+      } else if (f === 'ethnic') {
+        filtered = filtered.filter(p => String(p.mainCategory || '').toLowerCase().includes('ethnic'));
+      } else if (f === 'must-haves') {
+        filtered = filtered.filter(p => Boolean(p.isMustHave) || String(p.mainCategory || '').toLowerCase().includes('must') || String(p.subCategory || '').toLowerCase().includes('affordable'));
+      } else if (f === 'sale') {
+        filtered = filtered.filter(p => Boolean(p.isSale) || Number(p.discount) >= 20 || String(p.mainCategory || '').toLowerCase().includes('sale'));
+      } else if (f === 'trending') {
+        filtered = filtered.filter(p => Boolean(p.isTrendingHome));
+      } else if (f === 'outofstock') {
+        filtered = filtered.filter(p => p.inStock === false);
+      }
     }
 
     if (searchQuery) {
       const q = searchQuery.toLowerCase().trim();
-      filtered = filtered.filter(p => 
-        p.name.toLowerCase().includes(q) ||
-        (p.subCategory && p.subCategory.toLowerCase().includes(q)) ||
-        (p.fabric && p.fabric.toLowerCase().includes(q)) ||
-        (p.description && p.description.toLowerCase().includes(q))
-      );
+      filtered = filtered.filter(p => {
+        const name = String(p.name || '').toLowerCase();
+        const slug = String(p.slug || '').toLowerCase();
+        const mainCat = String(p.mainCategory || '').toLowerCase();
+        const subCat = String(p.subCategory || '').toLowerCase();
+        const subFilt = String(p.subFilter || '').toLowerCase();
+        const fabric = String(p.fabric || '').toLowerCase();
+        const desc = String(p.description || '').toLowerCase();
+        const colors = Array.isArray(p.colors) ? p.colors.join(' ').toLowerCase() : String(p.colors || '').toLowerCase();
+
+        return name.includes(q) || slug.includes(q) || mainCat.includes(q) || subCat.includes(q) || subFilt.includes(q) || fabric.includes(q) || desc.includes(q) || colors.includes(q);
+      });
     }
 
     if (filtered.length === 0) {
@@ -241,6 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const safeMainCat = Sanitize.text((p.mainCategory || 'western').toUpperCase());
       const safeId = Sanitize.attr(p.id);
       const safeNameAttr = Sanitize.attr(p.name);
+      const colorsCount = Array.isArray(p.colors) && p.colors.length > 0 ? p.colors.length : 0;
 
       return `
         <tr data-id="${safeId}">
@@ -259,6 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <td style="text-transform: capitalize; color: #555;">
             ${safeSubCat}
             ${p.subFilter && p.subFilter !== 'all' ? `<br><small style="color:#888;">(${safeSubFilter})</small>` : ''}
+            ${colorsCount > 0 ? `<br><small style="color:var(--primary); font-weight:600;">🎨 ${colorsCount} color(s)</small>` : ''}
           </td>
           <td>
             <strong>₹${Number(p.price).toLocaleString('en-IN')}</strong>
@@ -280,6 +291,9 @@ document.addEventListener('DOMContentLoaded', () => {
           </td>
           <td>
             <div style="display: flex; gap: 8px;">
+              <a href="./product.html?id=${safeId}" target="_blank" class="btn btn-outline btn-sm" title="View live on store" style="display:flex; align-items:center; justify-content:center; text-decoration:none;">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
               <button class="btn btn-outline btn-sm btn-edit" data-id="${safeId}" title="Edit details">
                 <i class="fa-solid fa-pen-to-square"></i>
               </button>
@@ -482,6 +496,8 @@ document.addEventListener('DOMContentLoaded', () => {
   btnOpenAddModal.addEventListener('click', () => {
     modalTitle.innerText = "Add New Clothing Item";
     document.getElementById('formProductId').value = '';
+    const pColorsInput = document.getElementById('pColors');
+    if (pColorsInput) pColorsInput.value = '';
     productForm.reset();
     uploadedImages = [];
     renderImagePreviews();
@@ -506,6 +522,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     document.getElementById('pFabric').value = product.fabric || '';
+    
+    // Populate Colors
+    const pColorsInput = document.getElementById('pColors');
+    if (pColorsInput) {
+      pColorsInput.value = Array.isArray(product.colors) ? product.colors.join(', ') : (product.colors || '');
+    }
+
     document.getElementById('pPrice').value = product.price;
     document.getElementById('pOriginalPrice').value = product.originalPrice || '';
     document.getElementById('pDescription').value = product.description || '';
@@ -607,6 +630,12 @@ document.addEventListener('DOMContentLoaded', () => {
         sanitizedImages.push('./Images/Category/western-wear.jpg');
       }
 
+      const colorsRaw = document.getElementById('pColors')?.value || '';
+      const colorsList = colorsRaw
+        .split(',')
+        .map(c => cleanTextInput(c))
+        .filter(c => c.length > 0);
+
       const productPayload = {
         name: cleanTextInput(document.getElementById('pName').value).substring(0, VALIDATION.NAME_MAX_LENGTH),
         mainCategory: document.getElementById('pMainCategory').value,
@@ -616,6 +645,7 @@ document.addEventListener('DOMContentLoaded', () => {
         price: Math.min(Math.max(Number(document.getElementById('pPrice').value) || 0, VALIDATION.PRICE_MIN), VALIDATION.PRICE_MAX),
         originalPrice: Math.min(Math.max(Number(document.getElementById('pOriginalPrice').value) || Number(document.getElementById('pPrice').value), VALIDATION.PRICE_MIN), VALIDATION.PRICE_MAX),
         sizes: selectedSizes,
+        colors: colorsList,
         description: cleanTextInput(document.getElementById('pDescription').value).substring(0, VALIDATION.DESCRIPTION_MAX_LENGTH),
         images: sanitizedImages,
         isTrendingHome: document.getElementById('flagTrending').checked,
@@ -696,6 +726,170 @@ document.addEventListener('DOMContentLoaded', () => {
       toast.style.opacity = '0';
       setTimeout(() => toast.remove(), 300);
     }, 3000);
+  }
+
+  // ========== REVIEWS TAB & MANAGEMENT ==========
+  let currentReviews = [];
+  let reviewsSearchQuery = '';
+
+  const btnTabProducts = document.getElementById('btnTabProducts');
+  const btnTabReviews = document.getElementById('btnTabReviews');
+  const viewProductsSection = document.getElementById('viewProductsSection');
+  const viewReviewsSection = document.getElementById('viewReviewsSection');
+  const searchReviewsInput = document.getElementById('searchReviewsInput');
+  const reviewsTableBody = document.getElementById('reviewsTableBody');
+  const badgeReviewCount = document.getElementById('badgeReviewCount');
+
+  function switchAdminTab(tab) {
+    if (tab === 'products') {
+      btnTabProducts.className = 'btn btn-primary';
+      btnTabReviews.className = 'btn btn-outline';
+      viewProductsSection.style.display = 'block';
+      viewReviewsSection.style.display = 'none';
+    } else {
+      btnTabReviews.className = 'btn btn-primary';
+      btnTabProducts.className = 'btn btn-outline';
+      viewProductsSection.style.display = 'none';
+      viewReviewsSection.style.display = 'block';
+      loadReviews();
+    }
+  }
+
+  if (btnTabProducts) btnTabProducts.addEventListener('click', () => switchAdminTab('products'));
+  if (btnTabReviews) btnTabReviews.addEventListener('click', () => switchAdminTab('reviews'));
+
+  async function loadReviews() {
+    if (!reviewsTableBody) return;
+    reviewsTableBody.innerHTML = `
+      <tr>
+        <td colspan="6" style="text-align: center; padding: 40px; color: #888;">
+          <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: var(--primary); margin-bottom: 10px; display:block;"></i>
+          Fetching reviews from Firestore...
+        </td>
+      </tr>
+    `;
+
+    try {
+      currentReviews = await ProductService.getAllReviews();
+      if (badgeReviewCount) badgeReviewCount.innerText = currentReviews.length;
+      renderReviewsTable();
+    } catch (err) {
+      reviewsTableBody.innerHTML = `
+        <tr>
+          <td colspan="6" style="text-align: center; padding: 30px; color: var(--danger);">
+            Failed to load reviews. Please check Firestore security rules.
+          </td>
+        </tr>
+      `;
+    }
+  }
+
+  function renderReviewsTable() {
+    if (!reviewsTableBody) return;
+    let filtered = [...currentReviews];
+
+    if (reviewsSearchQuery) {
+      const q = reviewsSearchQuery.toLowerCase().trim();
+      filtered = filtered.filter(r => {
+        const name = String(r.name || '').toLowerCase();
+        const text = String(r.text || '').toLowerCase();
+        const pid = String(r.productId || '').toLowerCase();
+        return name.includes(q) || text.includes(q) || pid.includes(q);
+      });
+    }
+
+    if (filtered.length === 0) {
+      reviewsTableBody.innerHTML = `
+        <tr>
+          <td colspan="6" style="text-align: center; padding: 40px; color: #888;">
+            No customer reviews found yet in database.
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    reviewsTableBody.innerHTML = filtered.map(r => {
+      const safeName = Sanitize.text(r.name || 'Anonymous');
+      const safeText = Sanitize.text(r.text || '');
+      const safePid = Sanitize.text(r.productId || 'N/A');
+      const safeId = Sanitize.attr(r.id);
+      const rating = Number(r.rating) || 5;
+      const isApproved = r.status !== 'hidden';
+
+      return `
+        <tr data-id="${safeId}">
+          <td>
+            <strong>${safeName}</strong>
+            <br><small style="color: #27ae60;">✓ Verified Buyer</small>
+          </td>
+          <td>
+            <a href="./product.html?id=${encodeURIComponent(r.productId)}" target="_blank" style="color: var(--primary); font-weight:600; text-decoration:none;">
+              ${safePid} ↗
+            </a>
+          </td>
+          <td>
+            <span style="color: #f39c12; font-size: 14px;">${'★'.repeat(rating)}${'☆'.repeat(5 - rating)}</span>
+            <br><small style="color:#888;">(${rating} / 5)</small>
+          </td>
+          <td style="max-width: 280px; font-size: 13px; color: #444;">
+            ${safeText}
+            ${r.tag ? `<br><small style="color: #888;">Tag: ${Sanitize.text(r.tag)}</small>` : ''}
+          </td>
+          <td>
+            <span style="font-size: 11px; padding: 3px 8px; border-radius: 12px; font-weight: 700; background: ${isApproved ? '#e8f8f0; color: #27ae60;' : '#fdedec; color: #e74c3c;'}">
+              ${isApproved ? 'Approved' : 'Hidden'}
+            </span>
+          </td>
+          <td>
+            <div style="display:flex; gap: 8px;">
+              <button class="btn btn-outline btn-sm btn-toggle-review" data-id="${safeId}" data-status="${isApproved ? 'hidden' : 'approved'}" title="${isApproved ? 'Hide review from store' : 'Approve review'}">
+                <i class="fa-solid ${isApproved ? 'fa-eye-slash' : 'fa-eye'}"></i>
+              </button>
+              <button class="btn btn-outline btn-sm btn-delete-review" data-id="${safeId}" style="color: var(--danger);" title="Delete review">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+
+    attachReviewTableEvents();
+  }
+
+  function attachReviewTableEvents() {
+    document.querySelectorAll('.btn-toggle-review').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const id = btn.getAttribute('data-id');
+        const newStatus = btn.getAttribute('data-status');
+        await ProductService.toggleReviewStatus(id, newStatus);
+        const r = currentReviews.find(item => item.id === id);
+        if (r) r.status = newStatus;
+        renderReviewsTable();
+        showToast(`Review is now ${newStatus}!`, 'success');
+      });
+    });
+
+    document.querySelectorAll('.btn-delete-review').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const id = btn.getAttribute('data-id');
+        if (confirm("Are you sure you want to permanently delete this customer review?")) {
+          await ProductService.deleteReview(id);
+          currentReviews = currentReviews.filter(r => r.id !== id);
+          if (badgeReviewCount) badgeReviewCount.innerText = currentReviews.length;
+          renderReviewsTable();
+          showToast("Review deleted successfully.", 'success');
+        }
+      });
+    });
+  }
+
+  if (searchReviewsInput) {
+    searchReviewsInput.addEventListener('input', (e) => {
+      reviewsSearchQuery = e.target.value;
+      renderReviewsTable();
+    });
   }
 
   // ========== INIT ==========

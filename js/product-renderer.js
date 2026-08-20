@@ -47,6 +47,8 @@ const ProductRenderer = {
     const discountText = product.discount > 0 ? `${product.discount}% OFF` : (product.price < product.originalPrice ? `${Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF` : '');
     const outOfStock = product.inStock === false;
 
+    const isSaved = typeof isWishlisted === 'function' ? isWishlisted(product.id) : false;
+
     return `
       <div class="product-card ${outOfStock ? 'out-of-stock' : ''}"
            data-id="${safeId}"
@@ -54,8 +56,19 @@ const ProductRenderer = {
            data-category="${typeof Sanitize !== 'undefined' ? Sanitize.attr(product.subFilter || product.subCategory || '') : (product.subFilter || product.subCategory || '')}"
            data-link="${productLink}">
         
+        <!-- Wishlist Floating Button -->
+        <button class="wishlist-btn-card ${isSaved ? 'active' : ''}" 
+                data-product-id="${safeId}" 
+                data-product-name="${safeNameAttr}"
+                data-product-price="${product.price}"
+                data-product-img="${mainImg}"
+                data-product-link="${productLink}"
+                title="${isSaved ? 'Remove from Wishlist' : 'Save to Wishlist'}">
+          <i class="${isSaved ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+        </button>
+
         ${discountText ? `<span class="discount-badge">${discountText}</span>` : ''}
-        ${outOfStock ? `<span class="discount-badge" style="background: #555; left: auto; right: 10px;">Sold Out</span>` : ''}
+        ${outOfStock ? `<span class="sold-out-badge">Sold Out</span>` : ''}
 
         <div class="product-image" onclick="window.location.href='${productLink}'" style="cursor: pointer;">
           <img src="${mainImg}" alt="${safeNameAttr}" loading="lazy" onerror="this.src='${prefix}Images/Category/western-wear.jpg'">
@@ -86,15 +99,45 @@ const ProductRenderer = {
 
     container.querySelectorAll('.product-card').forEach(card => {
       card.addEventListener('click', (e) => {
-        if (e.target.closest('.add-to-cart')) return;
+        if (e.target.closest('.add-to-cart') || e.target.closest('.wishlist-btn-card')) return;
         const link = card.getAttribute('data-link');
         if (link) window.location.href = link;
+      });
+    });
+
+    // Wishlist Button Handlers
+    container.querySelectorAll('.wishlist-btn-card').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        const id = btn.getAttribute('data-product-id');
+        const name = btn.getAttribute('data-product-name');
+        const price = Number(btn.getAttribute('data-product-price'));
+        const image = btn.getAttribute('data-product-img');
+        const link = btn.getAttribute('data-product-link');
+
+        if (typeof toggleWishlist === 'function') {
+          const added = toggleWishlist({ id, name, price, image, link });
+          if (added) {
+            btn.classList.add('active');
+            btn.innerHTML = '<i class="fa-solid fa-heart"></i>';
+            btn.title = 'Remove from Wishlist';
+          } else {
+            btn.classList.remove('active');
+            btn.innerHTML = '<i class="fa-regular fa-heart"></i>';
+            btn.title = 'Save to Wishlist';
+          }
+        }
       });
     });
 
     container.querySelectorAll('.add-to-cart').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
+        if (btn.disabled || btn.hasAttribute('disabled') || btn.innerText.includes('Out of Stock')) {
+          e.preventDefault();
+          return;
+        }
         const id = btn.getAttribute('data-product-id');
         const name = btn.getAttribute('data-product-name');
         const price = Number(btn.getAttribute('data-product-price'));
@@ -114,8 +157,6 @@ const ProductRenderer = {
           if (typeof updateCartCount === 'function') {
             updateCartCount();
           }
-        } else {
-          alert(`Added "${name}" to cart!`);
         }
       });
     });

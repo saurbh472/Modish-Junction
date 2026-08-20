@@ -121,50 +121,94 @@
       </div>
     </div>
 
-    <!-- CONTROLS & SEARCH BAR -->
-    <div class="panel-header">
-      <div class="search-box">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" id="searchInput" class="search-input" placeholder="Search by name, category, or fabric...">
+    <!-- MAIN TAB NAVIGATION (Products vs Reviews) -->
+    <div style="display: flex; gap: 12px; margin-bottom: 24px; border-bottom: 2px solid #eee; padding-bottom: 14px;">
+      <button id="btnTabProducts" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px; border-radius: 25px; padding: 10px 22px;">
+        <i class="fa-solid fa-shirt"></i> Products Catalog
+      </button>
+      <button id="btnTabReviews" class="btn btn-outline" style="display: inline-flex; align-items: center; gap: 8px; border-radius: 25px; padding: 10px 22px;">
+        <i class="fa-solid fa-star"></i> Customer Reviews <span id="badgeReviewCount" style="background: var(--primary); color: #fff; border-radius: 10px; padding: 1px 7px; font-size: 11px; font-weight: 700;">0</span>
+      </button>
+    </div>
+
+    <!-- VIEW 1: PRODUCTS SECTION -->
+    <div id="viewProductsSection">
+      <!-- CONTROLS & SEARCH BAR -->
+      <div class="panel-header">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" class="search-input" placeholder="Search by name, category, or fabric...">
+        </div>
+
+        <div class="filter-tabs">
+          <button class="filter-tab active" data-filter="all">All Products</button>
+          <button class="filter-tab" data-filter="western">Western Wear</button>
+          <button class="filter-tab" data-filter="ethnic">Ethnic Wear</button>
+          <button class="filter-tab" data-filter="must-haves">Must-Haves</button>
+          <button class="filter-tab" data-filter="sale">Sale Items 🔥</button>
+          <button class="filter-tab" data-filter="trending">Home Trending</button>
+          <button class="filter-tab" data-filter="outofstock">Out of Stock</button>
+        </div>
       </div>
 
-      <div class="filter-tabs">
-        <button class="filter-tab active" data-filter="all">All Products</button>
-        <button class="filter-tab" data-filter="western">Western Wear</button>
-        <button class="filter-tab" data-filter="ethnic">Ethnic Wear</button>
-        <button class="filter-tab" data-filter="must-haves">Must-Haves</button>
-        <button class="filter-tab" data-filter="sale">Sale Items 🔥</button>
-        <button class="filter-tab" data-filter="trending">Home Trending</button>
-        <button class="filter-tab" data-filter="outofstock">Out of Stock</button>
+      <!-- PRODUCTS TABLE -->
+      <div class="table-container">
+        <table class="products-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Category</th>
+              <th>Subcategory</th>
+              <th>Price</th>
+              <th>Badges</th>
+              <th>In Stock</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="productsTableBody">
+            <tr>
+              <td colspan="7" style="text-align: center; padding: 40px; color: #888;">
+                <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: var(--primary); margin-bottom: 10px; display:block;"></i>
+                Loading database products...
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
-    <!-- PRODUCTS TABLE -->
-    <div class="table-container">
-      <table class="products-table">
-        <thead>
-          <tr>
-            <th>Product</th>
-            <th>Category</th>
-            <th>Subcategory</th>
-            <th>Price</th>
-            <th>Badges</th>
-            <th>In Stock</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody id="productsTableBody">
-          <tr>
-            <td colspan="7" style="text-align: center; padding: 40px; color: #888;">
-              <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: var(--primary); margin-bottom: 10px; display:block;"></i>
-              Loading database products...
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <!-- VIEW 2: REVIEWS SECTION -->
+    <div id="viewReviewsSection" style="display: none;">
+      <div class="panel-header">
+        <div class="search-box" style="flex: 1;">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchReviewsInput" class="search-input" placeholder="Search reviews by customer name, rating, or comment...">
+        </div>
+      </div>
 
-  </main>
+      <div class="table-container">
+        <table class="products-table">
+          <thead>
+            <tr>
+              <th>Customer</th>
+              <th>Product</th>
+              <th>Rating</th>
+              <th>Review Text</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="reviewsTableBody">
+            <tr>
+              <td colspan="6" style="text-align: center; padding: 40px; color: #888;">
+                <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: var(--primary); margin-bottom: 10px; display:block;"></i>
+                Loading customer reviews...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
   <!-- ================= ADD / EDIT PRODUCT MODAL ================= -->
   <div id="productModal" class="modal-overlay">
@@ -245,6 +289,13 @@
                 <label class="size-pill"><input type="checkbox" name="sizes" value="XXL"><span>XXL</span></label>
                 <label class="size-pill"><input type="checkbox" name="sizes" value="Free Size"><span>Free Size</span></label>
               </div>
+            </div>
+
+            <!-- Available Colors -->
+            <div class="form-group full">
+              <label for="pColors">Available Colors</label>
+              <input type="text" id="pColors" class="form-control" placeholder="e.g. Maroon, Midnight Black, Emerald Green, Dusty Rose, Classic Navy">
+              <small style="color: #777; margin-top: 4px; display: block;">Enter color names separated by commas (e.g. Maroon, Black, Green). These will appear as clickable swatches on the product page.</small>
             </div>
 
             <!-- Description -->

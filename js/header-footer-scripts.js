@@ -38,6 +38,9 @@ function loadHeaderAndFooter() {
         if (typeof updateCartCount === 'function') {
           updateCartCount();
         }
+        if (typeof updateWishlistCount === 'function') {
+          updateWishlistCount();
+        }
       })
       .catch(err => console.error("Error loading header:", err));
   }
